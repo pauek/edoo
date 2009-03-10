@@ -2,8 +2,29 @@
 @import url("default.css");
 
 div.exercici {
-  margin-top: 7px 2em 7px 2em;
-  border-top: 1px solid #cccccc;
-  padding-top: 7px;
+  padding: 0;
+  margin-bottom: 1em;
+  border: 1px solid #c0c0c0;
   font-size: 85%;
+}
+
+div.exercici p.first {
+  margin: 0;
+  font-weight: bold;
+  color: #333333;
+  padding: 2px 2px 2px 5px;
+  background: #cccccc;
+}
+
+div.exercici div.body {
+  padding: 10px;
+  line-height: 130%;
+}
+
+div.exercici div.body p {
+  margin: 4px 0;
+}
+
+div.highlight {
+  margin: 0 1.5em;
 }

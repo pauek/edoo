@@ -5,24 +5,39 @@ from docutils import nodes
 class exercici(nodes.General, nodes.Element): pass
 class problema(nodes.General, nodes.Element):  pass
 
+# exercici
 def visit_exercici_html(self, node):
     self.body.append('<div class="exercici">')
     self.body.append('<p class="first exercici-title">Exercici %d</p>' % node['num'])
+    self.body.append('<div class="body">')
 
 def depart_exercici_html(self, node):
-    self.body.append('</div>')
+    self.body.append('</div></div>')
 
 def visit_exercici_latex(self, node):
-    self.body.append('\\par\\vspace{1.5mm}\\hrule')
+    self.body.append('\\par\\vspace{3.0mm}\\hrule')
     self.body.append('\\makebox[-3mm][l]{}\\makebox[3mm][l]{$\\triangleright$}')
     self.body.append('\\begin{small}\\textbf{Exercici %d}\\quad' % node['num'])
 
 def depart_exercici_latex(self, node):
-    self.body.append('\\end{small}\\par\\vspace{1mm}')
+    self.body.append('\\end{small}\\par\\vspace{2mm}\\hrule\\vspace{1.0mm}')
 
+# problema
+def visit_problema_html(self, node):
+    self.body.append('<div class="problema">')
+    self.body.append('<p class="first problema-title">Problema %d</p>' % node['num'])
+    self.body.append('<div class="body">')
 
-def visit_problema(self, node): pass
-def depart_problema(self, node): pass
+def depart_problema_html(self, node):
+    self.body.append('</div></div>')
+
+def visit_problema_latex(self, node):
+    self.body.append('\\par\\textbf{Problema %d}' % node['num'])
+    self.body.append('\\par')
+
+def depart_problema_latex(self, node):
+    self.body.append('\\par\\vspace{2mm}')
+
 
 # Directives
 
@@ -53,9 +68,7 @@ class Numeros(Transform):
     def apply(self):
         pnum = 1
         for node in self.document.traverse(problema):
-            title = nodes.strong()
-            title += nodes.generated('', 'Problema %d\n' % pnum)
-            node.children.insert(0, title)
+            node['num'] = pnum
             pnum += 1
         enum = 1
         for node in self.document.traverse(exercici):
@@ -69,8 +82,8 @@ def setup(app):
                  html=(visit_exercici_html, depart_exercici_html),
                  latex=(visit_exercici_latex, depart_exercici_latex))
     app.add_node(problema,
-                 html=(visit_problema, depart_problema),
-                 latex=(visit_problema, depart_problema))
+                 html=(visit_problema_html, depart_problema_html),
+                 latex=(visit_problema_latex, depart_problema_latex))
 
     app.add_directive('problema', ProblemaDirective)
     app.add_directive('exercici', ExerciciDirective)
