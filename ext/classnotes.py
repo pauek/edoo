@@ -7,15 +7,18 @@ class problema(nodes.General, nodes.Element):  pass
 
 def visit_exercici_html(self, node):
     self.body.append('<div class="exercici">')
+    self.body.append('<p class="first exercici-title">Exercici %d</p>' % node['num'])
 
 def depart_exercici_html(self, node):
     self.body.append('</div>')
 
 def visit_exercici_latex(self, node):
-    self.body.append('\\begin{small}')
+    self.body.append('\\par\\vspace{1.5mm}\\hrule')
+    self.body.append('\\makebox[-3mm][l]{}\\makebox[3mm][l]{$\\triangleright$}')
+    self.body.append('\\begin{small}\\textbf{Exercici %d}\\quad' % node['num'])
 
 def depart_exercici_latex(self, node):
-    self.body.append('\\end{small}\par')
+    self.body.append('\\end{small}\\par\\vspace{1mm}')
 
 
 def visit_problema(self, node): pass
@@ -56,9 +59,7 @@ class Numeros(Transform):
             pnum += 1
         enum = 1
         for node in self.document.traverse(exercici):
-            title = nodes.strong()
-            title += nodes.generated('', 'Exercici %d  ' % enum)
-            node.children.insert(0, title)
+            node['num'] = enum
             enum += 1
 
 # Setup

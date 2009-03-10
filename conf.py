@@ -21,6 +21,7 @@ sys.path.append(os.path.abspath('ext'))
 # -- General configuration -----------------------------------------------------
 
 highlight_language = 'c++'
+html_style = 'classnotes.css'
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
@@ -105,7 +106,7 @@ html_theme_options = { "nosidebar": "true" }
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-#html_title = None
+html_title = u'Programació i Bases de Dades: Apunts'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None

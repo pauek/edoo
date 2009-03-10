@@ -1,0 +1,9 @@
+
+@import url("default.css");
+
+div.exercici {
+  margin-top: 7px 2em 7px 2em;
+  border-top: 1px solid #cccccc;
+  padding-top: 7px;
+  font-size: 85%;
+}
