@@ -28,3 +28,19 @@ div.exercici div.body p {
 div.highlight {
   margin: 0 1.5em;
 }
+
+div.problema {
+  margin-top: 7px;
+}
+
+div.problema div.body {
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
+div.problema p.problema-title {
+  font-weight: bold;
+  font-size: 110%;
+  margin-bottom: 5px;
+}
