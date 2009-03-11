@@ -10,10 +10,10 @@ Apunts de Programació i Bases de Dades
    :maxdepth: 2
    :numbered:
 
-   TADs
-   Classes
-   Operadors
-   Eficiencia
+   01_TADs
+   02_Classes
+   03_Operadors
+   04_Eficiencia
 
 
 Índexs i taules
