@@ -6,9 +6,10 @@
 Apunts de Programació i Bases de Dades
 ======================================
 
+.. Para poner números de sección: :numbered:
+
 .. toctree::
    :maxdepth: 2
-   :numbered:
 
    01_TADs
    02_Classes

@@ -44,3 +44,7 @@ div.problema p.problema-title {
   font-size: 110%;
   margin-bottom: 5px;
 }
+
+table.docutils td, table.docutils th {
+  padding: 3px;
+}

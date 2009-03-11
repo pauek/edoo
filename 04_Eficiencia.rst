@@ -21,13 +21,10 @@ Anàlisi d'algorismes
 
 Anàlisi d'algorismes
   Estudi teòric sobre els programes d'ordinador en termes de la seva
-  eficiència (velocitat) i ús de recursos.
+  eficiència (velocitat) i ús de recursos. Es tracta d'un estudi del
+  *cost* (temporal o de memòria).
 
-Velocitat 
-  Temps *real* que triga un algorisme en produir el seu resultat
-
-Exemple: Ordenació
-------------------
+**Exemple: Ordenació**
 
 El problema d'ordenar una seqüència de nombres es pot enunciar
 explicitant quina és l'entrada de l'algorisme i quina n'és la sortida:
@@ -143,12 +140,12 @@ ordinador ràpid pot trigar menys que un algorisme ràpid executat en un
 ordinador lent. Com podem comparar algorismes diferents sense
 necessitat de tenir un ordinador amb una velocitat de referència?
 
-La resposta està en la idea no analitzar els valors concrets, sinó les
-*tendències* d'aquests valors. Com que disposem dels valors del temps
-d'execució :math:`T(n)` per a entrades de diferents tamanys, el que
-farem és mirar com creix el temps d'execució quan augmentem el valor de
-:math:`n`. El que importarà, doncs, no són els valors precisos sobre
-els temps sino quin *ordre* de creixement tenen. 
+La solució és no analitzar els valors concrets, sinó les *tendències*
+d'aquests valors (el seu valor assimptòtic). Com que disposem dels
+valors del temps d'execució :math:`T(n)` per a entrades de diferents
+tamanys, el que farem és mirar com creix el temps d'execució quan
+augmentem el valor de :math:`n`. El que importarà, doncs, no són els
+valors precisos sobre els temps sino quin *ordre* de creixement tenen.
 
 Límits
 ------
@@ -183,19 +180,31 @@ cursa entre el denominador i el numerador i depenent del guanyador
 tindrem un valor diferent: :math:`\infty` si guanya el numerador,
 :math:`0` si guanya el denominador i una constant si queden empatats.
 
-Quan una funció :math:`f(n)` "guanya" a una altra funció :math:`g(n)`
+Quan una funció :math:`g(n)` "guanya" a una altra funció :math:`f(n)`
 en un límit d'aquests, podem escriure:
-
-.. METER AQUÍ LA COMPARACION
 
 .. math::
 
-   f(n) < g(n)
+   f(n) \prec g(n)
 
+i quan són equivalents es posa:
+
+.. math::
+
+   f(n) \sim g(n)
 
 Fent servir la noció de límit, es pot classificar a les funcions en
-grups fixant-nos en qui guanya a qui.
+grups, posant les equivalents en el mateix grup, i mirant quins grups
+guanyen a quins. Tots els polinomis de grau 2 guanyen als de grau 1,
+per exemple, independentment de les constants que tinguin.
 
+.. exercici::
+
+   Calcula el següent limit
+
+   .. math::
+
+      \lim_{n\rightarrow\infty} \frac{n}{\log n}
 
 .. exercici::
    
@@ -214,12 +223,18 @@ grups fixant-nos en qui guanya a qui.
       \lim_{n\rightarrow\infty} 
       \frac{2 (n + 1) (\log n + 7)}{ 7n^2 + 1 }
 
-Notació assimptòtica
+Ordres de creixement
 --------------------
 
 Quan analitzem el comportament d'una funció de :math:`n` quan
-:math:`n` creix, ens hem de fixar en el seu *ordre*, és a dir, el valor
-de l'exponent més alt que veiem. Si la funció és
+:math:`n` creix, ens hem de fixar en el seu *ordre de creixement* (o,
+simplement, el seu ordre). L'ordre d'una funció és el grup de funcions
+equivalents (en termes de creixement) al que pertany. Se sol agafar un
+representant d'aquest grup per denotar-lo (la funció més simple
+possible). 
+
+En el cas més senzill, el dels polinomis, l'ordre es determina amb
+l'exponent més alt que veiem. Per exemple, si la funció és
 
 .. math::
 
@@ -234,7 +249,11 @@ el valor que realment domina quan :math:`n` creix és
 
 - Ignorant les constants multiplicatives.
 
-Per expressar aquesta operació farem servir la notació :math:`\Theta`,
+
+Notació :math:`\Theta`
+""""""""""""""""""""""
+
+Per expressar els ordres de funcions farem servir la notació :math:`\Theta`,
 que donada una funció, indica el seu l'ordre de creixement entre
 parèntesis:
 
@@ -242,9 +261,11 @@ parèntesis:
 
    3 n^3 + 90 n^2 - 5n + 6046 = \Theta(n^3)
 
-El valor :math:`\Theta(n^3)` indica, de fet, el conjunt de totes les
-funcions que tenen un terme cúbic com a màxim i qualsevol valor en les
-constants. Totes elles són equivalents en aquest tipus d'anàlisi. 
+La notació :math:`\Theta(n^3)` indica un ordre cúbic i s'agafa la
+funció més senzilla d'ordre cúbic com a
+representant. :math:`\Theta(n^3)` és el grup de totes les funcions que
+tenen un terme cúbic (i cap de més gros) i qualsevol valor en les
+constants. Totes elles són equivalents en aquest tipus d'anàlisi.
 
 .. exercici::
 
@@ -262,23 +283,141 @@ constants. Totes elles són equivalents en aquest tipus d'anàlisi.
 
       f_3(n) = \frac{8n^7 + n^4}{3n^2-17}
 
+   .. math::
+   
+      f_4(n) = \frac{7n + 3}{3n(9 - n)} + \Theta(n)
+
 
 Definició matemàtica de :math:`\Theta`
 """"""""""""""""""""""""""""""""""""""
 
-La definició de :math:`\Theta` és la següent 
+La definició de :math:`\Theta` és, per tant:
 
+  Donada una funció :math:`g(n)`, diem que :math:`\Theta(g(n))` és el
+  conjunt de les funcions :math:`f(n)` per a les quals existeixen dues
+  constants :math:`c_1` i :math:`c_2` tals que
+
+     .. math::
+  
+        0 \leq c_1 g(n) \leq f(n) \leq c_2 g(n)
+
+  a partir de cert :math:`n_0` quan :math:`n` tendeix a :math:`\infty`.
+
+Aquesta definició ens diu que podem fer un "sandwich" de :math:`f(n)`,
+tal com mostra la figura següent
+
+.. image:: img/Theta_Notation.png
+   :scale: 80
+   :align: center
+
+
+Cotes superiors: notació :math:`O`
+""""""""""""""""""""""""""""""""""
+
+Per l'anàlisi d'algorismes, donat que estudiem el cas pitjor, el que
+volem és poder expressar que l'ordre de creixement és igual o *menor*
+que un cert ordre. Per poder expressar això tenim la notacio
+:math:`O`. La definició és molt semblant a la de :math:`\Theta`:
+
+  Donada una funció :math:`g(n)`, diem que :math:`O(g(n))` és el
+  conjunt de les funcions :math:`f(n)` per a les quals existeix una constant
+  :math:`c` tal que
+
+     .. math::
+  
+        0 \leq f(n) \leq c g(n)
+
+  a partir de cert :math:`n_0` quan :math:`n` tendeix a
+  :math:`\infty`.
+
+En aquest cas, :math:`f(n)` estarà acotada per :math:`g(n)` excepte
+per una constant tal com mostra la següent figura:
+
+.. image:: img/O_Notation.png
+   :scale: 80
+   :align: center
+
+
+Exemples
+""""""""
+
+En resum, en l'àmbit de l'anàlisi assimptòtica (quan :math:`n`
+tendeix a :math:`\infty`), la notació :math:`\Theta` és un símil de
+l'operador "igual" i la notació :math:`O` ens permet expressar la noció de
+"menor o igual". 
+
+Els següents exemples mostren l'ús de les dues notacions:
+
+.. math::
+
+   6n^3 = O(n^4)
+
+.. math::
+
+   \frac{1}{2}n^2 - 3n = \Theta(n^2)
+
+.. math::
+
+   (n + 1)^2 = n^2 + O(n)
+
+.. math::
+
+   6n^3 \neq \Theta(n^2)
+
+.. math::
+
+   7 n^3 - 3 n^2 + n + 19 = O(n^3)
+
+.. math::
+
+   n^3 = O(7 n^3 - 3 n^2 + n + 19)
+
+.. math::
+
+   6n^3 + 4n^2 = 6n^3 + \Theta(n^2) = 6n^3 + O(n^2)
+
+.. math::
+
+   \Theta(n^3) + 451 n^2 - 104 n = \Theta(n^3)   
+
+.. math::
+
+   n^{O(1)} = O(e^n)
+
+.. TODO: Ejercicio donde se diga si unas expresiones son ciertas o
+   falsas
+
+
+Ordres de creixement típics
+"""""""""""""""""""""""""""
+
+La següent taula mostra els ordres de creixement típics de menor a major:
+
+===================== ========================
+Notació               Nom de l'ordre
+===================== ========================
+:math:`O(1)`          Constant
+:math:`O(\log n)`     Logarítmic
+:math:`O(n)`          Linial
+:math:`O(n \log n)`   Loglinial o Quasilinial.
+:math:`O(n^2)`        Quadràtic
+:math:`O(n^3)`        Cúbic
+:math:`O(n^c), c > 1` Polinòmic
+:math:`O(c^n), c > 1` Exponencial
+:math:`O(n!)`         Factorial
+===================== ========================
 
 
 Comparació d'algorismes
 -----------------------
 
 El gran avantatge dels ordres de creixement és que ens permeten comparar
-algorismes directament. Un algorisme A amb un temps d'execució :math:`\Theta(n^3)`
-*és sempre pitjor* que un algorisme B amb temps :math:`\Theta(n^2)`. Per
-la definició matemàtica de :math:`\Theta`, sempre hi haurà un valor de
+algorismes directament. Un algorisme A amb un temps d'execució :math:`O(n^3)`
+*és sempre pitjor* que un algorisme B amb temps :math:`O(n^2)`. Per
+la definició matemàtica de :math:`O`, sempre hi haurà un valor de
 :math:`n` a partir del qual A triga més que B, fins i tot si A
-s'executa en un ordinador més ràpid que el de B.
+s'executa en un ordinador més ràpid que el de B (que multiplica el
+temps per una constant).
 
 Vegem un exemple concret. Suposem que :math:`T_A(n) = 2 n^2` i que
 :math:`T_B(n) = 50 n \log n`, a on les dues funcions mesuren el número
@@ -296,23 +435,89 @@ d'un milió, els temps reals d'execució de cada algorisme seràn:
 .. math::
 
    t_B = \frac{50\times 10^6 \log 10^6\ \text{instruccions}}
-              {10^7\ \text{instruccions}/\text{segon}} \approx 100\ \text{segons}
+              {10^7\ \text{instruccions}/\text{segon}} \approx 70\ \text{segons}
 
 És clar, doncs, que l'avantatge de A no ha servit per a res. Malgrat
 l'ordinador de A és 100 vegades més ràpid, l'algorisme A s'executa
 finalment 20 vegades més lentament que B, per a una entrada
-suficientment gran. La clau està els ordres de creixement,
+suficientment gran. La clau està en els ordres de creixement,
 :math:`T_A(n) = \Theta(n^2)` i :math:`T_B(n) = \Theta(n \log n)`, ja
 que l'ordre de A és major que el de B.
-
-Ordres de creixement típics
----------------------------
-
-Cotes superiors: notació :math:`O`
-----------------------------------
 
 
 Anàlisi de la ordenació per inserció
 ====================================
 
+Per poder aplicar tot això, hem d'obtenir la funció que descriu el
+temps que triga un algorisme concret en executar-se com una funció del
+tamany de l'entrada :math:`n`. Com a exemple farem servir la ordenació
+per inserció que ha sortit al principi.
+
+Es tracta d'anar mirant tots els passos de l'algorisme i mirar què
+triguen. Com que no podem saber quan triga cada operació
+(assignacions, increments, comparacions, etc.) el que farem és posar
+una constant desconeguta :math:`t_k` per a cada cosa que no sapiguem,
+i operarem amb aquestes constants. Al final, aquestes constants no
+importaran per a l'ordre de creixement, o sigui que en el fons estem
+fent l'anàlisi *independentment* de l'ordinador concret en què
+executem l'algorisme.
+
+La següent taula mostra la comptabilitat de cada instrucció:
+
++------------------------------------+--------------+-------------------------------------------------+
+| Línia de codi                      | Temps        | Vegades                                         |
++====================================+==============+=================================================+
+| ``for (j = 2; j < N; j++) {``      | :math:`t_1`  | :math:`n`                                       |
++------------------------------------+--------------+-------------------------------------------------+
+| ``k = A[j];``                      | :math:`t_2`  | :math:`n-1`                                     |
++------------------------------------+--------------+-------------------------------------------------+
+| ``i = j - 1;``                     | :math:`t_3`  | :math:`n-1`                                     |
++------------------------------------+--------------+-------------------------------------------------+
+| ``while (i >= 0 && A[i] > k) {``   | :math:`t_4`  | :math:`\sum_{j=2}^{n} j = \frac{n(n+1)}{2} - 1` |
++------------------------------------+--------------+-------------------------------------------------+
+| ``A[i+1] = A[i];``                 | :math:`t_5`  | :math:`\sum_{j=2}^{n} j-1 = \frac{n(n-1)}{2}`   |
++------------------------------------+--------------+-------------------------------------------------+
+| ``i--;``                           | :math:`t_6`  | :math:`\sum_{j=2}^{n} j-1 = \frac{n(n-1)}{2}`   |
++------------------------------------+--------------+-------------------------------------------------+
+| ``}``                              |              |                                                 |
++------------------------------------+--------------+-------------------------------------------------+
+| ``A[i+1] = k;``                    | :math:`t_7`  | :math:`n-1`                                     |
++------------------------------------+--------------+-------------------------------------------------+
+| ``}``                              |              |                                                 |
++------------------------------------+--------------+-------------------------------------------------+
+
+A cada instrucció se li ha posat un temps i el número de vegades que
+s'executa. Si ara sumem cada temps pel seu número de vegades, obtenim
+el temps total:
+
+.. math::
+   
+   T(n) = t_1 n + (t_2 + t_3 + t_7) (n-1) + 
+          t_4 \left(\frac{n(n-1)}{2} - 1\right) + 
+	  (t_5 + t_6) \frac{n(n-1)}{2} 
+
+Si el simplifiquem obtenim
+
+.. math::
+
+   T(n) = \left(\frac{t_4}{2} + \frac{t_5}{2} + \frac{t_6}{2}\right) n^2 +
+          \left(t_1 + t_2 + t_3 + t_7 + \frac{t_4}{2} - \frac{t_5}{2} - \frac{t_6}{2}\right) n -
+	  (t_2 + t_3 + t_7 + t_4)
+
+i la funció resultant és, clarament :math:`\Theta(n^2)`. Per tant, la
+ordenació per inserció té un ordre quadràtic.
+
+
+
+Bibliografia
+============
+
+A Wikipedia:
+
+- Notació :math:`\Theta` i :math:`O`:
+  `http://en.wikipedia.org/wiki/Big_O_notation
+  <http://en.wikipedia.org/wiki/Big_O_notation>`_.
+
+- Anàlisi assimptòtic: `http://en.wikipedia.org/wiki/Asymptotic_analysis
+  <http://en.wikipedia.org/wiki/Asymptotic_analysis>`_.
 
