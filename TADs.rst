@@ -394,7 +394,7 @@ La novetat són les crides ``I.inici()`` i ``I.final()``. Aquesta
 notació és la que coneixem per a tuples aplicada a
 funcions. L'interessant és:
 
-.. note:: 
+.. important:: 
 
    Les funcions membre d'una tupla sempre es criden obligatòriament
    sobre un objecte i és aquest l'objecte que esdevé implícit en la

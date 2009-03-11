@@ -498,7 +498,7 @@ paràmetres requerits pel constructor (un enter i un caràcter).
 
 
 Si no hi ha constructor de còpia, se'n posa un
-----------------------------------------------
+""""""""""""""""""""""""""""""""""""""""""""""
 
 En absència del constructor de còpia, C++ en posa un, que el que fa és
 copiar, un per un, cada atribut de la classe. El següent programa és
@@ -534,7 +534,7 @@ ja que mostream les dades de ``b``, que és una còpia de ``a``.
 
 
 Constructors en classes compostes
----------------------------------
+"""""""""""""""""""""""""""""""""
 
 Una classe composta té atributs que alhora són objectes d'altres
 classes. Una classe ``Ordinador``, per exemple, té un atribut que és
@@ -675,7 +675,7 @@ Problemes
 
 
 Bibliografia
-------------
+============
 
 Bjarne Stroustrup, *The C++ Programming Language*, Third
 Edition. Addison-Wesley, 2004. Capítol 10, Classes.

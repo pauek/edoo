@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Apunts_PBD'
+project = u'ApuntsPBD'
 copyright = u'2009, Pau Fernández'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -106,7 +106,7 @@ html_theme_options = { "nosidebar": "true" }
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = u'Programació i Bases de Dades: Apunts'
+html_title = ur'Programació i Bases de Dades: Apunts'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
@@ -175,7 +175,7 @@ latex_paper_size = 'a4'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'Apunts_PBD.tex', ur'Apunts\_PBD Documentation',
+  ('index', 'Apunts_PBD.tex', ur'Programació i Bases de Dades: Apunts',
    ur'Pau Fernández', 'manual'),
 ]
 
