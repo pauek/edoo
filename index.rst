@@ -16,6 +16,15 @@ Apunts de Programació i Bases de Dades
    03_Operadors
    04_Eficiencia
 
+Solucions a tots els exercicis
+==============================
+
+.. toctree::
+   :maxdepth: 1
+
+   SOL_01_TADs
+   SOL_02_Classes
+
 
 Índexs i taules
 ===============

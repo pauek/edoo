@@ -652,26 +652,10 @@ Problemes
 .. problema::
 
    Implementa la classe ``Frase`` de forma que el següent programa
-   funcioni perfectament com dóna a entendre::
+   (:download:`frase_main.cpp <src/frase_main.cpp>`) funcioni
+   perfectament com dóna a entendre
 
-      int main() {
-        Frase f;
-	f.afegeix_paraula("Ser");
-	f.afegeix_paraula("o");
-	f.afegeix_paraula("no");
-	f.afegeix_paraula("ser");
-	f.mostra(cout);
-	cout << "La frase té " << f.num_paraules() << " paraules" <<  endl;
-	
-	string nom;
-	cout << "El teu nom? ";
-	cin >> nom;
-	
-	f.esborra();
-	f.afegeix_paraula("Hola,");
-	f.afegeix_paraula(nom);
-	f.mostra(cout);
-      }      
+   .. literalinclude:: src/frase_main.cpp
 
 
 Bibliografia
