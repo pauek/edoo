@@ -652,10 +652,10 @@ Problemes
 .. problema::
 
    Implementa la classe ``Frase`` de forma que el següent programa
-   (:download:`frase_main.cpp <src/frase_main.cpp>`) funcioni
+   (:download:`frase_main.cpp <src/02_Classes/frase_main.cpp>`) funcioni
    perfectament com dóna a entendre
 
-   .. literalinclude:: src/frase_main.cpp
+   .. literalinclude:: src/02_Classes/frase_main.cpp
 
 
 Bibliografia

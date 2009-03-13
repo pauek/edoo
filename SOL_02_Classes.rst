@@ -217,6 +217,9 @@ Classes
       }
 
 .. problema::
+    
+   .. Utilizar "literalinclude" con :lines: 10-20 para incluir
+   .. porciones!
 
    Primer declarem la classe, decidint els paràmetres i els noms del
    mètodes (i si són ``const`` o no). Un cop fet això decidim quina
@@ -403,7 +406,7 @@ Classes
       }
 
    Aquí finalitza la implementació d'aquesta versió de
-   l'exercici. Pots :download:`descarregar el codi d'aquest exercici<src/conjunt_v1.cpp>`.
+   l'exercici. Pots :download:`descarregar el codi d'aquest exercici<src/02_Classes/conjunt_v1.cpp>`.
 
 
    **Versió amb taula de Booleans**
@@ -411,7 +414,18 @@ Classes
    L'altra versió seria implementar la classe amb un vector que
    indica si un element pertany o no al conjunt amb un valor ``bool``.
 
-   .. literalinclude:: src/conjunt_v2.cpp   
+   .. literalinclude:: src/02_Classes/conjunt_v2.cpp   
    
-   Pots :download:`descarregar aquest codi <src/conjunt_v2.cpp>`.
+   Pots :download:`descarregar aquest codi<src/02_Classes/conjunt_v2.cpp>`.
         
+.. problema::
+
+   El problema de la frase té un fitxer de capçalera
+   (:download:`frase.h <src/02_Classes/frase.h>`) com el següent
+
+   .. literalinclude:: src/02_Classes/frase.h
+
+   La implementació es faria a :download:`frase.cpp
+   <src/02_Classes/frase.cpp>` i seria així
+
+   .. literalinclude:: src/02_Classes/frase.cpp
