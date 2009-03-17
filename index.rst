@@ -17,8 +17,8 @@ Apunts de Programació i Bases de Dades
    04_Eficiencia
    05_Punters
 
-Solucions a tots els exercicis
-==============================
+Solucions a exercicis i problemes
+=================================
 
 .. toctree::
    :maxdepth: 1
