@@ -5,8 +5,7 @@
 Operadors i Sobrecàrrega
 ========================
 
-Objectius
-=========
+.. rubric:: Objectius
 
 - Determinar quina funció concreta es fa servir en una crida
   sobrecarregada.
@@ -547,11 +546,13 @@ Problemes
    hores, minuts i segons).
 
 
-Bibliografia
-============
+.. rubric:: Bibliografia
 
 Bjarne Stroustrup, *The C++ Programming Language*, Third
 Edition. Addison-Wesley, 2004. Capítol 11.
 
-Bruce Eckel, *Thinking in C++*, Volume 1, 2nd Edition. Prentice
-Hall, 2000. Capítol 12.
+Bruce Eckel, `Thinking in C++ <http://www.mindview.net/Books/TICPP/ThinkingInCPP2e.html>`_, Volume
+1, 2nd Edition. Prentice Hall, 2000. **Capítol 12**. Aquest llibre és de
+lliure distribució i d'aquest capítol existeix una 
+`traducció al castellà <http://arco.esi.uclm.es/~david.villa/pensar_en_C++/products/vol1/C12.html>`_.
+

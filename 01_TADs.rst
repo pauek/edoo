@@ -3,8 +3,7 @@
 Tipus Abstractes de Dades
 =========================
 
-Objectius
----------
+.. rubric:: Objectius
 
 - Descriure els avantatges d'una barrera d'abstracció en un programa.
 - Utilitzar correctament les operacions d'un tipus abstracte de dades donat.
@@ -541,3 +540,10 @@ Problemes
      i un enter amb el número de minuts per dia que està activa. El
      sentinella és ``0 FI 0``. El programa ha de mostrar quina formiga
      és la més activa. La funció principal no s'ha de modificar.
+
+.. rubric:: Bibliografia
+
+Bruce Eckel, `Thinking in C++ <http://www.mindview.net/Books/TICPP/ThinkingInCPP2e.html>`_, Volume
+1, 2nd Edition. Prentice Hall, 2000. **Capítol 1**. Aquest llibre és de
+lliure distribució i d'aquest capítol existeix una 
+`traducció al castellà <http://arco.esi.uclm.es/~david.villa/pensar_en_C++/products/vol1/C1.html>`_.

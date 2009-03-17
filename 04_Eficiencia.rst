@@ -3,8 +3,7 @@
 Eficiència d'Algorismes
 =======================
 
-Objectius
-=========
+.. rubric:: Objectius
 
 - Descriure el concepte d'ordre de creixement.
 
@@ -509,8 +508,7 @@ ordenació per inserció té un ordre quadràtic.
 
 
 
-Bibliografia
-============
+.. rubric:: Bibliografia
 
 A Wikipedia:
 

@@ -6,8 +6,7 @@
 Classes
 =======
 
-Objectius
-=========
+.. rubric:: Objectius
 
 - Descriure què és una classe, un objecte, i un mètode.
 
@@ -658,10 +657,16 @@ Problemes
    .. literalinclude:: src/02_Classes/frase_main.cpp
 
 
-Bibliografia
-============
+.. rubric:: Bibliografia
 
 Bjarne Stroustrup, *The C++ Programming Language*, Third
 Edition. Addison-Wesley, 2004. Capítol 10, Classes.
 
-`http://en.wikipedia.org/wiki/Class_(computer_science) <http://en.wikipedia.org/wiki/Class_(computer_science)>`_
+`http://en.wikipedia.org/wiki/Class_(computer_science)
+<http://en.wikipedia.org/wiki/Class_(computer_science)>`_
+
+Bruce Eckel, `Thinking in C++ <http://www.mindview.net/Books/TICPP/ThinkingInCPP2e.html>`_, Volume
+1, 2nd Edition. Prentice Hall, 2000. **Capítol 5**. Aquest llibre és de
+lliure distribució i d'aquest capítol existeix una 
+`traducció al castellà <http://arco.esi.uclm.es/~david.villa/pensar_en_C++/products/vol1/C5.html>`_.
+

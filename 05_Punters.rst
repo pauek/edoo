@@ -3,6 +3,17 @@
 Punters i Referències
 =====================
 
+.. rubric:: Objectius
+
+- Descriure què és una adreça de memòria i un punter.
+
+- Declarar punters a un tipus qualsevol. Accedir al valor apuntat,
+  incloent camps d'estructures.
+
+- Iterar posicions de memòria consecutives fent servir punters.
+
+- Passar paràmetres per referència fent servir punters.
+
 Punters
 =======
 
@@ -85,7 +96,7 @@ L'operador ``&`` permet obtenir l'adreça d'una variable
 
 En un programa podem obtenir l'adreça d'una variable ``a`` posant
 ``&a``. Per exemple, el programa següent mostra les adreces reals en
-què ``a``, ``b`` i ``f`` resideixen:
+que ``a``, ``b`` i ``f`` resideixen:
 
 .. literalinclude:: src/05_Punters/cout_addr.cpp
 
@@ -249,6 +260,8 @@ podriem escriure::
 Aquesta notació és més clara (i més fàcil d'escriure) i és utilitzada
 majoritàriament.
 
+.. TODO ejercicio sobre acceder a métodos de clases a través de un puntero!!
+
 Pas per referència amb punters
 ------------------------------
 
@@ -282,6 +295,14 @@ Les taules de caracters són "strings" de C
 .. explicar argc i argv
 
 
+.. rubric:: Bibliografia
+
+.. Añadir el libro nuesto!!
+
+Bruce Eckel, `Thinking in C++ <http://www.mindview.net/Books/TICPP/ThinkingInCPP2e.html>`_, Volume
+1, 2nd Edition. Prentice Hall, 2000. **Seccions 4.4, 4.5, 4.6 i 4.7**. Aquest llibre és de
+lliure distribució i d'aquestes seccions existeix una 
+`traducció al castellà <http://arco.esi.uclm.es/~david.villa/pensar_en_C++/products/vol1/ch03s04s04.html>`_.
 
 
 .. [#nota1] Un valor de 8 bits, com un enter entre 0 i 255. El tipus
