@@ -1,4 +1,6 @@
 
+.. Meter funciones friend!!
+
 ========================
 Operadors i Sobrecàrrega
 ========================
@@ -503,7 +505,10 @@ operació una mica més senzilla.
      p * 7
      7.5 << p << pp
 
-.. exercici::
+Problemes
+=========
+
+.. problema::
 
    Considera la següent declaració d'una classe ``Vector10``::
 
@@ -516,10 +521,30 @@ operació una mica més senzilla.
    Declara un operador per a la suma ("``+``") de ``Vector10``, que
    suma component a component. Implementa l'operador com a mètode.
 
-Problemes
-=========
+.. problema::
 
+   Fes una classe ``Hora`` que permeti manipular dades temporals
+   (hores, minuts i segons). Implementa la classe completa: 
+   
+   - Separa la declaració i la implementació en fitxers diferents
+     (``.h`` i ``.cpp``).
 
+   - Fes tots els operadors convenients: comparació, menor (i menor o
+     igual), major (i major o igual), suma de dues hores (suma dels
+     temps), resta de dues hores (resta dels temps).
+
+   - Implementa operadors de sortida que mostrin la hora en format
+     ``05:39:03``, i la llegeixin en el mateix format.
+
+   - Implementa un mètode per obtenir el número de segons i un
+     constructor per crear una hora a partir d'un número de segons.
+
+.. problema::
+
+   Fent servir la classe ``Hora`` de l'exercici anterior, implementa un
+   programa que llegeixi una sequència d'intervals (parelles d'hores)
+   i calculi la mitjana de la durada temporal de cada interval (en
+   hores, minuts i segons).
 
 
 Bibliografia
