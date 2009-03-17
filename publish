@@ -1,0 +1,2 @@
+#!/bin/bash
+rsync -av --delete _build/html/ euetit@login1.lsi.upc.edu:public_html/pbd/apunts
