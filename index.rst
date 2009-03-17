@@ -24,7 +24,7 @@ Solucions a tots els exercicis
 
    SOL_01_TADs
    SOL_02_Classes
-
+   SOL_03_Operadors
 
 Índexs i taules
 ===============
