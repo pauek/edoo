@@ -17,6 +17,7 @@ Apunts de Programació i Bases de Dades
    04_Eficiencia
    05_Punters
 
+
 Solucions a exercicis i problemes
 =================================
 
@@ -26,6 +27,8 @@ Solucions a exercicis i problemes
    SOL_01_TADs
    SOL_02_Classes
    SOL_03_Operadors
+   SOL_05_Punters
+
 
 Índexs i taules
 ===============

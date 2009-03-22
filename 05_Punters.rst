@@ -211,7 +211,7 @@ posat la instrucció "``a = 3``".
      pf1 = pf2;
      pf2 = pf3;
      *pf1 += 0.5;
-     *pf1 = *pf1 / 2.0;
+     *pf2 = *pf2 / 2.0;
      cout << x << ' ' << y << endl;
 
 
@@ -315,7 +315,7 @@ en el ``main``::
 
 .. exercici::
    
-   Digues quina és la sortida del següent programa::
+   Digues quina és la sortida del següent programa si l'entrada és "7 11"::
 
      void f(int *a, int *b) {
        int x = *a;
@@ -367,15 +367,10 @@ suma 4**.
 
 .. exercici::
 
-   Compila el següent programa i observa les adreces que surten per pantalla::
+   Compila el següent programa i observa les adreces que surten per
+   pantalla:
 
-     int main() {
-       int x = 0;
-       int *px = &x;
-       cout << px << endl;
-       px += 1;
-       cout << px << endl;
-     }
+   .. literalinclude:: src/05_Punters/ptr_inc.cpp
 
 
 Les caselles de les taules ocupen posicions de memòria consecutives
