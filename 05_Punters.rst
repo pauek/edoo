@@ -17,8 +17,8 @@ Punters i Referències
 Punters
 =======
 
-Organització de la memòria
---------------------------
+La memòria és una gran taula de *bytes*
+---------------------------------------
 
 La memòria d'un ordinador és una taula molt gran (amb milions de
 caselles), i a on cada casella conté un *byte* [#nota1]_. Si un
