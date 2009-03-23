@@ -637,9 +637,8 @@ Des del programa principal, podriem cridar aquesta funció així::
       }
 
 
-Referències
-===========
-
+.. Referències
+.. ===========
 
 .. rubric:: Bibliografia
 

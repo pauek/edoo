@@ -518,4 +518,3 @@ A Wikipedia:
 
 - Anàlisi assimptòtic: `http://en.wikipedia.org/wiki/Asymptotic_analysis
   <http://en.wikipedia.org/wiki/Asymptotic_analysis>`_.
-

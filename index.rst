@@ -16,6 +16,7 @@ Apunts de Programació i Bases de Dades
    03_Operadors
    04_Eficiencia
    05_Punters
+   06_Memoria_Dinamica
 
 
 Solucions a exercicis i problemes
