@@ -541,30 +541,46 @@ ja que cada cadena és un punter. Els arguments, de fet, comencen a la
 casella 1, ja que el primer argument (el 0) és el nom del programa.
 
 El següent programa ``hola`` fa servir el primer argument
-(``argv[1]``) i fa una salutació suposant que se li passa un nom::
+(``argv[1]``) i fa una salutació suposant que se li passa un nom:
 
-  int main(int argc, char *argv[]) {
-    if (argc < 1) {
-      cout << "Has de posar un nom en el primer argument!" << endl;
-    }
-    else {
-      cout << "Hola, " << argv[1] << ", què tal estàs?" << endl;
-    }
-  }
+.. literalinclude:: src/05_Punters/hola.cpp
 
 .. exercici::
 
-   Modifica el programa de la pràctica 1 per tal que inverteixi la
-   imatge que se li passa com a primer argument. Fes servir un nom fix
-   per a la imatge de sortida (per exemple, ``sortida.pgm``).
+   Compila :download:`programa anterior <src/05_Punters/hola.cpp>` i
+   executa'l de manera que mostri per pantalla el següent::
+
+     Hola, Groucho, què tal estàs?
+
+   Com s'hauria d'executar per produir::
+
+     Hola, Groucho Marx, què tal estàs?
+
 
 .. exercici::
 
-   Modifica el programa anterior per tal que inverteixi un grup
-   d'imatges que es passen com a arguments. Fes una funció que per a
-   un nom d'imatge donat (posem ``"groucho.pgm"``), produeixi un nom
-   com ``"groucho_inv.pgm"``, i fes servir aquest nom per a la imatge
-   guardada (si poses un nom fix per a la sortida, se sobreescriurà).
+   Canvia el programa anterior perquè saludi a tots els noms que rep
+   com a arguments. Si l'executem com::
+
+     hola Groucho Chicco Harpo
+
+   he de dir::
+
+     Hola, Groucho, què tal estàs?
+     Hola, Chicco, què tal estàs?
+     Hola, Harpo, què tal estàs?
+
+
+.. exercici::
+
+   Fes un programa que mostri el número d'arguments i els arguments
+   per pantalla, de manera que puguis comprovar quins arguments rep el
+   programa. Anomena el programa ``see_args``. Comprova la sortida per
+   a les següents comandes::
+
+      see_args a1 a2 a3
+      see_args "a1 a2 a3"
+      see_args /x /w
 
 
 La forma més ràpida de recórrer una taula és amb un punter
@@ -637,8 +653,27 @@ Des del programa principal, podriem cridar aquesta funció així::
       }
 
 
-.. Referències
-.. ===========
+Problemes
+=========
+
+.. problema::
+
+   *[Aquest problema és opcional]*
+
+   Modifica el programa de la pràctica 1 per tal que inverteixi la
+   imatge que se li passa com a primer argument. Fes servir un nom fix
+   per a la imatge de sortida (per exemple, ``sortida.pgm``).
+
+.. problema::
+
+   *[Aquest problema és opcional]*
+
+   Modifica el programa anterior per tal que inverteixi un grup
+   d'imatges que es passen com a arguments. Fes una funció que per a
+   un nom d'imatge donat (posem ``"groucho.pgm"``), produeixi un nom
+   com ``"groucho_inv.pgm"``, i fes servir aquest nom per a la imatge
+   guardada (si poses un nom fix per a la sortida, se sobreescriurà).
+
 
 .. rubric:: Bibliografia
 

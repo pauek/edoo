@@ -23,21 +23,31 @@ Gestió de la memòria
 La gestió dinàmica de la memòria permet sobrepassar certes limitacions
 ----------------------------------------------------------------------
 
-Quan declarem una variable en un programa:
+Quan un programa s'executa té dos zones de memòria que pot utilitzar:
 
-A. es fa servir una zona de memòria amb un tamany màxim força petit per
-   col·locar-la; i
+- La pila (o *stack*): és una zona petita i de tamany fix. En aquesta
+  zona es situen les variables locals que declarem a les funcions.
 
-B. la porció de memòria que ocupava la variable desapareix quan la
+- El *heap* (o *free store*): és una zona expandible i amb tamany
+  limitat només per al memòria disponible. És en aquesta zona a on
+  podem reservar memòria dinàmicament.
+
+Llavors, quan declarem una variable en un programa:
+
+A. es fa servir una porció de la pila per col·locar-la; i
+
+B. la porció de memòria que ocupava la variable es recicla quan la
    funció on hem declarat la variable finalitza.
 
 Necessitem fer servir memòria dinàmica, doncs, quan:
 
-A. el tamany de la zona que volem utilitzar és gran (més gran que la
-   zona estàndar), o
+A. el tamany de la zona que volem utilitzar és gran (més gran que el
+   tamany estàndar de la pila), o
 
 B. algunes dades del nostre programa han de sobreviure a la funció a
-   on són creades.
+   on són creades, és a dir, han de residir en una zona pròpia un cop
+   la funció ha finalitzat.
+
 
 L'operador ``new`` reserva memòria i retorna un punter
 ------------------------------------------------------
@@ -45,19 +55,19 @@ L'operador ``new`` reserva memòria i retorna un punter
 Per reservar memòria de forma dinàmica, farem servir l'operador
 ``new``, que es pot cridar de 3 formes diferents (si bé s'assemblen bastant):
 
-1. ``new B[n]``: on ``B`` és un tipus bàsic i ``n`` és un
+1. ``new A[n]``: on ``A`` és un tipus bàsic i ``n`` és un
    enter. Aquesta versió retorna un punter a una taula de ``n``
-   elements del tipus ``B``. El valor de ``n`` pot provenir d'una
+   elements del tipus ``A``. El valor de ``n`` pot provenir d'una
    variable, no ha de ser una constant. Si ``n`` és 1, també es pot
-   posar ``new B``.
+   posar ``new A``.
 
-2. ``new C(...)``: on ``C`` és el nom d'una classe (o un ``struct``) i
+2. ``new B(...)``: on ``B`` és el nom d'una classe (o un ``struct``) i
    els paràmetres que l'acompanyen són els d'un constructor de la
-   classe ``C``.
+   classe ``B``.
 
-3. ``new D[n]``: on ``D`` és el nom d'una classe *amb constructor per
+3. ``new C[n]``: on ``C`` és el nom d'una classe *amb constructor per
    defecte* i ``n`` un enter. Es retorna un punter a una taula de
-   ``n`` objectes de tipus ``D`` inicialitzats amb el constructor per
+   ``n`` objectes de tipus ``C`` inicialitzats amb el constructor per
    defecte. Si aquest no existeix, hi haurà un error de compilació. El
    valor de ``n`` pot no ser una constant.
 
@@ -100,8 +110,7 @@ Podem reservar un ``Punt3D`` en memòria dinàmica així::
        << p->get_y() << ", "
        << p->get_z() << ")" << endl;
 
-El cas número 3 seria si volem crear una taula de ``n`` punts, per
-exemple::
+El cas 3 seria si volem crear una taula de ``n`` punts, per exemple::
 
   int npunts;
   cout << "Numero de punts? ";
@@ -158,7 +167,7 @@ Un exemple del segon cas podria ser, si fem servir la class ``Punt3D``
 de més amunt::
   
   Punt3D *p = new Punt3D(1.0, 1.0, 0.0);
-  // treballa amb al punt
+  // treballa amb el punt
   delete p;
 
 
@@ -168,18 +177,56 @@ Quan es gestiona la memòria és fàcil cometre certs errors
 No alliberar la memòria que ja no es fa servir
 """"""""""""""""""""""""""""""""""""""""""""""
 
-Si un programa utilitza dades de forma temporal, és possible que una
-porció de memòria que hagi reservat ja no li faci falta més
-endavant. Quan això succeeix, la memòria s'ha d'alliberar. La raó és
-que si no ho fem, 
+Si un programa utilitza memòria dinàmica de forma temporal, és
+possible que una porció que hagi reservat ja no li faci falta més
+endavant. Quan això succeeix, la memòria s'ha d'alliberar. Si no ho
+fem, el sistema operatiu creu que encara la utilitzem, i la té marcada
+com a "propietat nostra". Si li demanem més memòria, ens donarà una
+altra porció diferent. Eventualment, si el programa va demanant
+memòria sense allibrerar la que no fa servir, acapararà tota la
+memòria del sistema (això fa que l'ordinador vagi molt lent i que no
+es puguin executar altres programes).
+
+Un exemple senzill a on això passa és un programa com Photoshop. Quan
+obrim una imatge amb Photoshop, el programa reserva memòria per poder
+treballar amb la imatge. Si la tanquem, allibera aquesta memòria. Si
+no ho fés, en una sessió en que obrim 25 o 30 imatges, de seguida
+s'ompliria la memòria de imatges que ja no estan obertes ni s'estan
+utilitzant, i s'hauria de tancar el programa i tornar-lo a obrir (quan
+tanques un programa, la memòria que ha anat reservant s'allibera per
+força).
 
 
 Alliberar una posició de memòria dues vegades
 """""""""""""""""""""""""""""""""""""""""""""
 
+Si per error nostre, en un programa fem un ``delete`` de la mateixa
+adreça dues vegades, el programa donarà un error d'execució. Un cop
+alliberada una adreça de memòria, és un error alliberar-la un altre
+cop. El següent programa::
+
+  int main() {
+    int *p = new int[10];
+    delete[] p;
+    delete[] p;
+  }
+
+dóna un error d'execució. Aquest tipus d'error és fàcil de cometre
+quan copiem punters, ja que si tenim una mateixa adreça en dos llocs
+diferents, és més fàcil caure al parany de cridar a ``delete`` amb els
+dos. Això és força clar en classes que tenen camps que són punters,
+com es veurà a la propera secció.
+
 
 Alguns mètodes son importants en la gestió de memòria
 -----------------------------------------------------
+
+Per evitar els dos tipus d'errors comentats anteriorment, quan
+implementem una classe que fa reserva dinàmica de memòria, és molt
+important implementar correctament: 1) el :ref:`destructor <destructor>`, 2) el
+:ref:`constructor de còpia <copyconstr>`, i 3) l':ref:`operador d'assignació <assigop>`.
+
+.. _destructor:
 
 El destructor
 """""""""""""
@@ -247,6 +294,7 @@ punters, un a l'inici del text, i un altre al punt actual d'inserció
 tamany omplert. El mètode ``afegeix`` permet afegir text a la frase, tret
 d'un ``string``.
 
+.. _copyconstr:
 
 El constructor de còpia
 """""""""""""""""""""""
@@ -301,6 +349,7 @@ de l'altre frase::
     _ple = F._ple;
   }
 
+.. _assigop:
 
 L'operador d'assignació
 """""""""""""""""""""""
