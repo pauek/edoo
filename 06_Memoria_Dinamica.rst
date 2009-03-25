@@ -121,6 +121,13 @@ Aquest últim cas també demostra com és possible crear una taula del
 tamany que indiqui l'usuari (amb les conseqüències que això pot
 tenir).
 
+.. exercici::
+
+   Fes un programa que reservi una taula de 2000000 de Booleans i
+   omple les caselles parelles amb ``true`` i les senars amb
+   ``false``.
+
+
 Quan ``new`` no pot reservar la memòria, retorna ``NULL``
 ---------------------------------------------------------
 
@@ -142,6 +149,58 @@ demanada::
     // treballar amb la taula
   }
 
+.. exercici::
+
+   Fes un programa que determini el tamany màxim de memòria que tens
+   disponible. Per fer-ho, fes un bucle que reservi un cert tamany de
+   memòria (una taula de ``char``\s) i si la crida a ``new`` retorna
+   un punter diferent de ``NULL``, l'alliberes i en demanes un de més
+   gran. El bucle ha de parar en el moment que ``new`` et retorni
+   ``NULL``, dient quin tamany ha intentat.
+
+.. _seq_int:
+
+Exemple: Mostrar una seqüència al revés sense límits
+----------------------------------------------------
+
+Aquest és un programa que no podiem fer fins ara. Es tracta d'un
+programa que llegeix una seqüència d'enters acabada en -1 i tot seguit
+la mostra per pantalla al revés, però la seqüència pot tenir un tamany
+qualsevol, només limitat per la quantitat de memòria disponible. Per
+fer-ho ha d'emmagatzemar la seqüència sencera en memòria, no hi ha cap
+altra manera. Fins ara, havíem de suposar un tamany màxim per a la
+seqüència, però amb la memòria dinàmica, si ens arriba un nou element,
+el podem posar a una zona nova reservada dinàmicament, i així no hem
+d'imposar un límit arbitrari.
+
+Per emmagatzemar els elements de la seqüència farem servir un
+``struct`` molt peculiar:
+
+.. literalinclude:: src/06_Memoria_Dinamica/seq_int.cpp
+   :lines: 5-8
+
+Aquest ``struct`` és com una peça d'una cadena. Pot emmagatzemar un
+enter i a part també un punter a un altre peça de la cadena (una
+``Dada``), que hem anomenat ``prev`` perquè apuntarà a la peça prèvia.
+
+El programa és el següent:
+
+.. literalinclude:: src/06_Memoria_Dinamica/seq_int.cpp
+
+Aquest programa utilitza un punter ``actual`` que apunta a la peça
+actual. Al principi aquest punter és ``NULL``, perquè no hi ha cap
+peça. Tot seguit llegeix cada element de la seqüència, i quan ho fa,
+emmagatzema l'element amb una peça ``nova`` que reserva en memòria. A
+``nova`` hi posa l'enter i l'adreça de la peça anterior (que és
+l'``actual``), per no perdre el fil. Finalment, la nova peça es
+converteix en l'``actual``. Cada enter que llegim incrementa una mica
+la memòria que el programa té reservada, però no reservem cap tamany
+concret al principi.
+
+Un cop llegida la seqüència, si "tibem del fil", és a dir si a partir
+de la peça actual anem mirant el camp ``prev`` i anem saltant de peça
+en peça, trobarem tots els enters que hem anat posant. Això és el que
+fa el bucle que mostra els enters.
 
 
 L'operador ``delete`` allibera la memòria que indica un punter
@@ -174,6 +233,12 @@ de més amunt::
 Quan es gestiona la memòria és fàcil cometre certs errors
 ---------------------------------------------------------
 
+En un programa a on tota la memòria que es reserva es fa servir fins
+al final, no és necessari alliberar-la, ja que quan el programa acaba,
+la memòria que tenia reservada s'allibera automàticament. A
+l':ref:`exemple anterior <seq_int>` no feiem servir ``delete`` per
+aquest motiu precisament. Però en general això no és així.
+
 No alliberar la memòria que ja no es fa servir
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -185,16 +250,18 @@ com a "propietat nostra". Si li demanem més memòria, ens donarà una
 altra porció diferent. Eventualment, si el programa va demanant
 memòria sense allibrerar la que no fa servir, acapararà tota la
 memòria del sistema (això fa que l'ordinador vagi molt lent i que no
-es puguin executar altres programes).
+es puguin executar altres programes). Aquest tipus d'error s'anomena
+una "fuita de memòria" (un *memory leak*).
 
 Un exemple senzill a on això passa és un programa com Photoshop. Quan
 obrim una imatge amb Photoshop, el programa reserva memòria per poder
 treballar amb la imatge. Si la tanquem, allibera aquesta memòria. Si
 no ho fés, en una sessió en que obrim 25 o 30 imatges, de seguida
 s'ompliria la memòria de imatges que ja no estan obertes ni s'estan
-utilitzant, i s'hauria de tancar el programa i tornar-lo a obrir (quan
-tanques un programa, la memòria que ha anat reservant s'allibera per
-força).
+utilitzant, i s'hauria de tancar el programa i tornar-lo a obrir
+(perquè quan tanques un programa, la memòria que ha anat reservant
+s'allibera per força). Això seria inacceptable i per tant és clar que
+Photoshop allibera la memòria que no fa servir.
 
 
 Alliberar una posició de memòria dues vegades
@@ -202,8 +269,8 @@ Alliberar una posició de memòria dues vegades
 
 Si per error nostre, en un programa fem un ``delete`` de la mateixa
 adreça dues vegades, el programa donarà un error d'execució. Un cop
-alliberada una adreça de memòria, és un error alliberar-la un altre
-cop. El següent programa::
+alliberada una adreça de memòria, *és un error alliberar-la un altre
+cop*. El següent programa::
 
   int main() {
     int *p = new int[10];
