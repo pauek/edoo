@@ -29,6 +29,7 @@ Solucions a exercicis i problemes
    SOL_02_Classes
    SOL_03_Operadors
    SOL_05_Punters
+   SOL_06_Memoria_Dinamica
 
 
 Índexs i taules

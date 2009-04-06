@@ -112,6 +112,10 @@ Punters
    *[Aquest exercici encara no està implementat...]*
 
 .. exercici::
+   
+   *[Aquest exercici encara no està implementat...]*
+
+.. exercici::
    ::
 
      void copia(int *orig, int *dest) {

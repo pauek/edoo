@@ -54,7 +54,7 @@ int Taulavar::tamany() const {
 
 int Taulavar::get(int k) const {
   if (k >= _tam) {
-    cout << "get: " << k << " > tamany!" << endl;
+    cout << "ERROR: get: " << k << " > tamany!" << endl;
     return -1;
   }
   return *(_dades + k);
@@ -62,7 +62,7 @@ int Taulavar::get(int k) const {
 
 int Taulavar::set(int k, int val) {
   if (k >= _tam) {
-    cout << "set: " << k << " > tamany!" << endl;
+    cout << "ERROR: set: " << k << " > tamany!" << endl;
   } else {
     *(_dades + k) = val;
   }

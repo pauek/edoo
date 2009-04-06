@@ -29,7 +29,7 @@ Quan un programa s'executa té dos zones de memòria que pot utilitzar:
   zona es situen les variables locals que declarem a les funcions.
 
 - El *heap* (o *free store*): és una zona expandible i amb tamany
-  limitat només per al memòria disponible. És en aquesta zona a on
+  limitat només per la memòria disponible. És en aquesta zona a on
   podem reservar memòria dinàmicament.
 
 Llavors, quan declarem una variable en un programa:
@@ -149,14 +149,15 @@ demanada::
     // treballar amb la taula
   }
 
-.. exercici::
+..    Exercici complicat
+..    exercici
 
-   Fes un programa que determini el tamany màxim de memòria que tens
-   disponible. Per fer-ho, fes un bucle que reservi un cert tamany de
-   memòria (una taula de ``char``\s) i si la crida a ``new`` retorna
-   un punter diferent de ``NULL``, l'alliberes i en demanes un de més
-   gran. El bucle ha de parar en el moment que ``new`` et retorni
-   ``NULL``, dient quin tamany ha intentat.
+..    Fes un programa que determini el tamany màxim de memòria que tens
+..    disponible. Per fer-ho, fes un bucle que reservi un cert tamany de
+..    memòria (una taula de ``char``\s de 1 MegaByte) mentre la crida a
+..    ``new`` retorna un punter diferent de ``NULL``. El bucle ha de
+..    parar en el moment que ``new`` et retorni ``NULL``, dient quin
+..    tamany total has reservat.
 
 .. _seq_int:
 
@@ -202,7 +203,7 @@ de la peça actual anem mirant el camp ``prev`` i anem saltant de peça
 en peça, trobarem tots els enters que hem anat posant. Això és el que
 fa el bucle que mostra els enters.
 
-
+ 
 L'operador ``delete`` allibera la memòria que indica un punter
 --------------------------------------------------------------
 

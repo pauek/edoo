@@ -1,0 +1,38 @@
+*** glibc detected *** ./fc: double free or corruption (top): 0x0000000000602010 ***
+======= Backtrace: =========
+/lib/libc.so.6[0x7fa97ee3b08a]
+/lib/libc.so.6(cfree+0x8c)[0x7fa97ee3ec1c]
+./fc(__gxx_personality_v0+0x32e)[0x400c3e]
+./fc(__gxx_personality_v0+0x436)[0x400d46]
+/lib/libc.so.6(__libc_start_main+0xf4)[0x7fa97ede51c4]
+./fc(__gxx_personality_v0+0x49)[0x400959]
+======= Memory map: ========
+00400000-00402000 r-xp 00000000 08:06 2629731                            /home/pau/UPC/PBD/Apunts/sphinx/src/06_Memoria_Dinamica/fc
+00601000-00602000 rw-p 00001000 08:06 2629731                            /home/pau/UPC/PBD/Apunts/sphinx/src/06_Memoria_Dinamica/fc
+00602000-00623000 rw-p 00602000 00:00 0                                  [heap]
+7fa978000000-7fa978021000 rw-p 7fa978000000 00:00 0 
+7fa978021000-7fa97c000000 ---p 7fa978021000 00:00 0 
+7fa97eb46000-7fa97ebc6000 r-xp 00000000 08:05 459356                     /lib/libm-2.7.so
+7fa97ebc6000-7fa97edc5000 ---p 00080000 08:05 459356                     /lib/libm-2.7.so
+7fa97edc5000-7fa97edc7000 rw-p 0007f000 08:05 459356                     /lib/libm-2.7.so
+7fa97edc7000-7fa97ef1f000 r-xp 00000000 08:05 459352                     /lib/libc-2.7.so
+7fa97ef1f000-7fa97f11f000 ---p 00158000 08:05 459352                     /lib/libc-2.7.so
+7fa97f11f000-7fa97f122000 r--p 00158000 08:05 459352                     /lib/libc-2.7.so
+7fa97f122000-7fa97f124000 rw-p 0015b000 08:05 459352                     /lib/libc-2.7.so
+7fa97f124000-7fa97f129000 rw-p 7fa97f124000 00:00 0 
+7fa97f129000-7fa97f136000 r-xp 00000000 08:05 458842                     /lib/libgcc_s.so.1
+7fa97f136000-7fa97f336000 ---p 0000d000 08:05 458842                     /lib/libgcc_s.so.1
+7fa97f336000-7fa97f337000 rw-p 0000d000 08:05 458842                     /lib/libgcc_s.so.1
+7fa97f337000-7fa97f426000 r-xp 00000000 08:05 721235                     /usr/lib/libstdc++.so.6.0.9
+7fa97f426000-7fa97f626000 ---p 000ef000 08:05 721235                     /usr/lib/libstdc++.so.6.0.9
+7fa97f626000-7fa97f62c000 r--p 000ef000 08:05 721235                     /usr/lib/libstdc++.so.6.0.9
+7fa97f62c000-7fa97f62f000 rw-p 000f5000 08:05 721235                     /usr/lib/libstdc++.so.6.0.9
+7fa97f62f000-7fa97f642000 rw-p 7fa97f62f000 00:00 0 
+7fa97f642000-7fa97f65f000 r-xp 00000000 08:05 458820                     /lib/ld-2.7.so
+7fa97f843000-7fa97f846000 rw-p 7fa97f843000 00:00 0 
+7fa97f85c000-7fa97f85f000 rw-p 7fa97f85c000 00:00 0 
+7fa97f85f000-7fa97f861000 rw-p 0001d000 08:05 458820                     /lib/ld-2.7.so
+7fff8784c000-7fff87861000 rw-p 7ffffffea000 00:00 0                      [stack]
+7fff879fe000-7fff87a00000 r-xp 7fff879fe000 00:00 0                      [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+Aborted
