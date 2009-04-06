@@ -28,7 +28,15 @@ Memòria Dinàmica
 
 .. problema::
 
-   La declaració de la classe es troba en el fitxer :download:`imatge.h <src/06_Memoria_Dinamica/imatge.h>`
+   La declaració de la classe es troba en el fitxer :download:`imatge.h <src/06_Memoria_Dinamica/imatge.h>`.
    
+   .. literalinclude:: src/06_Memoria_Dinamica/imatge.h
 
+   La implementació és al fitxer :download:`imatge.cpp <src/06_Memoria_Dinamica/imatge.cpp>`.
 
+   .. literalinclude:: src/06_Memoria_Dinamica/imatge.cpp
+
+   El programa principal (:download:`imatge_main.cpp <src/06_Memoria_Dinamica/imatge_main.cpp>` 
+   que implementa un inversor d'imatges) és:
+
+   .. literalinclude:: src/06_Memoria_Dinamica/imatge_main.cpp
