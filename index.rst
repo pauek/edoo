@@ -28,6 +28,8 @@ Apunts de Programació i Bases de Dades
    07_STL_i_vector
    08_Llistes_Piles_i_Cues
    09_Algorismes
+   10_Bases_de_Dades_1
+   11_Bases_de_Dades_2
 
 
 Solucions a exercicis i problemes
@@ -44,6 +46,8 @@ Solucions a exercicis i problemes
    SOL_07_STL_i_vector
    SOL_08_Llistes_Piles_i_Cues
    SOL_09_Algorismes
+   SOL_10_Bases_de_Dades_1
+   SOL_11_Bases_de_Dades_2
 
 
 Índexs i taules
