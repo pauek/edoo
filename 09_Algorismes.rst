@@ -1,0 +1,344 @@
+
+====================
+Algorismes de la STL
+====================
+
+La STL proporciona un conjunt d'algorismes genèrics que treballen amb
+iteradors, i que per tant es poden fer servir en la majoria de
+contenidors. De tots els algorismes existents, estudiarem només una
+part. Aquests algorismes realitzen operacions típiques que normalment
+requeririen que féssim alguna iteració i per tant queden reduïts a una
+simple crida a funció. Gairebé tots els algorismes operen en un rang
+especificat amb 2 iteradors: l'inicial, i un altre, que fa de
+sentinella per indicar el final (però que no es processa, en analogia
+a ``end()``).
+
+Per fer servir els algorismes de la STL, s'ha de fer el següent
+include::
+
+  #include <algorithm>
+
+
+Recorreguts
+-----------
+
+Omplir un contenidor: ``fill`` i ``fill_n``
+"""""""""""""""""""""""""""""""""""""""""""
+
+Si tenim un contenidor seqüencial (que **no** sigui una taula
+associativa) amb certs valors i volem omplir-lo tot o una part amb un
+cert valor, podem fer servir ``fill``::
+
+   void fill(iterator first, iterator last, const T& val);
+
+L'acció ``fill`` rep dos iteradors que indiquen el principi
+(``first``) i el final (``last``) de la iteració i també un valor, que és el
+que s'ha d'utilitzar per omplir cada element del contenidor. Per
+exemple, suposant que tenim un vector ``C`` d'enters, el següent codi
+l'omple amb el valor ``5``::
+
+   fill(C.begin(), C.end(), 5);
+
+És important veure que la crida seria *exactament* igual en el cas que
+``C`` fós una llista. Aquest fet és un dels punts forts de la STL.
+
+.. exercici::
+
+   Fes una acció que ompli una llista de caràcters amb espais.
+
+
+Si només volem omplir un cert número d'elements a partir d'un cert
+iterador, podem fer servir ``fill_n``::
+
+   void fill_n(iterator first, int n, const T& val);
+
+Aquesta acció omple amb el valor ``val`` els ``n`` valors a partir de
+l'iterador ``first``. Si volem, per exemple, omplir els 5 primers
+valors d'un vector ``C`` (més llarg de 5, es clar) amb zeros, podem fer::
+
+   fill_n(C.begin(), 5, 0);
+
+
+.. exercici::
+
+   Fes una acció que ompli la primera meitat d'un vector d'enters amb
+   zeros (si el vector té un número senar N d'elements, s'ha d'omplir
+   des de l'1 fins al (N-1)/2 inclòs).
+
+
+Comptar elements: ``count`` i ``count_if``
+""""""""""""""""""""""""""""""""""""""""""
+
+Si volem comptar els elements d'un contenidor qualsevol que tenen cert
+valor, farem servir ``count``::
+
+   int count(iterator first, iterator last, const T& val);
+
+Aquesta funció itera desde ``first`` fins a ``last`` (sense incloure
+``last``) i compta tots els elements del contenidor que tenen el valor
+``val``. Per exemple, el següent programa mostra per pantalla el valor
+``3``::
+
+    vector<int> v;
+    v.push_back(2);
+    v.push_back(5);
+    v.push_back(7);
+    v.push_back(-1);
+    v.push_back(-1);
+    v[0] = -1;
+
+    cout << count(v.begin(), v.end(), -1) << endl;
+
+
+.. exercici::
+
+   Fes una funció que rebi un vector de caràcters i compti quantes
+   ``'a'``\s hi ha.
+
+Si volem comptar elements d'un contenidor que tenen valors diferents
+però compleixen una condició, podem fer servir ``count_if``, que rep
+un predicat::
+
+  void count_if(iterator first, iterator last, Predicate func);
+
+El predicat (``func``) és una funció que retorna un valor ``bool``. La
+funció ``count_if`` fa una iteració pel contenidor i crida a ``pred``
+per a cada element, i llavors compta per a quants valors el predicat és
+cert. Per exemple, si tenim el predicat::
+
+   bool paraula_curta(string s) {
+     return s.size() < 4;
+   }
+
+llavors, podem comptar quantes paraules curtes (de menys de 4 lletres)
+hi ha en un contenidor ``C`` de la forma següent::
+
+   count_if(C.begin(), C.end(), paraula_curta);
+
+Aquí és molt important veure com ``paraula_curta`` *no s'està cridant*,
+de fet estem passant una funció com a paràmetre d'una altra funció. És
+``count_if`` que farà la crida a ``paraula_curta`` per a cada element
+del contenidor.
+
+.. exercici::
+   
+   Fes una funció que compti quantes vocals hi ha en una llista de
+   caràcters.
+
+.. ------------------------------------
+.. Aquí falta min_element i max_element
+.. ------------------------------------
+
+
+Recorregut genèric: ``for_each``
+""""""""""""""""""""""""""""""""
+
+Si el que volem fer amb cada element és una operació més complicada,
+que no és comptar, ni omplir, ni cap de les operacions anteriors,
+sempre podem fer un recorregut genèric amb ``for_each``::
+
+   void for_each(iterator first, iterator last, UnaryFunction func);
+
+El tercer paràmetre és una acció, anàlogament al cas de ``count``, que
+no ha de retornar res i rebrà un element del contenidor (per
+referència), amb el qual pot fer qualsevol càlcul. Per exemple, si
+volem duplicar tots els elements d'un vector d'enters, podem crear
+primer la funció duplica::
+
+   void duplica(int& n) {
+     n = n * 2;
+   }
+ 
+i en un lloc del programa a on tinguem un contenidor ``C`` amb valors
+de tipus ``int``, podem duplicar tots els elements amb::
+
+  for_each(C.begin(), C.end(), duplica);
+
+Això recorrerà tots els elements i cridarà la funció ``duplica`` passant
+per referència cada element del contenidor. 
+
+.. exercici::
+
+   Assumint la declaració següent::
+
+     struct tPunt {
+       float x, y;
+     };
+
+  Fes una acció que rebi una llista de punts i desplaçi tots els punts
+  de la llista 5 unitats en l'eix de les x.
+
+
+Cerques: ``find`` i ``find_if``
+-------------------------------
+
+Si volem buscar un element dins d'un contenidor seqüencial (ja que les
+taules associatives ja tenen un mètode ``find()``), podem fer servir
+``find``::
+
+   iterator find(iterator first, iterator last, const T& val);
+
+Aquesta funció fa una cerca i para quan troba un element a dins del
+vector que tingui el valor ``val``, retornant un iterador a aquest
+element::
+
+   vector<float> v(10, 0.5);
+   v[5] = 1.0;
+
+   vector<float>::iterator i;
+   i = find(v.begin(), v.end(), 1.0);
+   i++;
+   *i = 0.0;  // posa la casella 6 a 0.0
+
+En aquest exemple, a l'inici, el vector està ple amb el valor 0.5, i
+tot seguit es canvia la casella 5 (6è element) a 1.0. Després s'invoca
+``find`` que pararà a la 5a casella, s'incrementa l'iterador a aquesta
+casella (ara apuntarà a la 6a), i llavors es canvia el valor a 0.0,
+que canviarà la 6a casella.
+
+Quan ``find`` no troba cap element que tingui el valor buscat,
+retornarà un iterador que és igual que el valor ``last`` que li hem
+passat (el que nosaltres hem considerat com el sentinella).
+
+.. exercici::
+
+   Fes una funció que retorni cert si un vector de Booleans conté
+   algun valor ``false``.
+
+.. exercici::
+
+   Fes una funció que retorni ``true`` si un vector d'enters conté
+   algun 0.
+
+
+Quan el que busquem en un contenidor no és un valor concret sinó que
+ha de complir una condició, podem fer servir un predicat, i podem
+utilitzar ``find_if``::
+
+   iterator find_if(iterator first, iterator last, Predicate pred);
+
+Aquesta funció realitza una cerca i para quan el predicat que li hem
+passat retorna ``true`` per a cert element. D'aquest element es retorna
+un iterador. Per exemple, suposant la declaració següent::
+
+   struct tPunt { float x, y; };
+
+i si disposem d'un predicat com::
+
+   bool fora_cercle_unitat(const tPunt& P) {
+     return sqrt(P.x*P.x + P.y*P.y) > 1.0;
+   }
+
+podem cercar el primer punt d'una llista ``LP`` de punts que estigui
+fora del cercle unitat amb::
+
+   list<tPunt>::iterator i;
+   i = find_if(LP.begin(), LP.end(), fora_cercle_unitat);
+   if (i != LP.end()) {
+     cout << "No hi ha cap punt fora del cercle unitat" << endl;
+   }
+  
+Tal com ``find``, quan ``find_if`` no troba cap element per al qual el
+predicat és ``true``, retornarà l'iterador ``last``, que en el nostre
+cas és ``LP.end()``. Això permet veure si no hi ha cap punt que
+estigui fora del cercle unitat.
+
+
+.. exercici::
+
+   Fes una funció que retorni ``true`` si en una frase (una llista de
+   ``string``\s, cap paraula conté una ``'e'``.
+   
+
+Ordenació
+---------
+
+Per ordenar contenidors seqüencials (les taules associatives ja estan
+ordenades per la clau), podem fer servir ``sort``::
+
+   void sort(iterator first, iterator last);
+
+Aquesta acció reposiciona els elements per tal que estiguin en ordre,
+fent servir el operador ``<`` apropiat per als elements del contenidor
+(si són tipus bàsics, l'operador normal, si són classes, es crida
+l'``operator<`` que hi hagi definit). Per exemple, si tenim la
+classe::
+
+   class Persona {
+     string nom, cognoms;
+     int edat;
+   public:
+     //...
+     bool operator<(const Persona& P) const;
+   };
+
+   bool Persona::operator<(const Persona& P) const {
+     return cognoms < P.cognoms;
+   }
+
+Llavors podem invocar, sobre un contenidor ``C`` amb elements de tipus
+``Persona`` l'algorisme d'ordenació::
+
+   sort(C.begin(), C.end());
+
+i es farà servir l'``operator<`` de la classe ``Persona``. 
+
+.. exercici::
+
+   Donada la declaració (incompleta) de la classe següent::
+
+     class Fruita {
+       string nom;
+       float sucre, acidesa, amargor;
+     public:
+       // ...
+     };
+
+
+   Defineix un operador ``<`` per comparar fruites en què es miri
+   només el grau de sucre (el camp ``sucre``). Llavors defineix una
+   acció que ordeni un vector de fruites.
+
+
+Si volem ordenar certs valors i no està definit l'operador
+corresponent, o bé volem ordenar les mateixes dades per diferents
+criteris, podem fer servir una versió de ``sort`` que ens permet
+aportar un predicat (binari, que compararà elements) amb el qual
+``sort`` podrà determinar quins elements van abans de quins. Per
+exemple, si disposem d'una estructura::
+
+   struct Llibre {
+     string titol, autor;
+     int pagines;
+   };
+
+i tenim el predicat següent (binari, és a dir que rep 2
+arguments per comparar)::
+
+   bool compara_titol(const Llibre& l1, const Llibre& l2) {
+     return l1.titol < l2.titol;
+   }
+
+llavors podem, donada una llista de llibres ``L``, ordenar els llibres
+pel títol així::
+
+   sort(L.begin(), L.end(), compara_titol);
+
+Quan l'acció ``sort`` necessiti determinar si un llibre va abans que
+un altre, cridarà ``compara_titol``. Si volem ordenar els llibres pel
+número de pàgines, podem definir un nou predicat::
+
+   bool compara_pagines(const Llibre& l1, const Llibre& l2) {
+     return l1.pagines < l2.pagines;
+   }
+
+i llavors cridem l'acció ``sort`` així::
+
+  sort(L.begin(), L.end(), compara_pagines);
+
+
+.. exercici::
+
+   Sense redefinir l'operador ``<``, fes una funció que ordeni una
+   llista d'elements de la classe ``Fruita`` de l'exercici anterior
+   per acidesa.

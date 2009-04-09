@@ -27,6 +27,7 @@ Apunts de Programació i Bases de Dades
 
    07_STL_i_vector
    08_Llistes_Piles_i_Cues
+   09_Algorismes
 
 
 Solucions a exercicis i problemes
@@ -42,6 +43,7 @@ Solucions a exercicis i problemes
    SOL_06_Memoria_Dinamica
    SOL_07_STL_i_vector
    SOL_08_Llistes_Piles_i_Cues
+   SOL_09_Algorismes
 
 
 Índexs i taules
