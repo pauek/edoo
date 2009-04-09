@@ -27,6 +27,7 @@ div.exercici div.body p {
 
 div.highlight {
   margin: 0 1.5em;
+  font-size: 120%;
 }
 
 div.problema {
@@ -45,6 +46,23 @@ div.problema p.problema-title {
   margin-bottom: 5px;
 }
 
+table.docutils {
+  border: 1px solid gray;
+  margin: 20px;
+}
+
+tt.docutils.literal {
+  font-size: 120%;
+}
+
 table.docutils td, table.docutils th {
-  padding: 3px;
+  padding: 3px 5px;
+}
+
+table.docutils thead {
+  background: #dddddd;
+}
+
+dl.docutils dt {
+  font-weight: bold;
 }

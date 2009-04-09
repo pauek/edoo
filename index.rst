@@ -8,8 +8,10 @@ Apunts de Programació i Bases de Dades
 
 .. Para poner números de sección: :numbered:
 
+**Primera Part**
+
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    01_TADs
    02_Classes
@@ -17,6 +19,14 @@ Apunts de Programació i Bases de Dades
    04_Eficiencia
    05_Punters
    06_Memoria_Dinamica
+
+**Segona Part**
+
+.. toctree::
+   :maxdepth: 2
+
+   07_STL_i_vector
+   08_Llistes_Piles_i_Cues
 
 
 Solucions a exercicis i problemes
@@ -30,6 +40,8 @@ Solucions a exercicis i problemes
    SOL_03_Operadors
    SOL_05_Punters
    SOL_06_Memoria_Dinamica
+   SOL_07_STL_i_vector
+   SOL_08_Llistes_Piles_i_Cues
 
 
 Índexs i taules
