@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from docutils import nodes
-from sphinx.directives.desc import CDesc
 
 class exercici(nodes.General, nodes.Element): pass
 class problema(nodes.General, nodes.Element):  pass
@@ -73,27 +72,11 @@ class ExerciciDirective(Directive):
         self.state.nested_parse(self.content, self.content_offset, E)
         return [E]
 
-class CppfuncDirective(CDesc):
-    def add_target_and_index(self, name, sig, signode):
-        # note target
-        if name not in self.state.document.ids:
-            signode['names'].append(name)
-            signode['ids'].append(name)
-            signode['first'] = (not self.names)
-            self.state.document.note_explicit_target(signode)
-            self.env.note_descref(name, self.desctype, self.lineno)
-
-        try: 
-            classname, funcname = name.split('::', 1)
-            indextext = "%s; %s" % (classname, funcname)
-            self.indexnode['entries'].append(('pair', indextext, name, name))
-        except:
-            indextext = name
-            self.indexnode['entries'].append(('single', indextext, name, name))
 
 # Transforms
 
 from docutils.transforms import Transform
+import cppfunc
 
 class Numeros(Transform):
     default_priority = 710 
@@ -119,7 +102,7 @@ def setup(app):
 
     app.add_directive('problema', ProblemaDirective)
     app.add_directive('exercici', ExerciciDirective)
-    app.add_directive('cppfunc', CppfuncDirective)
+    app.add_directive('cppfunc',  cppfunc.CppFuncDirective)
 
     app.add_transform(Numeros)
 
