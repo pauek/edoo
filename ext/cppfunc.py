@@ -93,9 +93,12 @@ class CppFuncDirective(DescDirective):
 
     def add_target_and_index(self, name, sig, signode):
         # note target
-        if name not in self.state.document.ids:
+        def _fix_(str):
+            str.replace('<','-').replace('>','-')
+
+        if _fix_(name) not in self.state.document.ids:
             signode['names'].append(name)
-            signode['ids'].append(name)
+            signode['ids'].append(_fix_(name))
             signode['first'] = (not self.names)
             self.state.document.note_explicit_target(signode)
             self.env.note_descref(name, self.desctype, self.lineno)

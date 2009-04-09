@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import sphinx
 from docutils import nodes
 
 class exercici(nodes.General, nodes.Element): pass
@@ -37,20 +38,6 @@ def visit_problema_latex(self, node):
 
 def depart_problema_latex(self, node):
     self.body.append('\\par\\vspace{2mm}')
-
-# cppfunc
-
-def visit_cppfunc_html(self, node):
-    pass
-
-def depart_cppfunc_html(self, node):
-    pass
-
-def visit_problema_latex(self, node):
-    pass
-
-def depart_problema_latex(self, node):
-    pass
 
 # Directives
 
@@ -102,6 +89,8 @@ def setup(app):
 
     app.add_directive('problema', ProblemaDirective)
     app.add_directive('exercici', ExerciciDirective)
+    # Machaco el cfunction de Sphinx [ugly hack]
+    # app.add_directive('cfunction',  cppfunc.CppFuncDirective)
     app.add_directive('cppfunc',  cppfunc.CppFuncDirective)
 
     app.add_transform(Numeros)
