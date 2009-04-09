@@ -27,20 +27,21 @@ Omplir un contenidor: ``fill`` i ``fill_n``
 
 Si tenim un contenidor seqüencial (que **no** sigui una taula
 associativa) amb certs valors i volem omplir-lo tot o una part amb un
-cert valor, podem fer servir ``fill``::
+cert valor, podem fer servir ``fill``:
 
-   void fill(iterator first, iterator last, const T& val);
+.. cppfunc:: void fill(iterator first, iterator last, const T& val)
 
-L'acció ``fill`` rep dos iteradors que indiquen el principi
-(``first``) i el final (``last``) de la iteració i també un valor, que és el
-que s'ha d'utilitzar per omplir cada element del contenidor. Per
-exemple, suposant que tenim un vector ``C`` d'enters, el següent codi
-l'omple amb el valor ``5``::
+   L'acció ``fill`` rep dos iteradors que indiquen el principi
+   (``first``) i el final (``last``) de la iteració i també un valor,
+   que és el que s'ha d'utilitzar per omplir cada element del
+   contenidor. Per exemple, suposant que tenim un vector ``C``
+   d'enters, el següent codi l'omple amb el valor ``5``::
 
-   fill(C.begin(), C.end(), 5);
+      fill(C.begin(), C.end(), 5);
 
-És important veure que la crida seria *exactament* igual en el cas que
-``C`` fós una llista. Aquest fet és un dels punts forts de la STL.
+   És important veure que la crida seria *exactament* igual en el cas
+   que ``C`` fós una llista. Aquest fet és un dels punts forts de la
+   STL.
 
 .. exercici::
 
@@ -48,15 +49,16 @@ l'omple amb el valor ``5``::
 
 
 Si només volem omplir un cert número d'elements a partir d'un cert
-iterador, podem fer servir ``fill_n``::
+iterador, podem fer servir ``fill_n``:
 
-   void fill_n(iterator first, int n, const T& val);
+.. cppfunc:: void fill_n(iterator first, int n, const T& val)
 
-Aquesta acció omple amb el valor ``val`` els ``n`` valors a partir de
-l'iterador ``first``. Si volem, per exemple, omplir els 5 primers
-valors d'un vector ``C`` (més llarg de 5, es clar) amb zeros, podem fer::
+   Aquesta acció omple amb el valor ``val`` els ``n`` valors a partir
+   de l'iterador ``first``. Si volem, per exemple, omplir els 5
+   primers valors d'un vector ``C`` (més llarg de 5, es clar) amb
+   zeros, podem fer::
 
-   fill_n(C.begin(), 5, 0);
+     fill_n(C.begin(), 5, 0);
 
 
 .. exercici::
@@ -97,28 +99,29 @@ Aquesta funció itera desde ``first`` fins a ``last`` (sense incloure
 
 Si volem comptar elements d'un contenidor que tenen valors diferents
 però compleixen una condició, podem fer servir ``count_if``, que rep
-un predicat::
+un predicat:
 
-  void count_if(iterator first, iterator last, Predicate func);
+.. cppfunc:: void count_if(iterator first, iterator last, Predicate func)
 
-El predicat (``func``) és una funció que retorna un valor ``bool``. La
-funció ``count_if`` fa una iteració pel contenidor i crida a ``pred``
-per a cada element, i llavors compta per a quants valors el predicat és
-cert. Per exemple, si tenim el predicat::
+   El predicat (``func``) és una funció que retorna un valor
+   ``bool``. La funció ``count_if`` fa una iteració pel contenidor i
+   crida a ``pred`` per a cada element, i llavors compta per a quants
+   valors el predicat és cert. Per exemple, si tenim el predicat::
 
-   bool paraula_curta(string s) {
-     return s.size() < 4;
-   }
+     bool paraula_curta(string s) {
+       return s.size() < 4;
+     }
 
-llavors, podem comptar quantes paraules curtes (de menys de 4 lletres)
-hi ha en un contenidor ``C`` de la forma següent::
+   llavors, podem comptar quantes paraules curtes (de menys de 4 lletres)
+   hi ha en un contenidor ``C`` de la forma següent::
 
-   count_if(C.begin(), C.end(), paraula_curta);
+     count_if(C.begin(), C.end(), paraula_curta);
 
-Aquí és molt important veure com ``paraula_curta`` *no s'està cridant*,
-de fet estem passant una funció com a paràmetre d'una altra funció. És
-``count_if`` que farà la crida a ``paraula_curta`` per a cada element
-del contenidor.
+   Aquí és molt important veure com ``paraula_curta`` *no s'està
+   cridant*, de fet estem passant una funció com a paràmetre d'una
+   altra funció. És ``count_if`` que farà la crida a ``paraula_curta``
+   per a cada element del contenidor.
+
 
 .. exercici::
    
@@ -135,27 +138,28 @@ Recorregut genèric: ``for_each``
 
 Si el que volem fer amb cada element és una operació més complicada,
 que no és comptar, ni omplir, ni cap de les operacions anteriors,
-sempre podem fer un recorregut genèric amb ``for_each``::
+sempre podem fer un recorregut genèric amb ``for_each``:
 
-   void for_each(iterator first, iterator last, UnaryFunction func);
+.. cppfunc:: void for_each(iterator first, iterator last, UnaryFunction func)
 
-El tercer paràmetre és una acció, anàlogament al cas de ``count``, que
-no ha de retornar res i rebrà un element del contenidor (per
-referència), amb el qual pot fer qualsevol càlcul. Per exemple, si
-volem duplicar tots els elements d'un vector d'enters, podem crear
-primer la funció duplica::
+   El tercer paràmetre és una acció, anàlogament al cas de ``count``, que
+   no ha de retornar res i rebrà un element del contenidor (per
+   referència), amb el qual pot fer qualsevol càlcul. Per exemple, si
+   volem duplicar tots els elements d'un vector d'enters, podem crear
+   primer la funció duplica::
 
-   void duplica(int& n) {
-     n = n * 2;
-   }
+     void duplica(int& n) {
+       n = n * 2;
+     }
  
-i en un lloc del programa a on tinguem un contenidor ``C`` amb valors
-de tipus ``int``, podem duplicar tots els elements amb::
+   i en un lloc del programa a on tinguem un contenidor ``C`` amb
+   valors de tipus ``int``, podem duplicar tots els elements amb::
 
-  for_each(C.begin(), C.end(), duplica);
+     for_each(C.begin(), C.end(), duplica);
 
-Això recorrerà tots els elements i cridarà la funció ``duplica`` passant
-per referència cada element del contenidor. 
+   Això recorrerà tots els elements i cridarà la funció ``duplica`` passant
+   per referència cada element del contenidor. 
+
 
 .. exercici::
 
@@ -174,31 +178,31 @@ Cerques: ``find`` i ``find_if``
 
 Si volem buscar un element dins d'un contenidor seqüencial (ja que les
 taules associatives ja tenen un mètode ``find()``), podem fer servir
-``find``::
+``find``:
 
-   iterator find(iterator first, iterator last, const T& val);
+.. cppfunc:: iterator find(iterator first, iterator last, const T& val)
 
-Aquesta funció fa una cerca i para quan troba un element a dins del
-vector que tingui el valor ``val``, retornant un iterador a aquest
-element::
+   Aquesta funció fa una cerca i para quan troba un element a dins del
+   vector que tingui el valor ``val``, retornant un iterador a aquest
+   element::
 
-   vector<float> v(10, 0.5);
-   v[5] = 1.0;
+     vector<float> v(10, 0.5);
+     v[5] = 1.0;
 
-   vector<float>::iterator i;
-   i = find(v.begin(), v.end(), 1.0);
-   i++;
-   *i = 0.0;  // posa la casella 6 a 0.0
+     vector<float>::iterator i;
+     i = find(v.begin(), v.end(), 1.0);
+     i++;
+     *i = 0.0;  // posa la casella 6 a 0.0
 
-En aquest exemple, a l'inici, el vector està ple amb el valor 0.5, i
-tot seguit es canvia la casella 5 (6è element) a 1.0. Després s'invoca
-``find`` que pararà a la 5a casella, s'incrementa l'iterador a aquesta
-casella (ara apuntarà a la 6a), i llavors es canvia el valor a 0.0,
-que canviarà la 6a casella.
+   En aquest exemple, a l'inici, el vector està ple amb el valor 0.5,
+   i tot seguit es canvia la casella 5 (6è element) a 1.0. Després
+   s'invoca ``find`` que pararà a la 5a casella, s'incrementa
+   l'iterador a aquesta casella (ara apuntarà a la 6a), i llavors es
+   canvia el valor a 0.0, que canviarà la 6a casella.
 
-Quan ``find`` no troba cap element que tingui el valor buscat,
-retornarà un iterador que és igual que el valor ``last`` que li hem
-passat (el que nosaltres hem considerat com el sentinella).
+   Quan ``find`` no troba cap element que tingui el valor buscat,
+   retornarà un iterador que és igual que el valor ``last`` que li hem
+   passat (el que nosaltres hem considerat com el sentinella).
 
 .. exercici::
 
@@ -213,35 +217,35 @@ passat (el que nosaltres hem considerat com el sentinella).
 
 Quan el que busquem en un contenidor no és un valor concret sinó que
 ha de complir una condició, podem fer servir un predicat, i podem
-utilitzar ``find_if``::
+utilitzar ``find_if``:
 
-   iterator find_if(iterator first, iterator last, Predicate pred);
+.. cppfunc:: iterator find_if(iterator first, iterator last, Predicate pred)
 
-Aquesta funció realitza una cerca i para quan el predicat que li hem
-passat retorna ``true`` per a cert element. D'aquest element es retorna
-un iterador. Per exemple, suposant la declaració següent::
+   Aquesta funció realitza una cerca i para quan el predicat que li hem
+   passat retorna ``true`` per a cert element. D'aquest element es retorna
+   un iterador. Per exemple, suposant la declaració següent::
 
-   struct tPunt { float x, y; };
+     struct tPunt { float x, y; };
 
-i si disposem d'un predicat com::
+   i si disposem d'un predicat com::
 
-   bool fora_cercle_unitat(const tPunt& P) {
-     return sqrt(P.x*P.x + P.y*P.y) > 1.0;
-   }
+     bool fora_cercle_unitat(const tPunt& P) {
+       return sqrt(P.x*P.x + P.y*P.y) > 1.0;
+     }
 
-podem cercar el primer punt d'una llista ``LP`` de punts que estigui
-fora del cercle unitat amb::
+   podem cercar el primer punt d'una llista ``LP`` de punts que estigui
+   fora del cercle unitat amb::
 
-   list<tPunt>::iterator i;
-   i = find_if(LP.begin(), LP.end(), fora_cercle_unitat);
-   if (i != LP.end()) {
-     cout << "No hi ha cap punt fora del cercle unitat" << endl;
-   }
+     list<tPunt>::iterator i;
+     i = find_if(LP.begin(), LP.end(), fora_cercle_unitat);
+     if (i != LP.end()) {
+       cout << "No hi ha cap punt fora del cercle unitat" << endl;
+     }
   
-Tal com ``find``, quan ``find_if`` no troba cap element per al qual el
-predicat és ``true``, retornarà l'iterador ``last``, que en el nostre
-cas és ``LP.end()``. Això permet veure si no hi ha cap punt que
-estigui fora del cercle unitat.
+   Tal com ``find``, quan ``find_if`` no troba cap element per al qual
+   el predicat és ``true``, retornarà l'iterador ``last``, que en el
+   nostre cas és ``LP.end()``. Això permet veure si no hi ha cap punt
+   que estigui fora del cercle unitat.
 
 
 .. exercici::
@@ -254,34 +258,35 @@ Ordenació
 ---------
 
 Per ordenar contenidors seqüencials (les taules associatives ja estan
-ordenades per la clau), podem fer servir ``sort``::
+ordenades per la clau), podem fer servir ``sort``:
 
-   void sort(iterator first, iterator last);
+.. cppfunc:: void sort(iterator first, iterator last)
 
-Aquesta acció reposiciona els elements per tal que estiguin en ordre,
-fent servir el operador ``<`` apropiat per als elements del contenidor
-(si són tipus bàsics, l'operador normal, si són classes, es crida
-l'``operator<`` que hi hagi definit). Per exemple, si tenim la
-classe::
+   Aquesta acció reposiciona els elements per tal que estiguin en ordre,
+   fent servir el operador ``<`` apropiat per als elements del contenidor
+   (si són tipus bàsics, l'operador normal, si són classes, es crida
+   l'``operator<`` que hi hagi definit). Per exemple, si tenim la
+   classe::
 
-   class Persona {
-     string nom, cognoms;
-     int edat;
-   public:
-     //...
-     bool operator<(const Persona& P) const;
-   };
+     class Persona {
+       string nom, cognoms;
+       int edat;
+     public:
+       //...
+       bool operator<(const Persona& P) const;
+     };
 
-   bool Persona::operator<(const Persona& P) const {
-     return cognoms < P.cognoms;
-   }
+     bool Persona::operator<(const Persona& P) const {
+       return cognoms < P.cognoms;
+     }
 
-Llavors podem invocar, sobre un contenidor ``C`` amb elements de tipus
-``Persona`` l'algorisme d'ordenació::
+   Llavors podem invocar, sobre un contenidor ``C`` amb elements de tipus
+   ``Persona`` l'algorisme d'ordenació::
 
-   sort(C.begin(), C.end());
+     sort(C.begin(), C.end());
 
-i es farà servir l'``operator<`` de la classe ``Persona``. 
+   i es farà servir l'``operator<`` de la classe ``Persona``. 
+
 
 .. exercici::
 
