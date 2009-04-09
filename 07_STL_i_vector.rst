@@ -77,32 +77,33 @@ segueixen aquest patró). Donat que aquestes declaracions criden als
 constructors de la classe vector, cal dir de quins constructors
 disposem:
 
-- ``vector<T>()``
+.. cppfunc:: vector<T>()
      
-  Constructor per defecte, crea el vector buit.
+   Constructor per defecte, crea el vector buit.
 
-- ``vector<T>(int size)``
+
+.. cppfunc:: vector<T>(int size)
  
-  Constructor amb un tamany (``size``), crea el vector amb un tamany
-  concret que especifiquem nosaltres. És necessari que el tipus ``T``
-  *tingui constructor per defecte*. Per exemple, si volem crear un
-  vector de 20 enters farem::
+   Constructor amb un tamany (``size``), crea el vector amb un tamany
+   concret que especifiquem nosaltres. És necessari que el tipus ``T``
+   *tingui constructor per defecte*. Per exemple, si volem crear un
+   vector de 20 enters farem::
  
-    vector<int> v1(20);
+     vector<int> v1(20);
     
 
-- ``vector<T>(int size, const T& t)``
+.. cppfunc:: vector<T>(int size, const T& t)
  
-  Constructor que rep un paràmetre de tamany i un element amb què omplir
-  el vector. Si volem un vector de 50 caràcters amb una ``'z'`` a cada casella,
-  farem::
+   Constructor que rep un paràmetre de tamany i un element amb què omplir
+   el vector. Si volem un vector de 50 caràcters amb una ``'z'`` a cada casella,
+   farem::
 
      vector<char> lletres(50, 'z');
 
 
-- ``vector<T>(const vector<T>& v)``
+.. cppfunc:: vector<T>(const vector<T>& v)
 
-  Constructor de còpia.
+   Constructor de còpia.
   
 
 .. exercici::
@@ -140,21 +141,25 @@ Mètodes consultors
 
 Els mètodes consultors disponibles per a ``vector`` són:
 
-- ``int size() const``
+.. cppfunc:: int vector<T>::size() const
+
+   Retorna el tamany del vector.
+
+
+.. cppfunc:: bool vector<T>::empty() const 
+
+   Retorna ``true`` si el vector està buit.
+
+
+.. cppfunc:: const T& vector<T>::front() const
+
+   Retorna una referència al primer element del vector.
+
+
+.. cppfunc:: const T& vector<T>::back() const
   
-  Retorna el tamany del vector.
+   Retorna una referència a l'últim element del vector.
 
-- ``bool empty() const``
-
-  Retorna ``true`` si el vector està buit.
-
-- ``const T& front() const``
-
-  Retorna una referència al primer element del vector.
-
-- ``const T& back() const``
-  
-  Retorna una referència a l'últim element del vector.
 
 .. exercici::
  
@@ -171,34 +176,34 @@ Els mètodes consultors disponibles per a ``vector`` són:
 
 Mètodes modificadors
 """"""""""""""""""""
-- ``void resize(int n)``
 
-  Redimensiona el vector perquè tingui tamany ``n``.
+.. cppfunc:: void vector<T>::resize(int n)
 
-- ``void resize(int n, const T& t)``
+   Redimensiona el vector perquè tingui tamany ``n``.
 
-  Redimensiona el vector perquè tingui tamany ``n`` i si és necessari
-  fer-lo més gran, omple les noves caselles amb ``t``.
+.. cppfunc:: void vector<T>::resize(int n, const T& t)
 
-- ``void push_back(const T& t)``
+   Redimensiona el vector perquè tingui tamany ``n`` i si és necessari
+   fer-lo més gran, omple les noves caselles amb ``t``.
 
-  Afegeix l'element ``t`` al final del vector (i per tant allarga
-  el vector en 1 unitat).
+.. cppfunc:: void vector<T>::push_back(const T& t)
 
-- ``void push_front(const T& t)``
+   Afegeix l'element ``t`` al final del vector (i per tant allarga
+   el vector en 1 unitat).
 
-  Posa l'element ``t`` al principi del vector (i per tant mou tots els
-  elements 1 posició amunt i allarga el vector en 1 unitat).
+.. cppfunc:: void vector<T>::push_front(const T& t)
 
-- ``void pop_back()``
+   Posa l'element ``t`` al principi del vector (i per tant mou tots els
+   elements 1 posició amunt i allarga el vector en 1 unitat).
 
-  Esborra l'últim element del vector (no el retorna), i per tant
-  escurça el vector en 1 unitat).
+.. cppfunc:: void vector<T>::pop_back()
 
-- ``void clear()``
+   Esborra l'últim element del vector (no el retorna), i per tant
+   escurça el vector en 1 unitat).
 
-  Esborra tots els elements del vector.
+.. cppfunc:: void vector<T>::clear()
 
+   Esborra tots els elements del vector.
 
 
 .. exercici::
@@ -267,14 +272,14 @@ propi iterador.
 Donat un iterador, per tal que apunti a una posició del vector
 concreta, tenim els següents mètodes:
 
-- ``vector<T>::iterator begin()``
+.. cppfunc:: vector<T>::iterator begin()
   
-  Retorna un iterador a la primera posició del vector.
+   Retorna un iterador a la primera posició del vector.
 
-- ``vector<T>::iterator end()``
+.. cppfunc:: vector<T>::iterator end()
 
-  Retorna un iterador a la posició *immediatament posterior a la última*
-  del vector.
+   Retorna un iterador a la posició *immediatament posterior a la última*
+   del vector.
 
 El final d'un vector (el valor de ``end()``) és una posició especial
 del vector ja que no conté cap valor (està fora del vector), però

@@ -66,3 +66,15 @@ table.docutils thead {
 dl.docutils dt {
   font-weight: bold;
 }
+
+dl.cppfunc dt {
+  font-size: 90%;
+  font-family: "Monospace";
+  background: #f7eda6;
+  padding: 1px 3px;
+}
+
+tt.descname, tt.descclassname {
+  font-size: 130%;
+}
+

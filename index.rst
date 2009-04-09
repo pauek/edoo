@@ -50,10 +50,13 @@ Solucions a exercicis i problemes
    SOL_11_Bases_de_Dades_2
 
 
-Índexs i taules
-===============
+Índex i Cerca
+-------------
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
+
+.. No hay módulos
+   :ref:`modindex`
+
 
