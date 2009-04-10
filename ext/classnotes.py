@@ -63,7 +63,6 @@ class ExerciciDirective(Directive):
 # Transforms
 
 from docutils.transforms import Transform
-import cppfunc
 
 class Numeros(Transform):
     default_priority = 710 
@@ -89,10 +88,9 @@ def setup(app):
 
     app.add_directive('problema', ProblemaDirective)
     app.add_directive('exercici', ExerciciDirective)
-    # Machaco el cfunction de Sphinx [ugly hack]
-    # app.add_directive('cfunction',  cppfunc.CppFuncDirective)
-    app.add_directive('cppfunc',  cppfunc.CppFuncDirective)
-
+    # import cppfunc
+    # app.add_directive('cppfunc',  cppfunc.CppFuncDirective)
+    
     app.add_transform(Numeros)
 
 

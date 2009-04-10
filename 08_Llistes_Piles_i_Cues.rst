@@ -74,11 +74,11 @@ per tenir una llista de ``Racionals`` farem::
 
 La classe ``list<T>`` defineix els següents constructors:
 
-.. cppfunc::  list<T>()
+.. cfunction::  list<T>()
 
    Constructor per defecte, crea la llista buida.
 
-.. cppfunc:: list<T>(int size)
+.. cfunction:: list<T>(int size)
 
    Crea una llista amb un tamany ``size`` i cada element de la llista
    serà el resultat de cridar el constructor per defecte de la classe
@@ -88,7 +88,7 @@ La classe ``list<T>`` defineix els següents constructors:
      list<bool> l1(40);
 
 
-.. cppfunc:: list<T>(int size, const T& t)
+.. cfunction:: list<T>(int size, const T& t)
 
    Crea una llista amb un tamany ``size`` i omple tots els elements
    fent servir ``t`` com a model (farà servir el constructor de còpia
@@ -98,7 +98,7 @@ La classe ``list<T>`` defineix els següents constructors:
          
      list<string> paraules(5, "SFDK");
 
-.. cppfunc:: list<T>(const list<T>& L)
+.. cfunction:: list<T>(const list<T>& L)
 
    Constructor de còpia, crea una llista a partir d'una altra, copiant
    tots els elements.
@@ -124,24 +124,24 @@ Mètodes consultors
 Les llistes també tenen els mètodes consultors estàndar de contenidors
 d'STL:
 
-.. cppfunc:: int list<T>::size() const
+.. cfunction:: int list<T>::size() const
    
    Per obtenir el tamany. Suposant que ``n`` és el tamany de la
    llista, aquesta funció té un cost O(``n``), és a dir, linial.
 
 
-.. cppfunc:: bool list<T>::empty() const
+.. cfunction:: bool list<T>::empty() const
    
    Retorna ``true`` si la llista està buida. Aquesta funció té cost
    O(1), i és molt més eficient que escriure ``size() == 0``.
 
 
-.. cppfunc:: const T& list<T>::front() const
+.. cfunction:: const T& list<T>::front() const
 
    Retorna una referència l'últim element.
 
 
-.. cppfunc:: const T& list<T>::back() const
+.. cfunction:: const T& list<T>::back() const
 
    Retorna una referència al primer element.
 
@@ -151,33 +151,33 @@ Mètodes modificadors
 Com també els següents mètodes modificadors estàndar:
 
 
-.. cppfunc:: void list<T>::clear()
+.. cfunction:: void list<T>::clear()
    
    Esborra tots els elements de la llista.
 
 
-.. cppfunc:: void list<T>::resize(int n)
+.. cfunction:: void list<T>::resize(int n)
    
    Redimensiona la llista.
 
 
-.. cppfunc:: void list<T>::resize(int, const T& t)
+.. cfunction:: void list<T>::resize(int, const T& t)
    
    Redimensiona la llista, omplint els elements nous amb el valor
    ``t`` (si és necessari).
 
 
-.. cppfunc:: void list<T>::push_back(const T& t)
+.. cfunction:: void list<T>::push_back(const T& t)
    
    Afegeix al final.
 
 
-.. cppfunc:: void list<T>::push_front(const T& t)
+.. cfunction:: void list<T>::push_front(const T& t)
    
    Inserta al principi.
 
 
-.. cppfunc:: void list<T>::pop_back()
+.. cfunction:: void list<T>::pop_back()
    
    Esborra un element del final.
 
@@ -185,12 +185,12 @@ Com també els següents mètodes modificadors estàndar:
 Mètodes especials de ``list``
 '''''''''''''''''''''''''''''
 
-.. cppfunc:: void list<T>::pop_front()
+.. cfunction:: void list<T>::pop_front()
    
    Esborra un element del principi, opera igual que ``pop_back`` però
    al principi de la llista (no existeix en vectors).
 
-.. cppfunc:: void list<T>::remove(const T& val)
+.. cfunction:: void list<T>::remove(const T& val)
    
    Esborra els elements de la llista que tinguin el valor ``val`` (fa
    servir el ``operator==``). Per exemple, si una llista ``L`` conté
@@ -201,7 +201,7 @@ Mètodes especials de ``list``
    llavors la llista tindrà els elements 1, 2, 4 i 5.
 
 
-.. cppfunc:: void list<T>::reverse()
+.. cfunction:: void list<T>::reverse()
    
    Canvia d'ordre els elements d'una llista (eficiència O(``n``)). És
    a dir, si una llista conté (1, 2, 3), després d'haver cridat
@@ -290,23 +290,23 @@ Inserció i esborrat d'elements al mig
 Les llistes permeten insertar elements al mig a través de mètodes
 especials. Vegem aquests mètodes:
 
-.. cppfunc:: void list<T>::insert(iterator pos, const T& t)
+.. cfunction:: void list<T>::insert(iterator pos, const T& t)
    
    Inserta el valor ``t`` *abans* de l'element apuntat per l'iterador
    ``pos``.
 
-.. cppfunc:: void list<T>::insert(iterator pos, int n, const T& t)
+.. cfunction:: void list<T>::insert(iterator pos, int n, const T& t)
    
    Inserta ``n`` vegades el valor ``t`` *abans* de l'element apuntat
    per l'iterador ``pos``.
 
-.. cppfunc:: iterator list<T>::erase(iterator pos)
+.. cfunction:: iterator list<T>::erase(iterator pos)
    
    Esborra l'element apuntat per ``pos`` i retorna un iterador a
    l'element següent (ja que si s'esborra l'element al que apuntava
    l'iterador aquest ja no serà vàlid).
 
-.. cppfunc:: iterator list<T>::erase(iterator first, iterator last)
+.. cfunction:: iterator list<T>::erase(iterator first, iterator last)
    
    Esborra els elements entre els iteradors ``first`` i ``last``
    incloent l'element al que apuntava ``first`` però *no* l'element al
@@ -430,12 +430,12 @@ Mètodes de la classe ``stack``
 
 Constructors:
 
-.. cppfunc:: stack<T>()
+.. cfunction:: stack<T>()
    
    Crea una pila buida.
 
 
-.. cppfunc:: stack<T>(const stack<T>& s)
+.. cfunction:: stack<T>(const stack<T>& s)
    
    Crea una pila a partir d'una altra.
 
@@ -443,27 +443,27 @@ Constructors:
 Els mètodes de la classe ``stack`` són els següents:
 
 
-.. cppfunc:: int stack<T>::size() const
+.. cfunction:: int stack<T>::size() const
    
    Per obtenir el tamany.
 
 
-.. cppfunc:: bool stack<T>::empty() const
+.. cfunction:: bool stack<T>::empty() const
    
    Per saber si la pila està buida. 
 
 
-.. cppfunc:: T& stack<T>::top()
+.. cfunction:: T& stack<T>::top()
    
    Retorna una referència a l'element de dalt de tot.
 
 
-.. cppfunc:: void stack<T>::push(const T& t)
+.. cfunction:: void stack<T>::push(const T& t)
    
    Apila un element a dalt de tot.
 
 
-.. cppfunc:: void stack<T>::pop()
+.. cfunction:: void stack<T>::pop()
    
    Elimina l'elemnt de dalt de tot.
 
@@ -575,44 +575,44 @@ Mètodes de la classe ``queue``
 
 Constructors:
 
-.. cppfunc:: queue<T>()
+.. cfunction:: queue<T>()
    
    Crea una cua buida.
 
 
-.. cppfunc:: queue<T>(const queue<T>& s)
+.. cfunction:: queue<T>(const queue<T>& s)
    
    Crea una cua a partir d'una altra.
 
 
 Altre mètodes:
 
-.. cppfunc:: int queue<T>::size() const
+.. cfunction:: int queue<T>::size() const
    
    Per obtenir el tamany.
 
 
-.. cppfunc:: bool queue<T>::empty() const
+.. cfunction:: bool queue<T>::empty() const
    
    Per saber si la cua està buida. 
 
 
-.. cppfunc:: T& queue<T>::front()
+.. cfunction:: T& queue<T>::front()
    
    Retorna una referència al primer element.
 
 
-.. cppfunc:: T& queue<T>::back()
+.. cfunction:: T& queue<T>::back()
    
    Retorna una referència a l'últim element.
 
 
-.. cppfunc:: void queue<T>::push(const T& t)
+.. cfunction:: void queue<T>::push(const T& t)
    
    Inserta un element al final de la cua.
 
 
-.. cppfunc:: void queue<T>::pop()
+.. cfunction:: void queue<T>::pop()
    
    Elimina el primer element.
 

@@ -67,7 +67,7 @@ dl.docutils dt {
   font-weight: bold;
 }
 
-dl.cppfunc dt {
+dl.cfunction dt {
   font-size: 90%;
   font-family: "Monospace";
   background: #ffd0ad;

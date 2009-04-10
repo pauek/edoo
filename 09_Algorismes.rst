@@ -29,7 +29,7 @@ Si tenim un contenidor seqüencial (que **no** sigui una taula
 associativa) amb certs valors i volem omplir-lo tot o una part amb un
 cert valor, podem fer servir ``fill``:
 
-.. cppfunc:: void fill(iterator first, iterator last, const T& val)
+.. cfunction:: void fill(iterator first, iterator last, const T& val)
 
    L'acció ``fill`` rep dos iteradors que indiquen el principi
    (``first``) i el final (``last``) de la iteració i també un valor,
@@ -51,7 +51,7 @@ cert valor, podem fer servir ``fill``:
 Si només volem omplir un cert número d'elements a partir d'un cert
 iterador, podem fer servir ``fill_n``:
 
-.. cppfunc:: void fill_n(iterator first, int n, const T& val)
+.. cfunction:: void fill_n(iterator first, int n, const T& val)
 
    Aquesta acció omple amb el valor ``val`` els ``n`` valors a partir
    de l'iterador ``first``. Si volem, per exemple, omplir els 5
@@ -101,7 +101,7 @@ Si volem comptar elements d'un contenidor que tenen valors diferents
 però compleixen una condició, podem fer servir ``count_if``, que rep
 un predicat:
 
-.. cppfunc:: void count_if(iterator first, iterator last, Predicate func)
+.. cfunction:: void count_if(iterator first, iterator last, Predicate func)
 
    El predicat (``func``) és una funció que retorna un valor
    ``bool``. La funció ``count_if`` fa una iteració pel contenidor i
@@ -140,7 +140,7 @@ Si el que volem fer amb cada element és una operació més complicada,
 que no és comptar, ni omplir, ni cap de les operacions anteriors,
 sempre podem fer un recorregut genèric amb ``for_each``:
 
-.. cppfunc:: void for_each(iterator first, iterator last, UnaryFunction func)
+.. cfunction:: void for_each(iterator first, iterator last, UnaryFunction func)
 
    El tercer paràmetre és una acció, anàlogament al cas de ``count``, que
    no ha de retornar res i rebrà un element del contenidor (per
@@ -180,7 +180,7 @@ Si volem buscar un element dins d'un contenidor seqüencial (ja que les
 taules associatives ja tenen un mètode ``find()``), podem fer servir
 ``find``:
 
-.. cppfunc:: iterator find(iterator first, iterator last, const T& val)
+.. cfunction:: iterator find(iterator first, iterator last, const T& val)
 
    Aquesta funció fa una cerca i para quan troba un element a dins del
    vector que tingui el valor ``val``, retornant un iterador a aquest
@@ -219,7 +219,7 @@ Quan el que busquem en un contenidor no és un valor concret sinó que
 ha de complir una condició, podem fer servir un predicat, i podem
 utilitzar ``find_if``:
 
-.. cppfunc:: iterator find_if(iterator first, iterator last, Predicate pred)
+.. cfunction:: iterator find_if(iterator first, iterator last, Predicate pred)
 
    Aquesta funció realitza una cerca i para quan el predicat que li hem
    passat retorna ``true`` per a cert element. D'aquest element es retorna
@@ -260,7 +260,7 @@ Ordenació
 Per ordenar contenidors seqüencials (les taules associatives ja estan
 ordenades per la clau), podem fer servir ``sort``:
 
-.. cppfunc:: void sort(iterator first, iterator last)
+.. cfunction:: void sort(iterator first, iterator last)
 
    Aquesta acció reposiciona els elements per tal que estiguin en ordre,
    fent servir el operador ``<`` apropiat per als elements del contenidor
