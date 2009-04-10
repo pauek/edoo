@@ -79,6 +79,8 @@ ostream& operator<<(ostream& o, const Imatge& I) {
   for (int x = 0; x < I.tamany_x(); x++)
     for (int y = 0; y < I.tamany_y(); y++) 
       o << int(I.get_pixel(x, y) * I._resolucio) << ' ';
+
+  return o;
 }
 
 string llegeix_linia(istream& i) {
@@ -116,5 +118,6 @@ istream& operator>>(istream& i, Imatge& I) {
       }
     }
   }
+  return i;
 }
 
