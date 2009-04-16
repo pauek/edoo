@@ -1,4 +1,6 @@
 
+.. highlightlang:: sql
+
 ================
 Bases de dades 2
 ================

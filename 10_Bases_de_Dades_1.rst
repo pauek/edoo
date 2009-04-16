@@ -1,4 +1,6 @@
 
+.. highlightlang:: sql
+
 ================
 Bases de dades 1
 ================
@@ -197,14 +199,14 @@ Esborrat de registres
 Per esborrar un registre es fa servir la comanda ``DELETE``. Aquesta
 comanda té la sintaxi::
 
-   DELETE FROM <taula> WHERE <condició>
+  DELETE FROM <taula> WHERE <condició>;
 
 La condició és una expressió Booleana senzilla que determina quins
 registres s'esborraran (aquells per als quals l'expressió sigui
 certa). Per exemple, en el cas del empleats, si volem esborrar tots
 aquells amb una antiguitat major que 10::
 
-   DELETE FROM empleats WHERE antiguitat > 10;
+  DELETE FROM empleats WHERE antiguitat > 10;
 
 O si volem esborrar tots el empleats amb cognom Marx podem fer::
 

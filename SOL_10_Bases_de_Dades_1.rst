@@ -1,7 +1,9 @@
 
-===========================
-Bases de dades 1: Solucions
-===========================
+.. highlightlang:: sql
+
+================
+Bases de dades 1
+================
 
 .. exercici::
    ::

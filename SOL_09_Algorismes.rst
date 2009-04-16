@@ -1,7 +1,7 @@
 
-===============================
-Algorismes de la STL: Solucions
-===============================
+====================
+Algorismes de la STL
+====================
 
 .. Omplir una llista de caràcters amb espais
 
