@@ -25,8 +25,8 @@ Apunts de Programació i Bases de Dades
 .. toctree::
    :maxdepth: 2
 
-   07_STL_i_vector
-   08_Llistes_Piles_i_Cues
+   07_STL_Vectors_i_Llistes
+   08_Piles_Cues_i_Maps
    09_Algorismes
    10_Bases_de_Dades_1
    11_Bases_de_Dades_2
@@ -43,15 +43,15 @@ Solucions a exercicis i problemes
    SOL_03_Operadors
    SOL_05_Punters
    SOL_06_Memoria_Dinamica
-   SOL_07_STL_i_vector
-   SOL_08_Llistes_Piles_i_Cues
+   SOL_07_STL_Vectors_i_Llistes
+   SOL_08_Piles_Cues_i_Maps
    SOL_09_Algorismes
    SOL_10_Bases_de_Dades_1
    SOL_11_Bases_de_Dades_2
 
 
 Índex i Cerca
--------------
+=============
 
 * :ref:`genindex`
 * :ref:`search`
