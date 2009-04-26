@@ -1,7 +1,7 @@
 
-=======
-Vectors
-=======
+======================
+STL, Vectors i Llistes
+======================
 
 .. exercici::
    ::
@@ -52,17 +52,6 @@ Vectors
       vector<char> v;
       for (k = 0; k < 26; k++) {
         v.push_back(char(97 + k));
-      }
-
-
-.. exercici::
-   ::
-
-      void omple_vector(vector<int>& v) {
-        v.clear();
-	for (int k = 0; k < 500; k++) {
-	  v.push_front(k);
-	}
       }
 
 
@@ -118,6 +107,132 @@ Vectors
 
 .. exercici::
 
+   Aquest exercici requerirà l'ús d'un iterador ``const``.
+   ::
+
+       float suma_vector(const vector<float>& v) {
+         float suma = 0.0;
+         vector<float>::const_iterator i;	 
+	 for (i = v.begin(); i != v.end(); i++) {
+	   suma += *i;
+	 }
+	 return suma;
+       }
+
+   Només cal recordar de fer servir iteradors ``const`` amb paràmetres
+   d'entrada (que portin ``const`` i ``&``).
+
+.. exercici::
+
+   Declaracions de llistes::
+
+      list<float> l(40);
+      list<Punt2D> lpunts;
+      list<char> lch(100, 'X');
+      list< vector<int> > lv;
+
+   En la última declaració, és important deixar un espai entre l'últim
+   '``>``\' i el penúltim, ja que si no, el compilador pensa que fem
+   servir l'operador '``>>``\'[6~.
+
+
+.. exercici::
+   ::
+
+      void omple_llista(list<int>& L) {
+        L.clear();
+	for (int k = 0; k < 500; k++) {
+	  L.push_front(k);
+	}
+      }
+
+.. exercici::
+
+   La llista conté {-3, 3, 5, 4}.
+
+.. exercici::
+
+   ::
+
+     list<int> l;
+     for (int k = 1; k <= 10; k++) {
+       if (k % 2 == 0)
+         l.push_back(k);
+       else
+         l.push_front(k);
+     }
+
+
+.. exercici::
+
+   En aquest exercici també és important fer servir iteradors ``const``.
+   ::
+     
+      bool tots_false(const vector<bool>& B) {
+        vector<bool>::const_iterator i = B.begin();
+	bool tots_false = true;
+	while (i != B.end() && tots_false) {
+	  if (*i) tots_false = false;
+	  else i++;
+	}
+	return tots_false;
+      }
+      
+   És un esquema de cerca en el que si veiem una casella del vector a
+   ``true``, ja podem retornar el resultat (que *no* tots els valors
+   són false).
+
+
+.. exercici::
+
+   ::
+
+     void afegeix(list<int>& L, int k) {
+       list<int>::iterator i = L.begin();
+  
+       // Trobem la posició o potser 'end'
+       while (i != L.end() && *i > k) i++;
+       
+       // Ara insertem
+       L.insert(i, k);     
+     }
+
+   Una cosa *important*:
+
+   - L'expressió "``*i > k && i != L.end()``" (al revés que en la
+     solució) no funciona correctament ja que si ``i`` es troba al
+     final (a ``L.end()``), llavors farem ``*i`` i resulta que el
+     sentinella dels contenidors (``end()``) no és cap element i el
+     programa segurament donarà un error d'execució (abortarà
+     abruptament). L'expressió ha d'estar en l'ordre que es mostra a
+     dalt, en què primer es comprova si ``i`` està al final, i si no
+     és així es mira l'element al que apunta (sense perill).
+
+
+.. exercici::
+
+   Aquí farem servir ``erase`` amb la idea de no incrementar
+   l'iterador quan esborrem ja que s'incrementa implícitament si
+   el col·loquem al valor que retorna ``erase``.
+   ::
+
+     void esborra_fora_cercle(list<Punt2D>& L) {
+       list<Punt2D>::iterator i = L.begin();
+       while (i != L.end()) {
+         if (i->dist() > 1.0) {
+	   i = L.erase(i);
+	 }
+	 else i++;
+       }
+     }
+
+
+.. ----------------------------------------------------------------
+.. Problemes ......................................................
+
+
+.. problema::
+
    En aquest exercici, es rebràn 2 paràmetres d'entrada (els dos
    vectors a concatenar) i s'ha de retornar un vector, però en comptes
    de fer una funció, farem una acció, per tal de no haver de copiar
@@ -128,7 +243,7 @@ Vectors
 	void concatena(const vector<int>& a, const vector<int>& b,
 	     	       vector<int>& res) {
 	  res.resize(a.size() + b.size());
-	  vector<int>::iterator i = a.begin(), ir = res.begin();
+	  vector<int>::const_iterator i = a.begin(), ir = res.begin();
 	  while (i != a.end()) {
 	    *ir = *i;
 	    ++ir; ++i;
@@ -140,7 +255,7 @@ Vectors
 	  }
         }
 
-.. exercici::
+.. problema::
 
    En aquest exercici ens passa com l'anterior respecte al tema dels
    paràmetres.
@@ -150,7 +265,7 @@ Vectors
 	          vector<float>& res) {
 	  if (a.size() != b.size()) return;
   	  res.resize(a.size());
-	  vector<float>::iterator i = a.begin(), j = b.begin();
+	  vector<float>::const_iterator i = a.begin(), j = b.begin();
 	  vector<float>::iterator k = res.begin();
 	  while (i != a.end()) {
 	    *k = *i + *j;
@@ -171,7 +286,7 @@ Vectors
      si no hauriem abandonat l'acció abans.
 
 
-.. exercici::
+.. problema::
 
    Aquest exercici és molt semblant a l'anterior, però com que s'ha de
    retornar un valor, es pot fer una funció::
@@ -179,7 +294,7 @@ Vectors
      float pescalar(const vector<float>& a, const vector<float>& b) {
        float suma = 0.0;
        if (a.size() == b.size()) {
-         vector<float>::iterator i = a.begin(), j = b.begin();
+         vector<float>::const_iterator i = a.begin(), j = b.begin();
          while (i != a.end()) {
 	   suma += (*i) * (*j);
 	   ++i; ++j;
@@ -195,7 +310,7 @@ Vectors
    multiplicació i per accedir a caselles dels vectors). Per això
    porta parèntesi, per aclarir una mica.
 
-.. exercici::
+.. problema::
 
    Per fer aquest programa, farem servir el mètode ``push_back``, ja
    que no sabem com de llarga serà la seqüència. No fem servir

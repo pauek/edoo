@@ -191,11 +191,6 @@ Mètodes modificadors
    Afegeix l'element ``t`` al final del vector (i per tant allarga
    el vector en 1 unitat).
 
-.. cfunction:: void vector<T>::push_front(const T& t)
-
-   Posa l'element ``t`` al principi del vector (i per tant mou tots els
-   elements 1 posició amunt i allarga el vector en 1 unitat).
-
 .. cfunction:: void vector<T>::pop_back()
 
    Esborra l'últim element del vector (no el retorna), i per tant
@@ -210,12 +205,6 @@ Mètodes modificadors
 
    Declara un vector de caràcters buit i omple'l amb les lletres
    minúscules fent servir ``push_back``.
-
-.. exercici::
-   
-   Fes una acció que rebi un vector d'enters per referència,
-   n'esborri tots els elements i l'ompli amb els nombres 500, 499,
-   498, ..., 2 i 1 fent servir ``push_front``. 
 
 Eficiència de les operacions sobre ``vector``
 """""""""""""""""""""""""""""""""""""""""""""
@@ -503,6 +492,12 @@ Com també els següents mètodes modificadors estàndar:
 .. cfunction:: void list<T>::pop_back()
    
    Esborra un element del final.
+
+.. exercici::
+   
+   Fes una acció que rebi una llista d'enters per referència,
+   n'esborri tots els elements i l'ompli amb els nombres 500, 499,
+   498, ..., 2 i 1 fent servir ``push_front``. 
 
 
 Mètodes especials de ``list``
