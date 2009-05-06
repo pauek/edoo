@@ -484,11 +484,6 @@ Com també els següents mètodes modificadors estàndar:
    Afegeix al final.
 
 
-.. cfunction:: void list<T>::push_front(const T& t)
-   
-   Inserta al principi.
-
-
 .. cfunction:: void list<T>::pop_back()
    
    Esborra un element del final.
@@ -503,10 +498,16 @@ Com també els següents mètodes modificadors estàndar:
 Mètodes especials de ``list``
 """""""""""""""""""""""""""""
 
+.. cfunction:: void list<T>::push_front(const T& t)
+   
+   Inserta un element igual que ``t`` al principi. El tamany de la
+   llista creix en una unitat.
+
 .. cfunction:: void list<T>::pop_front()
    
-   Esborra un element del principi, opera igual que ``pop_back`` però
-   al principi de la llista (no existeix en vectors).
+   Esborra el primer element. El tamany de la llista decreix en una
+   unitat.
+
 
 .. cfunction:: void list<T>::remove(const T& val)
    
@@ -524,6 +525,18 @@ Mètodes especials de ``list``
    Canvia d'ordre els elements d'una llista (eficiència :math:`O(n)`). És
    a dir, si una llista conté (1, 2, 3), després d'haver cridat
    ``reverse`` contindrà (3, 2, 1).
+
+.. cfunction:: void list<T>::unique()
+
+   Elimina els elements de la llista que estiguin repetits
+   consecutivament. Si la llista conté (1, 1, 2, 2, 2, 3, 3, 1, 1, 1,
+   2, 2, 2), després d'haver cridat ``unique`` contindrà (1, 2, 3, 1,
+   2). Aquest mètode requereix l'operador "``==``" de la classe ``T``.
+
+.. cfunction:: void list<T>::sort()
+
+   Ordena els elements de la llista de forma ascendent. Aquest mètode
+   requereix l'operador "``<``" de la classe ``T``.
 
 
 .. exercici::
@@ -738,52 +751,3 @@ retornar vectors o passar-los per referència, etc.
    d'un fitxer ``matricules.txt`` i mostri la seqüència al revés. Les
    matrícules tenen un enter i 3 lletres, com per exemple ``3451 JKK``.
 
-.. problema::
-
-   Es necessita un programa per organitzar la informació interna de
-   les trucades de telèfon d'una empresa. El format de les dades és un
-   fitxer amb una seqüència de trucades com::
-
-     + 2008/20/11 00:00:26 44 admin
-     + 2008/20/11 00:00:44 55 montse
-     - 2008/20/11 00:52:58 44 admin
-     - 2008/20/11 01:17:28 55 montse
-     + 2008/20/11 02:12:47 69 montse
-     - 2008/20/11 02:19:36 69 montse
-     + 2008/20/11 02:28:20 83 montse
-     - 2008/20/11 02:32:02 83 montse
-     + 2008/20/11 12:28:16 56 montse
-     - 2008/20/11 12:29:29 56 montse
-     + 2008/20/11 18:36:18 69 admin
-     - 2008/20/11 18:58:24 69 admin
-
-   El primer caràcter indica quan comença ("``+``") o acaba ("``-``") la
-   trucada (com que les dades estan ordenades per l'hora, una trucada
-   sencera són 2 línies possiblement separades). El segon camp indica
-   la data ("``any/dia/mes``"), el tercer l'hora i el quart i cinquè són
-   l'extensió que s'ha marcat i l'usuari que ha fet la trucada.
-
-   Es vol obtenir un resum d'aquestes dades en el format següent::
-
-     Ext 44:
-         admin 2008/20/11[00:00:26--00:52:58]
-     Ext 55:
-         montse 2008/20/11[00:00:44--01:17:28]
-     Ext 56:
-         montse 2008/20/11[12:28:16--12:29:29]
-     Ext 69:
-         admin 2008/20/11[18:36:18--18:58:24]
-         montse 2008/20/11[02:12:47--02:19:36]
-     Ext 83:
-         montse 2008/20/11[02:28:20--02:32:02]
-
-   El format indica cada extensió que ha rebut trucades, i una llista
-   d'usuaris que les han fet. Seguit de cada usuari hi ha una llista de
-   les trucades amb la data i la hora inicial i final entre corxets.
-
-   S'ha de seguir el format exactament tal com surt, respectant
-   l'espai a l'esquerra, la puntuació ("``:``" i "``--``", etc). En
-   particular, les 12 de la nit en punt hauria de sortir com
-   "``00:00:00``". Feu servir fitxers de prova per provar el programa (
-   :download:`tel1.txt <src/07_Vectors_i_Llistes/tel1.txt>` i
-   :download:`tel2.txt <src/07_Vectors_i_Llistes/tel2.txt>`).

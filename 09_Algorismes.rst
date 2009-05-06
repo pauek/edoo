@@ -19,6 +19,56 @@ include::
   #include <algorithm>
 
 
+Objectes Funció
+---------------
+
+En les funcions de la STL comentades en aquest capítol, a vegades és
+necessari fer servir un "objecte funció". Un objecte funció és un
+objecte d'una classe que té definit un operador molt especial:
+l'``operator()`` ("operador de crida"). Aquest operador és especial:
+
+- Els paràmetres poden ser de qualsevol tipus.
+- El tipus de retorn també pot ser qualsevol.
+
+La decisió sobre quins tipus posar resta a les nostres
+mans. L'operador permet cridar l'objecte com si fos una funció, d'aquí
+el nom "objecte funció" (en anglès *functor*). Vegem-ne un exemple::
+
+   struct Acumulador {
+     double suma;
+     Acumulador() { suma = 0.0; }
+     void operator()(float x) { suma += x; }
+   };
+
+Hem definit, doncs, una classe ``Acumulador`` i li hem posat
+constructor (que inicialitza el valor del camp ``suma`` a 0), i el
+mencionat ``operator()`` que en aquest cas rep un real i no retorna
+res (és ``void``). Ambdós mètodes són *inline*, és a dir que estan
+definits a la declaració de la classe. Un cop tenim la classe podem
+crear objectes de tipus ``Acumulador``::
+
+   Acumulador A1, A2;
+
+i podem cridar-los com una funció. Quan ho fem, s'invoca el mètode
+``operator()``, que tal com es veu més amunt, rep un real com
+paràmetre. Així doncs::
+
+   A1(1.0);
+   A1(2.0);
+   A2(0.1);
+   A2(-0.1);
+
+Donat que el mètode ``operator()`` el que fa és acumular el valor que
+es passa, l'acumulador ``A1`` haurà sumat 1 i 2, i l'acumulador ``A2``
+haurà sumat 0.1 i -0.1. Per mirar el valor de la suma, podem accedir
+directament al camp ``suma``, ja que tots dos objectes són un
+``struct``. Així doncs::
+
+   cout << A1.suma << ' ' << A2.suma << endl;
+
+mostraria per pantalla 3.0 i 0.0.
+
+
 Recorreguts
 -----------
 
@@ -122,6 +172,34 @@ un predicat:
    altra funció. És ``count_if`` que farà la crida a ``paraula_curta``
    per a cada element del contenidor.
 
+   Com a predicat també es pot passar un objecte funció. Per exemple,
+   per comptar quants elements d'una llista de reals es troben dins de
+   cert interval farem el següent::
+
+     struct DinsInterval {
+       float min, max;
+       Interval(float _min, _max) { min = _min; max = _max; }
+       bool operator()(float x) {
+         return x >= min && x <= max;
+       }
+     };
+
+   Aquest objecte funció es pot cridar com un predicat (retorna
+   ``bool``), i rep com a paràmetre un objecte del tipus que hi ha a
+   la llista. Així, doncs::
+
+     list<float> L;
+     L.push_back(-1.0);
+     L.push_back(1.0);
+     L.push_back(2.0);
+     L.push_back(3.0);
+     L.push_back(10.0);
+
+     DinsInterval di(0.0, 5.0);
+     cout << count_if(L.begin(), L.end(), di) << endl;
+
+   mostrarà per pantalla un 3 (tant 1 com 2 com 3 són a dins de
+   l'interval 0.0-5.0).
 
 .. exercici::
    
@@ -347,3 +425,14 @@ i llavors cridem l'acció ``sort`` així::
    Sense redefinir l'operador ``<``, fes una funció que ordeni una
    llista d'elements de la classe ``Fruita`` de l'exercici anterior
    per acidesa.
+
+Problemes
+---------
+
+.. problema::
+
+   Fent servir la STL, fes un programa que llegeixi una seqüència
+   d'enters acabada en -1 i mostri per pantalla l'element més petit
+   (el mínim).
+
+   

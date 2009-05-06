@@ -349,3 +349,53 @@ STL, Vectors i Llistes
    l'espai), i quan ens passem de 80 caracters per línia, posem un
    ``endl`` (i alhora posem ``llarg`` a 0). Així queda el text més ben
    presentat.
+
+
+.. problema::
+
+   Esciurem un tipus ``tMatricula`` per agrupar les dades d'una
+   matrícula en un sol objecte amb una tupla. Implementarem també els
+   operadors d'entrada/sortida (això no és estrictament necessari).
+   ::
+     
+     struct tMatricula {
+       int num;
+       string lletres;
+     };
+
+     ostream& operator<<(ostream& o, const tMatricula& m) {
+       o << m.num << ' ' << m.lletres;
+       return o;
+     }
+
+     istream& operator>>(istream& i, tMatricula& m) {
+       i >> m.num >> m.lletres;
+       return i;
+     }
+
+     int main() {
+       ifstream in("matricules.txt");
+       tMatricula m;
+       list<tMatricula> L;
+
+       in >> m;
+       while (!in.eof()) {
+         L.push_front(m);
+         in >> m;
+       }
+       
+       list<tMatricula>::iterator i;
+       for (i = L.begin(); i != L.end(); i++) 
+         cout << *i << endl;
+     }
+
+   Comentaris:
+
+   - Fem servir l'operador d'entrada en la instrucció "``in >> m``" i
+     el de sortida a la instrucció "``cout << *i``". En aquest últim
+     cal veure que ``*i`` és una matrícula, ja que l'iterador apunta a
+     objectes de tipus ``tMatricula``.
+
+   - Fem servir ``push_front`` perquè així la llista ja té
+     emmagatzemades les matrícules al revés.
+

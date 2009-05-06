@@ -659,3 +659,53 @@ Problemes
    paraules (que cal passar a minúscules i netejar de signes de
    puntuació), calcular la freqüència de les paraules i finalment
    mostrar les 25 més freqüents i quantes vegades apareixen.
+
+.. problema::
+
+   Es necessita un programa per organitzar la informació interna de
+   les trucades de telèfon d'una empresa. El format de les dades és un
+   fitxer amb una seqüència de trucades com::
+
+     + 2008/20/11 00:00:26 44 admin
+     + 2008/20/11 00:00:44 55 montse
+     - 2008/20/11 00:52:58 44 admin
+     - 2008/20/11 01:17:28 55 montse
+     + 2008/20/11 02:12:47 69 montse
+     - 2008/20/11 02:19:36 69 montse
+     + 2008/20/11 02:28:20 83 montse
+     - 2008/20/11 02:32:02 83 montse
+     + 2008/20/11 12:28:16 56 montse
+     - 2008/20/11 12:29:29 56 montse
+     + 2008/20/11 18:36:18 69 admin
+     - 2008/20/11 18:58:24 69 admin
+
+   El primer caràcter indica quan comença ("``+``") o acaba ("``-``") la
+   trucada (com que les dades estan ordenades per l'hora, una trucada
+   sencera són 2 línies possiblement separades). El segon camp indica
+   la data ("``any/dia/mes``"), el tercer l'hora i el quart i cinquè són
+   l'extensió que s'ha marcat i l'usuari que ha fet la trucada.
+
+   Es vol obtenir un resum d'aquestes dades en el format següent::
+
+     Ext 44:
+         admin 2008/20/11[00:00:26--00:52:58]
+     Ext 55:
+         montse 2008/20/11[00:00:44--01:17:28]
+     Ext 56:
+         montse 2008/20/11[12:28:16--12:29:29]
+     Ext 69:
+         admin 2008/20/11[18:36:18--18:58:24]
+         montse 2008/20/11[02:12:47--02:19:36]
+     Ext 83:
+         montse 2008/20/11[02:28:20--02:32:02]
+
+   El format indica cada extensió que ha rebut trucades, i una llista
+   d'usuaris que les han fet. Seguit de cada usuari hi ha una llista de
+   les trucades amb la data i la hora inicial i final entre corxets.
+
+   S'ha de seguir el format exactament tal com surt, respectant
+   l'espai a l'esquerra, la puntuació ("``:``" i "``--``", etc). En
+   particular, les 12 de la nit en punt hauria de sortir com
+   "``00:00:00``". Feu servir fitxers de prova per provar el programa (
+   :download:`tel1.txt <src/07_Vectors_i_Llistes/tel1.txt>` i
+   :download:`tel2.txt <src/07_Vectors_i_Llistes/tel2.txt>`).
