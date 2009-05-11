@@ -751,3 +751,9 @@ retornar vectors o passar-los per referència, etc.
    d'un fitxer ``matricules.txt`` i mostri la seqüència al revés. Les
    matrícules tenen un enter i 3 lletres, com per exemple ``3451 JKK``.
 
+.. 
+  problema: Josephus problem, "suicidios en un círculo de gente"...
+
+.. 
+  problema: Resolver un crucigrama a fuerza bruta...
+

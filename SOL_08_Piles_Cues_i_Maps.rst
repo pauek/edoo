@@ -237,7 +237,7 @@ Piles, Cues i Taules Associatives
         F.insert(make_pair(fruita, quantitat));
 
    En aquesta versió la inserció dels elements que no existeixen es fa
-   explícitament
+   explícitament.
 
 
 .. -------------------------------------------------------------------

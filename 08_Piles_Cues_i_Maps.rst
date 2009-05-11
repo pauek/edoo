@@ -655,7 +655,7 @@ Problemes
    freqüents d'un text. La freqüència de cada paraula és el nombre de
    vegades que apareix en el text. El programa ha de llegir un fitxer
    amb el text (pots obtenir textos a `Project Gutenberg
-   <http://www.projectgutenberg.org>`), llegir la seqüència de
+   <http://www.gutenberg.org>`_), llegir la seqüència de
    paraules (que cal passar a minúscules i netejar de signes de
    puntuació), calcular la freqüència de les paraules i finalment
    mostrar les 25 més freqüents i quantes vegades apareixen.
