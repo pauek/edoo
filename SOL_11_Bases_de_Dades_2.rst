@@ -78,3 +78,49 @@ Bases de dades 2
      SELECT t.hora_sortida, t.num_vagons, e.nom, e.adreça
        FROM trens as t, estacions as e
        WHERE t.hora_sortida = "10:00" AND t.estacio = e.id;
+
+.. problema::
+
+   Creació de la base de dades, amb dues taules::
+
+     CREATE TABLE nens (
+       nom TEXT NOT NULL,
+       cognoms TEXT NOT NULL,
+       edat INTEGER CHECK (edat > 0) NOT NULL,
+       adreça TEXT,
+       codi_postal INTEGER NOT NULL,
+       preferida INTEGER
+     );
+
+     CREATE TABLE joguines (
+       id INTEGER NOT NULL PRIMARY KEY,
+       descripció TEXT NOT NULL,
+       edat_minima INTEGER NOT NULL,
+       telefon INTEGER NOT NULL,
+       volum REAL,
+       pes REAL
+     );
+
+   Inserció de registres::
+
+     INSERT INTO joguines VALUES (1, "Pilota", 8, 934556677, 0.004, 0.3);
+
+     INSERT INTO nens VALUES ('Marx', 'Groucho', 12, "Gran Via 72, 3è 1a", 08008, 1);
+
+   Consultes::
+
+     SELECT n.nom, n.cognoms, j.descripció
+       FROM nens AS n, joguines AS j
+       WHERE n.preferida = j.id;
+       
+     SELECT n.nom, n.cognoms 
+       FROM nens AS n, joguines AS j
+       WHERE n.preferida = j.id AND j.descripció = "Scalextric";
+
+     SELECT n.nom, n.cognoms
+       FROM nens AS n, joguines AS j
+       WHERE n.preferida = j.id AND n.edat < j.edat_minima;
+
+     SELECT sum(j.volum), sum(j.pes) 
+       FROM nens AS n, joguines AS j
+       WHERE n.preferida = j.id;

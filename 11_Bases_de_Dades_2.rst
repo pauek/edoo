@@ -343,3 +343,39 @@ d'amagar el nom intern dels camps d'una base de dades::
 Posant la columna "``v.nom as proveïdor``", estem demanant que el camp
 de la columna sigui ``v.nom`` però surti en el llistat final la
 paraula ``proveïdor`` que és molt més entenedora.
+
+Problemes
+---------
+
+.. problema::
+
+   Els Reis d'Orient necessiten una base de dades per emmagatzemar
+   quina és la joguina preferida de cada nen (només una per nen). És
+   altament probable que molts nens tinguin la mateixa joguina com a
+   preferida. La informació dels nens inclou el seu nom, cognoms,
+   l'edat, la seva adreça, i el codi postal (per ajudar els Reis a
+   situar la zona). De les joguines es vol saber la descripció, l'edat
+   mínima per jugar am aquesta joguina, el telèfon del distribuidor
+   principal, el volum (en metres cúbics) i el pes (en kilograms).
+
+   Escriu comandes SQL per:
+  
+   * Crear la base de dades.
+
+   * Insertar un nen i una joguina a la base de dades. El nen ha de
+     tenir com a preferida aquesta joguina.
+
+   * Fer les següents consultes:
+
+     - Un llistat amb els noms i cognoms dels nens i la descripció de
+       la seva joguina preferida.
+
+     - Donada la descripció d'una joguina, un llistat dels nens que la
+       tenen com a preferida.
+
+     - Un llistat dels nens que tenen una joguina preferida per a la
+       qual no superen l'edat mínima.
+
+     - La suma del pes i el volum de les joguines preferides de tots
+       els nens (per saber quants camions necessiten els Reis).
+   
