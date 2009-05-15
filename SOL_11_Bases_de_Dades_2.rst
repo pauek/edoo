@@ -24,6 +24,34 @@ Bases de dades 2
 
       SELECT sum(preu*quantitat) FROM compra;
 
+
+.. exercici::
+
+   :math:`D = \{ (0, a, red), (0, a, green), (0, a, blue), \\ (0, b, red), (0, b, green), (0, b, blue), \\ (1, a, red), (1, a, green), (1, a, blue), \\ (1, b, red), (1, b, green), (1, b, blue) \}` 
+
+.. exercici::
+   ::
+
+     nom         nom
+     ----------  -----------
+     Nick	 Geri
+     Nick 	 Michele
+     Nick	 Victoria
+     Nick	 Emma
+     Howie	 Geri
+     Howie 	 Michele
+     Howie	 Victoria
+     Howie	 Emma
+     A.J.	 Geri
+     A.J. 	 Michele
+     A.J.	 Victoria
+     A.J.	 Emma
+     Kevin	 Geri
+     Kevin 	 Michele
+     Kevin	 Victoria
+     Kevin	 Emma
+     
+
 .. exercici::
    
    Les comandes de creació de les taules de la base de dades per a la

@@ -87,7 +87,7 @@ Expressions i Funcions
 En les columnes que ``SELECT`` retorna com a resultat, es poden fer
 servir expressions i funcions. Això significa que no cal posar només
 el nom d'una columna, es pot posar una expressió que sigui un càlcul
-que cal fer amb els valors de cada registre. Veiem-ne un
+que cal fer amb els valors de cada registre. Vegem-ne un
 exemple. Crearem primer una taula per emmagatzemar una compra en una
 botiga::
 
@@ -240,8 +240,104 @@ taula). Això ens permet fer un ``INSERT`` com aquest::
   INSERT INTO cites_famoses (autor, frase) 
     VALUES ("Shakespeare", "Ser o no ser");
 
-Relacionar dues taules
-""""""""""""""""""""""
+Relacions entre taules
+----------------------
+
+El producte cartesià
+""""""""""""""""""""
+
+En matemàtiques, si tenim dos conjunts :math:`A = \{ 1, 2, 3 \}` i
+:math:`B = \{ a, b, c \}`, es defineix el producte cartesià com el
+conjunt de totes les combinacions d'elements de :math:`A` i
+:math:`B`. El producte es denota amb :math:`C = A \times B` i conté
+els següents elements:
+ 
+  :math:`C = \{ (1, a), (1, b), (1, c), (2, a), (2, b), (2, c), (3, a), (3, b), (3, c) \}`
+
+Així, doncs, el conjunt :math:`C` conté totes les possibles parelles
+d'elements d':math:`A` i de :math:`B`.
+
+.. exercici:: 
+   
+   Quin seria el producte Cartesià :math:`D = A \times B \times C`
+   dels conjunts:
+
+     :math:`A = \{ 0, 1 \}`
+
+     :math:`B = \{ a, b \}`
+
+     :math:`C = \{ red, green, blue \}`
+
+
+La comanda ``SELECT`` fa el producte cartesià si tenim dues taules
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Suposem, doncs que hem entrat les següents comandes a una base de dades::
+
+  CREATE TABLE a (val INTEGER);
+  CREATE TABLE b (val TEXT);
+  INSERT INTO a VALUES (1);
+  INSERT INTO a VALUES (2);
+  INSERT INTO a VALUES (3);
+  INSERT INTO b VALUES ('a');
+  INSERT INTO b VALUES ('b');
+  INSERT INTO c VALUES ('c');
+
+Això, bàsicament, està reproduïnt els conjunts explicats en la secció
+anterior, com si fóssin dues taules ``a`` i ``b`` en la nostra base de
+dades. Què succeeix, doncs, si fem la comanda ``SELECT`` següent?
+::
+  
+  SELECT a.val, b.val FROM a, b;
+
+Cal veure que hem hagut de posar ``a.val`` i ``b.val`` per distingir
+entre les columnes (els camps) ``val`` de cada taula. La notació és
+familiar de C++ per a tuples. També, la part ``FROM`` de la comanda
+``SELECT`` té ``a`` i ``b`` separats per comes, indicant que
+``SELECT`` obtindrà dades de les dues taules. Però quins valors
+mostrarà la consulta?
+
+La resposta és que ``SELECT``, si no indiquem res més, aplica el
+producte escalar, i per pantalla veurem::
+
+  val  val
+  ---  ---
+  1    a  
+  1    b  
+  1    c  
+  2    a  
+  2    b  
+  2    c  
+  3    a  
+  3    b  
+  3    c  
+
+En absència de cap restricció, ``SELECT`` mostra totes les parelles
+possibles de registres de la taula ``A`` i la taula ``B``.
+
+.. exercici::
+
+   Suposant les següents comandes SQL sobre una base de dades::
+
+     CREATE TABLE boys (nom TEXT);
+     CREATE TABLE girls (nom TEXT);
+     INSERT INTO boys ("Nick");
+     INSERT INTO boys ("Howie");
+     INSERT INTO boys ("A.J.");
+     INSERT INTO boys ("Kevin");
+     INSERT INTO girls("Geri");
+     INSERT INTO girls("Michele");
+     INSERT INTO girls("Victoria");
+     INSERT INTO girls("Emma");
+
+   Quina serà la sortida de la següent comanda?
+   ::
+
+     SELECT boys.nom, girls.nom FROM boys, girls;
+
+
+Relacions mitjançant ``SELECT``
+"""""""""""""""""""""""""""""""
 
 Suposem, doncs, que tenim dues taules de productes i proveïdors que
 hem creat amb les següents comandes::
@@ -262,27 +358,31 @@ hem creat amb les següents comandes::
   );
 
 En la taula de productes, tenim apuntat en el camp ``nif_prov`` el NIF
-del proveïdor i això indirectament ens permet accedir a totes les
-seves dades. La relació de les taules es fa íntegrament durant la
+del proveïdor per a cada producte i això indirectament ens permet
+accedir a totes les seves dades, que estan a la taula de
+proveïdors. La relació de les taules es fa íntegrament durant la
 consulta amb la comanda ``SELECT`` (en particular, en la clàusula
-``WHERE``). La consulta que volem fer és mostrar el nom i número de telèfon
-del proveïdor per a un cert producte. La consulta és::
+``WHERE``). La consulta que volem fer és mostrar el nom i la
+descripció de cada producte i al costat el nom i número de telèfon del
+proveïdor d'aquest producte. La consulta és::
 
-  SELECT prod.nom, prod.descripció, prov.nom, prov.telefon FROM prod, prov 
-    WHERE prod.codi = 1234 AND prod.nif_prov = prov.nif;
+  SELECT prod.nom, prod.descripció, prov.nom, prov.telefon 
+    FROM prod, prov 
+    WHERE prod.nif_prov = prov.nif;
 
-Aquesta consulta té la particularitat de que obté dades de dues
-taules. Això es pot veure perquè apareix ``FROM prod, prov`` en la
-part del mig. Degut a això, s'ha de prefixar el nom dels camps quan
-posem quins camps volem (ja que, per exemple, hi ha el camp ``nom`` en
-les dues taules, i si no posem el prefix, no sabrem quin és quin). La
-notació es la familiar de C++ per a tuples. Aquesta consulta ha de
-mostrar certs registres d'una taula creuats amb els de l'altra.
+De nou veiem com per fer servir dues taules en una comanda ``SELECT``,
+farem servir ``FROM prod, prov`` en la part del mig, i com és
+necessari indicar de quina taula prové cada columna amb la notació
+``prod.nom``. Aquesta consulta ha de mostrar certs registres d'una
+taula correlacionats amb els de l'altra.
 
-La relació es produeix amb "``WHERE prod.nif_prov = prov.nif``", a on
-estem dient que s'ha de complir que el nif apuntat al registre del
-producte ha de coincidir amb el NIF que hi ha apuntat al registre del
-proveïdor. 
+En absència de restriccions, la consulta mostraria el producte
+cartesià de tots els productes amb tots el proveïdors (o sigui totes
+les combinacions), però com que sabem que els productes estan
+relacionats amb els proveïdors, *filtrem* el producte cartesià amb la
+condició "``WHERE prod.nif_prov = prov.nif``", a on estem dient que
+s'ha de complir que el nif apuntat al registre del producte ha de
+coincidir amb el NIF que hi ha apuntat al registre del proveïdor. 
 
 .. exercici::
 
