@@ -152,3 +152,98 @@ Bases de dades 2
      SELECT sum(j.volum), sum(j.pes) 
        FROM nens AS n, joguines AS j
        WHERE n.preferida = j.id;
+
+.. problema::
+
+   Primer de tot crearem les bases de dades. Per identificar cada
+   client farem servir el DNI directament, però per identificar les
+   pel·lícules, farem servir un codi que introduïm nosaltres (serà la
+   clau primària). Hi haurà una taula de clients, una de pel·lícules i
+   una de lloguers:
+
+   .. literalinclude:: src/11_Bases_de_Dades_2/video_club.sql
+      :start-after: 1+
+      :end-before: 1-
+
+   La taula de lloguers ha de relacionar quins clients tenen quines
+   pel·lícules i en quina data es va fer el lloguer. Per aconseguir
+   que només 1 client tingui una pel·lícula, en la taula de lloguers
+   el codi de la película serà únic:
+
+   .. literalinclude:: src/11_Bases_de_Dades_2/video_club.sql
+      :start-after: 2+
+      :end-before: 2-
+
+   Un cop creades les taules, insertem alguns registres:
+
+   .. literalinclude:: src/11_Bases_de_Dades_2/video_club.sql
+      :start-after: 3+
+      :end-before: 3-
+
+   Per registrar que Pep Guardiola acaba de llogar "El Padrino", farem:
+
+   .. literalinclude:: src/11_Bases_de_Dades_2/video_club.sql
+      :start-after: 4+
+      :end-before: 4-
+
+   Per registrar que Britney Spears té llogada "Star Wars" desde fa 2
+   dies (mireu la documentació de la funció ``date`` per això):
+   
+   .. literalinclude:: src/11_Bases_de_Dades_2/video_club.sql
+      :start-after: 5+
+      :end-before: 5-
+
+   Insertem alguns lloguers més:
+
+   .. literalinclude:: src/11_Bases_de_Dades_2/video_club.sql
+      :start-after: 6+
+      :end-before: 6-
+
+   Si intentem llogar una pel·lícula que ja està llogada donarà
+   error:
+
+   .. literalinclude:: src/11_Bases_de_Dades_2/video_club.sql
+      :start-after: 7+
+      :end-before: 7-
+
+   Finalment, tenim les consultes:
+
+   * Els clients en un cert codi postal:
+   
+   .. literalinclude:: src/11_Bases_de_Dades_2/video_club.sql
+      :start-after: 8+
+      :end-before: 8-
+
+   * Pel·lícules de cert gènere:
+
+   .. literalinclude:: src/11_Bases_de_Dades_2/video_club.sql
+      :start-after: 9+
+      :end-before: 9-
+
+   * Pel·lícules llogades:
+
+   .. literalinclude:: src/11_Bases_de_Dades_2/video_club.sql
+      :start-after: 10+
+      :end-before: 10-
+
+   * Dades del client que la té llogada "The Incredibles":
+
+   .. literalinclude:: src/11_Bases_de_Dades_2/video_club.sql
+      :start-after: 11+
+      :end-before: 11-
+ 
+   * Preu total per a un client:
+
+   .. literalinclude:: src/11_Bases_de_Dades_2/video_club.sql
+      :start-after: 12+
+      :end-before: 12-
+       
+   * Llistat de "morosos":
+
+   .. literalinclude:: src/11_Bases_de_Dades_2/video_club.sql
+      :start-after: 13+
+      :end-before: 13-
+   
+   Podeu descarregar la :download:`base de dades SQLite
+   <src/11_Bases_de_Dades_2/videoclub.db>` i les :download:`comandes
+   SQL <src/11_Bases_de_Dades_2/video_club.sql>` d'aquest problema.

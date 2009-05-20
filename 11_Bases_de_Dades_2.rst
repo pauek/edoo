@@ -479,3 +479,68 @@ Problemes
      - La suma del pes i el volum de les joguines preferides de tots
        els nens (per saber quants camions necessiten els Reis).
    
+.. problema::
+
+   Un videoclub necessita una base de dades dels seus clients i de les
+   pel·lícules que tenen disponibles, així com de quins clients han
+   llogat quines pel·lícules. Dels clients es vol el nom i cognoms, el
+   DNI, i l'adreça de residència (amb el codi postal), i un enter que
+   indiqui quantes vegades han retornat la pel·lícula més tard de 3
+   dies (quan això succeeix, el client rep un avís, i al 3 avís, es
+   cancel·la el seu compte). De les pel·lícules es necessita el títol,
+   director, actor i actriu principal, l'any i el gènere de la
+   pel·lícula, i també el preu del lloguer (que és fix). De cada
+   pel·lícula només hi ha una còpia. Quan un client lloga una
+   pel·lícula, es registra la data de lloguer, així quan la retorna es
+   pot calcular el preu del lloguer. Només un client pot tenir una
+   película en cert moment.
+
+   El tipus de consultes que el videoclub necessita poder realitzar
+   són:
+
+   * Obtenir un llistat dels clients en un cert codi postal.
+
+   * Obtenir un llistat de les pel·lícules (títol i any) de cert
+     gènere, o de cert director (o actor/actriu principal).
+
+   * Obtenir un llistat de les pel·lícules llogades (títol i any).
+   
+   * Donada una pel·lícula, mostrar les dades del client que la té
+     llogada.
+    
+   * Donat un client, obtenir el preu total de les pel·lícules que té
+     llogades (per quan les retorna).
+
+   * Per poder actualitzar els avisos, mostrar un llistat dels clients
+     que tenen alguna pel·lícula en lloguer desde fa més de 3 dies.
+
+   Escriu les comandes SQL per crear la base de dades, insertar
+   algunes registres de clients, pel·lícules i lloguers i fer totes
+   les consultes que es necessiten. Per manipular dates en SQLite, cal
+   fer servir la funció ``date``, i crear els camps de la base de
+   dades amb tipus ``DATE``. Vegem-ne un exemple::
+
+     CREATE TABLE events (event TEXT, data DATE);
+
+   Per insertar registres, fem servir la funció ``date`` amb la data
+   en format ``AAAA-MM-DD``::
+
+     INSERT INTO events VALUES ("Esclat 1a Gerra Mundial", date('1914-06-14'));
+     INSERT INTO events VALUES ("Aterratge a la Lluna", date('1969-07-20'));
+     INSERT INTO events VALUES ("Star Wars IV: A New Hope", date('1977-05-25'));
+
+   Per consultar els events posteriors a certa data::
+
+     SELECT * from events WHERE data > date('1950-01-01');
+
+   Això mostra tots els events posteriors l'1 de Gener de 1950. Per
+   obtenir una data respecte al dia d'avui, es fa servir:
+
+   - ``date('now')``: la data d'ara mateix.
+   - ``date('now', '+1 day')``: la data de demà.
+   - ``date('now', '-5 days')``: la data de fa 5 dies.
+
+   Canviant el segon paràmetre per un número de dies (``days``) i
+   utilitzant ``+`` i ``-`` es pot obtenir una data relativa al dia
+   d'avui.
+     
