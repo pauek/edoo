@@ -1,0 +1,6 @@
+connecta 45 102 98 34 202
+connecta 13 98 70 34 32
+connecta 13 147 83 12 11
+desconnecta 45 102 98 34 202
+desconnecta 15 45 46 101 190
+FI

@@ -449,14 +449,15 @@ Problemes
 
 .. problema::
 
-   Els Reis d'Orient necessiten una base de dades per emmagatzemar
-   quina és la joguina preferida de cada nen (només una per nen). És
-   altament probable que molts nens tinguin la mateixa joguina com a
-   preferida. La informació dels nens inclou el seu nom, cognoms,
-   l'edat, la seva adreça, i el codi postal (per ajudar els Reis a
-   situar la zona). De les joguines es vol saber la descripció, l'edat
-   mínima per jugar am aquesta joguina, el telèfon del distribuidor
-   principal, el volum (en metres cúbics) i el pes (en kilograms).
+   *[De l'exàmen del 16/1/2009]* Els Reis d'Orient necessiten una base
+   de dades per emmagatzemar quina és la joguina preferida de cada nen
+   (només una per nen). És altament probable que molts nens tinguin la
+   mateixa joguina com a preferida. La informació dels nens inclou el
+   seu nom, cognoms, l'edat, la seva adreça, i el codi postal (per
+   ajudar els Reis a situar la zona). De les joguines es vol saber la
+   descripció, l'edat mínima per jugar am aquesta joguina, el telèfon
+   del distribuidor principal, el volum (en metres cúbics) i el pes
+   (en kilograms).
 
    Escriu comandes SQL per:
   

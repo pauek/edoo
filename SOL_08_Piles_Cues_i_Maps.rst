@@ -257,3 +257,7 @@ Piles, Cues i Taules Associatives
 .. problema::
 
    .. literalinclude:: src/08_Piles_Cues_i_Maps/metro.cpp
+
+.. problema::
+
+   .. literalinclude:: src/08_Piles_Cues_i_Maps/port_mapping.cpp

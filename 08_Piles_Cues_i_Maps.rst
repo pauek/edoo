@@ -827,3 +827,52 @@ Problemes
    Tot seguit, el programa ha de demanar el nom de dues estacions i
    calcular el número mínim d'estacions que hi ha entre una i l'altra.
    Per fer-ho, feu servir l'algorisme d'exemple sobre grafs.
+
+.. problema::
+
+   *[De l'exàmen del 16/1/2009]* Es demana fer un programa per
+   monitoritzar els ports d'una interfície de xarxa (els ports tenen
+   assignats números enters entre 1 i 65536, i cada port permet una
+   connexió de xarxa diferent). Els intents de connexió es reben com
+   una seqüència (per l'entrada estàndar) amb el format següent::
+
+     connecta 45 102 98 34 202
+     connecta 13 98 70 34 32
+     connecta 13 147 83 12 11
+     desconnecta 45 102 98 34 202
+     desconnecta 15 45 46 101 190
+     FI
+
+   El primer element de la seqüència és o bé ``connecta`` (quan es vol
+   "obrir" un port) o ``desconnecta`` (quan es vol "tancar" un
+   port). Després hi ha un enter (el port), i els últims 4 enters són
+   l'adreça IP remota (l'adreça d'Internet) des d'on prové la connexió.
+
+   El programa ha de controlar quins ports hi ha oberts en tot moment, i
+   quines adreces IP els tenen oberts. Quan es rep un intent de
+   *connexió*, la connexió es produeix si el port està lliure (cap
+   adreça IP l'està fent servir). Quan s'intenta una *desconnexió*,
+   aquesta només té èxit si prové de l'adreça IP que té obert aquest
+   port. Cada un d'aquests intents produeix un missatge (per la sortida
+   estàndar):
+
+   * Si l'intent és de *connexió*, i el port està lliure, s'ha
+     mostrar per pantalla "Connectat"; si està ocupat, s'ha de mostrar
+     "Error de connexió".
+
+   * Si l'intent de *desconnexió* és per a un port ocupat i
+     l'adreça IP coincideix, s'ha de mostrar "Desconnectat"; altrament
+     s'ha de mostrar "Error de desconnexió".
+
+   Després d'aquest missatge s'ha de mostrar el port que ha produït el
+   missatge. Els missatges han d'anar un per línia, tal com s'ha rebut
+   l'entrada.
+
+   Per a l'entrada de l'exemple anterior, el programa produiria a la
+   sortida següent::
+
+     Connectat 45
+     Connectat 13
+     Error de connexió 13
+     Desconnectat 45
+     Error de desconnexió 15

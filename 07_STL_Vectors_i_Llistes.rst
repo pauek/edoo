@@ -759,10 +759,10 @@ retornar vectors o passar-los per referència, etc.
 
 .. problema::
 
-   En una cursa d'atletisme, es disposa dels temps de pas dels atletes
-   per la línia d'arribada a cada volta de la cursa (les curses poden
-   tenir un número variable de voltes a la pista). Es diposa
-   d'aquestes dades en el següent format::
+   *[De l'exàmen del 16/1/2009]* En una cursa d'atletisme, es disposa
+   dels temps de pas dels atletes per la línia d'arribada a cada volta
+   de la cursa (les curses poden tenir un número variable de voltes a
+   la pista). Es diposa d'aquestes dades en el següent format::
 
      6 55.6
      3 56.7
