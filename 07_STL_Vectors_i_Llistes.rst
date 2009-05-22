@@ -711,7 +711,6 @@ llista és ineficient, ja que s'ha de resseguir tota la cadena
 d'elements per arribar a un cert element, quan amb el vector és tan
 senzill com fer servir un índex.
 
-
 Problemes
 =========
 
@@ -757,3 +756,32 @@ retornar vectors o passar-los per referència, etc.
 .. 
   problema: Resolver un crucigrama a fuerza bruta...
 
+
+.. problema::
+
+   En una cursa d'atletisme, es disposa dels temps de pas dels atletes
+   per la línia d'arribada a cada volta de la cursa (les curses poden
+   tenir un número variable de voltes a la pista). Es diposa
+   d'aquestes dades en el següent format::
+
+     6 55.6
+     3 56.7
+     1 58.9
+     10 65.2
+     ...
+     1 95.7
+     10 95.8
+     3 96.0
+     ...
+
+   Es tracta d'una seqüència per ordre cronològic de parelles, a on el
+   primer element és un enter (el dorsal de l'atleta corresponent) i
+   el segon és el temps de pas (expressat en un número de segons des
+   de l'inici de la cursa). L'últim temps de pas de cada dorsal és, de
+   fet, la marca de l'atleta (el temps de pas per la meta). El número
+   d'atletes d'una cursa és sempre 25, i els dorsals són consecutius,
+   començant per l'1.
+
+   Fes un programa que llegeixi aquestes dades d'un fitxer anomenat
+   ``cursa.txt`` i doni com a sortida el dorsal del guanyador de la
+   cursa i la volta més ràpida que ha fet aquest atleta.
