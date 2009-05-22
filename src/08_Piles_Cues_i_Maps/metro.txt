@@ -1,0 +1,4 @@
+Hospital Clínic;Diagonal
+Diagonal;Verdaguer
+Verdaguer;Sagrada Família
+Sagrada Família;Hospital de Sant Pau
