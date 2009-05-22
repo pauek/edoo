@@ -399,3 +399,6 @@ STL, Vectors i Llistes
    - Fem servir ``push_front`` perquè així la llista ja té
      emmagatzemades les matrícules al revés.
 
+.. problema::
+
+   .. literalinclude:: src/07_Vectors_i_Llistes/atletisme.cpp
