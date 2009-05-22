@@ -401,4 +401,10 @@ STL, Vectors i Llistes
 
 .. problema::
 
+   **Solució 1**
+   
    .. literalinclude:: src/07_Vectors_i_Llistes/atletisme.cpp
+
+   **Solució 2**
+   
+   .. literalinclude:: src/07_Vectors_i_Llistes/atletisme2.cpp
