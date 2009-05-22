@@ -254,9 +254,11 @@ Piles, Cues i Taules Associatives
 
    .. literalinclude:: src/08_Piles_Cues_i_Maps/telephone.cpp
 
+
 .. problema::
 
    .. literalinclude:: src/08_Piles_Cues_i_Maps/metro.cpp
+
 
 .. problema::
 

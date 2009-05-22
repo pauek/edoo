@@ -734,7 +734,7 @@ El codi de la funció sencera és:
 
 
 Problemes
----------
+=========
 
 .. problema::
 
