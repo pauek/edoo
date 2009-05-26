@@ -517,14 +517,18 @@ crear la parella amb el constructor ``make_pair``, i cridar el mètode
    dies_mes.insert(make_pair("juny", 30));
    dies_mes.insert(make_pair("juliol", 31));
 
-El mètode ``insert`` retorna un iterador que apunta a l'element que
-hem insertat, per si necessitem aquest iterador. Per exemple, el
-següent codi inserta la parella (``"desembre"``, 30) i després
-canvia els dies a 31::
+Malgrat no és necessari guardar-la, el mètode ``insert`` retorna una
+parella (``pair<iterator, bool>``) d'un iterador i un Booleà (cal anar
+amb compte perquè aquesta parella no té a veure amb les parelles que
+el map fa servir internament). L'iterador (el ``first``) apunta a
+l'element que hem insertat, per si necessitem aquest iterador. El
+Booleà (el ``second``) indica si la inserció s'ha fet realment (potser
+la clau ja existia). Per exemple, el següent codi inserta la parella
+(``"desembre"``, 30) i després canvia els dies a 31::
 
-   map<string,int>::iterator i;
-   i = dies_mes.insert(make_pair("desembre", 30));
-   i->second = 31;  // canvia els dies de "desembre"
+   pair<map<string,int>::iterator, bool> p;
+   p = dies_mes.insert(make_pair("desembre", 30));
+   p.first->second = 31;  // canvia els dies de "desembre"
    
 
 Cerca
@@ -598,7 +602,7 @@ Resum de mètodes de ``map``
    Esborra tots els elements.
 
 
-.. cfunction:: iterator map<K,V>::insert(const pair<K,V>& p)
+.. cfunction:: pair<iterator, bool> map<K,V>::insert(const pair<K,V>& p)
 
    Inserta una parella clau-valor en la taula associativa.
 
