@@ -1,6 +1,13 @@
 
 @import url("default.css");
 
+body {
+  width: 51.69em;
+  margin: auto;
+  min-width: 750px;
+  font-size: 12px;
+}
+
 div.exercici {
   padding: 0;
   margin-bottom: 1em;

@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Apunts de Programació i Bases de Dades
-======================================
+Programació i Bases de Dades: Apunts
+====================================
 
 .. Para poner números de sección: :numbered:
 
@@ -23,7 +23,7 @@ Apunts de Programació i Bases de Dades
 **Segona Part**
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    07_STL_Vectors_i_Llistes
    08_Piles_Cues_i_Maps
