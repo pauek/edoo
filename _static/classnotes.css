@@ -5,7 +5,7 @@ body {
   width: 51.69em;
   margin: auto;
   min-width: 750px;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 div.exercici {
@@ -34,7 +34,7 @@ div.exercici div.body p {
 
 .highlight {
   margin: 0 1.5em;
-  font-size: 120%;
+  font-size: 100%;
 }
 
 div.problema {
@@ -58,10 +58,6 @@ table.docutils {
   margin: 20px;
 }
 
-tt.docutils.literal {
-  font-size: 120%;
-}
-
 table.docutils td, table.docutils th {
   padding: 3px 5px;
 }
@@ -82,6 +78,6 @@ dl.cfunction dt {
 }
 
 tt.descname, tt.descclassname {
-  font-size: 130%;
+  font-size: 110%;
 }
 
