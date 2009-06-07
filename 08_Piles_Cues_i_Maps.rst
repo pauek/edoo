@@ -1,4 +1,6 @@
 
+.. tema:: map
+
 =================================
 Piles, Cues i Taules Associatives
 =================================
@@ -633,8 +635,8 @@ estudiats, en les operacions d'interès per a les taules associatives:
 ================== ============ ============ =================
 Operació           ``vector``   ``list``     ``map``  	 
 ================== ============ ============ =================
-Accés              :math:`O(n)` :math:`O(1)` :math:`O(\log n)`
-Inserció/Esborrat  :math:`O(1)` :math:`O(n)` :math:`O(\log n)`
+Accés              :math:`O(1)` :math:`O(n)` :math:`O(\log n)`
+Inserció/Esborrat  :math:`O(n)` :math:`O(1)` :math:`O(\log n)`
 ================== ============ ============ =================
 
 Les taules associatives són útils quan volem associar dades amb claus

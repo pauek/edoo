@@ -1,4 +1,6 @@
 
+.. tema:: ops
+
 .. Meter funciones friend!!
 
 ========================
