@@ -79,12 +79,12 @@ segueixen aquest patró). Donat que aquestes declaracions criden als
 constructors de la classe vector, cal dir de quins constructors
 disposem:
 
-.. cfunction:: vector<T>()
+.. cpp:function:: vector<T>()
      
    Constructor per defecte, crea el vector buit.
 
 
-.. cfunction:: vector<T>(int size)
+.. cpp:function:: vector<T>(int size)
  
    Constructor amb un tamany (``size``), crea el vector amb un tamany
    concret que especifiquem nosaltres. És necessari que el tipus ``T``
@@ -94,7 +94,7 @@ disposem:
      vector<int> v1(20);
     
 
-.. cfunction:: vector<T>(int size, const T& t)
+.. cpp:function:: vector<T>(int size, const T& t)
  
    Constructor que rep un paràmetre de tamany i un element amb què omplir
    el vector. Si volem un vector de 50 caràcters amb una ``'z'`` a cada casella,
@@ -103,7 +103,7 @@ disposem:
      vector<char> lletres(50, 'z');
 
 
-.. cfunction:: vector<T>(const vector<T>& v)
+.. cpp:function:: vector<T>(const vector<T>& v)
 
    Constructor de còpia.
   
@@ -143,22 +143,22 @@ Mètodes consultors
 
 Els mètodes consultors disponibles per a ``vector`` són:
 
-.. cfunction:: int vector<T>::size() const
+.. cpp:function:: int vector<T>::size() const
 
    Retorna el tamany del vector.
 
 
-.. cfunction:: bool vector<T>::empty() const 
+.. cpp:function:: bool vector<T>::empty() const 
 
    Retorna ``true`` si el vector està buit.
 
 
-.. cfunction:: const T& vector<T>::front() const
+.. cpp:function:: const T& vector<T>::front() const
 
    Retorna una referència al primer element del vector.
 
 
-.. cfunction:: const T& vector<T>::back() const
+.. cpp:function:: const T& vector<T>::back() const
   
    Retorna una referència a l'últim element del vector.
 
@@ -179,26 +179,26 @@ Els mètodes consultors disponibles per a ``vector`` són:
 Mètodes modificadors
 --------------------
 
-.. cfunction:: void vector<T>::resize(int n)
+.. cpp:function:: void vector<T>::resize(int n)
 
    Redimensiona el vector perquè tingui tamany ``n``.
 
-.. cfunction:: void vector<T>::resize(int n, const T& t)
+.. cpp:function:: void vector<T>::resize(int n, const T& t)
 
    Redimensiona el vector perquè tingui tamany ``n`` i si és necessari
    fer-lo més gran, omple les noves caselles amb ``t``.
 
-.. cfunction:: void vector<T>::push_back(const T& t)
+.. cpp:function:: void vector<T>::push_back(const T& t)
 
    Afegeix l'element ``t`` al final del vector (i per tant allarga
    el vector en 1 unitat).
 
-.. cfunction:: void vector<T>::pop_back()
+.. cpp:function:: void vector<T>::pop_back()
 
    Esborra l'últim element del vector (no el retorna), i per tant
    escurça el vector en 1 unitat).
 
-.. cfunction:: void vector<T>::clear()
+.. cpp:function:: void vector<T>::clear()
 
    Esborra tots els elements del vector.
 
@@ -262,11 +262,11 @@ propi iterador.
 Donat un iterador, per tal que apunti a una posició del vector
 concreta, tenim els següents mètodes:
 
-.. cfunction:: vector<T>::iterator begin()
+.. cpp:function:: vector<T>::iterator begin()
   
    Retorna un iterador a la primera posició del vector.
 
-.. cfunction:: vector<T>::iterator end()
+.. cpp:function:: vector<T>::iterator end()
 
    Retorna un iterador a la posició *immediatament posterior a la última*
    del vector.
@@ -388,11 +388,11 @@ per tenir una llista de ``Racionals`` farem::
 
 La classe ``list<T>`` defineix els següents constructors:
 
-.. cfunction::  list<T>()
+.. cpp:function::  list<T>()
 
    Constructor per defecte, crea la llista buida.
 
-.. cfunction:: list<T>(int size)
+.. cpp:function:: list<T>(int size)
 
    Crea una llista amb un tamany ``size`` i cada element de la llista
    serà el resultat de cridar el constructor per defecte de la classe
@@ -402,7 +402,7 @@ La classe ``list<T>`` defineix els següents constructors:
      list<bool> l1(40);
 
 
-.. cfunction:: list<T>(int size, const T& t)
+.. cpp:function:: list<T>(int size, const T& t)
 
    Crea una llista amb un tamany ``size`` i omple tots els elements
    fent servir ``t`` com a model (farà servir el constructor de còpia
@@ -412,7 +412,7 @@ La classe ``list<T>`` defineix els següents constructors:
          
      list<string> paraules(5, "SFDK");
 
-.. cfunction:: list<T>(const list<T>& L)
+.. cpp:function:: list<T>(const list<T>& L)
 
    Constructor de còpia, crea una llista a partir d'una altra, copiant
    tots els elements.
@@ -438,24 +438,24 @@ Mètodes consultors
 Les llistes també tenen els mètodes consultors estàndar de contenidors
 d'STL:
 
-.. cfunction:: int list<T>::size() const
+.. cpp:function:: int list<T>::size() const
    
    Per obtenir el tamany. Suposant que :math:`n` és el tamany de la
    llista, aquesta funció té un cost :math:`O(n)`, és a dir, linial.
 
 
-.. cfunction:: bool list<T>::empty() const
+.. cpp:function:: bool list<T>::empty() const
    
    Retorna ``true`` si la llista està buida. Aquesta funció té cost
    O(1), i és molt més eficient que escriure ``size() == 0``.
 
 
-.. cfunction:: const T& list<T>::front() const
+.. cpp:function:: const T& list<T>::front() const
 
    Retorna una referència l'últim element.
 
 
-.. cfunction:: const T& list<T>::back() const
+.. cpp:function:: const T& list<T>::back() const
 
    Retorna una referència al primer element.
 
@@ -465,28 +465,28 @@ Mètodes modificadors
 Com també els següents mètodes modificadors estàndar:
 
 
-.. cfunction:: void list<T>::clear()
+.. cpp:function:: void list<T>::clear()
    
    Esborra tots els elements de la llista.
 
 
-.. cfunction:: void list<T>::resize(int n)
+.. cpp:function:: void list<T>::resize(int n)
    
    Redimensiona la llista.
 
 
-.. cfunction:: void list<T>::resize(int, const T& t)
+.. cpp:function:: void list<T>::resize(int, const T& t)
    
    Redimensiona la llista, omplint els elements nous amb el valor
    ``t`` (si és necessari).
 
 
-.. cfunction:: void list<T>::push_back(const T& t)
+.. cpp:function:: void list<T>::push_back(const T& t)
    
    Afegeix al final.
 
 
-.. cfunction:: void list<T>::pop_back()
+.. cpp:function:: void list<T>::pop_back()
    
    Esborra un element del final.
 
@@ -500,18 +500,18 @@ Com també els següents mètodes modificadors estàndar:
 Mètodes especials de ``list``
 """""""""""""""""""""""""""""
 
-.. cfunction:: void list<T>::push_front(const T& t)
+.. cpp:function:: void list<T>::push_front(const T& t)
    
    Inserta un element igual que ``t`` al principi. El tamany de la
    llista creix en una unitat.
 
-.. cfunction:: void list<T>::pop_front()
+.. cpp:function:: void list<T>::pop_front()
    
    Esborra el primer element. El tamany de la llista decreix en una
    unitat.
 
 
-.. cfunction:: void list<T>::remove(const T& val)
+.. cpp:function:: void list<T>::remove(const T& val)
    
    Esborra els elements de la llista que tinguin el valor ``val`` (fa
    servir el ``operator==``). Per exemple, si una llista ``L`` conté
@@ -522,20 +522,20 @@ Mètodes especials de ``list``
    llavors la llista tindrà els elements 1, 2, 4 i 5.
 
 
-.. cfunction:: void list<T>::reverse()
+.. cpp:function:: void list<T>::reverse()
    
    Canvia d'ordre els elements d'una llista (eficiència :math:`O(n)`). És
    a dir, si una llista conté (1, 2, 3), després d'haver cridat
    ``reverse`` contindrà (3, 2, 1).
 
-.. cfunction:: void list<T>::unique()
+.. cpp:function:: void list<T>::unique()
 
    Elimina els elements de la llista que estiguin repetits
    consecutivament. Si la llista conté (1, 1, 2, 2, 2, 3, 3, 1, 1, 1,
    2, 2, 2), després d'haver cridat ``unique`` contindrà (1, 2, 3, 1,
    2). Aquest mètode requereix l'operador "``==``" de la classe ``T``.
 
-.. cfunction:: void list<T>::sort()
+.. cpp:function:: void list<T>::sort()
 
    Ordena els elements de la llista de forma ascendent. Aquest mètode
    requereix l'operador "``<``" de la classe ``T``.
@@ -623,23 +623,23 @@ Inserció i esborrat d'elements al mig
 Les llistes permeten insertar elements al mig a través de mètodes
 especials. Vegem aquests mètodes:
 
-.. cfunction:: void list<T>::insert(iterator pos, const T& t)
+.. cpp:function:: void list<T>::insert(iterator pos, const T& t)
    
    Inserta el valor ``t`` *abans* de l'element apuntat per l'iterador
    ``pos``.
 
-.. cfunction:: void list<T>::insert(iterator pos, int n, const T& t)
+.. cpp:function:: void list<T>::insert(iterator pos, int n, const T& t)
    
    Inserta ``n`` vegades el valor ``t`` *abans* de l'element apuntat
    per l'iterador ``pos``.
 
-.. cfunction:: iterator list<T>::erase(iterator pos)
+.. cpp:function:: iterator list<T>::erase(iterator pos)
    
    Esborra l'element apuntat per ``pos`` i retorna un iterador a
    l'element següent (ja que si s'esborra l'element al que apuntava
    l'iterador aquest ja no serà vàlid).
 
-.. cfunction:: iterator list<T>::erase(iterator first, iterator last)
+.. cpp:function:: iterator list<T>::erase(iterator first, iterator last)
    
    Esborra els elements entre els iteradors ``first`` i ``last``
    incloent l'element al que apuntava ``first`` però *no* l'element al

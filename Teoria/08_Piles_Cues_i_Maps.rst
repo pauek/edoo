@@ -54,12 +54,12 @@ Mètodes de la classe ``stack``
 
 Constructors:
 
-.. cfunction:: stack<T>()
+.. cpp:function:: stack<T>()
    
    Crea una pila buida.
 
 
-.. cfunction:: stack<T>(const stack<T>& s)
+.. cpp:function:: stack<T>(const stack<T>& s)
    
    Crea una pila a partir d'una altra.
 
@@ -67,27 +67,27 @@ Constructors:
 Els mètodes de la classe ``stack`` són els següents:
 
 
-.. cfunction:: int stack<T>::size() const
+.. cpp:function:: int stack<T>::size() const
    
    Per obtenir el tamany.
 
 
-.. cfunction:: bool stack<T>::empty() const
+.. cpp:function:: bool stack<T>::empty() const
    
    Per saber si la pila està buida. 
 
 
-.. cfunction:: T& stack<T>::top()
+.. cpp:function:: T& stack<T>::top()
    
    Retorna una referència a l'element de dalt de tot.
 
 
-.. cfunction:: void stack<T>::push(const T& t)
+.. cpp:function:: void stack<T>::push(const T& t)
    
    Apila un element a dalt de tot.
 
 
-.. cfunction:: void stack<T>::pop()
+.. cpp:function:: void stack<T>::pop()
    
    Elimina l'elemnt de dalt de tot.
 
@@ -199,44 +199,44 @@ Mètodes de la classe ``queue``
 
 Constructors:
 
-.. cfunction:: queue<T>()
+.. cpp:function:: queue<T>()
    
    Crea una cua buida.
 
 
-.. cfunction:: queue<T>(const queue<T>& s)
+.. cpp:function:: queue<T>(const queue<T>& s)
    
    Crea una cua a partir d'una altra.
 
 
 Altre mètodes:
 
-.. cfunction:: int queue<T>::size() const
+.. cpp:function:: int queue<T>::size() const
    
    Per obtenir el tamany.
 
 
-.. cfunction:: bool queue<T>::empty() const
+.. cpp:function:: bool queue<T>::empty() const
    
    Per saber si la cua està buida. 
 
 
-.. cfunction:: T& queue<T>::front()
+.. cpp:function:: T& queue<T>::front()
    
    Retorna una referència al primer element.
 
 
-.. cfunction:: T& queue<T>::back()
+.. cpp:function:: T& queue<T>::back()
    
    Retorna una referència a l'últim element.
 
 
-.. cfunction:: void queue<T>::push(const T& t)
+.. cpp:function:: void queue<T>::push(const T& t)
    
    Inserta un element al final de la cua.
 
 
-.. cfunction:: void queue<T>::pop()
+.. cpp:function:: void queue<T>::pop()
    
    Elimina el primer element.
 
@@ -589,38 +589,38 @@ Resum de mètodes de ``map``
 ---------------------------
 
 
-.. cfunction:: int map<K,V>::size()
+.. cpp:function:: int map<K,V>::size()
 
    Retorna el tamany del contenidor.
 
 
-.. cfunction:: bool map<K,V>::empty()
+.. cpp:function:: bool map<K,V>::empty()
 
    Retorna ``true`` si el contenidor està buit.
 
 
-.. cfunction:: void map<K,V>::clear()
+.. cpp:function:: void map<K,V>::clear()
 
    Esborra tots els elements.
 
 
-.. cfunction:: pair<iterator, bool> map<K,V>::insert(const pair<K,V>& p)
+.. cpp:function:: pair<iterator, bool> map<K,V>::insert(const pair<K,V>& p)
 
    Inserta una parella clau-valor en la taula associativa.
 
 
-.. cfunction:: iterator map<K,V>::find(const C& clau)
+.. cpp:function:: iterator map<K,V>::find(const C& clau)
 
    Retorna un iterador a l'element amb certa ``clau`` o ``end()``
    si no s'ha trobat. 
 
   
-.. cfunction:: void map<K,V>::erase(iterator pos)
+.. cpp:function:: void map<K,V>::erase(iterator pos)
 
    Esborra el parell clau-valor que apunta el iterador ``pos``.
 
 
-.. cfunction:: void map<K,V>::erase(const C& clau)
+.. cpp:function:: void map<K,V>::erase(const C& clau)
 
    Esborra el parell amb certa ``clau``.
 
