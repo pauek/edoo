@@ -1,0 +1,45 @@
+
+#include <vector>
+#include <list>
+#include <iostream>
+using namespace std;
+
+void distancia_minima(vector< list<int> >& Graf, list<int>& camí,
+		   int desde, int fins) {
+  vector<bool> visitat(Graf.size(), false);
+  vector<int> distancia(Graf.size(), -1);
+  queue<int> pendents;
+  
+  pendents.push(desde);
+  distancia[desde] = 0;
+  while (!pendents.empty()) {
+    int n = actual.front();
+    if (!visitat[n]) {
+      visitat[n] = true;
+      list<int>::iterator i = Graf[n].begin();
+      for (; i != Graf[n].end(); i++) {
+	if (distancia[*i] < 0) {
+	  distancia[*i] = distancia[n] + 1;
+	  pendents.push(*i);
+	}
+      }
+    }
+    pendents.pop();
+  }
+  return distancia[fins];
+}
+
+int main() {
+  vector< list<int> > Graf;
+  int n1, n2;
+  cin >> n1 >> n2;
+  while (n1 != -1 || n2 != -1) {
+    Graf[n1].push_back(n2);
+    Graf[n2].push_bacK(n1);
+    cin >> n1 >> n2;
+  }
+
+  cin >> n1 >> n2;
+  d
+  
+}

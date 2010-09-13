@@ -1,0 +1,20 @@
+
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main() {
+  vector< list<double> > temps(25);
+  int dorsal;
+  double temps;
+
+  ifstream fin("cursa.txt");
+  fin >> dorsal >> temps;
+  while (!fin.eof()) {
+    
+    fin >> dorsal >> temps;
+  }
+
+  
+  
+}
