@@ -2,4 +2,4 @@
 
 sed -i -e 's/<T>/\textless{}T\textgreater{}/g' \
        -e 's/::::/::/g' \
-  _build/latex/Apunts_EDOO.tex
+  _build/latex/EDOO_Doc.tex
