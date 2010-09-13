@@ -7,11 +7,9 @@ Estructures de Dades i Orientació a Objectes
 ============================================
 
 Apunts
-------
+======
 
 .. Para poner números de sección: :numbered:
-
-**Primera Part**
 
 .. toctree::
    :maxdepth: 1
@@ -21,29 +19,22 @@ Apunts
    Teoria/03_Operadors
    Teoria/04_Punters
    Teoria/05_Memoria_Dinamica
-
-**Segona Part**
-
-.. toctree::
-   :maxdepth: 1
-
    Teoria/06_Eficiencia
    Teoria/07_STL_Vectors_i_Llistes
    Teoria/08_Piles_Cues_i_Maps
    Teoria/09_Algorismes
 
 Guions de pràctiques
---------------------
+====================
 
 .. toctree::
    :maxdepth: 1
-   :numbered:
    :glob:
 
    SessionsLaboratori/sessio*
 
 Solucions a exercicis i problemes
----------------------------------
+=================================
 
 .. toctree::
    :maxdepth: 1
