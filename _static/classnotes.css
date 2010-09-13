@@ -2,9 +2,9 @@
 @import url("default.css");
 
 body {
-  width: 51.69em;
+  /* width: 51.69em; */
+  /* min-width: 750px; */
   margin: auto;
-  min-width: 750px;
   font-size: 13px;
 }
 
