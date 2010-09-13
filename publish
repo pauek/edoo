@@ -4,4 +4,4 @@ scp -F ssh_config _build/latex/EDOO_Doc.pdf euetitlsi:public_html/edoo/doc
 pushd _build
 zip -r ../EDOO_Doc_HTML.zip html/
 popd
-scp EDOO_Doc_HTML.zip euetitlsi:public_html/edoo/doc
+scp EDOO_Doc_HTML.zip _build/epub/EDOO_Doc.epub euetitlsi:public_html/edoo/doc
