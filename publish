@@ -1,7 +1,7 @@
 #!/bin/bash
-rsync -av --delete _build/html/ euetit@login1.lsi.upc.edu:public_html/pbd/apunts
-scp _build/latex/Apunts_PBD.pdf euetit@login1.lsi.upc.edu:public_html/pbd/apunts
+rsync -av --delete _build/html/ euetitlsi:public_html/edoo/doc
+scp -F ssh_config _build/latex/EDOO_Doc.pdf euetitlsi:public_html/edoo/doc
 pushd _build
-zip -r ../Apunts_PBD_HTML.zip html/
+zip -r ../EDOO_Doc_HTML.zip html/
 popd
-scp Apunts_PBD_HTML.zip euetit@login1.lsi.upc.edu:public_html/pbd/apunts
+scp EDOO_Doc_HTML.zip euetitlsi:public_html/edoo/doc
