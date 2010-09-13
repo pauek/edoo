@@ -3,8 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Estructures de Dades i Orientació a Objectes: Apunts
-====================================================
+Estructures de Dades i Orientació a Objectes
+============================================
+
+Apunts
+------
 
 .. Para poner números de sección: :numbered:
 
@@ -13,41 +16,49 @@ Estructures de Dades i Orientació a Objectes: Apunts
 .. toctree::
    :maxdepth: 1
 
-   01_TADs
-   02_Classes
-   03_Operadors
-   04_Punters
-   05_Memoria_Dinamica
+   Teoria/01_TADs
+   Teoria/02_Classes
+   Teoria/03_Operadors
+   Teoria/04_Punters
+   Teoria/05_Memoria_Dinamica
 
 **Segona Part**
 
 .. toctree::
    :maxdepth: 1
 
-   06_Eficiencia
-   07_STL_Vectors_i_Llistes
-   08_Piles_Cues_i_Maps
-   09_Algorismes
+   Teoria/06_Eficiencia
+   Teoria/07_STL_Vectors_i_Llistes
+   Teoria/08_Piles_Cues_i_Maps
+   Teoria/09_Algorismes
 
+Guions de pràctiques
+--------------------
+
+.. toctree::
+   :maxdepth: 1
+   :numbered:
+   :glob:
+
+   SessionsLaboratori/sessio*
 
 Solucions a exercicis i problemes
-=================================
+---------------------------------
 
 .. toctree::
    :maxdepth: 1
 
-   SOL_01_TADs
-   SOL_02_Classes
-   SOL_03_Operadors
-   SOL_04_Punters
-   SOL_05_Memoria_Dinamica
-   SOL_07_STL_Vectors_i_Llistes
-   SOL_08_Piles_Cues_i_Maps
-   SOL_09_Algorismes
-
+   Solucions/SOL_01_TADs
+   Solucions/SOL_02_Classes
+   Solucions/SOL_03_Operadors
+   Solucions/SOL_04_Punters
+   Solucions/SOL_05_Memoria_Dinamica
+   Solucions/SOL_07_STL_Vectors_i_Llistes
+   Solucions/SOL_08_Piles_Cues_i_Maps
+   Solucions/SOL_09_Algorismes
 
 Índex i Cerca
-=============
+-------------
 
 * :ref:`genindex`
 * :ref:`search`

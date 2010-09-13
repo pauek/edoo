@@ -403,8 +403,8 @@ STL, Vectors i Llistes
 
    **Solució 1**
    
-   .. literalinclude:: src/07_Vectors_i_Llistes/atletisme.cpp
+   .. literalinclude:: ../src/07_Vectors_i_Llistes/atletisme.cpp
 
    **Solució 2**
    
-   .. literalinclude:: src/07_Vectors_i_Llistes/atletisme2.cpp
+   .. literalinclude:: ../src/07_Vectors_i_Llistes/atletisme2.cpp

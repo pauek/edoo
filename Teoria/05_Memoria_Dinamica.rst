@@ -179,7 +179,7 @@ d'imposar un límit arbitrari.
 Per emmagatzemar els elements de la seqüència farem servir un
 ``struct`` molt peculiar:
 
-.. literalinclude:: src/06_Memoria_Dinamica/seq_int.cpp
+.. literalinclude:: ../src/06_Memoria_Dinamica/seq_int.cpp
    :lines: 5-8
 
 Aquest ``struct`` és com una peça d'una cadena. Pot emmagatzemar un
@@ -188,7 +188,7 @@ enter i a part també un punter a un altre peça de la cadena (una
 
 El programa és el següent:
 
-.. literalinclude:: src/06_Memoria_Dinamica/seq_int.cpp
+.. literalinclude:: ../src/06_Memoria_Dinamica/seq_int.cpp
 
 Aquest programa utilitza un punter ``actual`` que apunta a la peça
 actual. Al principi aquest punter és ``NULL``, perquè no hi ha cap
@@ -391,7 +391,7 @@ mateixa adreça que ``f1._inici``.
 
 .. exercici::
 
-   Compila el :download:`programa anterior <src/06_Memoria_Dinamica/frase_crash.cpp>` 
+   Compila el :download:`programa anterior <../src/06_Memoria_Dinamica/frase_crash.cpp>` 
    i comprova com dóna un error d'execució.
 
 
@@ -550,7 +550,7 @@ La classe que implementarem es dirà ``Taulavar``, i serà una taula
 d'enters, de tamany variable. La seva declaració completa és la
 següent:
 
-.. literalinclude:: src/06_Memoria_Dinamica/taulavar.h
+.. literalinclude:: ../src/06_Memoria_Dinamica/taulavar.h
 
 La implementació fa servir un punter (el principi de la taula) i dos
 enters, un per al tamany màxim (el reservat) i un altre per al tamany
@@ -565,26 +565,26 @@ Primer implementem el constructor per defecte, que posarà un ``NULL``
 al punter ``_dades``. Això ens permetrà saber si hem reservat memòria
 o no (la taula està buida):
 
-.. literalinclude:: src/06_Memoria_Dinamica/taulavar.cpp
+.. literalinclude:: ../src/06_Memoria_Dinamica/taulavar.cpp
    :start-after: _1+
    :end-before: _1-
 
 El constructor normal reserva una taula amb cert tamany i l'omple de zeros:
 
-.. literalinclude:: src/06_Memoria_Dinamica/taulavar.cpp
+.. literalinclude:: ../src/06_Memoria_Dinamica/taulavar.cpp
    :start-after: _2+
    :end-before: _2-
 
 Ara implementem els mètodes privats ``_copia`` i ``_copia_dades``:
 
-.. literalinclude:: src/06_Memoria_Dinamica/taulavar.cpp
+.. literalinclude:: ../src/06_Memoria_Dinamica/taulavar.cpp
    :start-after: _3+
    :end-before: _3-
 
 Amb aquests mètodes, podem implementar tant el constructor de còpia
 com l'operador d'assignació:
 
-.. literalinclude:: src/06_Memoria_Dinamica/taulavar.cpp
+.. literalinclude:: ../src/06_Memoria_Dinamica/taulavar.cpp
    :start-after: _5+
    :end-before: _5-
  
@@ -593,14 +593,14 @@ una posició de la taula i modificar una posició de la taula. En
 aquests dos últims tenim l'avantatge de que podem comprovar la posició
 que ens donen i mirar si està en els límits:
 
-.. literalinclude:: src/06_Memoria_Dinamica/taulavar.cpp
+.. literalinclude:: ../src/06_Memoria_Dinamica/taulavar.cpp
    :start-after: _6+
    :end-before: _6-
 
 El mètode ``redimensiona`` permet canviar el tamany de la taula (el
 màxim reservat, els valors no han de canviar):
 
-.. literalinclude:: src/06_Memoria_Dinamica/taulavar.cpp
+.. literalinclude:: ../src/06_Memoria_Dinamica/taulavar.cpp
    :start-after: _7+
    :end-before: _7-
 
@@ -608,7 +608,7 @@ Finalment, tenim el mètode ``afegeix``, que fa la taula més gran (en 1
 element) i si necessita moure la taula a una zona més gran ho fa
 reservant el doble d'espai:
 
-.. literalinclude:: src/06_Memoria_Dinamica/taulavar.cpp
+.. literalinclude:: ../src/06_Memoria_Dinamica/taulavar.cpp
    :start-after: _8+
    :end-before: _8-
 

@@ -247,19 +247,19 @@ Piles, Cues i Taules Associatives
 
 .. problema::
 
-   .. literalinclude:: src/08_Piles_Cues_i_Maps/word_frequency.cpp
+   .. literalinclude:: ../src/08_Piles_Cues_i_Maps/word_frequency.cpp
 
 
 .. problema::
 
-   .. literalinclude:: src/08_Piles_Cues_i_Maps/telephone.cpp
+   .. literalinclude:: ../src/08_Piles_Cues_i_Maps/telephone.cpp
 
 
 .. problema::
 
-   .. literalinclude:: src/08_Piles_Cues_i_Maps/metro.cpp
+   .. literalinclude:: ../src/08_Piles_Cues_i_Maps/metro.cpp
 
 
 .. problema::
 
-   .. literalinclude:: src/08_Piles_Cues_i_Maps/port_mapping.cpp
+   .. literalinclude:: ../src/08_Piles_Cues_i_Maps/port_mapping.cpp

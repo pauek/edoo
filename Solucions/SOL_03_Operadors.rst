@@ -155,21 +155,21 @@ Operadors i Sobrecàrrega
 
 .. problema::
 
-   Primer fem el fitxer :download:`hora.h <src/03_Operadors/hora.h>`
+   Primer fem el fitxer :download:`hora.h <../src/03_Operadors/hora.h>`
    que contingui la declaració de la classe ``Hora``:
  
-   .. literalinclude:: src/03_Operadors/hora.h
+   .. literalinclude:: ../src/03_Operadors/hora.h
 
-   Tot seguit creem el fitxer :download:`hora.cpp <src/03_Operadors/hora.cpp>`
+   Tot seguit creem el fitxer :download:`hora.cpp <../src/03_Operadors/hora.cpp>`
    que contingui la implementació de la classe ``Hora`` (incloent el fitxer ``hora.h``):
 
-   .. literalinclude:: src/03_Operadors/hora.cpp
+   .. literalinclude:: ../src/03_Operadors/hora.cpp
 
 .. problema::
 
-   El programa seria el següent (:download:`hora_main.cpp <src/03_Operadors/hora_main.cpp>`)
+   El programa seria el següent (:download:`hora_main.cpp <../src/03_Operadors/hora_main.cpp>`)
 
-   .. literalinclude:: src/03_Operadors/hora_main.cpp
+   .. literalinclude:: ../src/03_Operadors/hora_main.cpp
 
-   Confeccionar un :download:`fitxer de prova <src/03_Operadors/intervals.txt>` amb 
+   Confeccionar un :download:`fitxer de prova <../src/03_Operadors/intervals.txt>` amb 
    uns intervals temporals pot anar bé per provar el programa.

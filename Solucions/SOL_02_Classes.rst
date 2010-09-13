@@ -406,7 +406,7 @@ Classes
       }
 
    Aquí finalitza la implementació d'aquesta versió de
-   l'exercici. Pots :download:`descarregar el codi d'aquest exercici<src/02_Classes/conjunt_v1.cpp>`.
+   l'exercici. Pots :download:`descarregar el codi d'aquest exercici<../src/02_Classes/conjunt_v1.cpp>`.
 
 
    **Versió amb taula de Booleans**
@@ -414,18 +414,18 @@ Classes
    L'altra versió seria implementar la classe amb un vector que
    indica si un element pertany o no al conjunt amb un valor ``bool``.
 
-   .. literalinclude:: src/02_Classes/conjunt_v2.cpp   
+   .. literalinclude:: ../src/02_Classes/conjunt_v2.cpp   
    
-   Pots :download:`descarregar aquest codi<src/02_Classes/conjunt_v2.cpp>`.
+   Pots :download:`descarregar aquest codi<../src/02_Classes/conjunt_v2.cpp>`.
         
 .. problema::
 
    El problema de la frase té un fitxer de capçalera
-   (:download:`frase.h <src/02_Classes/frase.h>`) com el següent
+   (:download:`frase.h <../src/02_Classes/frase.h>`) com el següent
 
-   .. literalinclude:: src/02_Classes/frase.h
+   .. literalinclude:: ../src/02_Classes/frase.h
 
    La implementació es faria a :download:`frase.cpp
-   <src/02_Classes/frase.cpp>` i seria així
+   <../src/02_Classes/frase.cpp>` i seria així
 
-   .. literalinclude:: src/02_Classes/frase.cpp
+   .. literalinclude:: ../src/02_Classes/frase.cpp

@@ -734,7 +734,7 @@ distància serà -1 (que ja serveix per indicar que no es pot accedir)::
 
 El codi de la funció sencera és:
 
-.. literalinclude:: src/08_Piles_Cues_i_Maps/graf.cpp
+.. literalinclude:: ../src/08_Piles_Cues_i_Maps/graf.cpp
    :start-after: 1+
    :end-before: 1-
 
@@ -800,8 +800,8 @@ Problemes
    l'espai a l'esquerra, la puntuació ("``:``" i "``--``", etc). En
    particular, les 12 de la nit en punt hauria de sortir com
    "``00:00:00``". Feu servir fitxers de prova per provar el programa 
-   (:download:`tel1.txt <src/07_Vectors_i_Llistes/tel1.txt>` i
-   :download:`tel2.txt <src/07_Vectors_i_Llistes/tel2.txt>`).
+   (:download:`tel1.txt <../src/07_Vectors_i_Llistes/tel1.txt>` i
+   :download:`tel2.txt <../src/07_Vectors_i_Llistes/tel2.txt>`).
 
 
 .. problema::

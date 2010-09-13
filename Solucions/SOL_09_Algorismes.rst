@@ -144,10 +144,10 @@ Algorismes de la STL
    En la primera versió fem servir un objecte funció, que conté el
    mínim valor fins al moment.
 
-   .. literalinclude:: src/09_Algorismes/minim1.cpp
+   .. literalinclude:: ../src/09_Algorismes/minim1.cpp
 
    La llibrería STL també ens proporciona una funció ``min_element``,
    que simplifica força el programa (no hauriem de fer servir
    l'objecte funció).
 
-   .. literalinclude:: src/09_Algorismes/minim2.cpp
+   .. literalinclude:: ../src/09_Algorismes/minim2.cpp

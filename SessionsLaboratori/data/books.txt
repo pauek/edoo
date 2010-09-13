@@ -1,0 +1,202 @@
+100
+The Lord of the Rings
+JRR Tolkien
+Pride and Prejudice
+Jane Austen
+His Dark Materials
+Philip Pullman
+The Hitchhiker's Guide to the Galaxy
+Douglas Adams
+Harry Potter and the Goblet of Fire
+JK Rowling
+To Kill a Mockingbird
+Harper Lee
+Winnie the Pooh
+AA Milne
+Nineteen Eighty-Four
+George Orwell
+The Lion the Witch and the Wardrobe
+CS Lewis
+Jane Eyre
+Charlotte Brontë
+Catch-22
+Joseph Heller
+Wuthering Heights
+Emily Brontë
+Birdsong
+Sebastian Faulks
+Rebecca
+Daphne du Maurier
+The Catcher in the Rye
+JD Salinger
+The Wind in the Willows
+Kenneth Grahame
+Great Expectations
+Charles Dickens
+Little Women
+Louisa May Alcott
+Captain Corelli's Mandolin
+Louis de Bernieres
+War and Peace
+Leo Tolstoy
+Gone with the Wind
+Margaret Mitchell
+Harry Potter And The Philosopher's Stone
+JK Rowling
+Harry Potter And The Chamber Of Secrets
+JK Rowling
+Harry Potter And The Prisoner Of Azkaban
+JK Rowling
+The Hobbit
+JRR Tolkien
+Tess Of The D'Urbervilles
+Thomas Hardy
+Middlemarch
+George Eliot
+A Prayer For Owen Meany
+John Irving
+The Grapes Of Wrath
+John Steinbeck
+Alice's Adventures In Wonderland
+Lewis Carroll
+The Story Of Tracy Beaker
+Jacqueline Wilson
+One Hundred Years Of Solitude
+Gabriel García Márquez
+The Pillars Of The Earth
+Ken Follett
+David Copperfield
+Charles Dickens
+Charlie And The Chocolate Factory
+Roald Dahl
+Treasure Island
+Robert Louis Stevenson
+A Town Like Alice
+Nevil Shute
+Persuasion
+Jane Austen
+Dune
+Frank Herbert
+Emma
+Jane Austen
+Anne Of Green Gables
+LM Montgomery
+Watership Down
+Richard Adams
+The Great Gatsby
+F Scott Fitzgerald
+The Count Of Monte Cristo
+Alexandre Dumas
+Brideshead Revisited
+Evelyn Waugh
+Animal Farm
+George Orwell
+A Christmas Carol
+Charles Dickens
+Far From The Madding Crowd
+Thomas Hardy
+Goodnight Mister Tom
+Michelle Magorian
+The Shell Seekers
+Rosamunde Pilcher
+The Secret Garden
+Frances Hodgson Burnett
+Of Mice And Men
+John Steinbeck
+The Stand
+Stephen King
+Anna Karenina
+Leo Tolstoy
+A Suitable Boy
+Vikram Seth
+The BFG
+Roald Dahl
+Swallows And Amazons
+Arthur Ransome
+Black Beauty
+Anna Sewell
+Artemis Fowl
+Eoin Colfer
+Crime And Punishment
+Fyodor Dostoyevsky
+Noughts And Crosses
+Malorie Blackman
+Memoirs Of A Geisha
+Arthur Golden
+A Tale Of Two Cities
+Charles Dickens
+The Thorn Birds
+Colleen McCollough
+Mort
+Terry Pratchett
+The Magic Faraway Tree
+Enid Blyton
+The Magus
+John Fowles
+Good Omens
+Terry Pratchett and Neil Gaiman
+Guards! Guards!
+Terry Pratchett
+Lord Of The Flies
+William Golding
+Perfume
+Patrick Süskind
+The Ragged Trousered Philanthropists
+Robert Tressell
+Night Watch
+Terry Pratchett
+Matilda
+Roald Dahl
+Bridget Jones's Diary
+Helen Fielding
+The Secret History
+Donna Tartt
+The Woman In White
+Wilkie Collins
+Ulysses
+James Joyce
+Bleak House
+Charles Dickens
+Double Act
+Jacqueline Wilson
+The Twits
+Roald Dahl
+I Capture The Castle
+Dodie Smith
+Holes
+Louis Sachar
+Gormenghast
+Mervyn Peake
+The God Of Small Things
+Arundhati Roy
+Vicky Angel
+Jacqueline Wilson
+Brave New World
+Aldous Huxley
+Cold Comfort Farm
+Stella Gibbons
+Magician
+Raymond E Feist
+On The Road
+Jack Kerouac
+The Godfather
+Mario Puzo
+The Clan Of The Cave Bear
+Jean M Auel
+The Colour Of Magic
+Terry Pratchett
+The Alchemist
+Paulo Coelho
+Katherine
+Anya Seton
+Kane And Abel
+Jeffrey Archer
+Love In The Time Of Cholera
+Gabriel García Márquez
+Girls In Love
+Jacqueline Wilson
+The Princess Diaries
+Meg Cabot
+Midnight's Children
+Salman Rushdie
+

@@ -87,7 +87,7 @@ retorna una constant que representa el número de bytes que ocupa el
 tipus posat. Aquest operador *no* és una funció. Un senzill programa que
 permet obtenir la informació de la taula anterior és el següent:
 
-.. literalinclude:: src/05_Punters/sizeof.cpp
+.. literalinclude:: ../src/05_Punters/sizeof.cpp
 
 Aquest programa fa servir l'operador ``sizeof`` de C++ que permet obtenir el
 tamany en memòria (en bytes) d'un tipus qualsevol. El tipus ``string``
@@ -100,11 +100,11 @@ En un programa podem obtenir l'adreça d'una variable ``a`` posant
 ``&a``. Per exemple, el programa següent mostra les adreces reals en
 que ``a``, ``b`` i ``f`` resideixen:
 
-.. literalinclude:: src/05_Punters/cout_addr.cpp
+.. literalinclude:: ../src/05_Punters/cout_addr.cpp
 
 .. exercici::
 
-   Compila el :download:`programa anterior <src/05_Punters/cout_addr.cpp>` 
+   Compila el :download:`programa anterior <../src/05_Punters/cout_addr.cpp>` 
    i mira quines adreces surten.
 
 
@@ -372,7 +372,7 @@ suma 4**.
    Compila el següent programa i observa les adreces que surten per
    pantalla:
 
-   .. literalinclude:: src/05_Punters/ptr_inc.cpp
+   .. literalinclude:: ../src/05_Punters/ptr_inc.cpp
 
 
 Les caselles de les taules ocupen posicions de memòria consecutives
@@ -501,7 +501,7 @@ rep un punter a caracter i l'interpreta com una taula.
 
    Determina la sortida del següent programa:
 
-   .. literalinclude:: src/05_Punters/petita_gran_frase.cpp
+   .. literalinclude:: ../src/05_Punters/petita_gran_frase.cpp
 
 
 La classe ``string`` de C++, doncs, té un constructor que permet crear
@@ -545,11 +545,11 @@ casella 1, ja que el primer argument (el 0) és el nom del programa.
 El següent programa ``hola`` fa servir el primer argument
 (``argv[1]``) i fa una salutació suposant que se li passa un nom:
 
-.. literalinclude:: src/05_Punters/hola.cpp
+.. literalinclude:: ../src/05_Punters/hola.cpp
 
 .. exercici::
 
-   Compila :download:`programa anterior <src/05_Punters/hola.cpp>` i
+   Compila :download:`programa anterior <../src/05_Punters/hola.cpp>` i
    executa'l de manera que mostri per pantalla el següent::
 
      Hola, Groucho, què tal estàs?
