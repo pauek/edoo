@@ -3,3 +3,4 @@ _build
 img/*.png
 videoclub.db
 *.epub
+*.pdf
