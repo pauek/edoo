@@ -16,20 +16,18 @@ Programació i Bases de Dades: Apunts
    01_TADs
    02_Classes
    03_Operadors
-   04_Eficiencia
-   05_Punters
-   06_Memoria_Dinamica
+   04_Punters
+   05_Memoria_Dinamica
 
 **Segona Part**
 
 .. toctree::
    :maxdepth: 1
 
+   06_Eficiencia
    07_STL_Vectors_i_Llistes
    08_Piles_Cues_i_Maps
    09_Algorismes
-   10_Bases_de_Dades_1
-   11_Bases_de_Dades_2
 
 
 Solucions a exercicis i problemes
@@ -41,13 +39,11 @@ Solucions a exercicis i problemes
    SOL_01_TADs
    SOL_02_Classes
    SOL_03_Operadors
-   SOL_05_Punters
-   SOL_06_Memoria_Dinamica
+   SOL_04_Punters
+   SOL_05_Memoria_Dinamica
    SOL_07_STL_Vectors_i_Llistes
    SOL_08_Piles_Cues_i_Maps
    SOL_09_Algorismes
-   SOL_10_Bases_de_Dades_1
-   SOL_11_Bases_de_Dades_2
 
 
 Índex i Cerca

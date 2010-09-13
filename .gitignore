@@ -2,3 +2,4 @@ _build
 *.pyc
 img/*.png
 videoclub.db
+*.epub
