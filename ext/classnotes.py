@@ -2,6 +2,7 @@
 
 import sphinx
 from docutils import nodes
+from docutils.parsers.rst import directives
 
 class exercici(nodes.General, nodes.Element): pass
 class problema(nodes.General, nodes.Element):  pass
@@ -46,29 +47,37 @@ from sphinx.util.compat import Directive, make_admonition
 class Activity(Directive):
     activity_class = None
     has_content = True
+
+    # Hay que poner esto para que se guarde el tema?
+    option_spec = {
+        'tema': directives.unchanged,
+    }
+
     def run(self):
         self.assert_has_content()
         env = self.state.document.settings.env
         A = self.activity_class()
-        A.docname = env.docname
+        tema = env.docname
+        if hasattr(env, 'tema'):
+            tema = env.tema
+        A['tema'] = tema
         self.state.nested_parse(self.content, self.content_offset, A)
         return [A]
 
 class ProblemaDirective(Activity):
+    has_content = True
     activity_class = problema
 
 class ExerciciDirective(Activity):
+    has_content = True
     activity_class = exercici
 
 
 class TemaDirective(Directive):
     has_content = True
     def run(self):
-        name = self.content[0]
         env = self.state.document.settings.env
-        if not hasattr(env, 'temes'):
-            env.temes = {}
-        env.temes[env.docname] = name
+        env.tema = self.content[0]
         return []
 
 # Transforms
@@ -76,19 +85,21 @@ class TemaDirective(Directive):
 from docutils.transforms import Transform
 
 def process_activities(app, doctree, docname):
-    pnum, enum = 1, 1
+    print "processing activities: ", docname
     env = app.builder.env
 
-    name = docname
-    if env.temes.has_key(docname):
-        name = env.temes[docname]
+    def assign_ids(seq):
+        idxs = {}
+        for node in seq:
+            tema = node['tema']
+            num = 1
+            if idxs.has_key(tema):
+                num = idxs[tema]
+            idxs[tema] = num + 1
+            node['id'] = "%s.%d" % (node['tema'], num)
 
-    for node in doctree.traverse(problema):
-        node['id'] = "%s.%d" % (name, pnum)
-        pnum += 1
-    for node in doctree.traverse(exercici):
-        node['id'] = "%s.%d" % (name, enum)
-        enum += 1
+    assign_ids(doctree.traverse(problema))
+    assign_ids(doctree.traverse(exercici))
 
 # Setup
 
