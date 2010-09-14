@@ -95,6 +95,22 @@ tota comoditat.
    fitxer, fes-ho amb el *mode* ``"w"`` d'escriptura. Esborra el
    contingut del fitxer per si ja existia.
 
+   .. solucio::
+
+      ::
+    
+        #include <iostream>
+        using namespace std;
+        // Suposem que tenim disponible el TAD FILE
+        
+        int main() {
+          FILE f;
+          obre(f, "hola.txt", "w");
+          esborra(f);
+          escriu(f, "Hola, món!");
+          tanca(f);
+        }
+
 Barreres d'abstracció
 """""""""""""""""""""
 
