@@ -1,20 +1,43 @@
+
 # -*- coding: utf-8 -*-
 
 import sphinx
 from docutils import nodes
 from docutils.parsers.rst import directives
 
-class exercici(nodes.General, nodes.Element): pass
-class problema(nodes.General, nodes.Element):  pass
+class activitat(nodes.General, nodes.Element):
+    tema = None
+
+class exercici(activitat):
+    name = "Exercici"
+    css_class = "exercici"
+    
+class problema(activitat):
+    name = "Problema"
+    css_class = "problema"
+
+class solucio(activitat): 
+    name = "Solucio"
+    css_class = "solucio"
+
+# activitat
+
+def activitat_visitor(klass):
+    def _visitor(self, node):
+        def _a(s):
+            self.body.append(s)
+        _a('<div class="%s">' % klass.css_class)
+        _a('<p class="first %s-title">%s %s</p>' % 
+           (klass.css_class, klass.name, node['id']))
+        _a('<div class="body">')
+    return _visitor
+
+def depart_activitat_html(self, node):
+    self.body.append('</div></div>')
 
 # exercici
-def visit_exercici_html(self, node):
-    self.body.append('<div class="exercici">')
-    self.body.append('<p class="first exercici-title">Exercici %s</p>' % node['id'])
-    self.body.append('<div class="body">')
-
-def depart_exercici_html(self, node):
-    self.body.append('</div></div>')
+visit_exercici_html = activitat_visitor(exercici)
+depart_exercici_html = depart_activitat_html
 
 def visit_exercici_latex(self, node):
     self.body.append('\\par\\vspace{3.0mm}\\hrule')
@@ -25,13 +48,8 @@ def depart_exercici_latex(self, node):
     self.body.append('\\end{small}\\par\\vspace{2mm}\\hrule\\vspace{1.0mm}')
 
 # problema
-def visit_problema_html(self, node):
-    self.body.append('<div class="problema">')
-    self.body.append('<p class="first problema-title">Problema %s</p>' % node['id'])
-    self.body.append('<div class="body">')
-
-def depart_problema_html(self, node):
-    self.body.append('</div></div>')
+visit_problema_html = activitat_visitor(problema)
+depart_problema_html = depart_activitat_html
 
 def visit_problema_latex(self, node):
     self.body.append('\\par\\textbf{Problema %s}' % node['id'])
@@ -44,62 +62,60 @@ def depart_problema_latex(self, node):
 
 from sphinx.util.compat import Directive, make_admonition
 
+class TemaDirective(Directive):
+    has_content = False
+    required_arguments = 1
+    optional_arguments = 0
+    final_argument_whitespace = False
+    option_spec = {}
+
+    def run(self):
+        env = self.state.document.settings.env
+        env.classnotes_tema = self.arguments[0].lower()
+        return []
+
 class Activity(Directive):
     activity_class = None
     has_content = True
 
-    # Hay que poner esto para que se guarde el tema?
-    option_spec = {
-        'tema': directives.unchanged,
-    }
-
     def run(self):
         self.assert_has_content()
-        env = self.state.document.settings.env
         A = self.activity_class()
-        tema = env.docname
-        if hasattr(env, 'tema'):
-            tema = env.tema
-        A['tema'] = tema
         self.state.nested_parse(self.content, self.content_offset, A)
         return [A]
 
 class ProblemaDirective(Activity):
-    has_content = True
     activity_class = problema
 
 class ExerciciDirective(Activity):
-    has_content = True
     activity_class = exercici
 
-
-class TemaDirective(Directive):
+class SolucioDirective(Activity):
     has_content = True
+    required_arguments = 0
+    optional_arguments = 0
+    option_spec = {}
+    
     def run(self):
-        env = self.state.document.settings.env
-        env.tema = self.content[0]
-        return []
+        return [] # TODO: implement
 
 # Transforms
 
-from docutils.transforms import Transform
-
-def process_activities(app, doctree, docname):
-    print "processing activities: ", docname
+def number_activities(app, doctree):
+    # Get 'tema' from a directive found in any point in the file
     env = app.builder.env
+    tema = env.docname
+    if hasattr(env, 'classnotes_tema'):
+        tema = env.classnotes_tema
 
-    def assign_ids(seq):
-        idxs = {}
-        for node in seq:
-            tema = node['tema']
-            num = 1
-            if idxs.has_key(tema):
-                num = idxs[tema]
-            idxs[tema] = num + 1
-            node['id'] = "%s.%d" % (node['tema'], num)
+    def _number(klass):
+        n = 1
+        for node in doctree.traverse(klass):
+            node['id'] = "%s.%d" % (tema, n)
+            n += 1
 
-    assign_ids(doctree.traverse(problema))
-    assign_ids(doctree.traverse(exercici))
+    _number(exercici)
+    _number(problema)
 
 # Setup
 
@@ -113,11 +129,9 @@ def setup(app):
 
     app.add_directive('problema', ProblemaDirective)
     app.add_directive('exercici', ExerciciDirective)
-    app.add_directive('tema', TemaDirective)
-    # import cppfunc
-    # app.add_directive('cppfunc',  cppfunc.CppFuncDirective)
-    
-    # app.add_transform(Activities)
-    app.connect('doctree-resolved', process_activities)
+    app.add_directive('solucio',  SolucioDirective)
+    app.add_directive('tema',     TemaDirective)
+
+    app.connect('doctree-read', number_activities)
 
 
