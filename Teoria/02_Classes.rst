@@ -80,14 +80,16 @@ En un programa, podem declarar una ``Data`` i accedir als seus
 membres així::
 
   Data d;
-  d.dia = 35; // je je...
+  d.dia = 12;   // ups...
+  d.mes = 4;   // ejem...
+  d.any = 1495;
 
 El fet d'accedir directament, però, incompleix les regles d'ús d'un
 TAD, que diuen que només s'ha d'accedir als mètodes, no als membres
 directament. El codi hauria de ser així::
 
-  Data p;
-  p.inicialitza(2.5, 4.8);
+  Data d;
+  d.inicialitza(12, 4, 1495);
 
 La idea, és que amb ``struct`` no tenim manera de **prohibir** que en
 alguna part del codi del programa aparegui un accés als camps ``dia``,
