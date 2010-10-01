@@ -16,6 +16,9 @@ Classes
 
 - Descriure els diferents tipus de constructors.
 
+- Determinar si és possible l'accés als membres d'una classe donada la
+  seva declaració.
+
 - Implementar TADs en C++ fent servir ``class``.
 
 
