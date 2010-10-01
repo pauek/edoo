@@ -17,7 +17,7 @@ Apunts
    Teoria/01_TADs
    Teoria/02_Classes
    Teoria/03_Herencia
-   Teoria/05_Memoria_Dinamica
+   Teoria/04_Punters_i_Memoria_Dinamica
    Teoria/06_Eficiencia
    Teoria/07_STL_Vectors_i_Llistes
    Teoria/08_Piles_Cues_i_Maps
