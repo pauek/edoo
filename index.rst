@@ -16,15 +16,15 @@ Apunts
 
    Teoria/01_TADs
    Teoria/02_Classes
-   Teoria/03_Herencia
-   Teoria/04_Punters_i_Memoria_Dinamica
+   Teoria/03_Punters_i_Memoria_Dinamica
+   Teoria/04_Herencia
    Teoria/06_Eficiencia
    Teoria/07_STL_Vectors_i_Llistes
    Teoria/08_Piles_Cues_i_Maps
    Teoria/09_Algorismes
 
-   .. Teoria/X3_Operadors
-   .. Teoria/X4_Punters
+.. Teoria/X3_Operadors
+.. Teoria/X4_Punters
 
 Guions de pràctiques
 ====================
@@ -43,12 +43,13 @@ Solucions a exercicis i problemes
 
    Solucions/SOL_01_TADs
    Solucions/SOL_02_Classes
-   Solucions/SOL_03_Operadors
-   Solucions/SOL_04_Punters
    Solucions/SOL_05_Memoria_Dinamica
    Solucions/SOL_07_STL_Vectors_i_Llistes
    Solucions/SOL_08_Piles_Cues_i_Maps
    Solucions/SOL_09_Algorismes
+
+.. Solucions/SOL_03_Operadors
+.. Solucions/SOL_04_Punters
 
 Índex i Cerca
 -------------

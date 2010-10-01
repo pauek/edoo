@@ -118,13 +118,19 @@ Per pantalla sortirà::
    - Cridar els 2 mètodes de ``A`` a través del punter.
 
 
+Taules de punters
+-----------------
+
+[per fer...]
+
+
 Gestió de la memòria
 ====================
 
 La gestió dinàmica de la memòria permet sobrepassar certes limitacions
 ----------------------------------------------------------------------
 
-Quan un programa s'executa té dos zones de memòria que pot utilitzar:
+Quan un programa s'executa té dues zones de memòria que pot utilitzar:
 
 - La pila (o *stack*): és una zona petita i de tamany fix. En aquesta
   zona es situen les variables locals que declarem a les funcions.

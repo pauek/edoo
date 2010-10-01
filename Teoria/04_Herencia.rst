@@ -19,7 +19,7 @@ Herència
 
 
 Comencem amb un exemple
------------------------
+=======================
 
 Imaginem que volem fer un programa que treballi amb les dades els
 empleats d'una empresa. Podem començar amb la classe ``Empleat``::
