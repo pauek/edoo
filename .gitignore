@@ -4,3 +4,4 @@ img/*.png
 videoclub.db
 *.epub
 *.pdf
+*~
