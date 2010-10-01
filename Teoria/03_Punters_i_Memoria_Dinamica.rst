@@ -309,8 +309,7 @@ cop*. El següent programa::
 dóna un error d'execució. Aquest tipus d'error és fàcil de cometre
 quan copiem punters, ja que si tenim una mateixa adreça en dos llocs
 diferents, és més fàcil caure al parany de cridar a ``delete`` amb els
-dos. Això és força clar en classes que tenen camps que són punters,
-com es veurà a la propera secció.
+dos.
 
 
 Problemes
