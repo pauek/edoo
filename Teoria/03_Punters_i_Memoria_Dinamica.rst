@@ -18,7 +18,7 @@ Punters i Memòria Dinàmica
 - Escriure programes que utilitzen correctament els operadors ``new``
   i ``delete`` per reservar memòria de qualsevol tipus.
 
-- Desciure els errors típics derivats de la gestió incorrecta de la memòria.
+- Descriure els errors típics derivats de la gestió incorrecta de la memòria.
 
 Punters
 =======
@@ -255,7 +255,7 @@ Per emmagatzemar els elements de la seqüència farem servir un
 ``struct`` molt peculiar:
 
 .. literalinclude:: ../src/06_Memoria_Dinamica/seq_int.cpp
-   :lines: 5-8
+   :lines: 4-8
 
 Aquest ``struct`` és com una peça d'una cadena. Pot emmagatzemar un
 enter i a part també un punter a un altre peça de la cadena (un
