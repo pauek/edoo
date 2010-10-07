@@ -20,14 +20,28 @@ Punters i Memòria Dinàmica
 
 - Desciure els errors típics derivats de la gestió incorrecta de la memòria.
 
-- Descriure la utilitat del destructor en el context de la memòria
-  dinàmica.
-
 Punters
 =======
 
 Un punter és una variable que conté una referència a una altra variable
 -----------------------------------------------------------------------
+
+En aquesta secció treballarem amb la classe ``Data``, que tindrà la
+declaració següent::
+
+  class Data {
+    // ...
+  public:
+    Data();
+    Data(int dia, int mes, int any);
+    int dia() const;
+    int mes() const;
+    int any() const;
+    void llegeix(istream& i);
+    void escriu(ostream& o) const;
+    // ...
+  };
+
 
 En C++ no només podem declarar variables de qualsevol classe i dels
 tipus propis del llenguatge, sinó que podem declarar variables que es
@@ -50,7 +64,10 @@ una altra variable::
 Aquesta instrucció el que fa és dir que ``p`` es referirà a la
 variable ``d`` (d'una classe ``Data`` hipotètica). 
 
-.. El diagrama seria aquest...
+El diagrama seria el següent:
+
+.. image:: img/punter_simple.*
+   :align: center
 
 És important veure, tanmateix, que ``p`` és realment una
 variable i per tant conté un cert valor. De fet, el que conté ``p`` és
@@ -83,8 +100,8 @@ Es diu, doncs, que ``p`` apunta a ``d``. Això ens permet accedir a
    ``p`` que apunti a la imatge ``I``.
 
 
-L'operador ``->`` permet accedir als camps a l'objecte apuntat
---------------------------------------------------------------
+L'operador ``->`` permet accedir als membres de l'objecte apuntat
+-----------------------------------------------------------------
 
 Per accedir als mètodes d'un objecte indirectament a través d'un punter, es fa
 servir l'operador ``->``. Si tenim::
@@ -92,13 +109,13 @@ servir l'operador ``->``. Si tenim::
   Data d(2, 10, 2004);
   Data *p = &d;
 
-Podem mostrar el dia de la data ``d`` a través de ``p``::
+Podem mostrar l'any de la data ``d`` a través de ``p``::
 
-  cout << p->dia() << '/' << p->mes() << '/' << p->any() << endl;
+  cout << p->any() << endl;
 
 Per pantalla sortirà::
 
-  2/10/2004
+  2004
 
 .. exercici::
 	
@@ -107,21 +124,21 @@ Per pantalla sortirà::
      class A {
        // ...
      public:
-       // ...
+       A(int n);
        void metode1(int x);
        int  metode2() const;
+       // ...
      };
 
    Escriu instruccions per:
+
    - Crear un objecte ``x`` de la classe ``A``.
+
    - Crear un punter a ``x``.
+
    - Cridar els 2 mètodes de ``A`` a través del punter.
 
-
-Taules de punters
------------------
-
-[per fer...]
+   Utilitza dades inventades per satisfer els paràmetres dels mètodes.
 
 
 Gestió de la memòria
@@ -196,6 +213,29 @@ podem reservar un ``Punt3D`` en memòria dinàmica així::
    omple les caselles parelles amb ``true`` i les senars amb
    ``false``.
 
+.. exercici::
+
+   Donada la declaració següent::
+
+     class Data {
+     public:
+       Data();
+       Data(int dia, int mes, int any);
+       int dia() const;
+       int mes() const;
+       int any() const;
+       void llegeix(istream& i);
+       void escriu(ostream& o) const;
+       void incrementa(int dies);
+     };
+
+   Fes un programa que demani a l'usuari una data, i mostri per
+   pantalla quin dia serà passades 3 setmanes (el mètode
+   ``incrementa`` permet incrementar una data un cert número de
+   dies). 
+
+   Fes servir una data reservada en memòria dinàmica.
+
 .. _seq_int:
 
 Exemple: Mostrar una seqüència al revés sense límits
@@ -218,27 +258,63 @@ Per emmagatzemar els elements de la seqüència farem servir un
    :lines: 5-8
 
 Aquest ``struct`` és com una peça d'una cadena. Pot emmagatzemar un
-enter i a part també un punter a un altre peça de la cadena (una
-``Dada``), que hem anomenat ``prev`` perquè apuntarà a la peça prèvia.
+enter i a part també un punter a un altre peça de la cadena (un
+``Element``), que hem anomenat ``anterior`` perquè apuntarà a la peça
+prèvia.
 
 El programa és el següent:
 
 .. literalinclude:: ../src/06_Memoria_Dinamica/seq_int.cpp
+   :linenos:
 
-Aquest programa utilitza un punter ``actual`` que apunta a la peça
-actual. Al principi aquest punter és ``NULL``, perquè no hi ha cap
-peça. Tot seguit llegeix cada element de la seqüència, i quan ho fa,
-emmagatzema l'element amb una peça ``nova`` que reserva en memòria. A
-``nova`` hi posa l'enter i l'adreça de la peça anterior (que és
-l'``actual``), per no perdre el fil. Finalment, la nova peça es
-converteix en l'``actual``. Cada enter que llegim incrementa una mica
-la memòria que el programa té reservada, però no reservem cap tamany
-concret al principi.
+Aquest programa utilitza un punter ``actual`` que apunta a
+l'``Element`` actual. Al principi aquest punter és 0, perquè no hi ha
+cap peça. Tot seguit llegeix cada element de la seqüència, i quan ho
+fa, emmagatzema l'element amb un ``Element``  ``nou`` que reserva en
+memòria (línia 16). A ``nou`` hi posa l'enter i l'adreça de la peça anterior
+(que és l'``actual``), per no perdre el fil (línies 17 i 18). Finalment, la nova peça
+es converteix en l'``actual`` (línia 19). Cada enter que llegim incrementa una
+mica la memòria que el programa té reservada, però no reservem cap
+tamany concret al principi.
 
 Un cop llegida la seqüència, si "tibem del fil", és a dir si a partir
-de la peça actual anem mirant el camp ``prev`` i anem saltant de peça
+de la peça actual anem mirant el camp ``anterior`` i anem saltant de peça
 en peça, trobarem tots els enters que hem anat posant. Això és el que
-fa el bucle que mostra els enters.
+fa la iteració que mostra els enters (línies 24 a 27).
+
+.. exercici::
+
+   Modifica el ``struct Element`` del programa anterior perquè sigui
+   una classe. Tindrà la declaració següent
+
+   .. literalinclude:: ../src/06_Memoria_Dinamica/seq_int_class.cc
+      :lines: 5-14
+
+   Modifica el programa per fer servir la nova classe.
+
+.. exercici::
+
+   Considera la classe ``Contenidor`` amb la declaració i
+   implementació següents
+    
+   .. literalinclude:: ../src/06_Memoria_Dinamica/seq_int_stack.cc
+      :lines: 29-62
+
+   Aquesta classe fa servir ``Element`` per emmagatzemar enters amb
+   els mètodes ``posa`` i ``treu`` (una diferència és que ``treu`` ara
+   fa ``delete`` dels elements, tal com ha de ser). Llegeix atentament
+   cada mètode per entendre què fa, comparant amb el programa original
+   per veure-ho.
+
+   Reimplementa ara el programa fent servir la classe ``Contenidor``.
+
+.. exercici::
+
+   Afegeix el mètode amb declaració::
+
+      int num_elements() const;
+
+   a la classe ``Contenidor`` i implementa'l.
 
  
 L'operador ``delete`` allibera la memòria que indica un punter
@@ -258,38 +334,63 @@ amunt::
   delete p;
 
 
-Quan es gestiona la memòria és fàcil cometre certs errors
----------------------------------------------------------
+Quan es gestiona la memòria dinàmicament és fàcil cometre certs errors
+----------------------------------------------------------------------
+
+
+
+Accedir a un objecte a través d'un punter no inicialitzat
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Si declarem un punter però no hi posem cap adreça, el punter apunta a
+algun lloc igualment. El problema és que l'adreça a la que apunta pot
+ser qualsevol. Si el programa intenta accedir a aquesta adreça,
+típicament serà abortat pel sistema operatiu amb un missatge que a
+Windows és similar a: "Este programa ha realizado una operación
+inválida y se cerrará".
+
+Un exemple d'aquest problema seria::
+
+  Data *d;
+  d->escriu(cout);
+
+Com es pot veure, just després de declarar el punter es fa servir per
+invocar el mètode escriu sense haver-hi posat cap adreça vàlida. Això
+provoca el problema.
+
+El mateix problema apareix si posem el valor 0, ja que l'adreça 0 de la
+memòria no és accessible per a cap programa.
+
+
+No alliberar la memòria que ja no es fa servir
+""""""""""""""""""""""""""""""""""""""""""""""
 
 En un programa a on tota la memòria que es reserva es fa servir fins
 al final, no és necessari alliberar-la, ja que quan el programa acaba,
 la memòria que tenia reservada s'allibera automàticament. A
 l':ref:`exemple anterior <seq_int>` no feiem servir ``delete`` per
-aquest motiu precisament. Però en general això no és així.
+aquest motiu precisament.
 
-No alliberar la memòria que ja no es fa servir
-""""""""""""""""""""""""""""""""""""""""""""""
-
-Si un programa utilitza memòria dinàmica de forma temporal, és
-possible que una porció que hagi reservat ja no li faci falta més
-endavant. Quan això succeeix, la memòria s'ha d'alliberar. Si no ho
-fem, el sistema operatiu creu que encara la utilitzem, i la té marcada
-com a "propietat nostra". Si li demanem més memòria, ens donarà una
-altra porció diferent. Eventualment, si el programa va demanant
-memòria sense allibrerar la que no fa servir, acapararà tota la
-memòria del sistema (això fa que l'ordinador vagi molt lent i que no
-es puguin executar altres programes). Aquest tipus d'error s'anomena
-una "fuita de memòria" (un *memory leak*).
+Però si un programa utilitza memòria reservada dinàmicament, és
+possible que ja no li faci falta més endavant. Quan això succeeix, la
+memòria s'ha d'alliberar. Si no ho fem, el sistema operatiu creu que
+encara la utilitzem, i la té marcada com a "propietat nostra". Si li
+demanem més memòria, ens donarà una altra porció
+diferent. Eventualment, si el programa va demanant memòria sense
+allibrerar la que no fa servir, acapararà tota la memòria del sistema
+(això fa que l'ordinador vagi molt lent i que no es puguin executar
+altres programes). Aquest tipus d'error s'anomena una "fuita de
+memòria" (un *memory leak*).
 
 Un exemple senzill a on això passa és un programa com Photoshop. Quan
 obrim una imatge amb Photoshop, el programa reserva memòria per poder
 treballar amb la imatge. Si la tanquem, allibera aquesta memòria. Si
-no ho fés, en una sessió en que obrim 25 o 30 imatges, de seguida
-s'ompliria la memòria de imatges que ja no estan obertes ni s'estan
-utilitzant, i s'hauria de tancar el programa i tornar-lo a obrir
-(perquè quan tanques un programa, la memòria que ha anat reservant
-s'allibera per força). Això seria inacceptable i per tant és clar que
-Photoshop allibera la memòria que no fa servir.
+no ho fés, en una sessió en que obrim 25 o 30 imatges consecutivament
+(o sigui, no totes alhora), de seguida s'ompliria la memòria de
+imatges que ja no estan obertes ni s'estan utilitzant, i s'hauria de
+tancar el programa i tornar-lo a obrir (perquè quan el tanques, tota
+la memòria s'allibera per força). Això seria inacceptable i per tant
+és clar que Photoshop allibera la memòria que no fa servir.
 
 
 Alliberar una posició de memòria dues vegades

@@ -83,8 +83,8 @@ En un programa, podem declarar una ``Data`` i accedir als seus
 membres així::
 
   Data d;
-  d.dia = 12;   // ups...
-  d.mes = 4;   // ejem...
+  d.dia = 12;
+  d.mes = 4;
   d.any = 1495;
 
 El fet d'accedir directament, però, incompleix les regles d'ús d'un

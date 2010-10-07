@@ -8,6 +8,11 @@ body {
   font-size: 13px;
 }
 
+div.document {
+  width: 47em;
+  margin: auto;
+}
+
 div.exercici {
   padding: 0;
   margin-bottom: 1em;

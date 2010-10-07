@@ -1,4 +1,4 @@
-.. Apunts_PBD documentation master file, created by
+.. Apunts_EDOO documentation master file, created by
    sphinx-quickstart on Tue Mar 10 11:08:22 2009.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
@@ -41,6 +41,7 @@ Solucions a exercicis i problemes
 
    Solucions/SOL_01_TADs
    Solucions/SOL_02_Classes
+   Solucions/SOL_03_Punters_i_Memoria_Dinamica
    Solucions/SOL_05_Memoria_Dinamica
    Solucions/SOL_07_STL_Vectors_i_Llistes
    Solucions/SOL_08_Piles_Cues_i_Maps

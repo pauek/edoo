@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="442.91336"
+   height="141.73228"
+   id="svg2">
+  <defs
+     id="defs4">
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="DotM"
+       style="overflow:visible">
+      <path
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         transform="matrix(0.4,0,0,0.4,2.96,0.4)"
+         id="path3678"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none;marker-end:none" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="DotL"
+       style="overflow:visible">
+      <path
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         transform="matrix(0.8,0,0,0.8,5.92,0.8)"
+         id="path3675"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none;marker-end:none" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow1Mend"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         id="path3622"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         id="path3616"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow1Mend3"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         id="path4254"
+         style="fill:#5a4fcc;fill-rule:evenodd;stroke:#5a4fcc;stroke-width:1pt;marker-start:none" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="DotMb"
+       style="overflow:visible">
+      <path
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         transform="matrix(0.4,0,0,0.4,2.96,0.4)"
+         id="path4684"
+         style="fill:#5a4fcc;fill-rule:evenodd;stroke:#5a4fcc;stroke-width:1pt;marker-start:none;marker-end:none" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow1Mend3w"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         id="path4687"
+         style="fill:#5a4fcc;fill-rule:evenodd;stroke:#5a4fcc;stroke-width:1pt;marker-start:none" />
+    </marker>
+  </defs>
+  <g
+     transform="translate(-20.542864,0.47816221)"
+     id="layer1">
+    <g
+       transform="matrix(1.1673806,0,0,1.1673806,-35.850794,-101.65833)"
+       id="g4735">
+      <path
+         d="m 419.40859,93.951751 0,72.696139 -134.76573,0 0,-72.696139"
+         id="path3598"
+         style="fill:none;stroke:#000000;stroke-width:3.20000005;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0" />
+      <text
+         x="338.06378"
+         y="194.83296"
+         id="text3604"
+         xml:space="preserve"
+         style="font-size:33.8748436px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier New Bold"><tspan
+           x="338.06378"
+           y="194.83296"
+           id="tspan3606">d</tspan></text>
+      <path
+         d="m 323.05345,100.72627 0,46.79877 -29.5404,0 0,-46.79877"
+         id="path4723"
+         style="fill:none;stroke:#000000;stroke-width:0.94037396;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0" />
+      <use
+         transform="translate(42.915929,0)"
+         id="use4729"
+         x="0"
+         y="0"
+         width="744.09448"
+         height="1052.3622"
+         xlink:href="#path4723" />
+      <use
+         transform="translate(42.915894,0)"
+         id="use4731"
+         x="0"
+         y="0"
+         width="744.09448"
+         height="1052.3622"
+         xlink:href="#use4729" />
+      <text
+         x="295.46161"
+         y="157.68547"
+         id="text3008"
+         xml:space="preserve"
+         style="font-size:10.77835941px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier New Bold"><tspan
+           x="295.46161"
+           y="157.68547"
+           id="tspan3010">_dia</tspan></text>
+      <text
+         x="339.48953"
+         y="157.68547"
+         id="text3012"
+         xml:space="preserve"
+         style="font-size:10.77835941px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier New Bold"><tspan
+           x="339.48953"
+           y="157.68547"
+           id="tspan3014">_mes</tspan></text>
+      <text
+         x="381.1611"
+         y="157.68547"
+         id="text3016"
+         xml:space="preserve"
+         style="font-size:10.77835941px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier New Bold"><tspan
+           x="381.1611"
+           y="157.68547"
+           id="tspan3018">_any</tspan></text>
+    </g>
+    <g
+       transform="matrix(1.1673806,0,0,1.1673806,-55.456608,-101.65833)"
+       id="g4743">
+      <path
+         d="m 142.85717,93.727413 0,72.920477 -68.571449,0 0,-72.920477"
+         id="rect2818"
+         style="fill:none;stroke:#000000;stroke-width:3.20000005;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0" />
+      <text
+         x="100.50522"
+         y="195.20592"
+         id="text3600"
+         xml:space="preserve"
+         style="font-size:33.8748436px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier New Bold"><tspan
+           x="100.50522"
+           y="195.20592"
+           id="tspan3602">p</tspan></text>
+      <path
+         d="m 107.14286,134.50504 c 78.57467,34.34504 112.95954,28.49571 188.90853,9.55865"
+         id="path3608"
+         style="fill:none;stroke:#5a4fcc;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#DotMb);marker-end:url(#Arrow1Mend3w)" />
+    </g>
+  </g>
+</svg>
