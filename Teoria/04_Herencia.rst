@@ -107,23 +107,27 @@ Classes derivades: els detalls
 Les classes derivades acumulen els atributs i mètodes de totes les bases
 ------------------------------------------------------------------------
 
-Si tenim un 3 classes com [1]_::
+Si tenim 3 classes [1]_ com::
 
   struct A {
     int x;
+    void f();
   };
 
   struct B : public A {
     char y;
+    void g(int n);
   };
   
   struct C : public B {
     float z;  
+    bool h() const;
   };
 
-Un objecte de la classe ``A`` té un atribut (``x``), un objecte de
-classe ``B`` té 2 atributs (``x`` i ``y``) i un objecte de classe
-``C`` té 3 atributs (``x``, ``y`` i ``z``). Si tenim les següent
+Un objecte de la classe ``A`` té un atribut ``x`` i un mètode ``f``, un objecte de
+classe ``B`` té 2 atributs (``x`` i ``y``) i dos mètodes (``f`` i
+``g``), i un objecte de classe ``C`` té 3 atributs (``x``, ``y`` i
+``z``) i 3 mètodes (``f``, ``g`` i ``h``). Si tenim les següents
 declaracions::
 
    A a;
@@ -135,12 +139,17 @@ el dibuix següent mostra l'estructura interna de cada objecte.
 .. image:: img/herencia_ABC.*
    :align: center
 
-Com és natural, intentar accedir a atributs que no són de la classe és
-un error::
+Com és natural, intentar accedir a atributs o mètodes que no són
+membres de la classe és un error::
 
-   a.y = 'Q';  // error, la classe A no té atribut 'y'
-   c.x = 1024; // correcte
-   b.z = 2.55; // error, la classe B no té atribut 'z'
+   a.y = 'Q';   // error, la classe A no té atribut 'y'
+   c.x = 1024;  // correcte
+   b.z = 2.55;  // error, la classe B no té atribut 'z'
+   c.f();       // correcte
+   a.g(1);      // error, la classe A no té mètode 'g'
+   if (b.h()) { // error, la classe B no té mètode 'h'
+     //... 
+   }
 
 .. exercici::
 
@@ -191,18 +200,131 @@ un error::
      x.b = 1;
      y.b = 3;
 
+Els atributs privats són inaccessibles fins i tot a les classes derivades
+-------------------------------------------------------------------------
+
+Malgrat les classes derivades modifiquen les classes base i *són* de
+fet un cas particular d'elles, el següent codi produeix un error::
+
+   class Numero {
+     int _n;
+   public:
+     Numero(int n);
+     int num() const;
+   };
+
+   Numero::Numero(int n) {
+     _n = n;
+   }
+
+   int Numero::num() const {
+     return _n;
+   }
+ 
+   class NIF : public Numero {
+     char _lletra;
+   public:
+     NIF(int n, char c);
+   };
+
+   NIF::NIF(int n, char c) {
+     _n = n; // '_n' és privat a la classe Numero!!
+     _lletra = c;
+   }
+
+Així doncs, els atributs privats ho segueixen sent en classes
+derivades. Si volem accedir a la informació de les classes base, ho
+hem de fer com fins ara fent servir els mètodes pertinents (al cap i a
+la fi, un TAD és un TAD). Si afegim un mètode ``escriu`` a ``NIF``::
+
+   void NIF::escriu(ostream& o) {
+     o << num() << '-' << _lletra;
+   }
+
+Per obtenir el número del NIF, hem de cridar al mètode ``Numero::num``
+[2]_, que és públic. Cal veure que la crida es fa sense fer servir el
+punt (``.``) perquè ``escriu`` rep el paràmetre implícit de tipus
+``NIF`` habitual i és el mateix que se li passa a ``num`` sense haver
+de fer servir cap notació especial.
+
+Llistes d'inicialització
+""""""""""""""""""""""""
+
+Per resoldre el problema amb el constructor de ``NIF``, s'ha de cridar
+el constructor d'una manera nova, fent servir el que s'anomena una
+*llista d'inicialització*::
+  
+   NIF::NIF(int n, char c) 
+     : Numero(n)
+   {
+     _lletra = c;
+   }
+
+Aquesta notació ens ve a dir que: "per inicialitzar un objecte
+derivat, cal cridar primer el constructor de la classe base". La crida
+al constructor de ``Numero`` es fa "abans" d'entrar en el constructor
+de ``NIF`` (abans de les claus), i es posen dos punts i una llista de crides als
+constructors necessaris, separats per comes (en aquest cas només n'hi
+ha un, o sigui que no calen). Aquesta crida inicialitza la part privada de
+``Numero`` (a la que no tenim accés), i després s'inicialitza
+``_lletra``. 
+
+És interessant observar que ``NIF`` rep com a paràmetres un
+enter ``n`` i un caràcter ``c``, i ``n`` el passa al constructor de
+``Numero`` i el caràcter el fa servir per inicialitzar ``_lletra``.
+
+Objectes membre
+'''''''''''''''
+
+La mateixa sintaxi es fa servir quan una classe conté objectes
+d'altres classes a dins::
+
+   class NumeroDeCompte {
+     Numero _entitat, _oficina, _num;
+     int _DC;
+   public:
+     NumeroDeCompte(int e, int o, int dc, int n);
+   };
+
+   NumeroDeCompte::NumeroDeCompte(int e, int o, int dc, int n) 
+     : _entitat(e), _oficina(o), _num(n)
+   {
+     _DC = dc;
+   }
+
+En aquest cas, però la crida als constructors dels objectes
+``_entitat``, ``_oficina``, i ``_num`` s'ha de fer posant el *nom* de
+l'atribut i no el nom de la classe [3]_. Entre parèntesis van els
+paràmetres del constructor, com és habitual.
+
+.. exercici::
+
+   Donada les següents declaracions::
+
+     class X {
+       //...
+     public:
+       X(int a, char b);
+     };
+
+     class Y {
+       //...
+     public:
+       Y(string s);
+     };
+  
+     class Z : public Y {
+       X _x;
+       float _f;
+     public:
+       Y(int a, char b, string s, float f);
+     };
+  
+   implementa el constructor de la classe ``Y``.
 
 
-
-Classes: crida al constructor base
-----------------------------------
-
-
-
-
-
-Accés a membres base a la classe derivada: ``protected``
---------------------------------------------------------
+Els membres ``protected`` són accessibles a les classes derivades
+-----------------------------------------------------------------
 
 
 
@@ -218,3 +340,11 @@ Per fer servir llibreries
 
 .. [1] Recordem que un ``struct`` és com una classe amb tots els
        membres ``public``.
+
+.. [2] Posem el prefix ``Numero::`` per aclarir a quina classe pertany
+       el mètode.
+
+.. [3] Si poséssim el nom de la classe, ``Numero`` en aquest cas, hi
+       hauria 3 crides al constructor de ``Numero`` i no sabríem a quin
+       atribut es refereixen.
+

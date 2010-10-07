@@ -29,5 +29,13 @@ Herència
      x.b = 1;        // ok
      y.b = 3;        // ok
 
+.. exercici::
+   ::
+
+      Z::Z(int a, char b, string s, float f) 
+        : Y(s), _x(a, b)
+      {
+        _f = f;
+      }
       
    
