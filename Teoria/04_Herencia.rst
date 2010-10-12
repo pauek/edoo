@@ -18,8 +18,8 @@ Herència
 - Utilitzar llibreries en C++ heredant de les classes existents.
 
 
-Comencem amb un exemple
-=======================
+L'herència permet el reaprofitament de classes
+==============================================
 
 Imaginem que volem fer un programa que treballi amb les dades dels
 soldats d'un exèrcit. Podem començar amb la classe ``Soldat``::
@@ -83,7 +83,7 @@ per tant tots els camps de ``Soldat`` han d'estar a ``Tinent``.
 
 
 Terminologia
-============
+------------
 
 Classe base
   La classe que representa un concepte general, que emmagatzema les
@@ -97,8 +97,9 @@ Classe derivada
 Heredar
   Obtenir automàticament els membres d'una classe base en una
   derivada. A la declaració d'una classe derivada només s'han
-  d'especificar els membres que *afegim*, que han de representar les
-  diferències entre el concepte general i el particular.
+  d'especificar els membres que *afegim* (o *redefinim*), que han de
+  representar les diferències entre el concepte general i el
+  particular.
 
 
 Classes derivades: els detalls
@@ -138,6 +139,7 @@ el dibuix següent mostra l'estructura interna de cada objecte.
 
 .. image:: img/herencia_ABC.*
    :align: center
+   :scale: 70
 
 Com és natural, intentar accedir a atributs o mètodes que no són
 membres de la classe és un error::
@@ -200,6 +202,97 @@ membres de la classe és un error::
      x.b = 1;
      y.b = 3;
 
+A la classe derivada es pot redefinir un mètode de la classe base
+-----------------------------------------------------------------
+
+Malgrat les classes derivades típicament defineixen atributs i mètodes
+nous, també poden *redefinir* mètodes de la classe base. Per exemple,
+partint de la classe ``Gos``::
+
+  class Gos {
+  public:
+    void borda() const;
+  };
+
+  void Gos::borda() const {
+    cout << "guau!";
+  }
+
+la classe ``Chihuahua`` redefineix el mètode ``borda``::
+
+  class Chihuahua : public Gos {
+  public:
+    void borda() const;
+  }
+  
+  void Chihuahua::borda() {
+    cout << "cri-cri";
+  }
+
+Si creem els objectes::
+
+  Gos g;
+  Chihuahua c;
+
+i cridem el mètode ``borda``::
+
+  g.borda();
+  c.borda();
+
+apareixerà lògicament per pantalla::
+
+  guau!
+  cri-cri
+
+La crida al mètode base es fa posant el prefix de la classe base
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+De vegades ens pot interessar cridar el mètode de la classe base desde
+la classe derivada. En aquest cas partim d'``Adjectiu``::
+
+  class Adjectiu {
+    string adj;
+  public:
+    Adjectiu(string s);
+    void escriu(ostream& o) const;
+  };
+
+  void Adjectiu::escriu(ostream& o) const {
+    o << adj;
+  }
+
+i volem implementar ``SuperAdjectiu``, que és simplement un adjectiu
+amb "súper-" a davant. Per implementar ``escriu`` a la classe
+``SuperAdjectiu`` podem escriure primer "súper-" i després cridar al
+mètode base per escriure l'adjectiu::
+
+  class SuperAdjectiu : public Adjectiu {
+  public:
+    SuperAdjectiu(string s);
+    void escriu(ostream& o) const;
+  };
+    
+  void SuperAdjectiu::escriu(ostream& o) const {
+    o << "súper-";
+    Adjectiu::escriu(o);  // <== Crida al mètode base
+  }
+
+La crida a ``Adjectiu::escriu`` es fa posant el prefix per distingir-lo
+de ``SuperAdjectiu::escriu``.
+
+Així, doncs, si tenim::
+
+  Adjectiu a("bonic");
+  SuperAdjectiu sa("bonic");
+  a.escriu(cout);
+  cout << ' ';
+  sa.escriu(cout);
+
+mostrarà per pantalla::
+
+  bonic súper-bonic  
+  
+
 Els atributs privats són inaccessibles fins i tot a les classes derivades
 -------------------------------------------------------------------------
 
@@ -211,6 +304,7 @@ fet un cas particular d'elles, el següent codi produeix un error::
    public:
      Numero(int n);
      int num() const;
+     void escriu(ostream& o) const;
    };
 
    Numero::Numero(int n) {
@@ -225,6 +319,7 @@ fet un cas particular d'elles, el següent codi produeix un error::
      char _lletra;
    public:
      NIF(int n, char c);
+     void escriu(ostream& o) const;
    };
 
    NIF::NIF(int n, char c) {
@@ -247,31 +342,47 @@ punt (``.``) perquè ``escriu`` rep el paràmetre implícit de tipus
 ``NIF`` habitual i és el mateix que se li passa a ``num`` sense haver
 de fer servir cap notació especial.
 
-Llistes d'inicialització
-""""""""""""""""""""""""
+Cas dels constructors: llistes d'inicialització
+"""""""""""""""""""""""""""""""""""""""""""""""
 
 Per resoldre el problema amb el constructor de ``NIF``, s'ha de cridar
 el constructor d'una manera nova, fent servir el que s'anomena una
 *llista d'inicialització*::
   
    NIF::NIF(int n, char c) 
-     : Numero(n)
+     : Numero(n)   // <== Llista d'inicialització
    {
      _lletra = c;
    }
 
-Aquesta notació ens ve a dir que: "per inicialitzar un objecte
-derivat, cal cridar primer el constructor de la classe base". La crida
-al constructor de ``Numero`` es fa "abans" d'entrar en el constructor
-de ``NIF`` (abans de les claus), i es posen dos punts i una llista de crides als
-constructors necessaris, separats per comes (en aquest cas només n'hi
-ha un, o sigui que no calen). Aquesta crida inicialitza la part privada de
-``Numero`` (a la que no tenim accés), i després s'inicialitza
-``_lletra``. 
+La llista d'inicialització és la part "``: Numero(n)``". Aquesta
+notació ens ve a dir que: "per inicialitzar un objecte derivat, cal
+cridar primer el constructor de la classe base". La crida al
+constructor base (en aquest cas ``Numero``) es fa "abans" d'entrar al
+constructor de ``NIF`` (abans de les claus), i es posen dos punts i
+una llista de crides als constructors necessaris, separats per comes
+(en aquest cas només n'hi ha un, o sigui que no calen). Aquesta crida
+inicialitza la part privada de ``Numero`` (a la que no tenim accés), i
+després s'inicialitza ``_lletra``.
 
 És interessant observar que ``NIF`` rep com a paràmetres un
 enter ``n`` i un caràcter ``c``, i ``n`` el passa al constructor de
 ``Numero`` i el caràcter el fa servir per inicialitzar ``_lletra``.
+
+.. exercici::
+
+   Tenim una classe ``Gadget`` com la següent::
+
+     class Gadget {
+       float _pes;
+     public:
+       Gadget(float pes);
+     };
+
+   Declara una classe ``Camera`` que deriva de ``Gadget``, amb un
+   atribut enter que valgui el número de megapixels que té. Implementa
+   un constructor de ``Camera`` que rebi com a paràmetres un real pel
+   pes i un enter pel número de megapíxels.
 
 Objectes membre
 '''''''''''''''
@@ -323,20 +434,85 @@ paràmetres del constructor, com és habitual.
    implementa el constructor de la classe ``Y``.
 
 
-Els membres ``protected`` són accessibles a les classes derivades
------------------------------------------------------------------
+Exemple d'utilització de l'herència
+===================================
 
+En aquesta secció farem un programa amb l'entorn Qt que mostri una
+finestra amb el text "Hola món!".
 
+Cal crear un projecte Qt de tipus "Other Project" i en la subcategoria
+"Empty Qt Project" (un projecte buit).
 
-Cassos d'utilització de l'herència
-==================================
+.. image:: img/qt_new_project.png
+   :scale: 70
+   :align: center
 
-Per expressar petites diferències en un mateix programa
--------------------------------------------------------
+Llavors afegim un fitxer ``main.cpp`` amb *File* |-->| *New File or
+Project...*, escollint "C++ Source File" i afegint el fitxer al
+projecte.
+
+En aquest fitxer escriurem::
+
+  #include <QApplication>
+  
+  int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+  
+    app.exec();
+  }
+
+Aquest és el programa mínim en Qt, però no fa res i no es pot "parar".
+Ara afegirem una classe nova amb *File* |-->| *New File or
+Project...*, escollint *C++ Class*. Surt el quadre:
+
+.. image:: img/qt_new_class.png
+   :scale: 70
+   :align: center
+
+El nom de la classe serà ``HolaWindow`` i la classe base
+``QWidget``. El Qt Creator proposa crear 2 fitxers ``holawindow.h`` i
+``holawindow.cpp``, que podem acceptar com a bons, i afegir-los al
+projecte en la finestra següent. És interessant observar el codi que
+genera Qt Creator quan fem aquesta class nova. En el constructor de
+``HolaWindow`` hem de posar::
+
+  QVBoxLayout *layout = new QVBoxLayout();
+  QLabel *etiqueta = new QLabel("Hola, mon!");
+  layout->addWidget(etiqueta);
+  setLayout(layout);
+
+Com que les classes ``QVBoxLayout`` i ``QLabel`` no les hem creat
+nosaltres, haurem de posar l'``#include`` corresponent::
+
+  #include <QVBoxLayout>
+  #include <QLabel>
+
+Al fitxer ``main.cpp`` hem d'afegir::
+
+  HolaWindow w;
+  w.show();
+
+amb el corresponent::
+
+  #include "holawindow.h"
+
+al principi. Un cop fet això, es pot compilar el programa, i sortirà
+una finestra com la següent:
+
+.. image:: img/holawindow.png
+   :scale: 80
+   :align: center
+
+.. exercici::
+
+   Segueix els passos que indica l'exemple i compila el
+   programa. Modifica el text "Hola mon" i posa'n un altre per veure
+   que realment canvia.
 
 
 Per fer servir llibreries
 -------------------------
+
 
 .. [1] Recordem que un ``struct`` és com una classe amb tots els
        membres ``public``.
@@ -348,3 +524,4 @@ Per fer servir llibreries
        hauria 3 crides al constructor de ``Numero`` i no sabríem a quin
        atribut es refereixen.
 
+.. |-->| unicode:: U+2192

@@ -32,6 +32,21 @@ Herència
 .. exercici::
    ::
 
+      class Camera : public Gadget {
+        int _megapixels;
+      public:
+        Camera(float pes, int Mpx);
+      };
+
+      Camera::Camera(float pes, int Mpx)
+        : Gadget(pes)
+      {
+        _megapixels = Mpx;
+      }
+
+.. exercici::
+   ::
+
       Z::Z(int a, char b, string s, float f) 
         : Y(s), _x(a, b)
       {
