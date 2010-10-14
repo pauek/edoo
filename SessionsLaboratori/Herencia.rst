@@ -101,9 +101,138 @@ Per fer això amb Qt haurem de fer dues modificacions:
 - La primera té a veure amb el fet que si volem que surtin finestres
   en el nostre programa, hem de crear un objecte ``QApplication``.
 
+- La segona és l'ús del quadre de diàleg de fitxers en sí.
 
+Primera modificació: afegir un ``QApplication``
+-----------------------------------------------
 
+Anem per la primera. Cal afegir el següent:
 
+- Modificar la funció ``main`` perquè tingui dos paràmetres així::
+
+     int main(int argc, char *argv[]) {
+       // ...
+     }
+
+- Crear un objecte al principi del ``main`` de la classe
+  ``QApplication`` (i per tant afegir ``#include <QApplication>`` a
+  dalt de tot)::
+
+       QApplication app(argc, argv);
+
+  Aquest objecte rep en el seu constructor els paràmetres que hem
+  posat al ``main``.
+
+Segona modificació: fer servir ``QFileDialog``
+----------------------------------------------
+
+Un quadre de diàleg per a fitxers ens permet escollir un fitxer, i té
+la següent pinta:
+
+.. image:: img/qt_file_dialog.png
+   :align: center
+   :scale: 75
+
+Des del programa, obrim el quadre i si l'usuari escull un fitxer, el
+quadre ens retorna el nom del fitxer complet. Si l'usuari prem
+"Cancel", el quadre ens informa que s'ha cancel·lat la tria.
+
+Per posar el quadre s'han de seguir els passos següents:
+
+- Crear un objecte ``QFileDialog`` (mai abans de ``QApplication``), i
+  per tant hem de posar a dalt de tot ``#include
+  <QFileDialog>``. Anomena l'objecte ``F``.
+
+- Invocar el mètode ``exec`` del quadre, i mirar el valor que
+  retorna. Es pot considerar com un ``bool``: si ``exec`` retorna ``true``,
+  l'usuari ha escollit un fitxer; si retorna ``false``, ha cancel·lat.
+  En el nostre cas, si l'usuari cancel·la, no hem de fer res, per tant
+  posarem::
+
+     if (F.exec()) {
+       // codi per invertir la imatge escollida
+     }
+
+- Obtenir el nom del fitxer que s'ha seleccionat. Per fer això hem de
+  cridar el mètode ``seletedFiles`` de ``QFileDialog``. Aquest mètode
+  retorna una llista de fitxers (un objecte ``QStringList``), ja que
+  un quadre de diàleg en general permet seleccionar més d'un
+  fitxer. Per tant, posarem::
+
+     QStringList fitxers = F.selectedFiles();
+     
+- Per obtenir un ``QString`` que és el nom del fitxer seleccionat, hem
+  de mirar el primer element de la llista, el de la posició 0, amb el
+  mètode ``at``::
+
+     QString nom = fitxers.at(0);
+
+- Ara ja podem crear l'objecte ``QImage`` com abans, però posant
+  ``nom`` com a paràmetre del constructor, en comptes de
+  ``test.jpg``::
+    
+     QImage I(nom);
+
+- Ara vindria la inversió com abans, i finalment hem de guardar la
+  imatge amb un nom diferent (perquè si no ens carreguem la imatge
+  original). Per fer això hem d'afegir al nom una ``"_i"``. La manera més fàcil és cridar al mètode ``replace`` de
+  ``QString`` (n'hi ha vàrios), que permet reemplaçar un tros del
+  ``nom`` amb un altre. Si fem::
+
+     nom.replace(".jpg", "_i.jpg");
+
+  estem canviant allà on posa ``".jpg"`` per ``"_i.jpg"``, que té
+  l'efecte desitjat. Si el nom era ``gat.jpg``, ara serà
+  ``gat_i.jpg``. Un cop fet això, podem cridar el mètode ``QImage::save`` com
+  abans.
+
+Invertir múltiples imatges
+==========================
+
+Ja posats, podem fer que el programa inverteixi vàries imatges, no
+només una. En un quadre de diàleg de fitxers, en general, per
+seleccionar més d'un fitxer s'ha de clicar el nom del fitxer mentre es
+prem la tecla ``Ctrl``.
+
+Per modificar el programa, haurem de:
+
+- Indicar al ``QFileDialog`` que volem poder seleccionar més d'una
+  imatge.
+
+- Fer una iteració amb cada una de les imatges seleccionades i
+  invertir-la, tal com fem ara amb una de sola.
+
+Seleccionar vàries imatges a un ``QFileDialog``
+-----------------------------------------------
+
+Això és senzill, només hem de "configurar" el ``QFileDialog`` abans de
+cridar-lo amb ``exec``. Just després de ser creat, al principi del
+programa, posem::
+
+  F.setFileMode(QFileDialog::ExistingFiles);
+
+Mira l'ajuda per al mètode ``setFileMode`` i veuràs que accepta un
+paràmetre de tipus ``QFileDialog::FileMode``, que és un enumerat. La
+opció per múltiples fitxers és el número 3,
+``QFileDialog::ExistingFiles``.
+
+Fer una iteració amb les imatges
+--------------------------------
+
+Un cop el quadre de diàleg ha retornat, en comptes d'invertir una
+imatge, la idea és fer una iteració com::
+
+  for (int i = 0; i < ...; i++) {
+    QString nom = ...; // nom de la imatge 'i'
+    QImage I(nom);
+    ...
+  }
+
+La llista té un mètode ``at`` que ja hem vist que permet obtenir
+l'element ``i``-èssim, però ens faltaria un mètode per determinar el
+tamany de la llista. Aquest mètode és ``QStringList::size``. Modifica
+doncs el programa i compila'l. Comprova que pots invertir almenys 2
+imatges.
 
 .. |-->| unicode:: U+2192
 
