@@ -179,9 +179,9 @@ Per posar el quadre s'han de seguir els passos següents:
   ``QString`` (n'hi ha vàrios), que permet reemplaçar un tros del
   ``nom`` amb un altre. Si fem::
 
-     nom.replace(".jpg", "_i.jpg");
+     nom.replace(".", "_i.");
 
-  estem canviant allà on posa ``".jpg"`` per ``"_i.jpg"``, que té
+  estem canviant allà on posa ``"."`` per ``"_i."``, que té
   l'efecte desitjat. Si el nom era ``gat.jpg``, ara serà
   ``gat_i.jpg``. Un cop fet això, podem cridar el mètode ``QImage::save`` com
   abans.
@@ -233,6 +233,122 @@ l'element ``i``-èssim, però ens faltaria un mètode per determinar el
 tamany de la llista. Aquest mètode és ``QStringList::size``. Modifica
 doncs el programa i compila'l. Comprova que pots invertir almenys 2
 imatges.
+
+Un quadre de diàleg personalitzat
+=================================
+
+En aquesta secció farem un programa que ens demana el nom i ens
+saluda, fent servir un quadre de diàleg fet per nosaltres. El programa
+principal serà molt senzill::
+
+  #include <QApplication>
+  #include "textdialog.h"
+  
+  int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+    TextDialog td("Escriu el teu nom");
+
+    if (td.exec()) {
+      QString salutacio = "Com estàs, ";
+      salutacio += td.text();
+      salutacio += ", ets un gran programador";
+  
+      QMessageBox missatge;
+      missatge.setWindowTitle("Salutacio");
+      missatge.setText(salutacio);
+      missatge.exec();
+    }
+  }
+
+Aquest programa fa servir 3 classes: ``QApplication``, que coneixem;
+``QMessageBox``, que serveix per mostrar petites informacions; i
+finalment, ``TextDialog`` que és la que farem nosaltres.
+
+Quan engegues el programa, surt una finesta com:
+
+.. image:: img/qt_textdialog_your_name.png
+   :align: center
+   :scale: 75
+
+Un cop has posat el nom, et surt un missatge:
+
+.. image:: img/qt_textdialog_greetings.png
+   :align: center
+   :scale: 75
+
+La part d'utilització de ``QMessageBox`` és força
+auto-explicativa. ``QMessageBox`` és un quadre de diàleg a on només
+pots prémer un botó i poc més. Aquest tipus de quadres es fan servir
+per alertar l'usuari d'alguna cosa que ha succeït. En el nostre cas se
+li posa un títol (amb ``setWindowTitle``) i un text (amb
+``setText``). Finalment es mostra amb ``exec``.
+
+El nostre quadre ``TextDialog``
+-------------------------------
+
+Per començar crearem dos fitxers de codi font nous: ``textdialog.h`` i
+``textdialog.cpp``. La declaració de la classe serà (situada al fitxer
+``textdialog.h``)::
+
+  class TextDialog : public QDialog {
+    QLineEdit *_edit;
+    QPushButton *_ok, *_cancel;
+  public:
+    TextDialog(QString titol, QWidget *parent = 0);
+    QString text() const;
+  };
+
+La declaració és simple, el nostre quadre té 3 atributs: una caixeta
+d'edició i dos botons, tots ells punters. El constructor rep 2
+paràmetres, un *string* (el text del títol) i el ``QWidget``
+pare. Totes els elements en Qt tenen un punter a la finestra pare
+(que les conté), tot i que aquest pot ser 0 (no apunta enlloc). Com
+que la classe ``QDialog`` rep aquest punter com a paràmetre del
+constructor, nosaltres l'hem de posar al nostre constructor, també.
+
+La implementació de la classe comença amb els ``#include``s::
+
+  #include <QDialog>
+  #include <QLineEdit>
+  #include <QPushButton>
+  #include <QGridLayout>
+
+Ens cal implementar 2 mètodes: el constructor i ``text``. Comencem amb
+el constructor::
+
+  TextDialog::TextDialog(QString titol, QWidget *parent) 
+    : QDialog(parent)
+  {
+    setWindowTitle(titol);
+    
+    _edit = new QLineEdit;
+    _ok = new QPushButton("D'acord");
+    _cancel = new QPushButton("Cancel.la");
+
+    QGridLayout *graella = new QGridLayout;
+    graella->addWidget(_edit, 0, 0, 1, 2);
+    graella->addWidget(_ok, 1, 0);
+    graella->addWidget(_cancel, 1, 1);
+    setLayout(graella);
+  }
+
+Abans de començar, es fa servir una llista d'inicialització per cridar
+el constructor de la classe ``QDialog`` amb el paràmetre ``parent``
+(per indicar de qui és "fill" el quadre de diàleg). La primera
+instrucció invoca un mètode de la classe ``QDialog``, que permet
+canviar el títol, i posa el títol passat com a paràmetre.
+
+Les tres següents línies reserven memòria i inicialitzen els 3
+atributs, i les següents 5 línies creen un ``QGridLayout`` (un
+distribuidor de tipus graella) i col·loquen els objectes en les seves
+caselles. Les crides indiquen el número de casella començant
+per 0. L'objecte ``_edit`` és especial: es col·loca a la casella (0, 0) però en
+comptes d'ocupar només una casella n'ocupa 1 en vertical i 2 en
+horitzontal, per això la crida té 4 números. La crida a ``setLayout``
+assigna el distribuidor al quadre de diàleg.
+
+La implementació del mètode ``text`` és senzilla, només s'ha de
+retornar el valor que conté l'objecte ``_edit``. Si mirem 
 
 .. |-->| unicode:: U+2192
 
