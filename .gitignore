@@ -5,3 +5,4 @@ videoclub.db
 *.epub
 *.pdf
 *~
+*-build-desktop

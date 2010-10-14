@@ -31,7 +31,10 @@ Guions de pràctiques
    :maxdepth: 1
    :glob:
 
-   SessionsLaboratori/sessio*
+   SessionsLaboratori/sessio1
+   SessionsLaboratori/sessio2
+   SessionsLaboratori/sessio3	
+   SessionsLaboratori/Herencia
 
 Solucions a exercicis i problemes
 =================================
