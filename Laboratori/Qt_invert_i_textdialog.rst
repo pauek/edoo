@@ -13,7 +13,7 @@ Qt: inversió d'imatges i ``TextDialog``
 
 
 Inversió d'imatges super-fàcil
-=================================
+==============================
 
 En aquesta sessió de pràctiques, farem un programa molt senzill amb Qt
 que inverteix una imatge, és a dir, inverteix el color de cada píxel
@@ -29,7 +29,7 @@ quadre de diàleg següent, a on hem d'escollir "Empty Qt Project":
 
 El projecte s'ha de situar en algun directori i li direm
 ``inverteix_imatge`` (el nom del projecte no pot tenir espais ni
-caracters extranys).
+caràcters extranys).
 
 Ara cal afegir un fitxer codi nou, també amb *File* |-->| *New file or
 project...*. Ara caldrà escollir la opció de "C++ Source File" (un
@@ -357,15 +357,16 @@ Les tres següents línies reserven memòria i inicialitzen els 3
 atributs, i les següents 5 línies creen un ``QGridLayout`` (un
 distribuidor de tipus graella) i col·loquen els objectes en les seves
 caselles. Les crides indiquen el número de casella començant
-per 0. L'objecte ``_edit`` és especial: es col·loca a la casella (0, 0) però en
-comptes d'ocupar només una casella n'ocupa 1 en vertical i 2 en
-horitzontal, per això la crida té 4 números. La crida a ``setLayout``
-assigna el distribuidor al quadre de diàleg que estem construint.
+per 0. L'objecte ``_edit`` és especial: es col·loca a la casella (0,
+0) però en comptes d'ocupar només una casella n'ocupa 1 en vertical i
+2 en horitzontal, per això la crida té 4 números. La crida a
+``setLayout`` assigna el distribuidor al quadre de diàleg que estem
+construint.
 
 La implementació del mètode ``text`` és senzilla, només s'ha de
-retornar el valor que conté la caixeta d'edició ``_edit``. Si mirem la classe
-``QLineEdit``, aquesta té un membre ``text`` que permet obtenir el
-text que hi ha a la caixeta d'edició. Aquest és precisament el text
+retornar el valor que conté la caixeta d'edició ``_edit``. Si mirem la
+classe ``QLineEdit``, aquesta té un membre ``text`` que permet obtenir
+el text que hi ha a la caixeta d'edició. Aquest és precisament el text
 que hem de retornar::
 
   QString TextDialog::text() const {
@@ -427,8 +428,8 @@ quan fem servir ``textdialog.h`` en qualsevol altre lloc, no caldrà
 posar cap ``#include`` més. És recomanable posar aquestes macros a
 tots els fitxers de capçalera a partir d'ara.
 
-Conectem els botons: senyals i *slots*
-""""""""""""""""""""""""""""""""""""""
+Conectem els botons: *signals* i *slots*
+""""""""""""""""""""""""""""""""""""""""
 
 Bé, el programa compila, però no fa el que ha de fer. Quan prems
 "D'acord" o "Cancel·la" no reacciona. Només pots tancar la finestra
@@ -438,30 +439,30 @@ La qüestió és que hem de dir a algun lloc que quan es prem el botó
 "D'acord" s'ha d'acceptar el nom i quan es prem "Cancel·la" s'ha de
 rebutjar. 
 
-Senyals i Slots
-'''''''''''''''
+*Signals* i *Slots*
+'''''''''''''''''''
 
 En Qt, per comunicar "events" com el click en un botó es fa servir un
-mecanisme molt general de senyals. La idea és que els objectes de Qt
-poden ser tenir:
+mecanisme molt general d'events. La idea és que els objectes de Qt
+poden tenir:
 
-- *signals*, que vol dir que són emissors d'events, i/o
-- *slots*, que vol dir que són receptors d'events.
+- *signals*, que vol dir que són **emissors** d'events, i/o
+- *slots*, que vol dir que són **receptors** d'events.
 
 Per poder treure profit d'aquest sistema, però, hem de fer una primera
 modificació l'objecte ``TextDialog``, que és l'única classe que hem
 creat nosaltres. La modificació consisteix en posar, *a la part privada de la
-declaració*, el codi següent::
+declaració*, la paraula següent::
 
    Q_OBJECT
 
-Va sense punt i coma i sense res més. És difícil descriure què
-significa perquè no és cap declaració de variables, ni un atribut, ni
-un mètode. És com una "marca" que indica al compilador que
+Va sense punt i coma, tal com està escrit. És difícil explicar què
+significa exactament perquè no és cap declaració de variables, ni un
+atribut, ni un mètode. És com una "marca" que indica al compilador que
 ``TextDialog`` és un objecte Qt i per tant és potencialment un emissor
 o receptor d'events. Com que ``TextDialog`` deriva de ``QDialog``
 heredarà 2 senyals: ``accept`` i ``reject``. A la declaració de
-``TextDialog``, per tant, no hem de declarar senyals ni slots, perquè
+``TextDialog``, per tant, no hem de declarar *signals* ni *slots*, perquè
 ``QDialog`` ja els té\ [2]_.
 
 Connexió entre emissors i receptors
@@ -486,10 +487,10 @@ just en el mateix ordre en què surten a la taula anterior::
    connect(<punter a l'emissor>, <senyal>, 
            <punter al receptor>, <slot>);
 
-La forma d'indicar un senyal és encerclant la crida amb ``SIGNAL(...)`` i
-per als *slots* el mateix amb ``SLOT(...)``. La connexió l'hem de fer quan
-construïm el ``TextDialog``, per tant, al final de tot del constructor
-hem de posar les següents 2 línies::
+La forma d'indicar un senyal és encerclant la crida amb
+``SIGNAL(...)`` i per als *slots* el mateix amb ``SLOT(...)``. La
+connexió l'hem de fer quan construïm el ``TextDialog``, per tant, al
+final de tot del constructor hem de posar les següents 2 línies::
 
   connect(_ok, SIGNAL(clicked()), ???, SLOT(accept()));
   connect(_cancel, SIGNAL(clicked()), ???, SLOT(reject()));
@@ -505,7 +506,8 @@ sempre està disponible en mètodes i és un punter a l'objecte sobre el
 que s'ha cridat el mètode. En el nostre cas, doncs, haurem de posar
 ``this`` substituint els tres interrogants.
 
-Un cop fetes les connexions, el programa funciona correctament. Comprova-ho.
+Un cop fetes les connexions, el programa funciona
+correctament. Comprova-ho.
 
 
 .. |-->| unicode:: U+2192
