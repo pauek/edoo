@@ -1,4 +1,5 @@
 #!/bin/bash
+make html latex epub
 rsync -av --delete _build/html/ euetitlsi:public_html/edoo/doc
 pushd _build
 zip -r ../EDOO_Doc_HTML.zip html/
