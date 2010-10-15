@@ -8,6 +8,7 @@ Qt: inversió d'imatges i ``TextDialog``
 
 .. rubric:: Objectius
 
+- Fer un programa que utilitzi classes de Qt.
 - Fer un programa Qt mínim que utilitzi finestres.
 - Implementar una classe que derivi d'una classe de Qt.
 
