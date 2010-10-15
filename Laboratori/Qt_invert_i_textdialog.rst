@@ -176,16 +176,16 @@ Per posar el quadre s'han de seguir els passos següents:
 
 - Ara vindria la inversió com abans, i finalment hem de guardar la
   imatge amb un nom diferent (perquè si no ens carreguem la imatge
-  original). Per fer això hem d'afegir al nom una ``"_i"``. La manera més fàcil és cridar al mètode ``replace`` de
-  ``QString`` (n'hi ha vàrios), que permet reemplaçar un tros del
-  ``nom`` amb un altre. Si fem::
+  original). Per fer això hem d'afegir al nom una ``"_i"``. La manera
+  més fàcil és cridar al mètode ``replace`` de ``QString`` (n'hi ha
+  vàrios), que permet reemplaçar un tros del ``nom`` amb un altre. Si
+  fem::
 
      nom.replace(".", "_i.");
 
-  estem canviant allà on posa ``"."`` per ``"_i."``, que té
-  l'efecte desitjat. Si el nom era ``gat.jpg``, ara serà
-  ``gat_i.jpg``. Un cop fet això, podem cridar el mètode ``QImage::save`` com
-  abans.
+  estem canviant allà on posa ``"."`` per ``"_i."``, que té l'efecte
+  desitjat. Si el nom era ``gat.jpg``, ara serà ``gat_i.jpg``. Un cop
+  fet això, podem cridar el mètode ``QImage::save`` com abans.
 
 Invertir múltiples imatges
 ==========================
@@ -514,4 +514,4 @@ Un cop fetes les connexions, el programa funciona correctament. Comprova-ho.
        classes found, no output generated".
 
 .. [2] És interessant mirar la documentació de ``QDialog`` per veure
-       quins senyals i slots té.
+       quins *signals* i *slots* té.
