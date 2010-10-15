@@ -17,7 +17,7 @@ Inversió d'imatges super-fàcil
 
 En aquesta sessió de pràctiques, farem un programa molt senzill amb Qt
 que inverteix una imatge, és a dir, inverteix el color de cada píxel
-(si un píxel és blanc, passa a negre i si és groc, passa a blau). 
+(si un píxel és blanc passa a negre, si és groc passa a blau, etc). 
 
 El primer que hem de fer és crear un projecte amb Qt fent servir la
 opció de menú *File* |-->| *New file or project...*. Això mostra el
