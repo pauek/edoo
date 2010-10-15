@@ -1,6 +1,9 @@
 
 #include <QApplication>
 #include <QMessageBox>
+#include <QDialog>
+#include <QLineEdit>
+#include <QPushButton>
 #include "textdialog.h"
 
 int main(int argc, char *argv[]) {

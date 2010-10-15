@@ -2,13 +2,14 @@
 .. tema:: lab.he
 
 
-===============================
-Guió de pràctiques: Herència
-===============================
+=======================================
+Qt: inversió d'imatges i ``TextDialog``
+=======================================
 
 .. rubric:: Objectius
 
-   - Crear programes senzills amb Qt.
+- Fer un programa Qt mínim que utilitzi finestres.
+- Implementar una classe que derivi d'una classe de Qt.
 
 
 Inversió d'imatges super-fàcil
@@ -242,6 +243,7 @@ saluda, fent servir un quadre de diàleg fet per nosaltres. El programa
 principal serà molt senzill::
 
   #include <QApplication>
+  #include <QMessageBox>
   #include "textdialog.h"
   
   int main(int argc, char *argv[]) {
@@ -261,27 +263,38 @@ principal serà molt senzill::
   }
 
 Aquest programa fa servir 3 classes: ``QApplication``, que coneixem;
-``QMessageBox``, que serveix per mostrar petites informacions; i
+``QMessageBox``, que serveix per mostrar missatges; i
 finalment, ``TextDialog`` que és la que farem nosaltres.
 
-Quan engegues el programa, surt una finesta com:
+La idea del programa és fer sortir una finestra com
 
 .. image:: img/qt_textdialog_your_name.png
    :align: center
    :scale: 75
 
-Un cop has posat el nom, et surt un missatge:
+i un cop has posat el nom, apareix un missatge
 
 .. image:: img/qt_textdialog_greetings.png
    :align: center
    :scale: 75
 
+que et dóna una petita alegria (si bé menor, ja que t'has posat tu
+mateix el missatge, ejem). Si prems "Cancel·la" quan se't pregunta el
+nom, no apareix cap missatge després.
+
+El primer quadre de diàleg, el que et pregunta el nom, és un
+``TextDialog`` i és el que farem nosaltres. El segon és el
+``QMessageBox`` i és part de la llibreria de classes Qt (com indica la
+``Q`` de davant del nom).
+
 La part d'utilització de ``QMessageBox`` és força
-auto-explicativa. ``QMessageBox`` és un quadre de diàleg a on només
-pots prémer un botó i poc més. Aquest tipus de quadres es fan servir
-per alertar l'usuari d'alguna cosa que ha succeït. En el nostre cas se
-li posa un títol (amb ``setWindowTitle``) i un text (amb
-``setText``). Finalment es mostra amb ``exec``.
+auto-explicativa. ``QMessageBox`` és un quadre de diàleg a on
+típicament només pots prémer un botó i acceptar el misstage que se't
+presenta. Aquest tipus de quadres es fan servir per alertar l'usuari
+d'alguna cosa que ha succeït. En el nostre cas se li posa un títol
+(amb ``setWindowTitle``) i un text (amb ``setText``). Finalment es
+mostra amb ``exec``, que és la forma estàndar de mostrar els quadres
+de diàleg.
 
 El nostre quadre ``TextDialog``
 -------------------------------
@@ -294,19 +307,21 @@ Per començar crearem dos fitxers de codi font nous: ``textdialog.h`` i
     QLineEdit *_edit;
     QPushButton *_ok, *_cancel;
   public:
-    TextDialog(QString titol, QWidget *parent = 0);
+    TextDialog(QString titol, QWidget *parent);
     QString text() const;
   };
 
 La declaració és simple, el nostre quadre té 3 atributs: una caixeta
-d'edició i dos botons, tots ells punters. El constructor rep 2
-paràmetres, un *string* (el text del títol) i el ``QWidget``
-pare. Totes els elements en Qt tenen un punter a la finestra pare
-(que les conté), tot i que aquest pot ser 0 (no apunta enlloc). Com
-que la classe ``QDialog`` rep aquest punter com a paràmetre del
-constructor, nosaltres l'hem de posar al nostre constructor, també.
+d'edició (que servirà per posar el nom) i dos botons (el d'acceptar i
+el de cancel·lar), tots ells punters. El constructor rep 2 paràmetres,
+un *string* (el text del títol) i el ``QWidget`` pare. Totes els
+elements en Qt tenen un punter a la finestra pare (que és la finestra
+"responsable"), tot i que aquest pot ser 0 (que vol dir que no apunta
+enlloc, o sigui que no té pare). Com que la classe ``QDialog`` rep
+aquest punter com a paràmetre del constructor, nosaltres l'hem de
+posar al nostre constructor, també.
 
-La implementació de la classe comença amb els ``#include``s::
+La implementació de la classe comença amb els ``#include``\s::
 
   #include <QDialog>
   #include <QLineEdit>
@@ -334,9 +349,9 @@ el constructor::
 
 Abans de començar, es fa servir una llista d'inicialització per cridar
 el constructor de la classe ``QDialog`` amb el paràmetre ``parent``
-(per indicar de qui és "fill" el quadre de diàleg). La primera
-instrucció invoca un mètode de la classe ``QDialog``, que permet
-canviar el títol, i posa el títol passat com a paràmetre.
+que hem comentat abans. La primera instrucció invoca un mètode de la
+classe ``QDialog``, que permet canviar el títol, i posa el títol
+passat com a paràmetre.
 
 Les tres següents línies reserven memòria i inicialitzen els 3
 atributs, i les següents 5 línies creen un ``QGridLayout`` (un
@@ -345,12 +360,158 @@ caselles. Les crides indiquen el número de casella començant
 per 0. L'objecte ``_edit`` és especial: es col·loca a la casella (0, 0) però en
 comptes d'ocupar només una casella n'ocupa 1 en vertical i 2 en
 horitzontal, per això la crida té 4 números. La crida a ``setLayout``
-assigna el distribuidor al quadre de diàleg.
+assigna el distribuidor al quadre de diàleg que estem construint.
 
 La implementació del mètode ``text`` és senzilla, només s'ha de
-retornar el valor que conté l'objecte ``_edit``. Si mirem 
+retornar el valor que conté la caixeta d'edició ``_edit``. Si mirem la classe
+``QLineEdit``, aquesta té un membre ``text`` que permet obtenir el
+text que hi ha a la caixeta d'edició. Aquest és precisament el text
+que hem de retornar::
+
+  QString TextDialog::text() const {
+    return _edit->text();
+  }
+
+Si intentem compilar el programa, però, no funcionarà. L'error apareix
+en el programa principal, com a resultat d'haver-hi posat
+l'``#include`` del nostre quadre ``TextDialog``. Com que el fitxer
+``textdialog.h`` fa servir ``QLineEdit`` però la declaració d'aquesta
+classe no està disponible quan compilem ``main.cpp``, el compilador
+diu que no sap què és ``QLineEdit``. Per arreglar-ho hem de posar,
+*abans* de ``textdialog.h`` els tres ``#include``\s següents::
+  
+  #include <QDialog>
+  #include <QLineEdit>
+  #include <QPushButton>
+
+Repetició en els includes: les macros ``#ifndef`` i ``#endif``
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Tal com està ara, el programa compila correctament\ [1]_. Ara bé: està clar
+que aquesta solució està lluny de ser la millor perquè ara, quan fem
+``#include "textdialog.h"``, hem d'acompanyar-lo posant 3
+``#include``\s just abans. Aquesta tipus de repetició és precisament
+el que volem evitar quan fem programes, perquè dóna lloc a errors que
+ens prenen temps i ens desconcentren. Per arreglar el problema farem
+el següent:
+
+- Posarem els 3 includes en el fitxer ``textdialog.h``. Es tracta de
+  esborrar els 3 includes tant de ``main.cpp`` com de ``textdialog.cpp``
+  i posar-los abans de la declaració de la classe a
+  ``textdialog.h``. Bàsicament estem posant ``#include``\s dins d'un
+  fitxer de capçalera, cosa que no hem fet mai.
+
+- Encerclarem tot el contingut del fitxer ``textdialog.h`` entre dos
+  macros ``#ifndef`` i ``#endif``. En concret, hem de posar, just al
+  principi i al final, el següent::
+
+    #ifndef TEXTDIALOG_H
+    #define TEXTDIALOG_H
+
+    // Cos del fitxer
+
+    #endif
+
+  La macro ``#define`` el que fa és "definir" un nou símbol
+  ``TEXTDIALOG_H``, de forma que a partir d'aquell moment
+  existeixi. Les macros ``#ifndef``\-``#endif`` encerclen un tros de
+  codi que s'ha de compilar només quan el símbol ``TEXTDIALOG_H``
+  **no** està definit (observa la ``n`` de ``ifndef``). Aquesta
+  tècnica el que fa és evitar que el contingut d'un fitxer de
+  capçalera (amb extensió ``.h``) pugui aparèixer 2 o més cops en un
+  programa. El símbol s'escull perquè tingui un nom molt semblant al
+  nom del fitxer a on apareix i sigui únic dins del programa.
+
+Amb aquesta modificació, el programa compilarà igualment i en canvi,
+quan fem servir ``textdialog.h`` en qualsevol altre lloc, no caldrà
+posar cap ``#include`` més. És recomanable posar aquestes macros a
+tots els fitxers de capçalera a partir d'ara.
+
+Conectem els botons: senyals i *slots*
+""""""""""""""""""""""""""""""""""""""
+
+Bé, el programa compila, però no fa el que ha de fer. Quan prems
+"D'acord" o "Cancel·la" no reacciona. Només pots tancar la finestra
+del quadre i això no fa aparèixer el missatge d'autoestima.
+
+La qüestió és que hem de dir a algun lloc que quan es prem el botó
+"D'acord" s'ha d'acceptar el nom i quan es prem "Cancel·la" s'ha de
+rebutjar. 
+
+Senyals i Slots
+'''''''''''''''
+
+En Qt, per comunicar "events" com el click en un botó es fa servir un
+mecanisme molt general de senyals. La idea és que els objectes de Qt
+poden ser tenir:
+
+- *signals*, que vol dir que són emissors d'events, i/o
+- *slots*, que vol dir que són receptors d'events.
+
+Per poder treure profit d'aquest sistema, però, hem de fer una primera
+modificació l'objecte ``TextDialog``, que és l'única classe que hem
+creat nosaltres. La modificació consisteix en posar, *a la part privada de la
+declaració*, el codi següent::
+
+   Q_OBJECT
+
+Va sense punt i coma i sense res més. És difícil descriure què
+significa perquè no és cap declaració de variables, ni un atribut, ni
+un mètode. És com una "marca" que indica al compilador que
+``TextDialog`` és un objecte Qt i per tant és potencialment un emissor
+o receptor d'events. Com que ``TextDialog`` deriva de ``QDialog``
+heredarà 2 senyals: ``accept`` i ``reject``. A la declaració de
+``TextDialog``, per tant, no hem de declarar senyals ni slots, perquè
+``QDialog`` ja els té\ [2]_.
+
+Connexió entre emissors i receptors
+'''''''''''''''''''''''''''''''''''
+
+Així doncs, fent servir aquest sistema d'events, volem fer que quan el
+botó "D'acord" es premi, el quadre ``TextDialog`` accepti el nom i
+quan es premi "Cancel·la", es rebutgi. Per ser objectes de Qt, els
+botons tenen un senyal molt lògic que és ``clicked``, que ens avisa
+d'un click. Hem de fer, doncs, les següents dues connexions:
+
+  ============ ========= =============== ========    
+  Emissor      *Signal*  Receptor        *Slot*
+  ============ ========= =============== ========
+  ``_ok``      clicked   ``TextDialog``  accept
+  ``_cancel``  clicked   ``TextDialog``  reject
+  ============ ========= =============== ========
+
+La funció que realitza la connexió és ``connect`` i rep 4 paràmetres,
+just en el mateix ordre en què surten a la taula anterior::
+
+   connect(<punter a l'emissor>, <senyal>, 
+           <punter al receptor>, <slot>);
+
+La forma d'indicar un senyal és encerclant la crida amb ``SIGNAL(...)`` i
+per als *slots* el mateix amb ``SLOT(...)``. La connexió l'hem de fer quan
+construïm el ``TextDialog``, per tant, al final de tot del constructor
+hem de posar les següents 2 línies::
+
+  connect(_ok, SIGNAL(clicked()), ???, SLOT(accept()));
+  connect(_cancel, SIGNAL(clicked()), ???, SLOT(reject()));
+
+El problema que sorgeix ara és: com obtenim un punter al
+``TextDialog``?? Donat que el quadre ``TextDialog`` és el receptor i
+``connect`` ens demana un punter, hauriem de posar com a tercer
+paràmetre (a on hi ha ``???``) una expressió que doni com a resultat
+l'objecte que estem construint.
+
+Aquesta expressió és especial de C++ i és: ``this``. El valor ``this``
+sempre està disponible en mètodes i és un punter a l'objecte sobre el
+que s'ha cridat el mètode. En el nostre cas, doncs, haurem de posar
+``this`` substituint els tres interrogants.
+
+Un cop fetes les connexions, el programa funciona correctament. Comprova-ho.
+
 
 .. |-->| unicode:: U+2192
 
-   
+.. [1] Malgrat dóna un error que diu una cosa com: "No relevant
+       classes found, no output generated".
 
+.. [2] És interessant mirar la documentació de ``QDialog`` per veure
+       quins senyals i slots té.

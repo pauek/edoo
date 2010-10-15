@@ -1,15 +1,10 @@
 
-// <incl>
-#include <QDialog>
-#include <QLineEdit>
-#include <QPushButton>
 #include <QGridLayout>
 #include "textdialog.h"
-// </incl>
 
 TextDialog::TextDialog(QString titol, QWidget *parent) :
     QDialog(parent)
-{
+{  
   setWindowTitle(titol);
 
   _edit = new QLineEdit;
