@@ -31,10 +31,10 @@ Guions de pràctiques
    :maxdepth: 1
    :glob:
 
-   SessionsLaboratori/sessio1
-   SessionsLaboratori/sessio2
-   SessionsLaboratori/sessio3	
-   SessionsLaboratori/Herencia
+   Laboratori/sessio1
+   Laboratori/sessio2
+   Laboratori/sessio3	
+   Laboratori/Qt_invert_i_textdialog
 
 Solucions a exercicis i problemes
 =================================

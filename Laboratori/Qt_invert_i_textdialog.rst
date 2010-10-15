@@ -12,8 +12,11 @@ Qt: inversió d'imatges i ``TextDialog``
 - Implementar una classe que derivi d'una classe de Qt.
 
 
+Inversió d'imatges
+==================
+
 Inversió d'imatges super-fàcil
-==============================
+------------------------------
 
 En aquesta sessió de pràctiques, farem un programa molt senzill amb Qt
 que inverteix una imatge, és a dir, inverteix el color de cada píxel
@@ -90,7 +93,7 @@ i la guarden amb un altre nom. Aquest programa treu partit la classe
    ``test.jpg``. Guarda-la amb el nom ``tros.jpg``.
 
 Escollir el fitxer amb un quadre de diàleg
-==========================================
+------------------------------------------
 
 Pel fet que el programa és senzill, cada cop que volguem aplicar-lo a
 una imatge nova, hem de posar el nom  ``test.jpg`` a la imatge o
@@ -105,7 +108,7 @@ Per fer això amb Qt haurem de fer dues modificacions:
 - La segona és l'ús del quadre de diàleg de fitxers en sí.
 
 Primera modificació: afegir un ``QApplication``
------------------------------------------------
+"""""""""""""""""""""""""""""""""""""""""""""""
 
 Anem per la primera. Cal afegir el següent:
 
@@ -125,7 +128,7 @@ Anem per la primera. Cal afegir el següent:
   posat al ``main``.
 
 Segona modificació: fer servir ``QFileDialog``
-----------------------------------------------
+""""""""""""""""""""""""""""""""""""""""""""""
 
 Un quadre de diàleg per a fitxers ens permet escollir un fitxer, i té
 la següent pinta:
@@ -188,7 +191,7 @@ Per posar el quadre s'han de seguir els passos següents:
   fet això, podem cridar el mètode ``QImage::save`` com abans.
 
 Invertir múltiples imatges
-==========================
+--------------------------
 
 Ja posats, podem fer que el programa inverteixi vàries imatges, no
 només una. En un quadre de diàleg de fitxers, en general, per
@@ -204,7 +207,7 @@ Per modificar el programa, haurem de:
   invertir-la, tal com fem ara amb una de sola.
 
 Seleccionar vàries imatges a un ``QFileDialog``
------------------------------------------------
+"""""""""""""""""""""""""""""""""""""""""""""""
 
 Això és senzill, només hem de "configurar" el ``QFileDialog`` abans de
 cridar-lo amb ``exec``. Just després de ser creat, al principi del
@@ -218,7 +221,7 @@ opció per múltiples fitxers és el número 3,
 ``QFileDialog::ExistingFiles``.
 
 Fer una iteració amb les imatges
---------------------------------
+""""""""""""""""""""""""""""""""
 
 Un cop el quadre de diàleg ha retornat, en comptes d'invertir una
 imatge, la idea és fer una iteració com::
@@ -235,8 +238,8 @@ tamany de la llista. Aquest mètode és ``QStringList::size``. Modifica
 doncs el programa i compila'l. Comprova que pots invertir almenys 2
 imatges.
 
-Un quadre de diàleg personalitzat
-=================================
+``TextDialog``: un quadre de diàleg personalitzat
+=================================================
 
 En aquesta secció farem un programa que ens demana el nom i ens
 saluda, fent servir un quadre de diàleg fet per nosaltres. El programa
@@ -296,8 +299,8 @@ d'alguna cosa que ha succeït. En el nostre cas se li posa un títol
 mostra amb ``exec``, que és la forma estàndar de mostrar els quadres
 de diàleg.
 
-El nostre quadre ``TextDialog``
--------------------------------
+La classe ``TextDialog``
+------------------------
 
 Per començar crearem dos fitxers de codi font nous: ``textdialog.h`` i
 ``textdialog.cpp``. La declaració de la classe serà (situada al fitxer
