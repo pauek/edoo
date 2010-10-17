@@ -56,7 +56,7 @@ En el fitxer main posarem el següent codi::
 
    #include <QImage>
    
-   int main() {
+   void main(int argc, char *argv[]) {
      QImage I("test.jpg");
      I.invertPixels();
      I.save("test_i.jpg");
