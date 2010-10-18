@@ -536,10 +536,6 @@ una finestra com la següent:
    que realment canvia.
 
 
-Per fer servir llibreries
--------------------------
-
-
 .. [1] Recordem que un ``struct`` és com una classe amb tots els
        membres ``public``.
 
