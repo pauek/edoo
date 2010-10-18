@@ -46,6 +46,7 @@ Solucions a exercicis i problemes
    Solucions/SOL_02_Classes
    Solucions/SOL_03_Punters_i_Memoria_Dinamica
    Solucions/SOL_04_Herencia
+   Solucions/SOL_05_Polimorfisme
    Solucions/SOL_07_STL_Vectors_i_Llistes
    Solucions/SOL_08_Piles_Cues_i_Maps
    Solucions/SOL_09_Algorismes
