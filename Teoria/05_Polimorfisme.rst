@@ -246,6 +246,15 @@ Llistes heterogènies
 Una classe abstracta té algun mètode ``virtual`` sense implementació
 --------------------------------------------------------------------
 
+.. exercici:: 
+   
+   Indica quin és el problema a la classe següent::
+
+     class A {
+     public:
+       void metode() = 0;
+     }
+
 .. basta con poner "= 0" en la declaración para decir que no tiene implementación.
 
 .. Refinamos la técnica para incluir el caso que la clase base no
