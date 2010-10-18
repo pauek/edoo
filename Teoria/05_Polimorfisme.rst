@@ -11,10 +11,9 @@ Polimorfisme
 
 - Implementar llistes heterogènies.
 
-El punter ``this``
-==================
-
-.. Un buen ejemplo donde necesitas esto? Que no sea Qt?
+.. El punter ``this``
+.. ==================
+.. .. Un buen ejemplo donde necesitas esto? Que no sea Qt?
 
 Punters a objectes de classes derivades
 =======================================
