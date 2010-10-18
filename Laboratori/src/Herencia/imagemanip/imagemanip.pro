@@ -2,8 +2,8 @@
 SOURCES += \
     main.cpp \
     finestra.cpp \
-    textdialog.cpp
+    transformacio.cpp
 
 HEADERS += \
     finestra.h \
-    textdialog.h
+    transformacio.h

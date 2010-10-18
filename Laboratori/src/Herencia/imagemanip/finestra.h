@@ -2,16 +2,18 @@
 #define FINESTRA_H
 
 #include <QWidget>
-#include <QVBoxLayout>
+#include <QGridLayout>
 #include <QListWidget>
 #include <QPushButton>
+#include <QComboBox>
 
 class Finestra : public QWidget
 {
   Q_OBJECT
 
-  QPushButton *_boto_afegir, *_boto_operar, *_boto_esborrar;
+  QComboBox   *_seleccio;
   QListWidget *_llista;
+  QPushButton *_afegir, *_operar, *_esborrar;
 
 public:
     explicit Finestra(QWidget *parent = 0);

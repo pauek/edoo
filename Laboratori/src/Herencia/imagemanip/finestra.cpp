@@ -1,36 +1,49 @@
+
 #include "finestra.h"
-#include "textdialog.h"
+#include "transformacio.h"
 #include <QMessageBox>
 #include <QFileDialog>
 
 Finestra::Finestra(QWidget *parent) :
     QWidget(parent)
 {
-  QVBoxLayout *vbox = new QVBoxLayout;
-  _llista = new QListWidget;
-  _boto_afegir   = new QPushButton("Afegeix...");
-  _boto_esborrar = new QPushButton("Esborra");
-  _boto_operar   = new QPushButton("Executa");
+  // Inicialitzem els elements de la finestra
+  _llista   = new QListWidget;
+  _seleccio = new QComboBox;
+  _afegir   = new QPushButton("Afegeix...");
+  _esborrar = new QPushButton("Esborra");
+  _operar   = new QPushButton("Executa");
 
-  vbox->addWidget(_llista);
-  vbox->addWidget(_boto_afegir);
-  vbox->addWidget(_boto_esborrar);
-  vbox->addWidget(_boto_operar);
+  // Omplim la selecció
+  _seleccio->addItem("inverteix");
+  _seleccio->addItem("gira 90");
+  _seleccio->addItem("escala 100x100");
 
-  _llista->addItem("inverteix");
-  _llista->addItem("gira 90");
-
-  connect(_boto_operar, SIGNAL(clicked()), this, SLOT(opera()));
-  connect(_boto_afegir, SIGNAL(clicked()), this, SLOT(afegir()));
-  connect(_boto_esborrar, SIGNAL(clicked()), this, SLOT(esborrar()));
-
+  // Creem un distribuidor
+  QGridLayout *vbox = new QGridLayout;
+  vbox->addWidget(_seleccio, 0, 0);
+  vbox->addWidget(_llista, 1, 0, 4, 1);
+  vbox->addWidget(_afegir, 0, 1);
+  vbox->addWidget(_esborrar, 1, 1);
+  vbox->addWidget(_operar, 4, 1);
   setLayout(vbox);
+
+  // Connectem events
+  connect(_operar, SIGNAL(clicked()), this, SLOT(opera()));
+  connect(_afegir, SIGNAL(clicked()), this, SLOT(afegir()));
+  connect(_esborrar, SIGNAL(clicked()), this, SLOT(esborrar()));
 }
 
 void Finestra::afegir() {
-  TextDialog D;
-  if (D.exec()) {
-    _llista->addItem(D.text());
+  int index = _seleccio->currentIndex();
+  Transformacio *t = 0;
+  switch (index) {
+  case 0: t = new Inversio; break;
+  case 1: t = new Girat;    break;
+  case 2: t = new Escalat;  break;
+  }
+  if (t != 0) {
+    _llista->addItem(t);
   }
 }
 
@@ -42,6 +55,7 @@ void Finestra::esborrar() {
 void Finestra::opera()
 {
   QFileDialog F(this);
+  F.setFileMode(QFileDialog::ExistingFiles);
   if (!F.exec()) return;
 
   QStringList fitxers = F.selectedFiles();
@@ -53,20 +67,8 @@ void Finestra::opera()
 void Finestra::manipula_un_sol_fitxer(QString nomfitxer) {
   QImage I(nomfitxer);
   for (int i = 0; i < _llista->count(); i++) {
-    QListWidgetItem *item = _llista->item(i);
-    QString comanda = item->text();
-
-    if (comanda == "inverteix") {
-      I.invertPixels();
-    }
-    else if (comanda == "escala") {
-      I = I.scaled(100, 100);
-    }
-    else if (comanda == "gira 90") {
-      QMatrix m;
-      m.rotate(90.0f);
-      I = I.transformed(m);
-    }
+    Transformacio *item = dynamic_cast<Transformacio *>(_llista->item(i));
+    I = item->executa(I);
   }
   nomfitxer.replace(".", "_m.");
   I.save(nomfitxer);
