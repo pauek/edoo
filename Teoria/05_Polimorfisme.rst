@@ -111,6 +111,36 @@ inversa. La regla general és que una assignació de punters com::
      E *v = t;
      B *w = y;
 
+``dynamic_cast`` converteix punters a classes derivades
+-------------------------------------------------------
+
+Malgrat normalment no es pot assegurar que un punter a una classe base
+es pugui transformar a un punter d'una classe derivada, C++ introdueix
+un operador que intenta fer la transformació i si no és vàlida,
+retorna el punter 0 (que no apunta enlloc). L'operador és ``dynamic_cast``::
+  
+  X *p;
+  Y *q = dynamic_cast<Y *>(p);
+
+i s'aplica com si fos una funció sobre punters de tipus que s'indica a
+dins dels angles (important observar la presència de l'asterisc
+``*``).
+
+L'exemple, en el cas dels ``Instruments``, seria::
+
+  Instrument *i = new Guitarra;
+  Guitarra *g = dynamic_cast<Guitarra *>(i);
+
+A dins dels angles ("``<``" i "``>``") hi va la classe derivada a la
+que volem transformar el punter, en aquest cas ``Guitarra``. Com que en
+aquest cas la transformació és vàlida, el punter ``g`` serà diferent
+de 0. En el cas següent, però::
+
+  Instrument *i = new Flauta;
+  Guitarra *g = dynamic_cast<Guitarra *>(i);
+
+el punter ``g`` valdrà 0 perquè clarament ``i`` apunta a una
+``Flauta`` que no es pot transformar en una ``Guitarra``.
 
 Detecció de tipus en temps d'execució
 -------------------------------------
