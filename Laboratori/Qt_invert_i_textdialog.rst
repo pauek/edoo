@@ -64,15 +64,26 @@ En el fitxer main posarem el següent codi::
 
 Ara compila el projecte amb ``Ctrl+B`` o amb *Build* |-->| *Build
 Project ``inverteix_imatge``*. Si executes el projecte (amb
-``Ctrl+R``) el programa no farà res, perquè no hi ha cap imatge
-``test.jpg``. Per poder veure el resultat del programa has d'anar a un
-directori que hi haurà al costat del directori del projecte amb un
-sufix ``-build-desktop`` (si has seguit els passos fins aquí serà
-``inverteix_imatge-build-desktop``) i a dins veuràs que hi ha un
-executable anomenat ``inverteix_imatge``. Copia una imatge de prova
-amb el nom ``test.jpg`` en aquest directori i executa el programa fent
-doble clic. Veuràs que apareixerà una nova imatge invertida amb el nom
-``test_i.jpg``.
+``Ctrl+R``) probablement el programa no farà res, perquè no hi ha cap
+imatge ``test.jpg``. Per poder veure el resultat del programa has
+d'anar a un directori que hi ha al costat del directori del projecte
+amb un sufix ``-build-desktop`` (si has seguit els passos fins aquí
+serà ``inverteix_imatge-build-desktop``) i a dins veuràs que hi ha un
+executable anomenat ``inverteix_imatge`` (pot ser que el trobis a dins
+d'un altre directori que es diu ``debug``). Copia una imatge de prova
+amb el nom ``test.jpg`` en el directori
+``inverteix_imagte-build-desktop`` i executa el programa desde Qt
+Creator (amb ``Ctrl+R`` o amb el botó de la fletxa verda tipus
+"play"). Qt Creator, quan executes el programa, treu una finestra a la
+part de baix de tot amb el títol "Application Output" a on surt una
+cosa semblant a\ [1]_::
+
+  Starting [nom llarg de fitxer exe]...
+  [nom llarg de fitxer exe] exited with code 0
+
+Això indica que el
+programa s'ha executat. Llavors veuràs que ha aparegut la imatge
+invertida amb el nom ``test_i.jpg`` al costat de ``test.jpg``.
 
 .. image:: img/qt_exec_inverteix_imatge.png
    :align: center
@@ -392,7 +403,7 @@ diu que no sap què és ``QLineEdit``. Per arreglar-ho hem de posar,
 Repetició en els includes: les macros ``#ifndef`` i ``#endif``
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Tal com està ara, el programa compila correctament\ [1]_. Ara bé: està clar
+Tal com està ara, el programa compila correctament\ [2]_. Ara bé: està clar
 que aquesta solució està lluny de ser la millor perquè ara, quan fem
 ``#include "textdialog.h"``, hem d'acompanyar-lo posant 3
 ``#include``\s just abans. Aquesta tipus de repetició és precisament
@@ -467,7 +478,7 @@ atribut, ni un mètode. És com una "marca" que indica al compilador que
 o receptor d'events. Com que ``TextDialog`` deriva de ``QDialog``
 heredarà 2 senyals: ``accept`` i ``reject``. A la declaració de
 ``TextDialog``, per tant, no hem de declarar *signals* ni *slots*, perquè
-``QDialog`` ja els té\ [2]_.
+``QDialog`` ja els té\ [3]_.
 
 Connexió entre emissors i receptors
 '''''''''''''''''''''''''''''''''''
@@ -502,8 +513,8 @@ final de tot del constructor hem de posar les següents 2 línies::
 El problema que sorgeix ara és: com obtenim un punter al
 ``TextDialog``?? Donat que el quadre ``TextDialog`` és el receptor i
 ``connect`` ens demana un punter, hauriem de posar com a tercer
-paràmetre (a on hi ha ``???``) una expressió que doni com a resultat
-l'objecte que estem construint.
+paràmetre (a on hi ha els tres interrogants "``???``") una expressió
+que doni com a resultat l'objecte que estem construint.
 
 Aquesta expressió és especial de C++ i és: ``this``. El valor ``this``
 sempre està disponible en mètodes i és un punter a l'objecte sobre el
@@ -516,8 +527,11 @@ correctament. Comprova-ho.
 
 .. |-->| unicode:: U+2192
 
-.. [1] Malgrat dóna un error que diu una cosa com: "No relevant
+.. [1] He posat ``[nom larg de fitxer exe]`` perquè per a cadascú serà
+       diferent en funció del directori a on hagi posat el projecte.
+
+.. [2] Malgrat dóna un error que diu una cosa com: "No relevant
        classes found, no output generated".
 
-.. [2] És interessant mirar la documentació de ``QDialog`` per veure
+.. [3] És interessant mirar la documentació de ``QDialog`` per veure
        quins *signals* i *slots* té.
