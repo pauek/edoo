@@ -8,6 +8,8 @@ class Transformacio : public QListWidgetItem {
 public:
   Transformacio(QString nom);
   virtual QImage executa(QImage& imatge) const = 0;
+  bool es_configurable();
+  virtual void configura();
 };
 
 class Inversio : public Transformacio {
@@ -17,15 +19,20 @@ public:
 };
 
 class Escalat : public Transformacio {
+  double _escala;
+  void actualitzaText();
 public:
   Escalat();
   QImage executa(QImage& imatge) const;
+  void configura();
 };
 
 class Girat : public Transformacio {
+  double _angle;
 public:
   Girat();
   QImage executa(QImage& imatge) const;
+  void configura();
 };
 
 #endif // TRANSFORMACIO_H

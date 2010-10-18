@@ -3,6 +3,7 @@
 #include "transformacio.h"
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QModelIndex>
 
 Finestra::Finestra(QWidget *parent) :
     QWidget(parent)
@@ -32,6 +33,8 @@ Finestra::Finestra(QWidget *parent) :
   connect(_operar, SIGNAL(clicked()), this, SLOT(opera()));
   connect(_afegir, SIGNAL(clicked()), this, SLOT(afegir()));
   connect(_esborrar, SIGNAL(clicked()), this, SLOT(esborrar()));
+  connect(_llista, SIGNAL(itemDoubleClicked(QListWidgetItem*)),
+          this, SLOT(dobleclic(QListWidgetItem*)));
 }
 
 void Finestra::afegir() {
@@ -43,6 +46,7 @@ void Finestra::afegir() {
   case 2: t = new Escalat;  break;
   }
   if (t != 0) {
+    t->configura();
     _llista->addItem(t);
   }
 }
@@ -62,6 +66,11 @@ void Finestra::opera()
   for (int i = 0; i < fitxers.size(); i++) {
     manipula_un_sol_fitxer(fitxers.at(i));
   }
+}
+
+void Finestra::dobleclic(QListWidgetItem *item) {
+  Transformacio *t = dynamic_cast<Transformacio *>(item);
+  t->configura();
 }
 
 void Finestra::manipula_un_sol_fitxer(QString nomfitxer) {

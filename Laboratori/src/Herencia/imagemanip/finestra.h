@@ -25,6 +25,7 @@ public slots:
     void opera();
     void afegir();
     void esborrar();
+    void dobleclic(QListWidgetItem *item);
 
 private:
     void manipula_un_sol_fitxer(QString nomfitxer);

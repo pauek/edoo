@@ -2,8 +2,9 @@
 
 Transformacio::Transformacio(QString nom)
   : QListWidgetItem(nom)
-{
-}
+{}
+
+void Transformacio::configura() {}
 
 QImage Inversio::executa(QImage &I) const {
   I.invertPixels();
@@ -12,7 +13,7 @@ QImage Inversio::executa(QImage &I) const {
 
 QImage Escalat::executa(QImage &I) const {
   QSize sz = I.size();
-  sz *= .5;
+  sz *= _escala;
   return I.scaled(sz);
 }
 
@@ -23,5 +24,25 @@ QImage Girat::executa(QImage &I) const {
 }
 
 Inversio::Inversio() : Transformacio("Inversio") {}
-Escalat::Escalat() : Transformacio("Escalat") {}
+
+Escalat::Escalat() : Transformacio("Escalat") {
+  _escala = .5;
+  actualitzaText();
+}
+
+void Escalat::actualitzaText() {
+  QString t("Escalat %1");
+  setText(t.arg(_escala));
+}
+
+void Escalat::configura() {
+  actualitzaText();
+
+}
+
 Girat::Girat() : Transformacio("Girat") {}
+
+void Girat::configura() {
+  QString t("Girat (%1)");
+  setText(t.arg(_angle));
+}
