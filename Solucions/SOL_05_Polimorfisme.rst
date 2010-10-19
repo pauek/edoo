@@ -31,3 +31,57 @@ Polimorfisme
    La sortida del programa és::
    
      $$##$${x}{y}{z}
+
+.. exercici::
+   
+   El programa sencer (que pots :download:`descarregar <../src/Polimorfisme/teoria_llistes_heterogenies.cc>`) és:
+
+   .. literalinclude:: ../src/Polimorfisme/teoria_llistes_heterogenies.cc
+
+.. exercici::
+
+   Primer hem de declarar i implementar la classe ``Cercle``
+   ::
+
+      class Cercle {
+        float x, y, radi;
+      public:
+        Cercle(istream& i);
+	bool a_dins(const Punt& p) const;
+      };
+      
+      Cercle::Cercle(istream& i) {
+        i >> x >> y >> radi;
+      }
+
+      Cercle::a_dins(const Punt& p) const {
+        float dx = p.x - x;
+	float dy = p.y - y;
+	return sqrt(dx*dx + dy*dy) < radi;
+      }
+
+   Després hem de modificar ``llegeix_figures`` per tenir en compte
+   els cercles::
+
+      if (tipus == "rectangle") {
+        ...   
+      }
+      else if (tipus == "cercle") {  // +
+        nova = new Cercle(Ff);       // +
+      }                              // +
+      else {
+        ...
+      }
+
+   Les línies noves estan marcades amb "``// +``".
+     
+.. exercici::
+
+   [Triangle]
+
+.. exercici::
+
+   El problema és que s'ha fet servir el sufix "``= 0``" en un mètode
+   que no és ``virtual`` i això no té sentit.
+
+
