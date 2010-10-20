@@ -80,6 +80,22 @@ Polimorfisme
    [Triangle]
 
 .. exercici::
+   .. esborrar la implementació de `a_dins'
+
+   En Linux, la compilació retorna els següents errors::
+
+     /tmp/cco9EMxp.o: In function `Figura::Figura()':
+     teoria_llistes_heterogenies.cc:(.text._ZN6FiguraC2Ev[Figura::Figura()]+0xf): undefined reference to `vtable for Figura'
+     /tmp/cco9EMxp.o:(.rodata._ZTI9Rectangle[typeinfo for Rectangle]+0x10): undefined reference to `typeinfo for Figura'
+     collect2: ld returned 1 exit status
+
+.. exercici::
+
+   Només cal afegir (un cop esborrada la implementació del mètode
+   ``Figura::a_dins``) un "``= 0``" al final de la declaració i el
+   programa compila correctament.
+
+.. exercici::
 
    El problema és que s'ha fet servir el sufix "``= 0``" en un mètode
    que no és ``virtual`` i això no té sentit.

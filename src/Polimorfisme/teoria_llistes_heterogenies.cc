@@ -12,9 +12,9 @@ public:
   virtual bool a_dins(const Punt& p) const;
 };
 
-bool Figura::a_dins(const Punt& p) const {
-  return false;
-}
+// bool Figura::a_dins(const Punt& p) const {
+//   return false;
+// }
 //-figura
 
 //+taula
