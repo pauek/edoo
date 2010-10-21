@@ -35,6 +35,7 @@ Guions de pràctiques
    Laboratori/sessio2
    Laboratori/sessio3	
    Laboratori/Qt_invert_i_textdialog
+   Laboratori/Qt_image_manip
 
 Solucions a exercicis i problemes
 =================================
