@@ -115,9 +115,12 @@ Elements de la finestra
 
 Ara cal afegir els elements de la finestra. Necessitem els següents:
 
-- ``_seleccio``: un ``QComboBox``, nom divertit que tenen les llistes desplegables.
+- ``_seleccio``: un ``QComboBox``, nom divertit que tenen les llistes
+  desplegables.
+
 - ``_llista``: un ``QListWidget``, la llista a on aniran les
   manipulacions.
+
 - ``_afegeix``, ``_esborra``, ``_executa``: tres botons
   ``QPushButton``.
 
@@ -126,15 +129,15 @@ Tots ells seran punters i s'han de posar com a atributs de la classe
 
   #include <QtGui/QWidget>
 
-S'hauran de posar els ``#include``\s corresponents per a cada classe
+S'han de posar els ``#include``\s corresponents per a cada classe
 que es fa servir. 
 
-Ara compila el programa. Casi no hem fet res, però cada cop que facis
+Posa'ls i compila el programa. Casi no hem fet res, però cada cop que facis
 una modificació, encara que sigui petita, compila el programa, a veure
 si surten errors. Si en surten, serà perquè la última cosa que has
-escrit està malament, i com que has posat poca cosa, de seguida podràs
+escrit està malament, i com que has escrit poca cosa, de seguida podràs
 veure què falla. D'aquesta manera pots tenir el programa sempre
-funcionant.
+funcionant i net d'errors.
 
 Hem d'anar al constructor i inicialitzar els elements:
 
@@ -349,8 +352,186 @@ Compila'l i comprova-ho.
 Part 2: aplicació del polimorfisme
 ==================================
 
+La part del programa que ara ens aniria bé ampliar és, clarament, les
+operacions que volem realitzar sobre les imatges. La idea del programa
+està implementada ja, que és escollir unes operacions i aplicar-les
+sobre un grup de fitxers. Seria interessant poder afegir operacions
+com: tallar un tros de la imatge, escalar la imatge, passar-la a blanc
+i negre, etc. [1]_
+
+La idea és, doncs, que tenim un conjunt d'operacions similars que
+operen sobre un objecte ``QImage`` i disposem d'una llista d'aquestes
+operacions: clarament una llista heterogènia.
+
+La classe ``Transformacio``
+---------------------------
+
+La primera fase dels canvis que introduirem és fer una classe base per
+a totes les operacions, que anomenarem ``Transformacio``, que sona
+prou general. El punt del codi a on hem d'introduir els canvis més
+importants és el mètode ``Finestra::executa_un``, i el bloc en concret
+que haurem de canviar és::
+
+  for (int i = 0; i < _llista.count(); i++) {
+    QString operacio = _llista->item(i)->text();
+    if (operacio == "inverteix") { 
+      ...
+    } else if (...) {
+      ...
+    }
+  }
+ 
+Aquest ``for`` s'hauria de poder transformar en una cosa com::
+
+  for (int i = 0; i < _llista.count(); i++) {
+    Transformacio *t = _llista->item(i);  // aproximadament
+    t->executa(I);
+  }
+
+El ``if`` amb totes les alternatives es queda en la crida a
+``executa``, simplement. I a part, l'objecte que hem d'obtenir de la
+llista és un punter a una transformació.
+
+El problema és que un ``QWidgetList`` conté punters del tipus
+``QWidgetListItem``, per tant, com ho podem fer?
+
+La resposta és que la nostra classe ``Transformacio`` serà una
+derivada de ``QWidgetListItem``, així podrem posar
+``Transformacio``\ns a dins de la ``_llista``.
+
+Amb aquests dos requisits, la declaració de la classe ``Transformacio`` serà la següent::
+
+  class Transformacio : public QListWidgetItem {
+  public:
+    virtual void executa(QImage& I) const = 0;
+  };
+
+L'hem fet abstracta perquè una ``Transformacio``, de per sí, no es pot
+implementar, fins que no creem alguna classe derivada més
+concreta. També hem posat ``const`` al final perquè l'objecte
+``Transformacio`` no es modifica (costa veure-ho amb el nom que té,
+no?), el que es modifica és la imatge que rep en el mètode ``executa``
+(que *no* porta ``const``). 
+
+Així doncs, afegirem una classe al projecte, clicant amb el botó dret al projecte:
+
+.. image:: img/qt_project_add_new.png
+   :scale: 80
+   :align: center
+
+I escollint *C++ Class* 
+
+.. image:: img/qt_project_add_new_class.png
+   :scale: 80
+   :align: center
+
+En el següent quadre cal indicar el nom de la classe ``Transformacio``
+i la base, ``QListWidgetItem``. A la part *Type Information*, posarem
+*None*. Això crearà dos fitxers i els afegirà al projecte:
+``transformacio.h`` i ``transformacio.cpp``. Tot seguit cal editar-los
+i afegir el que ens interessi. Per començar esborrarem el constructor
+de ``Transformacio`` perquè no el necessitarem. Després cal afegir la
+declaració del mètode ``executa``. Per tal que funcioni bé, cal afegir
+l'include de ``QImage`` a dalt del fitxer ``transformacio.h``. Un cop
+fet això és un bon moment per compilar i comprovar que els canvis no
+introdueixen errors nous.
+
+Per tenir algun tipus de ``Transformacio`` farem també la classe
+``Inversio``, però aquest cop no afegirem més fitxers, farem servir
+els dos que ja tenim. Per tant, posarem la declaració a
+``transformacio.h``:
+
+.. literalinclude:: src/qt_editor_grups_imatges/imagemanip-2/transformacio.h
+   :start-after: //+1
+   :end-before:  //-1
+
+i la implementació del mètode ``Inversio::executa`` a
+``transformacio.cpp`` (que ara estava buit):
+
+.. literalinclude:: src/qt_editor_grups_imatges/imagemanip-2/transformacio.cpp
+   :start-after: //+1
+   :end-before:  //-1
+
+Fins aquí fàcil. Finalment afegirem la classe ``Rotacio``, tal com hem
+fet amb ``Inversio``:
+
+.. literalinclude:: src/qt_editor_grups_imatges/imagemanip-2/transformacio.h
+   :start-after: //+2
+   :end-before:  //-2
+
+.. literalinclude:: src/qt_editor_grups_imatges/imagemanip-2/transformacio.cpp
+   :start-after: //+2
+   :end-before:  //-2
+
+Ara és quan podem canviar el mètode ``executa_un`` i també
+``afegeix``, ja que quan afegim ítems a la ``_llista``, han de ser
+``Transformacio``\ns, no pas ``QString``\s com són ara. El mètode
+``executa_un`` quedarà així:
+
+.. literalinclude:: src/qt_editor_grups_imatges/imagemanip-2/finestra.cpp
+   :linenos:
+   :start-after: //+1
+   :end-before:  //-1
+
+És molt destacable la línia 4, a on es fa servir ``dynamic_cast`` per
+passar el punter d'un ``QListWidgetItem`` a una
+``Transformacio``. Malgrat esperem que la conversió funcioni sempre,
+ja que sempre afegirem ``Transformacio``\ns a la llista, comprovem el
+punter a la línia 5. Si fos 0 i intentéssim accedir-hi, el programa
+s'acabarà abruptament amb el famós error "Este programa ha realizado
+una operacion no válida y se cerrará...". No està malament prendre
+precaucions.
+
+I el mètode ``afegeix`` quedarà així:
+
+.. literalinclude:: src/qt_editor_grups_imatges/imagemanip-2/finestra.cpp
+   :linenos:
+   :start-after: //+2
+   :end-before:  //-2
+
+Primer es mira quina opció està seleccionada a la llista (línia
+2). Després crea l'objecte ``Transformacio`` que correspon amb la
+selecció i es deixa a la variable ``nova`` (línies 4 a 8). A la línia
+9 es posa el text del nou ítem (ja que una ``Transformacio`` és un
+``QListWidgetItem``), que abans ens estalviavem. Finalment s'afegeix
+``nova`` amb el mètode ``QListWidget::addItem``\ [2]_ (línia 10). 
+
+Compila el programa i prova'l. Una prova interessant és posar dues
+``Rotacio``\ns i mirar com les fotos han girat 180 graus.
+
+.. exercici::
+
+   Implementa les ``Transformacio``\ns "Mirall horitzontal" i "Mirall
+   vertical" fent servir el mètode ``QImage::mirrored``. Integra-les al
+   programa i comprova que funcionen.
+
+Transformacions configurables
+-----------------------------
+
+Arribats aquí potser podriem començar a implementar altres
+transformacions interessants. Però potser podem acabar de polir la
+classe ``Transformacio`` per tal que pugui acomodar el màxim de
+transformacions possibles.
+
+Un problema que tenim ara és que hi ha transformacions que són
+paramètriques, és a dir, que depenen d'un valor. El cas de la rotació
+és força clar: malgrat podem posar vàries transformacions de 90 graus
+per rotar diferents angles, seria ideal que poguéssim configurar
+l'angle en particular que volem girar la foto. D'aquesta manera
+podriem rotar 3 graus o 45 graus, i no sempre múltiples de 90. Hi ha
+altres exemples de transformacions paramètriques, tals com ``Escalat``
+(redueix el tamany per un factor), ``Tallat`` (talla un tros de la
+imatge a certes coordenades), etc.
 
 
 
 .. |-->| unicode:: U+2192
 
+.. [1] Seria interessant mirar quines coses es poden fer amb un
+       objecte ``QImage``, mirant els mètodes documentats a Qt, ja 
+       que d'aquí sortiràn les operacions possibles, és a dir, que 
+       siguin gairebé immediats d'implementar.
+
+.. [2] Aquest ``addItem`` és diferent del d'abans perquè rep un punter 
+       a un ``QListWidgetItem``, que és correcte perquè és una classe 
+       base de ``Transformacio``.
