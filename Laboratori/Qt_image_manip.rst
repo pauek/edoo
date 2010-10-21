@@ -523,7 +523,156 @@ altres exemples de transformacions paramètriques, tals com ``Escalat``
 (redueix el tamany per un factor), ``Tallat`` (talla un tros de la
 imatge a certes coordenades), etc.
 
+La forma en què el programa gestiona això és la següent:
 
+- Quan afegeixes una transformació, si és configurable, s'invoca la
+  configuració (un quadre de diàleg, bàsicament).
+
+- Quan doble-cliques una transformació, també s'invoca la configuració. 
+
+- El text de la transformació s'ha de canviar per indicar quin valor
+  tenen els paràmetres configurables, així la configuració serà
+  visible. Això ho podem fer amb ``setText``, com hem fet abans.
+
+En resum, necessitem un mètode ``Transformacio::configura`` que també
+serà ``virtual`` (perquè cada ``Transformacio`` tindrà el seu). Aquest
+mètode retornarà ``bool``, i retornarà el mateix valor que el quadre
+de diàleg que s'invoqui, així podrem evitar afegir una transformació i
+l'usuari prem "Cancel·la", per exemple. Per simplificar, les
+transformacions que no tinguin configuració tindran un mètode que
+retornarà ``true`` simplement.
+
+La modificació principal és posar la declaració::
+
+  virtual bool configura();
+
+a la classe ``Transformacio``. Aquest mètode és virtual però no
+abstracte. La implementació per defecte serà::
+
+  bool Transformacio::configura() {
+    return true;
+  }
+
+Aquesta implementació és la que volem que tinguin totes les classes no
+configurables, així que si la posem a la classe base, totes les
+classes l'heredaran (excepte si redefineixen el mètode, es clar).
+
+Ara modificarem els dos moments a on necessitem cridar el
+configurador. El primer és el mètode (i *slot*) ``afegeix``. Just
+després de crear l'objecte ``Transformacio`` i posar-li el text amb
+``setText``, cridarem ``configura``. Si es retorna ``true``,
+l'afegirem, si no destruirem l'objecte::
+
+  if (nova->configura()) {
+    _llista->addItem(nova);
+  } else {
+    delete nova;
+  }
+
+Resposta al doble-clic
+""""""""""""""""""""""
+
+Per respondre al doble clic també ho farem amb *signals* i *slots*, es
+clar. Però aquest cop, el senyal emès per la llista és diferent,
+perquè té un paràmetre. Quan doble-cliques a la llista, el senyal que
+s'emet és ``itemDoubleClicked``, i ha de dir també quin element s'ha
+clicat, i això es fa posant un paràmetre al senyal. El nostre *slot*
+haurà de tenir el mateix paràmetre perquè l'ha de rebre per saber quin
+element s'ha clicat.  Com que els elements de la ``_llista`` són
+punters a ``QListWidgetItem``, el paràmetre que rebrem serà
+precisament aquest.
+
+Hem de declarar doncs, un *slot* a la classe ``Finestra``::
+
+  public slots:
+    // altres slots
+    void doble_clic(QListWidgetItem* item);
+
+I després implementar-lo::
+
+  void Finestra::doble_clic(QListWidgetItem* item) {
+    Transformacio *t = dynamic_cast<Transformacio *>(item);
+    t->configura();
+  }
+
+Aquí tornem a trobar ``dynamic_cast`` per passar de
+``QListWidgetItem*`` a ``Transformacio*``. Finalment, el connectarem,
+tal com hem fet abans::
+
+  connect(_llista, SIGNAL(itemDoubleClicked(QListWidgetItem*)),
+          this, SLOT(doble_clic(QListWidgetItem*)));
+
+Un cop arribats aquí cal compilar per veure que el programa funciona
+com ho feia abans, tot i que ara està preparat per
+``Transformacio``\ns configurables. Si feu doble-clic a un element,
+realment s'executa la funció ``doble_clic`` però donat que el mètode
+``configura`` de totes les classes derivades només retorna ``true``, no es
+notarà res.
+
+Fem la ``Rotacio`` configurable
+"""""""""""""""""""""""""""""""
+
+Ja està tot preparat, doncs, i només falta treure profit del que hem
+deixat a punt.  Anem, doncs, a canviar la implementació de ``Rotacio``
+perquè tingui un angle:
+
+- Afegim un atribut ``_angle`` de tipus ``double`` a la classe.
+
+- Afegim un constructor a ``Rotacio`` i en el constructor posem l'``_angle`` a 0.
+
+- Modifiquem ``Rotacio::executa`` per fer servir l'``_angle`` i no el valor fix 90.
+
+- Afegim la declaració del mètode ``Rotacio::configura``.
+
+Abans d'implementar el mètode ``Rotacio::configura``, farem una cosa
+interessant. Cal *copiar* els fitxers :download:`textdialog.h
+<src/qt_textdialog/textdialog.h>` i :download:`textdialog.cpp
+<src/qt_textdialog/textdialog.cpp>` del projecte "TextDialog" de la
+pràctica anterior a la carpeta del projecte, i després afegir els
+fitxers al projecte fent clic amb el botó dret i seleccionant la opcio
+*Add Existing Files...*
+
+.. image:: img/qt_project_add_existing.png
+   :align: center
+   :scale: 80
+
+Llavors, al fitxer ``transformacio.cpp`` afegim l'``#include`` del
+fitxer ``textdialog.h`` i ja tenim disponible el quadre de diàleg que
+teniem fet. L'utilitzarem ara. La implementació de ``Rotacio::configura`` és:
+
+.. literalinclude:: src/qt_editor_grups_imatges/imagemanip-3/transformacio.cpp
+   :linenos:
+   :start-after: //+1
+   :end-before:  //-1
+
+Aquí es veu clarament perquè necessitavem que el constructor de
+``TextDialog`` rebés el títol com a paràmetre (línia 1). Ara, podem
+posar un títol que estigui d'acord amb el que volem obtenir, en aquest
+cas "Posa un angle". Quan el quadre de diàleg retorna ``true`` (o
+sigui l'usuari prem "D'acord"), primer es recupera l'angle en dues
+crides encadenades (línia 3). El mètode ``TextDialog::text`` recupera
+el text de la caixeta del quadre (retorna un ``QString``) i tot seguit
+el mètode ``QString::toDouble`` converteix el text en un real. Igual
+que abans, ens estalviem una variable intermitja. 
+
+Les línies 4 i 5 posen el text "Rotacio (23 graus)" si l'angle
+és 23. Per fer-ho fan servir una propietat dels ``QString``\s que és
+que es poden fer plantilles. Primer es crea un ``QString`` amb el text
+``"Rotacio (%1 graus)"`` a on ``"%1"`` indica un "forat" a omplir i el
+mètode ``QString::arg`` l'omple amb el valor de l'``_angle``,
+retornant un ``QString`` nou. Aquesta substitució és la que es passa a
+``setText``, que posa el text de l'ítem de la ``_llista``. Tot seguit
+es retorna ``true``. I si l'usuari cancel·la la configuració, es
+retorna ``false``.
+
+Compila, doncs, el programa i comprova que pots configurar l'angle de
+la ``Rotacio``. Prova una rotació de 45 graus, per exemple.
+
+.. exercici::
+   
+   Afegeix una nova ``Transformacio`` que es digui ``Escalat``. Fent
+   servir el mètode ``QImage::scaled``, aquest mètode ha d'escalar la
+   imatge per un factor (menor que 1).
 
 .. |-->| unicode:: U+2192
 
