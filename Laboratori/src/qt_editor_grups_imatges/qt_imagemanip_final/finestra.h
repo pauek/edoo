@@ -13,7 +13,7 @@ class Finestra : public QWidget
 
   QComboBox   *_seleccio;
   QListWidget *_llista;
-  QPushButton *_afegir, *_operar, *_esborrar;
+  QPushButton *_afegeix, *_executa, *_esborra;
 
 public:
     explicit Finestra(QWidget *parent = 0);
