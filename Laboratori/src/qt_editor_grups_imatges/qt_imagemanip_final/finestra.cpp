@@ -1,53 +1,56 @@
 
-#include "finestra.h"
-#include "transformacio.h"
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QModelIndex>
+#include "finestra.h"
+#include "transformacio.h"
 
 Finestra::Finestra(QWidget *parent) :
     QWidget(parent)
 {
+  setWindowTitle("Manipulador de Grups d'Imatges");
+
   // Inicialitzem els elements de la finestra
   _llista   = new QListWidget;
   _seleccio = new QComboBox;
-  _afegir   = new QPushButton("Afegeix...");
-  _esborrar = new QPushButton("Esborra");
-  _operar   = new QPushButton("Executa");
+  _afegeix   = new QPushButton("Afegeix...");
+  _esborra = new QPushButton("Esborra");
+  _executa   = new QPushButton("Executa");
 
   // Omplim la selecció
-  _seleccio->addItem("inverteix");
-  _seleccio->addItem("gira 90");
-  _seleccio->addItem("escala 100x100");
+  _seleccio->addItem("invertir");
+  _seleccio->addItem("girar");
+  _seleccio->addItem("escalar");
 
   // Creem un distribuidor
   QGridLayout *vbox = new QGridLayout;
   vbox->addWidget(_seleccio, 0, 0);
   vbox->addWidget(_llista, 1, 0, 4, 1);
-  vbox->addWidget(_afegir, 0, 1);
-  vbox->addWidget(_esborrar, 1, 1);
-  vbox->addWidget(_operar, 4, 1);
+  vbox->addWidget(_afegeix, 0, 1);
+  vbox->addWidget(_esborra, 1, 1);
+  vbox->addWidget(_executa, 4, 1);
   setLayout(vbox);
 
   // Connectem events
-  connect(_operar, SIGNAL(clicked()), this, SLOT(opera()));
-  connect(_afegir, SIGNAL(clicked()), this, SLOT(afegir()));
-  connect(_esborrar, SIGNAL(clicked()), this, SLOT(esborrar()));
+  connect(_afegeix, SIGNAL(clicked()), this, SLOT(afegir()));
+  connect(_esborra, SIGNAL(clicked()), this, SLOT(esborrar()));
+  connect(_executa, SIGNAL(clicked()), this, SLOT(opera()));
   connect(_llista, SIGNAL(itemDoubleClicked(QListWidgetItem*)),
           this, SLOT(dobleclic(QListWidgetItem*)));
 }
 
 void Finestra::afegir() {
-  int index = _seleccio->currentIndex();
+  QString text = _seleccio->currentText();
   Transformacio *t = 0;
-  switch (index) {
-  case 0: t = new Inversio; break;
-  case 1: t = new Girat;    break;
-  case 2: t = new Escalat;  break;
+  if (text == "invertir") {
+    t = new Invertir;
+  } else if (text == "girar") {
+    t = new Girar;
+  } else if (text == "escalar") {
+    t = new Escalar;
   }
   if (t != 0) {
-    t->configura();
-    _llista->addItem(t);
+    if (t->configura()) _llista->addItem(t);
   }
 }
 

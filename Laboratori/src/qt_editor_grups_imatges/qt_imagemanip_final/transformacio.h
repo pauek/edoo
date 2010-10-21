@@ -6,33 +6,32 @@
 
 class Transformacio : public QListWidgetItem {
 public:
-  Transformacio(QString nom);
+  Transformacio();
   virtual QImage executa(QImage& imatge) const = 0;
-  bool es_configurable();
-  virtual void configura();
+  virtual bool configura() = 0;
 };
 
-class Inversio : public Transformacio {
+class Invertir : public Transformacio {
 public:
-  Inversio();
+  Invertir();
   QImage executa(QImage& image) const;
+  bool configura();
 };
 
-class Escalat : public Transformacio {
+class Escalar : public Transformacio {
   double _escala;
-  void actualitzaText();
 public:
-  Escalat();
+  Escalar();
   QImage executa(QImage& imatge) const;
-  void configura();
+  bool configura();
 };
 
-class Girat : public Transformacio {
+class Girar : public Transformacio {
   double _angle;
 public:
-  Girat();
+  Girar();
   QImage executa(QImage& imatge) const;
-  void configura();
+  bool configura();
 };
 
 #endif // TRANSFORMACIO_H
