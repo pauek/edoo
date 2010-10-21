@@ -20,14 +20,17 @@ Finestra::Finestra(QWidget *parent)
   L->addWidget(_executa, 4, 1);
   setLayout(L);
 
-  _seleccio->addItem("Inverteix");
-  _seleccio->addItem("Gira");
+  _seleccio->addItem("Inversio");
+  _seleccio->addItem("Rotacio");
   _seleccio->addItem("Mirall Horitzontal");
   _seleccio->addItem("Mirall Vertical");
+  _seleccio->addItem("Escalat");
 
   connect(_afegeix, SIGNAL(clicked()), this, SLOT(afegeix()));
   connect(_esborra, SIGNAL(clicked()), this, SLOT(esborra()));
   connect(_executa, SIGNAL(clicked()), this, SLOT(executa()));
+  connect(_llista, SIGNAL(itemDoubleClicked(QListWidgetItem*)),
+          this, SLOT(doble_clic(QListWidgetItem*)));
 }
 
 Finestra::~Finestra()
@@ -37,17 +40,21 @@ Finestra::~Finestra()
 void Finestra::afegeix() {
   QString sel = _seleccio->currentText();
   Transformacio *nova;
-  if (sel == "Inverteix") {
+  if (sel == "Inversio") {
     nova = new Inversio;
-  } else if (sel == "Gira") {
+  } else if (sel == "Rotacio") {
     nova = new Rotacio;
   } else if (sel == "Mirall Horitzontal") {
     nova = new MirallH;
   } else if (sel == "Mirall Vertical") {
     nova = new MirallV;
+  } else if (sel == "Escalat") {
+    nova = new Escalat;
   }
   nova->setText(sel);
-  _llista->addItem(nova);
+  if (nova->configura()) {
+    _llista->addItem(nova);
+  }
 }
 //-2
 
@@ -64,6 +71,11 @@ void Finestra::executa() {
       _executa_un(fitxers.at(j));
     }
   }
+}
+
+void Finestra::doble_clic(QListWidgetItem *item) {
+  Transformacio *t = dynamic_cast<Transformacio *>(item);
+  t->configura();
 }
 
 void Finestra::_executa_un(QString nomfitxer) {

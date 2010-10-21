@@ -23,6 +23,7 @@ public slots:
   void afegeix();
   void esborra();
   void executa();
+  void doble_clic(QListWidgetItem *item);
 };
 
 #endif // FINESTRA_H

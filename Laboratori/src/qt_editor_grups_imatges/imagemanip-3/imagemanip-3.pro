@@ -12,7 +12,9 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         finestra.cpp \
-    transformacio.cpp
+    transformacio.cpp \
+    textdialog.cpp
 
 HEADERS  += finestra.h \
-    transformacio.h
+    transformacio.h \
+    textdialog.h

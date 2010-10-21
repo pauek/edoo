@@ -7,6 +7,7 @@
 class Transformacio : public QListWidgetItem {
 public:
   virtual void executa(QImage& I) const = 0;
+  virtual bool configura();
 };
 
 //+1
@@ -18,8 +19,11 @@ public:
 
 //+2
 class Rotacio : public Transformacio {
+  double _angle;
 public:
+  Rotacio();
   void executa(QImage& I) const;
+  bool configura();
 };
 //-2
 
@@ -33,6 +37,12 @@ public:
   void executa(QImage& I) const;
 };
 
+class Escalat : public Transformacio {
+  double _escala;
+public:
+  void executa(QImage& I) const;
+  bool configura();
+};
 
 
 #endif // TRANSFORMACIO_H
