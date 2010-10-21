@@ -6,4 +6,5 @@ videoclub.db
 *.pdf
 *~
 *-build-desktop
+build-*
 EDOO_Doc_HTML.zip
