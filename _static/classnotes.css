@@ -13,29 +13,44 @@ div.document {
   margin: auto;
 }
 
-div.exercici {
+/* Boxed */
+
+div.boxed {
   padding: 0;
   margin-bottom: 1em;
-  border: 1px solid #aa4444;
+  border: 1px solid #444444;
   font-size: 85%;
 }
 
-div.exercici p.first {
+div.boxed p.first {
   margin: 0;
   font-weight: bold;
   color: #ffffff;
   padding: 2px 2px 2px 5px;
-  background: #aa4444;
+  background: #444444;
 }
 
-div.exercici div.body {
+div.boxed div.body {
   padding: 10px;
   line-height: 130%;
 }
 
-div.exercici div.body p {
+div.boxed div.body p {
   margin: 4px 0;
 }
+
+/* Exercici */
+
+div.exercici   { border: 1px solid #884444; }
+div.exercici p.first { background: #884444; }
+
+/* Exemple */
+
+div.exemple   { border: 1px solid #448844; }
+div.exemple p.first { background: #448844; }
+
+
+/* ---- */
 
 .highlight {
   font-size: 100%;
@@ -51,7 +66,7 @@ div.problema div.body {
   padding-bottom: 0;
 }
 
-div.problema p.problema-title {
+div.problema p.problema.title {
   font-weight: bold;
   font-size: 110%;
   margin-bottom: 5px;

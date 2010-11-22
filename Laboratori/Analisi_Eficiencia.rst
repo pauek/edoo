@@ -10,6 +10,7 @@ Objectius
 
 - Analitzar l'eficiència d'algorismes.
 
+.. tema:: Lab.ef
 
 Anàlisi empíric d'algorismes
 ============================

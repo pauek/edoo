@@ -142,10 +142,48 @@ minúscules::
      minusc[k] = char(97 + k);
    }
 
+.. exemple::
+   
+   Fes una acció que rep un vector d'enters i els mostra per pantalla.
+
+   ----------------
+
+   Per fer aquest exercici cal recórrer amb un ``for`` el vector com
+   una taula i per saber el tamany del vector podem fer servir el
+   mètode ``size``::
+
+     void mostra_vector(const vector<int>& v) {
+       for (int i = 0; i < v.size(); i++) {
+         cout << v[i] << ' ';
+       }
+     }
+
+   Per evitar treure un espai al final, podem fer el següent::
+
+     void mostra_vector(const vector<int>& v) {
+       cout << v[0]
+       for (int i = 1; i < v.size(); i++) {
+         cout << ' ' << v[i];
+       }
+     }
+
+   El problema és que si el vector és buit, llavors el programa no
+   funcionarà correctament. Per arreglar-ho::
+
+     void mostra_vector(const vector<int>& v) {
+       if (!v.empty()) {
+         cout << v[0];
+       }
+       for (int i = 1; i < v.size(); i++) {
+         cout << ' ' << v[i];
+       }
+     }
+
 .. exercici::
    
-   Declara un vector de 500 enters i omple'l, per ordre, amb els
-   nombres 500, 499, 498, 497, ..., 2 i 1.
+   Fes una acció que ompli un vector d'enters de la següent manera: si
+   el tamany del vector és *N*, l'ha d'omplir amb N, N-1, N-2,
+   etc. fins a l'1.
 
 Mètodes consultors
 ------------------

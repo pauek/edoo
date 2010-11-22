@@ -7,10 +7,16 @@ from docutils.parsers.rst import directives
 
 class activitat(nodes.General, nodes.Element):
     tema = None
+    numbering = True
 
 class exercici(activitat):
     name = "Exercici"
-    css_class = "exercici"
+    css_class = "boxed exercici"
+
+class exemple(activitat):
+    name = "Exemple"
+    css_class = "boxed exemple"
+    numbering = False
     
 class problema(activitat):
     name = "Problema"
@@ -27,25 +33,42 @@ def activitat_visitor(klass):
         def _a(s):
             self.body.append(s)
         _a('<div class="%s">' % klass.css_class)
-        _a('<p class="first %s-title">%s %s</p>' % 
-           (klass.css_class, klass.name, node['id']))
+        _id = (' ' + node['id']) if klass.numbering else ''
+        _a('<p class="first %s title">%s%s</p>' % 
+           (klass.css_class, klass.name, _id))
         _a('<div class="body">')
     return _visitor
 
 def depart_activitat_html(self, node):
     self.body.append('</div></div>')
 
+## Exercici & Exemple
+
+def visit_activity_latex(klass):
+    def _visitor(self, node):
+        def _a(s):
+            self.body.append(s)
+        _a('\\par\\vspace{3.0mm}\\hrule')
+        _a('\\makebox[-3mm][l]{}\\makebox[3mm][l]{$\\triangleright$}')
+        _id = (' ' + node['id']) if klass.numbering else ''
+        _a('\\begin{small}\\textbf{%s%s}\\quad' % (klass.name, _id))
+    return _visitor
+
+def depart_activity_latex(self, node):
+    self.body.append('\\end{small}\\par\\vspace{2mm}\\hrule\\vspace{1.0mm}')
+
+
 # exercici
 visit_exercici_html = activitat_visitor(exercici)
 depart_exercici_html = depart_activitat_html
+visit_exercici_latex = visit_activity_latex(exercici)
+depart_exercici_latex = depart_activity_latex
 
-def visit_exercici_latex(self, node):
-    self.body.append('\\par\\vspace{3.0mm}\\hrule')
-    self.body.append('\\makebox[-3mm][l]{}\\makebox[3mm][l]{$\\triangleright$}')
-    self.body.append('\\begin{small}\\textbf{Exercici %s}\\quad' % node['id'])
-
-def depart_exercici_latex(self, node):
-    self.body.append('\\end{small}\\par\\vspace{2mm}\\hrule\\vspace{1.0mm}')
+# exemple
+visit_exemple_html = activitat_visitor(exemple)
+depart_exemple_html = depart_activitat_html
+visit_exemple_latex = visit_activity_latex(exemple)
+depart_exemple_latex = depart_activity_latex
 
 # problema
 visit_problema_html = activitat_visitor(problema)
@@ -90,6 +113,9 @@ class ProblemaDirective(Activity):
 class ExerciciDirective(Activity):
     activity_class = exercici
 
+class ExempleDirective(Activity):
+    activity_class = exemple
+
 class SolucioDirective(Activity):
     has_content = True
     required_arguments = 0
@@ -97,7 +123,10 @@ class SolucioDirective(Activity):
     option_spec = {}
     
     def run(self):
-        return [] # TODO: implement
+        self.assert_has_content()
+        S = solucio()
+        self.state.nexted_parse(self.content, self.content_offset, S)
+        return [S]
 
 # Transforms
 
@@ -117,18 +146,25 @@ def number_activities(app, doctree):
     _number(exercici)
     _number(problema)
 
+def collect_solutions(app, doctree):
+    
+
 # Setup
 
 def setup(app):
     app.add_node(exercici,
                  html=(visit_exercici_html, depart_exercici_html),
                  latex=(visit_exercici_latex, depart_exercici_latex))
+    app.add_node(exemple,
+                 html=(visit_exemple_html, depart_exemple_html),
+                 latex=(visit_exemple_latex, depart_exemple_latex))
     app.add_node(problema,
                  html=(visit_problema_html, depart_problema_html),
                  latex=(visit_problema_latex, depart_problema_latex))
 
     app.add_directive('problema', ProblemaDirective)
     app.add_directive('exercici', ExerciciDirective)
+    app.add_directive('exemple',  ExempleDirective)
     app.add_directive('solucio',  SolucioDirective)
     app.add_directive('tema',     TemaDirective)
 
