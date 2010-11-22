@@ -83,6 +83,13 @@ Es diu, doncs, que ``p`` apunta a ``d``. Això ens permet accedir a
    Escriu dues instruccions que facin que la variable ``q`` apunti a
    ``d`` i ``p`` apunti a ``e``.
 
+   .. solucio::
+      ::
+      
+         q = &d;
+         p = &e;
+
+
 .. exercici::
 
    Segons el codi::
@@ -94,10 +101,21 @@ Es diu, doncs, que ``p`` apunta a ``d``. Això ens permet accedir a
 
    A qui apunta ``q``?
 
+   .. solucio::
+
+      ``q`` apunta a ``r``.
+
+
 .. exercici::
 
    Donada una classe ``tImatge``, declara una imatge ``I`` i un punter
    ``p`` que apunti a la imatge ``I``.
+
+   .. solucio::
+      ::
+
+         tImatge I;
+         tImatge *p = &I;
 
 
 L'operador ``->`` permet accedir als membres de l'objecte apuntat
@@ -139,6 +157,15 @@ Per pantalla sortirà::
    - Cridar els 2 mètodes de ``A`` a través del punter.
 
    Utilitza dades inventades per satisfer els paràmetres dels mètodes.
+
+
+   .. solucio::
+      ::
+
+        A x(1);        
+        A *p = &x;
+        p->metode1(5);
+        int resultat = p->metode2();
 
 
 Gestió de la memòria
@@ -236,6 +263,20 @@ podem reservar un ``Punt3D`` en memòria dinàmica així::
 
    Fes servir una data reservada en memòria dinàmica.
 
+   .. solucio::
+      ::
+
+         int main() {
+           Data *d = new Data();
+           cout << "Data? ";
+           d->llegeix(cin);
+           d->incrementa(21);
+           cout << "Passades tres setmanes la data serà: ";
+           d->escriu(cout);
+           delete d;
+         }
+      
+
 .. _seq_int:
 
 Exemple: Mostrar una seqüència al revés sense límits
@@ -292,6 +333,10 @@ fa la iteració que mostra els enters (línies 24 a 27).
 
    Modifica el programa per fer servir la nova classe.
 
+   .. solucio::
+
+      .. literalinclude:: ../src/06_Memoria_Dinamica/seq_int_class.cc
+
 .. exercici::
 
    Considera la classe ``Contenidor`` amb la declaració i
@@ -308,6 +353,16 @@ fa la iteració que mostra els enters (línies 24 a 27).
 
    Reimplementa ara el programa fent servir la classe ``Contenidor``.
 
+   .. solucio::
+
+      El programa principal serà:
+   
+      .. literalinclude:: ../src/06_Memoria_Dinamica/seq_int_stack.cc
+         :lines: 63-
+   
+      Pots també :download:`descarregar el programa sencer<../src/06_Memoria_Dinamica/seq_int_stack.cc>`.
+
+
 .. exercici::
 
    Afegeix el mètode amb declaració::
@@ -315,6 +370,67 @@ fa la iteració que mostra els enters (línies 24 a 27).
       int num_elements() const;
 
    a la classe ``Contenidor`` i implementa'l.
+
+
+   .. solucio::
+
+      Tenim dues opcions per implementar el mètode:
+   
+      1. Quan ens demanen el número d'elements, el calculem *in situ*.
+   
+      2. Afegim un atribut ``_num_elements`` a on guardem el número
+         d'elements que tenim i retornem aquest número.
+
+      En la primera opció gastem menys memòria, y en la segona menys CPU.
+
+      Anem per la primera. A la declaració només cal afegir el mètode
+      ``num_elements``::
+
+         class Contenidor {
+           // ...
+           int num_elements() const;
+         };
+ 
+         int Contenidor::num_elements() const {
+           Element *e = _ultim;
+           int k = 0;
+           while (e != 0) {
+             k++;
+             e = e->anterior();
+           }
+           return k;
+         }
+
+      Ara la segona. Hem d'afegir el nou atribut ``_num_elements``, i
+      haurem de modificar el constructor, ``posa`` i ``treu`` perquè
+      l'alterin. Les línies afegides estan marcades amb una fletxa::
+
+         class Contenidor {
+           // ...
+         private:               // <==
+           int _num_elements;   // <==
+         };
+ 
+         Contenidor::Contenidor() {
+           _ultim = 0;
+           _num_elements = 0;   // <==
+         }
+ 
+         void Contenidor::posa(int n) {
+           Element *nou = new Element(num);
+           nou->enllasa(_ultim);
+           _ultim = nou;
+           _num_elements++;     // <==
+         }
+ 
+         void Contenidor::treu() {
+           Element *anterior = _ultim->anterior();
+           delete _ultim;
+           _ultim = anterior;
+           _num_elements--;     // <==
+         }
+ 
+         // ...   
 
  
 L'operador ``delete`` allibera la memòria que indica un punter
