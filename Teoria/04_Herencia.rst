@@ -82,6 +82,15 @@ per tant tots els camps de ``Soldat`` han d'estar a ``Tinent``.
    mètode, és un exemple totalment acadèmic.
 
 
+   .. solucio::
+      ::
+
+         class Girafa : public Animal {
+           float longitud_coll;
+         };
+
+
+
 Terminologia
 ------------
 
@@ -157,50 +166,67 @@ membres de la classe és un error::
 
    Donades les següents declaracions::
 
-     struct X {
-       char a;
-       int b;
-     };
-     
-     struct Y : public X {
-       string s;  
-     };
-   
-     struct W : public X {
-       float x;
-     };
-
-     struct V : public W {
-       bool p, q;
-     };
+      struct X {
+        char a;
+        int b;
+      };
+      
+      struct Y : public X {
+        string s;  
+      };
+    
+      struct W : public X {
+        float x;
+      };
  
-     struct Z : public Y {
-       double c, d;
-     };
+      struct V : public W {
+        bool p, q;
+      };
+  
+      struct Z : public Y {
+        double c, d;
+      };
 
    i els objectes següents::
   
-     X x;
-     Y y;
-     W w;
-     V v;
-     Z z;
+      X x;
+      Y y;
+      W w;
+      V v;
+      Z z;
 
    digues quins dels següents accessos a atributs són erronis. Indica
    també aquells en que l'error està en el tipus::
 
-     w.x = 'e';
-     y.s = "qwerty";
-     v.q = 3;
-     w.p = true;
-     v.b = 81;
-     z.d = 5.01;
-     v.x = 55.34;
-     y.x = 0.7;
-     x.a = 'A';
-     z.a = '$';
-     x.b = 1;
-     y.b = 3;
+      w.x = 'e';
+      y.s = "qwerty";
+      v.q = 3;
+      w.p = true;
+      v.b = 81;
+      z.d = 5.01;
+      v.x = 55.34;
+      y.x = 0.7;
+      x.a = 'A';
+      z.a = '$';
+      x.b = 1;
+      y.b = 3;
+
+   .. exercici::
+      ::
+
+         w.x = 'e';      // error (tipus)
+         y.s = "qwerty"; // ok
+         v.q = 3;        // error (tipus)
+         w.p = true;     // error
+         v.b = 81;       // ok
+         z.d = 5.01;     // ok
+         v.x = 55.34;    // ok
+         y.x = 0.7;      // error
+         x.a = 'A';      // ok
+         z.a = '$';      // ok
+         x.b = 1;        // ok
+         y.b = 3;        // ok
+      
 
 A la classe derivada es pot redefinir un mètode de la classe base
 -----------------------------------------------------------------
@@ -384,6 +410,22 @@ enter ``n`` i un caràcter ``c``, i ``n`` el passa al constructor de
    un constructor de ``Camera`` que rebi com a paràmetres un real pel
    pes i un enter pel número de megapíxels.
 
+   .. solucio::
+      ::
+
+         class Camera : public Gadget {
+           int _megapixels;
+         public:
+           Camera(float pes, int Mpx);
+         };
+
+         Camera::Camera(float pes, int Mpx)
+           : Gadget(pes)
+         {
+           _megapixels = Mpx;
+         }
+
+
 Objectes membre
 '''''''''''''''
 
@@ -412,26 +454,36 @@ paràmetres del constructor, com és habitual.
 
    Donada les següents declaracions::
 
-     class X {
-       //...
-     public:
-       X(int a, char b);
-     };
+      class X {
+        //...
+      public:
+        X(int a, char b);
+      };
+ 
+      class Y {
+        //...
+      public:
+        Y(string s);
+      };
+   
+      class Z : public Y {
+        X _x;
+        float _f;
+      public:
+        Y(int a, char b, string s, float f);
+      };
+  
+   implementa el constructor de la classe ``Z``.
 
-     class Y {
-       //...
-     public:
-       Y(string s);
-     };
-  
-     class Z : public Y {
-       X _x;
-       float _f;
-     public:
-       Y(int a, char b, string s, float f);
-     };
-  
-   implementa el constructor de la classe ``Y``.
+   .. solucio::
+      ::
+
+         Z::Z(int a, char b, string s, float f) 
+           : Y(s), _x(a, b)
+         {
+           _f = f;
+         }
+   
 
 
 Exemple d'utilització de l'herència
