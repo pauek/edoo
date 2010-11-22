@@ -43,8 +43,8 @@ principals:
 - **desapilar**, *pop* en angès, que treu l'element de dalt de tot (i
   deixa al descobert el següent).
 
-- **consultar** el primer, per obtenir el *top*, l'element de dalt de tot, sense
-  treure'l de la pila.
+- **consultar** el primer, per obtenir el *top*, l'element de dalt de
+  tot, sense treure'l de la pila.
 
 Aquestes operacions típiques tenen 3 mètodes especials
 
@@ -105,6 +105,13 @@ Els mètodes de la classe ``stack`` són els següents:
 	S.pop();
       }
 
+   .. solucio::
+
+      El codi mostrarà per pantalla::
+    
+        Azrael
+   
+
 .. exercici::
    
    Fes una acció ``opera`` que rebi una pila d'enters i un caracter
@@ -113,6 +120,24 @@ Els mètodes de la classe ``stack`` són els següents:
    indica el caracter, i posi el resultat a la pila. En el cas
    de la resta, si el *top* és ``a`` i el de sota ``b``, la resta ha
    de fer ``b - a`` (i semblant amb la divisió).
+
+   .. solucio::
+   
+      L'acció seria::
+
+        void opera(stack<int>& s, char op) {
+          int b = s.top(); s.pop();
+          int a = s.top(); s.pop();
+          int res;
+          switch (op) {
+            case '+': res = a + b; break;
+            case '-': res = a - b; break;
+            case '*': res = a * b; break;
+            case '/': res = a / b; break;
+          }      
+          s.push(res);
+        }
+
 
 .. exercici::
 
@@ -132,6 +157,14 @@ Els mètodes de la classe ``stack`` són els següents:
    parèntesis). Per exemple, la seqüència ``1 1 + 2 *`` seria ((1 +
    1) * 2). La notació amb forma de seqüència s'anomena postfixa o
    polaca (algunes calculadores la fan servir).
+
+   .. solucio::
+      ::
+
+        (3 * (3 + 3))
+        (3 - (4 + (5 * 1)))
+        ((1 + 2) - 3)
+        (((5 * 4) + 100) - ((2 * 3) * 10))
 
 .. exercici::
    
@@ -161,6 +194,43 @@ Els mètodes de la classe ``stack`` són els següents:
    seqüència només conté les 4 operacions amb enters). Un cop rebut
    l'últim element (el ``"."``), s'ha de mostrar el *top* de la pila
    per pantalla.
+
+   .. solucio::
+   
+      El programa sencer quedarà així::
+
+         #include <stack>
+         #include <sstream>
+         #include <iostream>
+         using namespace std;
+         
+         bool es_enter(string s, int& val) {
+           // ...
+         }
+      
+         void opera(stack<int>& s, char op) {
+           // ...
+         }
+         
+         int main() {
+           stack<int> P;
+           string s;
+           cin >> s;
+           while (s != ".") {
+             int x;
+             if (es_enter(s, x)) {
+               P.push(x);
+             }
+             else {
+               opera(P, s[0]);
+             }
+             cin >> s;
+           }
+           if (!P.empty()) {
+             cout << P.top() << endl;
+           }
+         }
+   
   
 Cues
 ====
@@ -256,6 +326,12 @@ Altre mètodes:
        Q.pop();
      }
      
+   .. solucio::
+
+      La sortida serà::
+  
+         5 4 5 6 7 11
+      
 
 Taules associatives
 ===================
@@ -315,17 +391,53 @@ servir un constructor amb dos paràmetres::
    - Una parella amb dos enters, inicializats a -1 i 13 (fent servir
      el constructor).
 
+   .. solucio::
+      ::
+
+         pair<float,bool> p;
+         pair<int,int> p2(-1, 13);
+      
+
 .. exercici::
 
    Declara un vector de 3 caselles de parelles d'un enter i un
    caràcter i omple el vector amb les parelles (``'a'``, 1), (``'b'``,
    2) i (``'c'``, 3).
 
+   .. solucio::
+      ::
+
+         vector< pair<int,char> > v(3);
+
+         v[0].first = 'a'; // una manera d'omplir cada parell
+         v[0].second = 1; 
+
+         v[1] = make_pair('b', 2); // una altra manera
+         v[2] = make_pair('c', 3);
+
+      És important recordar que va un espai entre els ``'>'`` de
+      ``vector`` i ``pair``.
+   
+
 .. exercici::
 
    Fes una funció que rebi una llista de parelles d'un ``string`` i un
    enter i esborri de la llista aquelles parelles a on l'enter sigui
    negatiu.
+
+   .. solucio::
+
+      ::
+   
+         void esborra_negatius(const list< pair<string,int> >& L) {
+           list< pair<string,int> >::iterator i = L.begin();
+           while (i != L.end()) {
+             if (i->second < 0) {
+               i = L.erase(i);
+             }
+             else i++;
+           }
+         }
 
 
 Construcció ràpida (``make_pair``)
@@ -364,6 +476,12 @@ valors i retorna un ``pair`` del tipus dels valors que hem passat::
    gols. Fent servir ``make_pair``, crida l'acció ``resultat_partit``
    amb el següent resultat: (Matalascanyas, 5), (Zurrianico, 1).
 
+   .. solucio::
+      ::
+
+         resultat_partit(make_pair("Matalascanyas", 5),
+                         make_pair("Zurrianico", 1));
+      
 
 Taules associatives
 -------------------
@@ -399,16 +517,31 @@ arbre així tingui un cost logarítmic.
    Quantes vegades haig de dividir per 2 el número 2048 per tal que
    sigui igual que 1? 
 
+   .. solucio::
+   
+      11 vegades, ja que 2048 és 2 elevat a 11.
+      
+
 .. exercici::
 
    Quantes iteracions (com a màxim) hauré de fer en una taula
    associativa (perfectament equilibrada) de 512 elements per tal de
    trobar un element?
 
+   .. solucio::
+
+      Degut a què 512 és 2 elevat a 9, doncs 9 iteracions.
+
+
 .. exercici::
 
    Quantes iteracions (com a màxim) hauré de fer en una taula
    associativa de ``n`` elements per trobar-ne un.
+
+   .. solucio::
+
+      :math:`\log_2(n)` vegades, o equivalentment, :math:`O(\log n)` vegades.
+
 
 
 La classe ``map``
@@ -492,6 +625,23 @@ major control sobre la inserció.
    posa-hi els valors: (``"pi"``, 3.14159), (``"e"``, 2.71828),
    (``"arrel2"``, 1.41421).
 
+   .. solucio::
+
+      ::
+
+        map<string,double> M;
+        M["pi"] = 3.14159;
+        M["e"] = 2.71828;
+        M["arrel2"] = 1.41421;
+
+      També es pot fer::
+
+        map<string,double> M;
+        M.insert(make_pair("pi", 3.14159));
+        M.insert(make_pair("e", 2.71828));
+        M.insert(make_pair("arrel2", 1.41421));
+      
+
 Operacions en taules associatives
 ---------------------------------
 
@@ -573,6 +723,46 @@ fa el mateix que l'exemple anterior::
    ha de comptar quantes vegades ha aparegut cada enter a la
    seqüència.
 
+   .. solucio::
+
+      Per fer aquest problema, haurem de fer servir un ``map`` que ens
+      emmagatzemi l'histograma. Les claus seran els enters que han sortit
+      a la seqüència, i els valors associats a cada clau els comptadors
+      que ens diuen quantes vegades ha sortit cada element.
+      ::
+    
+         #include <fstream>                                        
+         #include <iostream>				    
+         #include <map>					    
+         using namespace std;				    
+      						    
+         int main() {					    
+           map<int,int> H;				    
+           ifstream fin("enters.txt");			    
+           int n;					    
+      						    
+           // Llegeix les dades				    
+           fin >> n;					    
+           while (!fin.eof()) {				    
+             H[n]++;					    
+             fin >> n;					    
+           }						    
+      						    
+           // Mostra l'histograma			    
+           map<int,int>::iterator i;			    
+           for (i = H.begin(); i != H.end(); i++)	    
+             cout << i->first << ' ' << i->second << endl;   
+         }
+
+      La instrucció més important del programa és ``H[n]++`` que té, de
+      fet, una doble funció. Quan un enter surt per primera vegada, el
+      fet d'accedir a ``H[n]`` crea un ``pair`` buit amb l'enter i un
+      comptador a 0, i tot seguit s'incrementa. Quan l'enter ja existia,
+      ``H[n]`` retorna el comptador en sí i s'incrementa normalment. La
+      mateixa instrucció ens serveix per crear nous elements i per
+      incrementar els que ja teníem.
+   
+
 .. exercici::
 
    Fes un programa que llegeixi un fitxer ``"fruites.txt"`` amb una
@@ -583,6 +773,56 @@ fa el mateix que l'exemple anterior::
 
    i mostri per pantalla la suma de quantitats de cada fruita i també
    el total.
+
+   .. solucio::
+
+      Aquest exercici es resol de forma molt semblant a l'anterior. Ara
+      les fruites seran la clau i el valor que acompanya cada clau és un
+      comptador de les unitats de fruita.
+      ::
+
+        #include <fstream>
+        #include <iostream>
+        #include <map>
+        using namespace std;
+   
+        int main() {
+          map<string,int> F; // per comptar fruites
+          ifstream fin("fruites.txt");
+          string fruita;
+          int quantitat;
+     
+          // Llegim les dades
+          fin >> fruita >> quantitat;
+          while (!fin.eof()) {
+            F[fruita] += quantitat;
+            fin >> fruita >> quantitat;
+          }
+     
+          // Mostrem els resultats
+          int total = 0;
+          map<string,int>::iterator i;
+          for (i = F.begin(); i != F.end(); i++) {
+            total += i->second;
+            cout << i->first << ' ' << i->second << endl;
+          }
+          cout << "Total: " << total << endl;
+        }
+   
+      En aquest programa es compleix un cop més que la instrucció
+      ``F[fruita] += quantitat`` fa dos funcions: inicialitzar les noves
+      fruites a la quantitat que s'observa per primera vegada i sumar una
+      quantitat si ja hi són. El codi és, de fet, equivalent a::
+   
+         map<string,int>::iterator i = F.find(fruita);
+         if (i != F.end())
+           i->second += quantitat;
+         else 
+           F.insert(make_pair(fruita, quantitat));
+   
+      En aquesta versió la inserció dels elements que no existeixen es fa
+      explícitament.
+      
 
 
 Resum de mètodes de ``map``
@@ -753,6 +993,11 @@ Problemes
    puntuació), calcular la freqüència de les paraules i finalment
    mostrar les 25 més freqüents i quantes vegades apareixen.
 
+   .. solucio::
+
+      .. literalinclude:: ../src/08_Piles_Cues_i_Maps/word_frequency.cpp
+      
+
 .. problema::
 
    Es necessita un programa per organitzar la informació interna de
@@ -803,6 +1048,10 @@ Problemes
    (:download:`tel1.txt <../src/07_Vectors_i_Llistes/tel1.txt>` i
    :download:`tel2.txt <../src/07_Vectors_i_Llistes/tel2.txt>`).
 
+   .. solucio::
+
+      .. literalinclude:: ../src/08_Piles_Cues_i_Maps/telephone.cpp
+
 
 .. problema::
 
@@ -833,6 +1082,12 @@ Problemes
    Tot seguit, el programa ha de demanar el nom de dues estacions i
    calcular el número mínim d'estacions que hi ha entre una i l'altra.
    Per fer-ho, feu servir l'algorisme d'exemple sobre grafs.
+
+   .. solucio::
+
+      .. literalinclude:: ../src/08_Piles_Cues_i_Maps/metro.cpp
+
+   
 
 .. problema::
 
@@ -882,3 +1137,7 @@ Problemes
      Error de connexió 13
      Desconnectat 45
      Error de desconnexió 15
+
+   .. solucio::
+
+      .. literalinclude:: ../src/08_Piles_Cues_i_Maps/port_mapping.cpp

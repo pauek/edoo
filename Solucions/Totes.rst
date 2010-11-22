@@ -39,3 +39,9 @@ Vectors i Llistes
 -----------------
 
 .. llista_solucions:: vl
+
+
+Piles, Cues i Taules Associatives
+---------------------------------
+
+.. llista_solucions:: map
