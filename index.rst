@@ -38,6 +38,7 @@ Guions de pràctiques
    Laboratori/Qt_image_manip
    Laboratori/Analisi_Eficiencia
 
+
 Solucions
 ---------
 
@@ -45,11 +46,6 @@ Solucions
    :maxdepth: 1
 
    Solucions/Totes
-   Solucions/SOL_04_Herencia
-   Solucions/SOL_05_Polimorfisme
-   Solucions/SOL_07_STL_Vectors_i_Llistes
-   Solucions/SOL_08_Piles_Cues_i_Maps
-   Solucions/SOL_09_Algorismes
 
 
 Índex i Cerca

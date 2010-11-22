@@ -1,8 +1,8 @@
 
-Exercicis i problemes
-=====================
+Solucions a exercicis i problemes
+=================================
 
-.. contents:: Contingut
+.. contents:: Capítols
    :local:
 
 TADs
