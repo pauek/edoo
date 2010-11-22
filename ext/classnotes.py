@@ -30,7 +30,6 @@ class solucio(activitat):
     css_class = "solucio"
     def get_title(self, _id): 
         return "Solucio" if _id == "" else _id
-        
 
 class solution_list(nodes.General, nodes.Element):
     pass
@@ -104,6 +103,16 @@ def depart_problema_latex(self, node):
 
 from sphinx.util.compat import Directive, make_admonition
 
+def get_tema(env, docname = None):
+    if docname == None:
+        docname = env.docname
+    tema = docname
+    if hasattr(env, 'classnotes_tema'):
+        dic = env.classnotes_tema
+        if dic.has_key(docname):
+            tema = env.classnotes_tema[docname]
+    return tema
+
 class TemaDirective(Directive):
     has_content = False
     required_arguments = 1
@@ -113,7 +122,9 @@ class TemaDirective(Directive):
 
     def run(self):
         env = self.state.document.settings.env
-        env.classnotes_tema = self.arguments[0].lower()
+        if not hasattr(env, 'classnotes_tema'):
+            env.classnotes_tema = {}
+        env.classnotes_tema[env.docname] = self.arguments[0].lower()
         return []
 
 class Activity(Directive):
@@ -135,11 +146,6 @@ class ExerciciDirective(Activity):
 class ExempleDirective(Activity):
     activity_class = exemple
 
-def get_tema(env):
-    tema = env.docname
-    if hasattr(env, 'classnotes_tema'):
-        tema = env.classnotes_tema
-    return tema
 
 class SolucioDirective(Activity):
     has_content = True
@@ -157,8 +163,16 @@ class SolucioDirective(Activity):
         return [S]
 
 class SolutionListDirective(Directive):
+    has_content = False
+    required_arguments = 1
+    optional_arguments = 0
+    final_argument_whitespace = False
+    option_spec = {}
+
     def run(self):
-        return [solution_list('')]
+        slist = solution_list('')
+        slist['tema'] = self.arguments[0]
+        return [slist]
 
 # Transforms
 
@@ -166,7 +180,6 @@ def number_activities(app, doctree):
     # Get 'tema' from a directive found in any point in the file
     env = app.builder.env
     tema = get_tema(env)
-
 
     def _number(klass):
         n = 1
@@ -181,33 +194,50 @@ def number_activities(app, doctree):
     _number(exercici)
     _number(problema)
 
+def get_title(doctree):
+    for node in doctree.traverse(nodes.title):
+        return node[0]
+
 def collect_solutions(app, doctree):
     # Add to environment
     # (to be able to collect all solutions from all documents)
     env = app.builder.env
-    if not hasattr(env, 'classnotes_solution_list'):
-        env.classnotes_solution_list = []
+    title = get_title(doctree)
     tema = get_tema(env)
+
+    if not hasattr(env, 'classnotes_solution_dict'):
+        env.classnotes_solution_dict = {}
+    dic = env.classnotes_solution_dict
+
+    if not dic.has_key(tema):
+        dic[tema] = (title, [])
+    lst = dic[tema][1]
+
     for node in doctree.traverse(solucio):
         if type(node.parent) in [exercici, problema]:
             node.parent.remove(node)
-            node
-            env.classnotes_solution_list.append(node)
+            lst.append(node)
 
 def purge_solutions(app, env, docname):
-    if not hasattr(env, 'classnotes_solution_list'):
-        return
-    env.classnotes_solution_list = [s for s in env.classnotes_solution_list
-                                if s['docname'] != docname]
+    tema = get_tema(env, docname)
+    if hasattr(env, 'classnotes_solution_dict'):
+        dic = env.classnotes_solution_dict
+        if dic.has_key(tema):
+            del env.classnotes_solution_dict[tema]
 
-def fill_solution_list(app, doctree, fromdocname):
+def fill_solution_list(app, doctree, docname):
     env = app.builder.env
-    for node in doctree.traverse(solution_list):
-        content = []
-        if hasattr(env, 'classnotes_solution_list'):
-            for sol in env.classnotes_solution_list:
-                content.append(sol)
-        node.replace_self(content)
+    if hasattr(env, 'classnotes_solution_dict'):
+        for node in doctree.traverse(solution_list):
+            tema = node['tema']
+            newcontent = []
+            print env.classnotes_solution_dict.keys()
+            dic = env.classnotes_solution_dict
+            if dic.has_key(tema):
+                title, slist = dic[tema]
+                for s in slist:
+                    newcontent.append(s)
+            node.replace_self(newcontent)
 
 # Setup
 
@@ -232,9 +262,9 @@ def setup(app):
     app.add_directive('solucio',  SolucioDirective)
     app.add_directive('llista_solucions', SolutionListDirective)
 
-    app.connect('doctree-read', number_activities)
-    app.connect('doctree-read', collect_solutions)
     app.connect('env-purge-doc', purge_solutions)
-    app.connect('doctree-resolved', fill_solution_list)
+    app.connect('doctree-read',  number_activities)
+    app.connect('doctree-read',  collect_solutions)
+    app.connect('doctree-resolved',  fill_solution_list)
 
 

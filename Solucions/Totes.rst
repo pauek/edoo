@@ -1,8 +1,23 @@
 
+Solucions a exercicis i problemes
+=================================
 
+.. contents:: Contingut
+   :local:
 
-Solucions a tots els exercicis
-------------------------------
+TADs
+----
 
-.. llista_solucions::
+.. llista_solucions:: tad
+
+Classes
+-------
+
+.. llista_solucions:: cl
+
+STL
+---
+
+.. llista_solucions:: stl
+
 
