@@ -231,7 +231,6 @@ def fill_solution_list(app, doctree, docname):
         for node in doctree.traverse(solution_list):
             tema = node['tema']
             newcontent = []
-            print env.classnotes_solution_dict.keys()
             dic = env.classnotes_solution_dict
             if dic.has_key(tema):
                 title, slist = dic[tema]
