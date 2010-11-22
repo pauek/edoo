@@ -146,38 +146,38 @@ minúscules::
    
    Fes una acció que rep un vector d'enters i els mostra per pantalla.
 
-   ----------------
+   .. solucio::
 
-   Per fer aquest exercici cal recórrer amb un ``for`` el vector com
-   una taula i per saber el tamany del vector podem fer servir el
-   mètode ``size``::
+      Per fer aquest exercici cal recórrer amb un ``for`` el vector com
+      una taula i per saber el tamany del vector podem fer servir el
+      mètode ``size``::
 
-     void mostra_vector(const vector<int>& v) {
-       for (int i = 0; i < v.size(); i++) {
-         cout << v[i] << ' ';
-       }
-     }
+         void mostra_vector(const vector<int>& v) {
+           for (int i = 0; i < v.size(); i++) {
+             cout << v[i] << ' ';
+           }
+         }
 
-   Per evitar treure un espai al final, podem fer el següent::
+       Per evitar treure un espai al final, podem fer el següent::
 
-     void mostra_vector(const vector<int>& v) {
-       cout << v[0]
-       for (int i = 1; i < v.size(); i++) {
-         cout << ' ' << v[i];
-       }
-     }
+        void mostra_vector(const vector<int>& v) {
+           cout << v[0]
+           for (int i = 1; i < v.size(); i++) {
+             cout << ' ' << v[i];
+           }
+        }
 
-   El problema és que si el vector és buit, llavors el programa no
-   funcionarà correctament. Per arreglar-ho::
-
-     void mostra_vector(const vector<int>& v) {
-       if (!v.empty()) {
-         cout << v[0];
-       }
-       for (int i = 1; i < v.size(); i++) {
-         cout << ' ' << v[i];
-       }
-     }
+      El problema és que si el vector és buit, llavors el programa no
+      funcionarà correctament. Per arreglar-ho::
+   
+        void mostra_vector(const vector<int>& v) {
+          if (!v.empty()) {
+            cout << v[0];
+          }
+          for (int i = 1; i < v.size(); i++) {
+            cout << ' ' << v[i];
+          }
+        }
 
 .. exercici::
    
@@ -834,3 +834,9 @@ retornar vectors o passar-los per referència, etc.
    Fes un programa que llegeixi aquestes dades d'un fitxer anomenat
    ``cursa.txt`` i doni com a sortida el dorsal del guanyador de la
    cursa i la volta més ràpida que ha fet aquest atleta.
+
+
+Solucions
+---------
+
+.. llista_solucions::

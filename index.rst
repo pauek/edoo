@@ -44,6 +44,7 @@ Solucions a exercicis i problemes
 .. toctree::
    :maxdepth: 1
 
+   Solucions/Totes
    Solucions/SOL_01_TADs
    Solucions/SOL_02_Classes
    Solucions/SOL_03_Punters_i_Memoria_Dinamica
