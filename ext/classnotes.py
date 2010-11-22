@@ -6,8 +6,11 @@ from docutils import nodes
 from docutils.parsers.rst import directives
 
 class activitat(nodes.General, nodes.Element):
+    name = "Activitat"
     tema = None
     numbering = True
+    def get_title(self, _id): 
+        return self.name + ' ' + _id
 
 class exercici(activitat):
     name = "Exercici"
@@ -25,6 +28,9 @@ class problema(activitat):
 class solucio(activitat): 
     name = "Solucio"
     css_class = "solucio"
+    def get_title(self, _id): 
+        return _id
+        
 
 class solution_list(nodes.General, nodes.Element):
     pass
@@ -39,8 +45,8 @@ def activitat_visitor(klass):
         _id = ''
         if node.has_key('id') and klass.numbering:
             _id = ' ' + node['id']
-        _a('<p class="first %s title">%s%s</p>' % 
-           (klass.css_class, klass.name, _id))
+        _a('<p class="first %s title">%s</p>' % 
+           (klass.css_class, node.get_title(_id)))
         _a('<div class="body">')
     return _visitor
 
@@ -58,7 +64,7 @@ def visit_activity_latex(klass):
         _id = ''
         if node.has_key('id') and klass.numbering:
             _id = ' ' + node['id']
-        _a('\\begin{small}\\textbf{%s%s}\\quad' % (klass.name, _id))
+        _a('\\begin{small}\\textbf{%s}\\quad' % node.get_title(_id))
     return _visitor
 
 def depart_activity_latex(self, node):
@@ -146,16 +152,8 @@ class SolucioDirective(Activity):
         self.assert_has_content()
         S = solucio()
         self.state.nested_parse(self.content, self.content_offset, S)
-        # Add to environment
         env = self.state.document.settings.env
-        if not hasattr(env, 'classnotes_solution_list'):
-            env.classnotes_solution_list = []
-        tema = get_tema(env)
-        env.classnotes_solution_list.append({
-         'docname': env.docname,
-         'tema': tema,
-         'node': S,
-        })
+        S['docname'] = env.docname
         return [S]
 
 class SolutionListDirective(Directive):
@@ -169,14 +167,32 @@ def number_activities(app, doctree):
     env = app.builder.env
     tema = get_tema(env)
 
+
     def _number(klass):
         n = 1
         for node in doctree.traverse(klass):
-            node['id'] = "%s.%d" % (tema, n)
+            _id = "%s.%d" % (tema, n)
+            node['id'] = _id
+            for subnode in node:
+                if type(subnode) == solucio:
+                    subnode['id'] = klass.name + ' ' + _id
             n += 1
 
     _number(exercici)
     _number(problema)
+
+def collect_solutions(app, doctree):
+    # Add to environment
+    # (to be able to collect all solutions from all documents)
+    env = app.builder.env
+    if not hasattr(env, 'classnotes_solution_list'):
+        env.classnotes_solution_list = []
+    tema = get_tema(env)
+    for node in doctree.traverse(solucio):
+        if type(node.parent) in [exercici, problema]:
+            node.parent.remove(node)
+            node
+            env.classnotes_solution_list.append(node)
 
 def purge_solutions(app, env, docname):
     if not hasattr(env, 'classnotes_solution_list'):
@@ -185,17 +201,12 @@ def purge_solutions(app, env, docname):
                                 if s['docname'] != docname]
 
 def fill_solution_list(app, doctree, fromdocname):
-    # Remove solutions from exercises
-    for node in doctree.traverse(solucio):
-        if type(node.parent) == exercici:
-            node.parent.remove(node)
-
-    # Fill solution_list
     env = app.builder.env
     for node in doctree.traverse(solution_list):
         content = []
-        for sol in env.classnotes_solution_list:
-            content.append(sol['node'])
+        if hasattr(env, 'classnotes_solution_list'):
+            for sol in env.classnotes_solution_list:
+                content.append(sol)
         node.replace_self(content)
 
 # Setup
@@ -222,7 +233,8 @@ def setup(app):
     app.add_directive('llista_solucions', SolutionListDirective)
 
     app.connect('doctree-read', number_activities)
-    app.connect('doctree-resolved', fill_solution_list)
+    app.connect('doctree-read', collect_solutions)
     app.connect('env-purge-doc', purge_solutions)
+    app.connect('doctree-resolved', fill_solution_list)
 
 

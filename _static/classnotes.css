@@ -49,6 +49,10 @@ div.exercici p.first { background: #884444; }
 div.exemple   { border: 1px solid #448844; }
 div.exemple p.first { background: #448844; }
 
+/* Solucio */
+
+div.solucio p.title { font-weight: bold; }
+div.solucio div.body { padding: 0; }
 
 /* ---- */
 
