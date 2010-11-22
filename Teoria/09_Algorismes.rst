@@ -99,6 +99,14 @@ cert valor, podem fer servir ``fill``:
 
    Fes una acció que ompli una llista de caràcters amb espais.
 
+   .. solucio::
+      ::
+ 
+        void omple_amb_espais(list<char>& L) {
+          fill(L.begin(), L.end(), ' ');   
+        }
+      
+
 
 Si només volem omplir un cert número d'elements a partir d'un cert
 iterador, podem fer servir ``fill_n``:
@@ -118,6 +126,15 @@ iterador, podem fer servir ``fill_n``:
    Fes una acció que ompli la primera meitat d'un vector d'enters amb
    zeros (si el vector té un número senar N d'elements, s'ha d'omplir
    des de l'1 fins al (N-1)/2 inclòs).
+
+   .. solucio::
+
+      L'aclariment sobre el tamany permet aplicar la divisió entera simplement::
+
+        void omple_meitat_0(vector<int>& V) {
+          fill_n(V.begin(), V.size() / 2, 0);
+        }
+   
 
 
 Comptar elements: ``count`` i ``count_if``
@@ -148,6 +165,14 @@ Aquesta funció itera desde ``first`` fins a ``last`` (sense incloure
 
    Fes una funció que rebi un vector de caràcters i compti quantes
    ``'a'``\s hi ha.
+
+   .. solucio::
+      ::
+        
+         int comptar_a(vector<char>& V) {
+           return count(V.begin(), V.end(), 'a');
+         }
+   
 
 Si volem comptar elements d'un contenidor que tenen valors diferents
 però compleixen una condició, podem fer servir ``count_if``, que rep
@@ -208,6 +233,21 @@ un predicat:
    Fes una funció que compti quantes vocals hi ha en una llista de
    caràcters.
 
+   .. solucio::
+
+      Primer ens fem un predicat que mira si una lletra és una vocal::
+   
+        bool es_vocal(char c) {
+          return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+        }
+
+      Seguidament fem servir aquest predicat amb l'algorisme
+      ``count_if``::
+      
+        int compta_vocals(llista<char>& L) {
+          return count_if(L.begin(), L.end(), es_vocal);
+        }
+
 .. ------------------------------------
 .. Aquí falta min_element i max_element
 .. ------------------------------------
@@ -249,8 +289,24 @@ sempre podem fer un recorregut genèric amb ``for_each``:
        float x, y;
      };
 
-  Fes una acció que rebi una llista de punts i desplaçi tots els punts
-  de la llista 5 unitats en l'eix de les x.
+   Fes una acció que rebi una llista de punts i desplaçi tots els punts
+   de la llista 5 unitats en l'eix de les x.
+
+   .. solucio::
+
+      Primer ens fem una acció que rebi com a paràmetre un punt i el
+      desplaci::
+ 
+        void mou_punt(tPunt& P) {
+          P.x += 5;
+        }
+
+      Seguidament podem fer servir ``for_each`` per recórrer la llista de
+      punts::
+
+        void mou_llista_punts(list<tPunt>& LP) {
+          for_each(L.begin(), L.end(), mou_punt);
+        }
 
 
 Cerques: ``find`` i ``find_if``
@@ -289,10 +345,26 @@ taules associatives ja tenen un mètode ``find()``), podem fer servir
    Fes una funció que retorni cert si un vector de Booleans conté
    algun valor ``false``.
 
+   .. solucio::
+      ::
+
+        bool algun_false(const vector<bool>& V) {
+          return find(V.begin(), V.end(), false) != V.end();
+        }
+   
+
 .. exercici::
 
    Fes una funció que retorni ``true`` si un vector d'enters conté
    algun 0.
+
+   .. solucio::
+      ::
+    
+        bool algun_0(const vector<int>& V) {
+          return find(V.begin(), V.end(), 0) != V.end();
+        }
+
 
 
 Quan el que busquem en un contenidor no és un valor concret sinó que
@@ -332,6 +404,27 @@ utilitzar ``find_if``:
 
    Fes una funció que retorni ``true`` si en una frase (una llista de
    ``string``\s, cap paraula conté una ``'e'``.
+
+   .. solucio::
+
+      Primer fem un predicat que ens digui si una paraula conté una
+      ``'e'``::
+   
+        bool conte_e(string s) {	
+          for (int k = 0; k < s.size(); k++) {
+            if (s[k] == 'e') return true;
+          }
+          return false;
+        }
+
+      De fet aquest predicat també es pot implementar així (ja que els
+      ``string``\s es poden veure com a contenidors, és a dir, vectors de
+      caracters, i tenen ``begin()`` i ``end()``)::
+
+        bool conte_e(string s) {
+          return find(s.begin(), s.end(), 'e') != s.end();
+        }
+   
    
 
 Ordenació
@@ -379,11 +472,30 @@ ordenades per la clau), podem fer servir ``sort``:
        // ...
      };
 
-
    Defineix un operador ``<`` per comparar fruites en què es miri
    només el grau de sucre (el camp ``sucre``). Llavors defineix una
    acció que ordeni un vector de fruites.
 
+
+   .. solucio::
+
+      Primer fem l'operador per a les fruites. Hem d'afegir a la
+      declaració de la classe el següent::
+
+        bool operator<(const Fruita& f) const;
+
+      i fer la implementació a fora::
+
+        bool Fruita::operator<(const Fruita& f) const {
+          return sucre < f.sucre;
+        }
+
+      Un cop tenim això podem definir l'acció que ens ordeni les
+      fruites::
+
+        void ordena_fruites(vector<Fruita>& v) {
+          sort(v.begin(), v.end());
+        }
 
 Si volem ordenar certs valors i no està definit l'operador
 corresponent, o bé volem ordenar les mateixes dades per diferents
@@ -428,6 +540,34 @@ i llavors cridem l'acció ``sort`` així::
    llista d'elements de la classe ``Fruita`` de l'exercici anterior
    per acidesa.
 
+   .. solucio::
+   
+      Primer fem un predicat ``compara_acidesa`` que compari dues fruites
+      per acidesa (sense tocar l'``operator<``). Per poder implementar
+      aquesta funció, necessitem poder accedir al camp ``acidesa`` que és
+      privat. Tenim dues opcions: fer la funció ``compara_acidesa`` amiga
+      (``friend``) de la classe ``Fruita`` o bé crear un mètode
+      ``get_acidesa()`` que retorni l'acidesa d'una fruita. Aquí optarem
+      per la segona opció. El mètode ``get_acidesa`` el podem afegir a la
+      declaració i fer-lo *inline* (l'implementem a la declaració
+      mateix)::
+
+        double get_acidesa() const { return acidesa; }
+
+      Ara podem implementar ``compara_acidesa`` en condicions::
+
+        bool compara_acidesa(const Fruita& f1, const Fruita& f2) {
+          return f1.get_acidesa() < f2.get_acidesa();
+        }
+    
+      Un cop fet això podem implementar la ordenació per acidesa, que es
+      limita a cridar a ``sort`` de la forma correcta::
+
+        void ordena_fruites_acidesa(vector<Fruita>& v) {
+          sort(v.begin(), v.end(), compara_acidesa); 
+        }
+   
+
 Problemes
 ---------
 
@@ -436,5 +576,19 @@ Problemes
    Fent servir la STL, fes un programa que llegeixi una seqüència
    d'enters acabada en -1 i mostri per pantalla l'element més petit
    (el mínim).
+
+   .. solucio::
+    
+      En la primera versió fem servir un objecte funció, que conté el
+      mínim valor fins al moment.
+
+      .. literalinclude:: ../src/09_Algorismes/minim1.cpp
+
+      La llibrería STL també ens proporciona una funció ``min_element``,
+      que simplifica força el programa (no hauriem de fer servir
+      l'objecte funció).
+
+      .. literalinclude:: ../src/09_Algorismes/minim2.cpp
+
 
    

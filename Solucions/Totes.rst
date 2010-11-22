@@ -45,3 +45,9 @@ Piles, Cues i Taules Associatives
 ---------------------------------
 
 .. llista_solucions:: map
+
+
+Algorismes de la STL
+--------------------
+
+.. llista_solucions:: alg
