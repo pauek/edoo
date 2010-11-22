@@ -38,15 +38,13 @@ Guions de pràctiques
    Laboratori/Qt_image_manip
    Laboratori/Analisi_Eficiencia
 
-Solucions a exercicis i problemes
-=================================
+Solucions
+---------
 
 .. toctree::
    :maxdepth: 1
 
    Solucions/Totes
-   Solucions/SOL_01_TADs
-   Solucions/SOL_02_Classes
    Solucions/SOL_03_Punters_i_Memoria_Dinamica
    Solucions/SOL_04_Herencia
    Solucions/SOL_05_Polimorfisme
