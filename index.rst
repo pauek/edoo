@@ -45,7 +45,6 @@ Solucions
    :maxdepth: 1
 
    Solucions/Totes
-   Solucions/SOL_03_Punters_i_Memoria_Dinamica
    Solucions/SOL_04_Herencia
    Solucions/SOL_05_Polimorfisme
    Solucions/SOL_07_STL_Vectors_i_Llistes

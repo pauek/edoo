@@ -10,14 +10,28 @@ TADs
 
 .. llista_solucions:: tad
 
+
 Classes
 -------
 
 .. llista_solucions:: cl
 
-STL
----
 
-.. llista_solucions:: stl
+Punters i Memòria Dinàmica
+--------------------------
+
+.. llista_solucions:: pimd
+
+
+Herència
+--------
+
+.. llista_solucions:: he
+
+
+Polimorfisme
+------------
+
+.. llista_solucions:: poli
 
 

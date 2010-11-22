@@ -371,7 +371,6 @@ fa la iteració que mostra els enters (línies 24 a 27).
 
    a la classe ``Contenidor`` i implementa'l.
 
-
    .. solucio::
 
       Tenim dues opcions per implementar el mètode:

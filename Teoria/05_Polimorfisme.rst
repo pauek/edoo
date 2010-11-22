@@ -110,6 +110,28 @@ inversa. La regla general és que una assignació de punters com::
      D *u = new E;
      E *v = t;
      B *w = y;
+   
+   .. solucio::
+
+      Per fer aquest exercici ens hem de fixar an l'assignació localment
+      (no en les instruccions prèvies, a on es pot haver posat un valor
+      que finalment sí que concorda). Si un punter potencialment pot
+      tenir un objecte d'un tipus que no concorda amb el punter al que
+      assignem, estarà malament::
+
+        A *x = new B;  
+        B *y = new C;  // error
+        B *z = x;      // error (veure comentari)
+        A *t = new D;
+        C *u = new E;
+        E *v = t;      // error
+        B *w = y;
+
+      El cas ``z = x`` mereix un comentari. Malgrat en principi veiem que
+      l'assignació seria correcta (perquè ``x`` apunta a un objecte de tipus
+      ``B``), en el moment que el compilador veu una assignació d'un
+      punter d'una classe base a una derivada ho considerarà un error.
+ 
 
 ``dynamic_cast`` converteix punters a classes derivades
 -------------------------------------------------------
@@ -223,6 +245,14 @@ necessari\ [2]_.
    .. literalinclude:: ../src/Polimorfisme/exercici_virtual.cc
       :start-after: <<<
       :end-before: >>>
+
+
+   .. solucio::
+
+      La sortida del programa és::
+      
+        $$##$${x}{y}{z}
+   
 
 
 Terminologia
@@ -392,6 +422,12 @@ Per compilar el programa haurem de posar els ``#include``\s següents::
      5 5
      25 25
 
+   .. solucio::
+
+      El programa sencer (que pots :download:`descarregar <../src/Polimorfisme/teoria_llistes_heterogenies.cc>`) és:
+
+      .. literalinclude:: ../src/Polimorfisme/teoria_llistes_heterogenies.cc
+
 
 .. exercici::
 
@@ -399,9 +435,51 @@ Per compilar el programa haurem de posar els ``#include``\s següents::
    cercle has de calcular la distància al centre del cercle i mirar si
    és més petita que el radi. 
 
+   .. solucio::
+
+      Primer hem de declarar i implementar la classe ``Cercle``
+      ::
+
+         class Cercle {
+           float x, y, radi;
+         public:
+           Cercle(istream& i);
+           bool a_dins(const Punt& p) const;
+         };
+      
+         Cercle::Cercle(istream& i) {
+           i >> x >> y >> radi;
+         }
+
+         Cercle::a_dins(const Punt& p) const {
+           float dx = p.x - x;
+           float dy = p.y - y;
+           return sqrt(dx*dx + dy*dy) < radi;
+         }
+
+      Després hem de modificar ``llegeix_figures`` per tenir en compte
+      els cercles::
+
+         if (tipus == "rectangle") {
+           ...   
+         }
+         else if (tipus == "cercle") {  // +
+           nova = new Cercle(Ff);       // +
+         }                              // +
+         else {
+           ...
+         }
+
+      Les línies noves estan marcades amb "``// +``".
+
 .. exercici::
 
    Afegeix la classe ``Triangle``.
+
+   .. solucio::
+
+      [Triangle]
+
   
 
 Una classe abstracta té algun mètode ``virtual`` sense implementació
@@ -427,6 +505,16 @@ el compilador donarà un error
    Esborra la implementació del mètode ``Figura::a_dins`` i observa el
    tipus d'error que resulta.
 
+   .. solucio::
+
+      En Linux, la compilació retorna els següents errors::
+
+        /tmp/cco9EMxp.o: In function `Figura::Figura()':
+        teoria_llistes_heterogenies.cc:(.text._ZN6FiguraC2Ev[Figura::Figura()]+0xf): undefined reference to `vtable for Figura'
+        /tmp/cco9EMxp.o:(.rodata._ZTI9Rectangle[typeinfo for Rectangle]+0x10): undefined reference to `typeinfo for Figura'
+        collect2: ld returned 1 exit status
+      
+
 La solució a aquest problema seria fer explícit el fet que
 ``Figura::a_dins`` no existeix, perquè una ``Figura`` és un concepte
 "abstracte". Per indicar això la declaració del mètode a ``a_dins`` ha
@@ -449,6 +537,12 @@ això no representa cap problema.
    Modifica el programa per fer la classe ``Figura`` abstracta i
    comprova que compila correctament.
 
+   .. solucio::
+
+      Només cal afegir (un cop esborrada la implementació del mètode
+      ``Figura::a_dins``) un "``= 0``" al final de la declaració i el
+      programa compila correctament.
+
 
 .. exercici:: 
    
@@ -458,6 +552,11 @@ això no representa cap problema.
      public:
        void metode() = 0;
      }
+
+   .. solucio::
+   
+      El problema és que s'ha fet servir el sufix "``= 0``" en un
+      mètode que no és ``virtual`` i això no té sentit.
 
 
 .. [1] Aquesta classe no té cap utilitat real, és només una excusa per

@@ -211,7 +211,7 @@ membres de la classe és un error::
       x.b = 1;
       y.b = 3;
 
-   .. exercici::
+   .. solucio::
       ::
 
          w.x = 'e';      // error (tipus)
@@ -586,6 +586,10 @@ una finestra com la següent:
    Segueix els passos que indica l'exemple i compila el
    programa. Modifica el text "Hola mon" i posa'n un altre per veure
    que realment canvia.
+
+   .. solucio::
+
+      Aquest exercici no té solució.
 
 
 .. [1] Recordem que un ``struct`` és com una classe amb tots els
