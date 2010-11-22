@@ -14,9 +14,12 @@ Objectius
 Anàlisi empíric d'algorismes
 ============================
 
-Per mesurar el temps d’execució d’un programa en DevC++, podem fer servir la funció clock() de la llibreria time.h, que ens retorna el temps que ha passat des de l’inici de l’execució d’un programa.
+Per mesurar el temps d’execució d’un programa en DevC++, podem fer
+servir la funció clock() de la llibreria time.h, que ens retorna el
+temps que ha passat des de l’inici de l’execució d’un programa.
 
-A continuació teniu un exemple d’ús d’aquesta funció. Si el programa del qual volem mesurar el temps d’execució és aquest::
+A continuació teniu un exemple d’ús d’aquesta funció. Si el programa
+del qual volem mesurar el temps d’execució és aquest::
 
   //Un programa d’exemple
   #include <iostream>
@@ -65,9 +68,14 @@ Les modificacions que hem de fer són::
     return 0;
   }
 
-Es tracta d’estudiar empiricament els algorismes d’ordenació per selecció i per inserció. Per això mesurareu els temps d’execució dels programes amb diferents dades d’entrada, i compareu aquests resultats empírics que ens permetrà treure conclusions sobre l’eficiència dels diferent algorismes.
+Es tracta d’estudiar empiricament els algorismes d’ordenació per
+selecció i per inserció. Per això mesurareu els temps d’execució dels
+programes amb diferents dades d’entrada, i compareu aquests resultats
+empírics que ens permetrà treure conclusions sobre l’eficiència dels
+diferent algorismes.
 
-Per exemple, el següent algorisme ordena una taula mitjançant el mètode de selecció::
+Per exemple, el següent algorisme ordena una taula mitjançant el
+mètode de selecció::
 
   #include <iostream>
   #include <stdlib.h>
@@ -129,11 +137,14 @@ Per exemple, el següent algorisme ordena una taula mitjançant el mètode de se
 
 .. exercici::
 
-   Doneu diferents valors a la constant N (per exemple 20000, 40000, 60000, 80000, 100000) i preneu nota dels temps d’execució per cada valor de N.
+   Doneu diferents valors a la constant N (per exemple 20000, 40000,
+   60000, 80000, 100000) i preneu nota dels temps d’execució per cada
+   valor de N.
 
 .. exercici::
 
-   Feu una altra versió de l’accio omplirTaula per tal d’omplir la taula amb valors decreixents. Podeu fer servir aquesta versió::
+   Feu una altra versió de l’accio omplirTaula per tal d’omplir la
+   taula amb valors decreixents. Podeu fer servir aquesta versió::
    
      void omplirTaula2(TaulaEnters& t)
      {
@@ -142,11 +153,16 @@ Per exemple, el següent algorisme ordena una taula mitjançant el mètode de se
          t[i]=N-i;
      }
 
-   Repetiu les mesures del temps d’execució del programa amb aquesta nova versió d’omplir taula.
+   Repetiu les mesures del temps d’execució del programa amb aquesta
+   nova versió d’omplir taula.
 
 .. exercici::
 
-   Feu una altra versió de l’acció omplirTaula. Aquest cop cal que ompli la taula amb valors aleatoris. Repetiu les mesures del temps d’execució del programa amb aquesta nova versió d’omplir taula. Podeu fer servir aquestes dues funcions (cal incloure la capçalera stdlib.h)::
+   Feu una altra versió de l’acció omplirTaula. Aquest cop cal que
+   ompli la taula amb valors aleatoris. Repetiu les mesures del temps
+   d’execució del programa amb aquesta nova versió d’omplir
+   taula. Podeu fer servir aquestes dues funcions (cal incloure la
+   capçalera stdlib.h)::
 
      //genera un nombre enter aleatori entre 1 i n
 
@@ -165,7 +181,9 @@ Per exemple, el següent algorisme ordena una taula mitjançant el mètode de se
 
 .. exercici::
 
-   Mesureu empiricament el cost temporal d’un programa que inicialitza una taula i l’ordena pel mètode d’inserció utilitzant la següent acció::
+   Mesureu empiricament el cost temporal d’un programa que inicialitza
+   una taula i l’ordena pel mètode d’inserció utilitzant la següent
+   acció::
    
      void ordenarTaula2(TaulaEnters& t)
      {
@@ -184,7 +202,9 @@ Per exemple, el següent algorisme ordena una taula mitjançant el mètode de se
        }
      }
 
-   Repetiu les mesures del temps d’execució de l’algorisme amb aquesta nova versió d’ordenar taula, per cadascuna de les tres versions d’omplirTaula vistes anteriorment.
+   Repetiu les mesures del temps d’execució de l’algorisme amb aquesta
+   nova versió d’ordenar taula, per cadascuna de les tres versions
+   d’omplirTaula vistes anteriorment.
    
 .. exercici::
 
@@ -204,10 +224,17 @@ Per exemple, el següent algorisme ordena una taula mitjançant el mètode de se
    |   100000   |                       |                         |                       |
    +------------+-----------------------+-------------------------+-----------------------+
    
-   Dibuixeu una gràfica amb cada temps d’execució obtingut usant un full de càlcul (excel, maple o altres). A l’eix X poseu el valor de la N, i a l’eix Y el temps d’execució.
+   Dibuixeu una gràfica amb cada temps d’execució obtingut usant un
+   full de càlcul (excel, maple o altres). A l’eix X poseu el valor de
+   la N, i a l’eix Y el temps d’execució.
 
 .. exercici::
 
-   Per què la gràfica que s’obté és una paràbola? Per tal de justificar la resposta, podeu analitzar l’eficiència T(N), en el cas pitjor, de l’algorisme d’ordenació per selecció, i el mateix per l’algorisme d’ordenació per inserció. Per analitzar l’eficiència, compteu el nombre d’assignacions que fa cada algorisme, en funció del valor de N.
+   Per què la gràfica que s’obté és una paràbola? Per tal de
+   justificar la resposta, podeu analitzar l’eficiència T(N), en el
+   cas pitjor, de l’algorisme d’ordenació per selecció, i el mateix
+   per l’algorisme d’ordenació per inserció. Per analitzar
+   l’eficiència, compteu el nombre d’assignacions que fa cada
+   algorisme, en funció del valor de N.
 
 

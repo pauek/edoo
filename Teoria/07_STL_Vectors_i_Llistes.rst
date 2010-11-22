@@ -47,17 +47,26 @@ vector (classe ``vector``)
   Un vector és una versió millorada de les taules ordinàries de
   C++. En particular, és una classe que implementa una *taula de
   tamany variable*, i que sobrecarrega l'``operator[]``, per poder
-  accedir a les caselles tal com s'ha fet fins ara amb les taules. El
-  vector està declarat en el fitxer de capçalera del mateix nom. Per
-  utilitzar la classe ``vector`` hem d'incloure el fitxer així::
-
-    #include <vector>
+  accedir a les caselles tal com s'ha fet fins ara amb les taules. 
 
 Declaració de vectors
 ---------------------
 
-Per declarar un ``vector``, hem d'esciure el següent (el tipus ``T``
-pot ser qualsevol)::
+La classe ``vector`` està declarada en el fitxer de capçalera del
+mateix nom. Per poder-la fer servir hem de posar::
+
+  #include <vector>
+
+Donat que la classe pertany al ``namespace std``, també caldrà
+afegir::
+
+  using namespace std;
+
+tot i que això ja ho hem de posar habitualment si fem servir ``cin``
+o ``cout``.
+
+Per declarar un objecte de tipus ``vector``, hem d'esciure el següent
+(el tipus ``T`` pot ser qualsevol)::
   
    vector<T> v;
 
