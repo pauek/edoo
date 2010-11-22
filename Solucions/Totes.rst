@@ -35,3 +35,7 @@ Polimorfisme
 .. llista_solucions:: poli
 
 
+Vectors i Llistes
+-----------------
+
+.. llista_solucions:: vl
