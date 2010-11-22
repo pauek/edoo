@@ -29,7 +29,7 @@ class solucio(activitat):
     name = "Solucio"
     css_class = "solucio"
     def get_title(self, _id): 
-        return _id
+        return "Solucio" if _id == "" else _id
         
 
 class solution_list(nodes.General, nodes.Element):

@@ -22,7 +22,7 @@ div.boxed {
   font-size: 85%;
 }
 
-div.boxed p.first {
+div.boxed > p.first {
   margin: 0;
   font-weight: bold;
   color: #ffffff;
@@ -30,29 +30,46 @@ div.boxed p.first {
   background: #444444;
 }
 
-div.boxed div.body {
+div.boxed > div.body {
   padding: 10px;
   line-height: 130%;
 }
 
-div.boxed div.body p {
+div.boxed > div.body > p {
   margin: 4px 0;
 }
 
 /* Exercici */
 
 div.exercici   { border: 1px solid #884444; }
-div.exercici p.first { background: #884444; }
+div.exercici > p.first { background: #884444; }
 
 /* Exemple */
 
 div.exemple   { border: 1px solid #448844; }
-div.exemple p.first { background: #448844; }
+div.exemple > p.first { background: #448844; }
 
 /* Solucio */
 
-div.solucio p.title { font-weight: bold; }
-div.solucio div.body { padding: 0; }
+div.solucio div.body { padding: 0 0 1.6em 0; }
+
+div.solucio p.first { 
+  color: black;
+  font-weight: bold;
+  font-size: 105%;
+  padding: 0;
+}
+
+/* Solucio a dins d'exemple */
+
+div.exemple div.solucio p.first { 
+  /* display: none; */
+} 
+div.exemple div.solucio { 
+  margin-top: 1em; 
+  padding-top: 1em; 
+  border-top: 1px solid gray; 
+}
 
 /* ---- */
 

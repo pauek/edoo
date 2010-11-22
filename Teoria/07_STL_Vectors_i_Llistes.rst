@@ -158,7 +158,7 @@ minúscules::
            }
          }
 
-       Per evitar treure un espai al final, podem fer el següent::
+      Per evitar treure un espai al final, podem fer el següent::
 
         void mostra_vector(const vector<int>& v) {
            cout << v[0]
