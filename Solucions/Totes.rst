@@ -1,6 +1,6 @@
 
-Solucions a exercicis i problemes
-=================================
+Exercicis i problemes
+=====================
 
 .. contents:: Contingut
    :local:
