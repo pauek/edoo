@@ -834,9 +834,3 @@ retornar vectors o passar-los per referència, etc.
    Fes un programa que llegeixi aquestes dades d'un fitxer anomenat
    ``cursa.txt`` i doni com a sortida el dorsal del guanyador de la
    cursa i la volta més ràpida que ha fet aquest atleta.
-
-
-Solucions
----------
-
-.. llista_solucions::
