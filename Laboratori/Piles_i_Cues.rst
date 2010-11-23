@@ -3,6 +3,8 @@
 STL: Piles i cues
 =================
 
+.. tema:: lab.pq
+
 Objectius
 =========
 

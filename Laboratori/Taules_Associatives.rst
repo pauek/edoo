@@ -3,6 +3,8 @@
 STL: Taules associatives
 ========================
 
+.. tema:: lab.map
+
 Objectius
 =========
 

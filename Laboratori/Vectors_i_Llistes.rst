@@ -3,6 +3,8 @@
 STL: Vectors i llistes
 ======================
 
+.. tema:: lab.vl
+
 Objectius
 =========
 
