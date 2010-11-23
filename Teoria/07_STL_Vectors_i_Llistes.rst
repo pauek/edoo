@@ -163,13 +163,28 @@ minúscules::
 
 .. exemple::
    
-   Fes una acció que rep un vector d'enters i els mostra per pantalla.
+   Fes una acció que rep un vector d'enters i els mostra per
+   pantalla. El format serà el següent:
+
+   - Si el vector és buit, s'ha d'escriure::
+   
+       []
+
+   - Si el vector té un element::
+   
+       [1]
+
+
+   - Si el vector té més d'un element, s'han de separar per comes::
+
+       [5, 1, 2, 4]
 
    .. solucio::
 
       Per fer aquest exercici cal recórrer amb un ``for`` el vector com
       una taula i per saber el tamany del vector podem fer servir el
-      mètode ``size``::
+      mètode ``size``. Una versió preliminar (que no respecta el
+      format demanat) seria::
 
          void mostra_vector(const vector<int>& v) {
            for (int i = 0; i < v.size(); i++) {
@@ -177,25 +192,33 @@ minúscules::
            }
          }
 
-      Per evitar treure un espai al final, podem fer el següent::
+      Ara, ens podem preocupar de posar els corxets i les comes. El
+      truc és escriure primer l'element inicial i fer una iteració *a
+      partir del segon element*::
 
         void mostra_vector(const vector<int>& v) {
-           cout << v[0]
+           cout << '[';
+           cout << v[0];
            for (int i = 1; i < v.size(); i++) {
-             cout << ' ' << v[i];
+             cout << ", " << v[i];
            }
+           cout << ']';
         }
 
       El problema és que si el vector és buit, llavors el programa no
-      funcionarà correctament. Per arreglar-ho::
+      funcionarà correctament, ja que accedir a la casella 0 és un
+      error si aquesta no existeix (i no hi és en un vector buit). Per
+      arreglar-ho comprovem primer si el vector és buit::
    
         void mostra_vector(const vector<int>& v) {
+          cout << '[';
           if (!v.empty()) {
             cout << v[0];
+            for (int i = 1; i < v.size(); i++) {
+              cout << ", " << v[i];
+            }
           }
-          for (int i = 1; i < v.size(); i++) {
-            cout << ' ' << v[i];
-          }
+          cout << ']';
         }
 
 .. exercici::
