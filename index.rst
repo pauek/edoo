@@ -31,12 +31,14 @@ Guions de pràctiques
    :maxdepth: 1
    :glob:
 
-   .. Laboratori/Introduccio_a_Eclipse
    Laboratori/Tipus_Abstractes_de_Dades
    Laboratori/TADs_i_Classes
    Laboratori/Qt_invert_i_textdialog
    Laboratori/Qt_image_manip
    Laboratori/Analisi_Eficiencia
+
+.. 
+   Laboratori/Introduccio_a_Eclipse
    Laboratori/Vectors_i_Llistes
    Laboratori/Piles_i_Cues
    Laboratori/Taules_Associatives
