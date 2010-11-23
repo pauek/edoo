@@ -37,6 +37,9 @@ Guions de pràctiques
    Laboratori/Qt_invert_i_textdialog
    Laboratori/Qt_image_manip
    Laboratori/Analisi_Eficiencia
+   Laboratori/Vectors_i_Llistes
+   Laboratori/Piles_i_Cues
+   Laboratori/Taules_Associatives
 
 
 Solucions
