@@ -31,7 +31,7 @@ Guions de pràctiques
    :maxdepth: 1
    :glob:
 
-   Laboratori/sessio1
+   .. Laboratori/Introduccio_a_Eclipse
    Laboratori/sessio2
    Laboratori/sessio3	
    Laboratori/Qt_invert_i_textdialog
