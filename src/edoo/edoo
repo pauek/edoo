@@ -1,0 +1,5 @@
+
+#ifndef _EDOO_H_
+#define _EDOO_H_
+#include "edoo.h"
+#endif  _EDOO_H_
