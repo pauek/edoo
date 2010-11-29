@@ -161,6 +161,46 @@ minúscules::
      minusc[k] = char(97 + k);
    }
 
+.. exercici::
+   
+   Fes una acció que ompli un vector d'enters de la següent manera: si
+   el tamany del vector és *N*, l'ha d'omplir amb N, N-1, N-2,
+   etc. fins a l'1.
+
+   .. solucio::
+      ::
+
+         void omple_descendent(vector<int>& v) {
+           for (int i = 0; i < v.size(); i++) {
+             v[i] = v.size() - i;
+           }
+         }
+
+Mètodes consultors
+------------------
+
+Els mètodes consultors disponibles per a ``vector`` són:
+
+.. cpp:function:: int vector<T>::size() const
+
+   Retorna el tamany del vector.
+
+
+.. cpp:function:: bool vector<T>::empty() const 
+
+   Retorna ``true`` si el vector està buit.
+
+
+.. cpp:function:: const T& vector<T>::front() const
+
+   Retorna una referència al primer element del vector.
+
+
+.. cpp:function:: const T& vector<T>::back() const
+  
+   Retorna una referència a l'últim element del vector.
+
+
 .. exemple::
    
    Fes una acció que rep un vector d'enters i els mostra per
@@ -220,45 +260,6 @@ minúscules::
           }
           cout << ']';
         }
-
-.. exercici::
-   
-   Fes una acció que ompli un vector d'enters de la següent manera: si
-   el tamany del vector és *N*, l'ha d'omplir amb N, N-1, N-2,
-   etc. fins a l'1.
-
-   .. solucio::
-      ::
-
-         void omple_descendent(vector<int>& v) {
-           for (int i = 0; i < v.size(); i++) {
-             v[i] = v.size() - i;
-           }
-         }
-
-Mètodes consultors
-------------------
-
-Els mètodes consultors disponibles per a ``vector`` són:
-
-.. cpp:function:: int vector<T>::size() const
-
-   Retorna el tamany del vector.
-
-
-.. cpp:function:: bool vector<T>::empty() const 
-
-   Retorna ``true`` si el vector està buit.
-
-
-.. cpp:function:: const T& vector<T>::front() const
-
-   Retorna una referència al primer element del vector.
-
-
-.. cpp:function:: const T& vector<T>::back() const
-  
-   Retorna una referència a l'últim element del vector.
 
 
 .. exercici::
