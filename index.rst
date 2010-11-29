@@ -15,7 +15,7 @@ Apunts
    :maxdepth: 1
 
    Teoria/01_TADs
-   Teoria/02_Classes
+   Teoria/Classes
    Teoria/03_Punters_i_Memoria_Dinamica
    Teoria/04_Herencia
    Teoria/05_Polimorfisme
@@ -36,10 +36,10 @@ Guions de pràctiques
    Laboratori/Qt_invert_i_textdialog
    Laboratori/Qt_image_manip
    Laboratori/Analisi_Eficiencia
+   Laboratori/Vectors_i_Llistes
 
 .. 
    Laboratori/Introduccio_a_Eclipse
-   Laboratori/Vectors_i_Llistes
    Laboratori/Piles_i_Cues
    Laboratori/Taules_Associatives
 
