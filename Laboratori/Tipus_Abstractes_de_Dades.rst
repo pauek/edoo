@@ -3,6 +3,8 @@
 Tipus Abstractes de Dades
 =========================
 
+.. tema:: lab.tad
+
 Objectius
 =========
 

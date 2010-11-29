@@ -3,6 +3,8 @@
 TADs i Classes
 ==============
 
+.. tema:: lab.cl
+
 Objectius
 =========
 
