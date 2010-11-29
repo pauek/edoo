@@ -45,7 +45,7 @@ Guions de pràctiques
 
 
 Solucions
----------
+=========
 
 .. toctree::
    :maxdepth: 1
