@@ -410,3 +410,7 @@ Des del programa principal, podriem cridar aquesta funció així::
           *res = char(0);
         }
 
+.. [#nota4] En Windows, quan arrossegues un fitxer a sobre d'un
+            programa executable, el nom del fitxer arrossegat es posa
+            com a argument del programa. Si arrossegues un grup de
+            fitxers, es posen tots com a arguments.

@@ -390,7 +390,8 @@ en el ``main``::
       principal simplement crida la funció amb valors llegits del teclat.
 
 
-.. include:: Punters_a_Taules.rst
+.. 
+  include:: Punters_a_Taules.rst
 
 
 Problemes
@@ -435,7 +436,3 @@ lliure distribució i d'aquestes seccions existeix una
             declaració com per a l'ús és una font de confusió al
             principi.
 
-.. [#nota4] En Windows, quan arrossegues un fitxer a sobre d'un
-            programa executable, el nom del fitxer arrossegat es posa
-            com a argument del programa. Si arrossegues un grup de
-            fitxers, es posen tots com a arguments.
