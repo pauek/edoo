@@ -16,13 +16,17 @@ Apunts
 
    Teoria/01_TADs
    Teoria/Classes
-   Teoria/03_Punters_i_Memoria_Dinamica
+   Teoria/Operadors
+   Teoria/Punters
    Teoria/04_Herencia
    Teoria/05_Polimorfisme
    Teoria/06_Eficiencia
    Teoria/07_STL_Vectors_i_Llistes
    Teoria/08_Piles_Cues_i_Maps
    Teoria/09_Algorismes
+
+..   
+   Teoria/03_Punters_i_Memoria_Dinamica
 
 Guions de pràctiques
 ====================

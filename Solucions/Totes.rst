@@ -17,10 +17,16 @@ Classes
 .. llista_solucions:: cl
 
 
-Punters i Memòria Dinàmica
---------------------------
+Operadors i Sobrecàrrega
+------------------------
 
-.. llista_solucions:: pimd
+.. llista_solucions:: ops
+
+
+Punters
+-------
+
+.. llista_solucions:: pt
 
 
 Herència
