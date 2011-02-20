@@ -381,7 +381,7 @@ després poder fer créixer el programa sense obstacles.
     
     double amplada(const Rectangle2D& r);
     double alsada(const Rectangle2D& r);
-    double desplasa(Rectangle2D& r, double x, double y);
+    void   desplasa(Rectangle2D& r, double x, double y);
     bool   a_dins(const Rectangle2D& r, double x, double y);
     // ...   
 
@@ -414,7 +414,7 @@ després poder fer créixer el programa sense obstacles.
            return r.alt;
          }
          
-         double desplaça(tRectangle2D& r, double x, double y) {
+         void desplasa(tRectangle2D& r, double x, double y) {
            r.x += x;
            r.y += y;
          }
@@ -446,7 +446,7 @@ després poder fer créixer el programa sense obstacles.
            return r.y2 - r.y1;
          }
          
-         double desplaça(tRectangle2D& r, double x, double y) {
+         void desplasa(tRectangle2D& r, double x, double y) {
            r.x1 += x; r.y1 += y;
            r.x2 += x; r.y2 += y;
          }
@@ -714,7 +714,7 @@ als del paràmetre implícit.
       un interval, necessitem l'interval (implícit) i el punt (``x``). El
       ``const`` passa a la funció membre. La implementació és::
    
-        bool Interval::contingut() const {
+        bool Interval::contingut(double x) const {
           return x > ini && x < fin;
         }
    
@@ -726,67 +726,74 @@ als del paràmetre implícit.
    Transforma el codi següent de tal manera que faci servir la mateixa
    estructura però les operacions del TAD siguin *funcions membre*::
 
-    struct Image {
-      int pixels[100][100];
-    };
+     struct Image {
+       int pixels[100][100];
+     };
+ 
+     void fill(Image& I, int val) {
+       for (int i = 0; i < 100; i++) 
+         for (int j = 0; j < 100; j++)
+           I.pixels[i][j] = val;
+     }
+ 
+     void set_pixel(Image& I, int x, int y, int val) {
+       I.pixels[x][y] = val;
+     }
+ 
+     int get_pixel(const tImage& I, int x, int y) {
+       return I.pixels[x][y];
+     }
+ 
+     void bitblt(Image& Dest, int ini_x, ini_y,
+                 const Image& Orig, int ample, int alt)
+     {
+       for (int i = 0; i < ample; i++)
+         for (int j = 0; j < alt; j++)
+           Dest.pixels[ini_x + i][ini_y + j] = Orig.pixels[i][j];
+     }
 
-    void fill(Image& I, int val) {
-      for (int i = 0; i < 100; i++) 
-        for (int j = 0; j < 100; j++)
-          I.pixels[i][j] = val;
-    }
+   [dummy]
 
-    void set_pixel(Image& I, int x, int y, int val) {
-      I.pixels[x][y] = val;
-    }
-
-    int get_pixel(const tImage& I, int x, int y) {
-      return I.pixels[x][y];
-    }
-
-    void bitblt(Image& Dest, int ini_x, ini_y,
-                const Image& Orig, int ample, int alt)
-    {
-      for (int i = 0; i < ample; i++)
-        for (int j = 0; j < alt; j++)
-          Dest.pixels[ini_x + i][ini_y + j] = Orig.pixels[i][j];
-    }
-
-    .. solucio::
-
-   ::
-  
-        struct Image {
-          int pixels[100][100];
-          
-          void fill(int val);
-          void set_pixel(int x, int y, int val);
-          int  get_pixel(int x, int y) const;
-          void bitblt(int ini_x, int ini_y, const Image& Orig,
-                      int ample, int alt);
-        };
+   .. solucio::
+      
+      El TAD imatge s'implementa així::
+         
+         struct Image {
+           int pixels[100][100];
+           
+           void fill(int val);
+           void set_pixel(int x, int y, int val);
+           int  get_pixel(int x, int y) const;
+           void bitblt(int ini_x, int ini_y, const Image& Orig,
+                       int ample, int alt);
+         };
    
-        void Image::fill(int val) {
-          for (int i = 0; i < 100; i++) 
-            for (int j = 0; j < 100; j++)
-              pixels[i][j] = val;
-        }
-   
-        void Image::set_pixel(int x, int y, int val) {
-          pixels[x][y] = val;
-        }
+         void Image::fill(int val) {
+           for (int i = 0; i < 100; i++) 
+             for (int j = 0; j < 100; j++)
+               pixels[i][j] = val;
+         }
     
-        int Image::get_pixel(int x, int y) const {
-          return pixels[x][y];
-        }
-    
-        void Image::bitblt(int ini_x, ini_y, const Image& Orig, 
-                           int ample, int alt)
-        {
-          for (int i = 0; i < ample; i++)
-            for (int j = 0; j < alt; j++)
-               pixels[ini_x + i][ini_y + j] = Orig.pixels[i][j];
-        }
+         void Image::set_pixel(int x, int y, int val) {
+           pixels[x][y] = val;
+         }
+     
+         int Image::get_pixel(int x, int y) const {
+           return pixels[x][y];
+         }
+     
+         void Image::bitblt(int ini_x, ini_y, const Image& Orig, 
+                            int ample, int alt)
+         {
+           for (int i = 0; i < ample; i++)
+             for (int j = 0; j < alt; j++)
+                pixels[ini_x + i][ini_y + j] = Orig.pixels[i][j];
+         }
+
+      La funció ``bitblt`` no porta ``const`` darrere perquè el
+      paràmetre original ``Dest`` no era constant, ja que ``bitblt``
+      és una acció que modifica la imatge destí ``Dest``, i aquest
+      primer paràmetre s'ha convertit en "el paràmetre implícit". 
 
 .. exercici::
 
