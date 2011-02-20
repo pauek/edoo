@@ -1,23 +1,26 @@
 
 .. tema:: pt
 
-=====================
-Punters i Referències
-=====================
+=======
+Punters
+=======
 
 .. rubric:: Objectius
 
 - Descriure què és una adreça de memòria i un punter.
 
-- Declarar punters a un tipus qualsevol. Accedir al valor apuntat,
-  incloent camps d'estructures.
+- Declarar punters a un tipus qualsevol. 
 
-- Iterar posicions de memòria consecutives fent servir punters.
+- Accedir al valor apuntat, incloent camps d'estructures.
 
-- Passar paràmetres per referència fent servir punters.
+..
+  - Iterar posicions de memòria consecutives fent servir punters.
+  - Passar paràmetres per referència fent servir punters.
 
-Punters
-=======
+.. contents:: Contingut 
+   :depth: 2
+   :local:
+
 
 La memòria és una gran taula de *bytes*
 ---------------------------------------
@@ -324,80 +327,18 @@ majoritàriament.
 
 .. TODO ejercicio sobre acceder a métodos de clases a través de un puntero!!
 
-Els punters permeten fer pas per referència de paràmetres a accions
--------------------------------------------------------------------
-
-Suposem que tenim una acció com la següent::
-
-  void suma5(int& a) {
-    a += 5;
-  }
-
-Aquesta acció es crida desde un programa principal com::
-
-  int main() {
-    int x;
-    cout << "Un enter? ";
-    cin >> x;
-    suma5(x);
-    cout << "Més 5 dóna: " << x << endl;
-  }
-
-El main, doncs, té una variable ``x`` que conté el valor al que volem
-sumar 5. Si fem una acció ``suma5p`` que rebi un punter en comptes
-d'un valor per referència, es pot aconseguir el mateix resultat, ja
-que el punter contindrà l'adreça de la variable que s'ha de modificar
-i en el ``main`` passarem l'adreça de ``x`` a ``suma5p``. La nova
-implementació és::
-
-  void suma5p(int *a) {
-    *a += 5;
-  }
-
-I per invocar l'acció ``suma5p`` ara haurem de posar l'adreça de ``x``
-en el ``main``::
-
-  int main() {
-    int x;
-    cout << "Un enter? ";
-    cin >> x;
-    suma5p(&x);
-    cout << "Més 5 dóna: " << x << endl;
-  }
-
-.. exercici::
-   
-   Digues quina és la sortida del següent programa si l'entrada és "7 11"::
-
-     void f(int *a, int *b) {
-       int x = *a;
-       *a = *b;
-       *b = x;
-     }
-
-     int main() {
-       int i, j;
-       cout << "Dos enters? ";
-       cin >> i >> j;
-       f(&i, &j);
-       cout << "Ara són: " << i << ' ' << j << endl;
-     }
-
-   .. exercici::
-   
-      La sortida serà "11 7". L'acció ``f`` en realitat intercanvia els
-      valors continguts a les adreces ``a`` i ``b``. El programa
-      principal simplement crida la funció amb valors llegits del teclat.
-
+.. 
+  include:: Punters_pas_per_referencia.rst
 
 .. 
   include:: Punters_a_Taules.rst
 
 
-Problemes
-=========
+..
+   Problemes
+   ---------
 
-.. problema::
+   .. problema::
 
    *[Aquest problema és opcional]*
 
@@ -405,7 +346,7 @@ Problemes
    imatge que se li passa com a primer argument. Fes servir un nom fix
    per a la imatge de sortida (per exemple, ``sortida.pgm``).
 
-.. problema::
+   .. problema::
 
    *[Aquest problema és opcional]*
 

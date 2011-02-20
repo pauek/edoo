@@ -21,6 +21,9 @@ Classes
 
 - Implementar TADs en C++ fent servir ``class``.
 
+.. contents:: Contingut 
+   :depth: 2
+   :local:
 
 Conceptes
 =========

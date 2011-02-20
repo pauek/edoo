@@ -17,6 +17,9 @@ Herència
 
 - Utilitzar llibreries en C++ heredant de les classes existents.
 
+.. contents:: Contingut 
+   :depth: 2
+   :local:
 
 L'herència permet el reaprofitament de classes
 ==============================================

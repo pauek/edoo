@@ -15,6 +15,11 @@ Operadors i Sobrecàrrega
 - Definir operadors per a una classe donada. Definir l'operador
   d'entrada i de sortida.
 
+.. contents:: Contingut 
+   :depth: 2
+   :local:
+
+
 
 Sobrecàrrega
 ============

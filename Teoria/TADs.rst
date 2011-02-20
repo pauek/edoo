@@ -14,6 +14,10 @@ Tipus Abstractes de Dades
 - Especificar de forma aproximada un conjunt d'operacions per a un
   tipus abstracte de dades.
 
+.. contents:: Contingut 
+   :depth: 2
+   :local:
+
 Dificultats en la construcció de programes
 ------------------------------------------
 

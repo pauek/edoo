@@ -5,6 +5,11 @@
 Piles, Cues i Taules Associatives
 =================================
 
+.. contents:: Contingut 
+   :depth: 2
+   :local:
+
+
 Piles
 =====
 

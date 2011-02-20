@@ -20,6 +20,10 @@ Punters i Memòria Dinàmica
 
 - Descriure els errors típics derivats de la gestió incorrecta de la memòria.
 
+.. contents:: Contingut 
+   :depth: 2
+   :local:
+
 Punters
 =======
 

@@ -16,6 +16,9 @@ Eficiència d'Algorismes
 
 - Analitzar l'eficiència d'un algorisme senzill.
 
+.. contents:: Contingut 
+   :depth: 2
+   :local:
 
 Anàlisi d'algorismes
 ====================

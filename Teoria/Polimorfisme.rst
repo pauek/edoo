@@ -11,6 +11,12 @@ Polimorfisme
 
 - Implementar llistes heterogènies.
 
+
+.. contents:: Contingut 
+   :depth: 2
+   :local:
+
+
 .. El punter ``this``
 .. ==================
 .. .. Un buen ejemplo donde necesitas esto? Que no sea Qt?

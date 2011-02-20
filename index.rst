@@ -14,16 +14,16 @@ Apunts
 .. toctree::
    :maxdepth: 1
 
-   Teoria/01_TADs
+   Teoria/TADs
    Teoria/Classes
    Teoria/Operadors
    Teoria/Punters
-   Teoria/04_Herencia
-   Teoria/05_Polimorfisme
-   Teoria/06_Eficiencia
-   Teoria/07_STL_Vectors_i_Llistes
-   Teoria/08_Piles_Cues_i_Maps
-   Teoria/09_Algorismes
+   Teoria/Herencia
+   Teoria/Polimorfisme
+   Teoria/Eficiencia
+   Teoria/STL_Vectors_i_Llistes
+   Teoria/Piles_Cues_i_Maps
+   Teoria/Algorismes
 
 ..   
    Teoria/03_Punters_i_Memoria_Dinamica
@@ -37,13 +37,13 @@ Guions de pràctiques
 
    Laboratori/Tipus_Abstractes_de_Dades
    Laboratori/TADs_i_Classes
-   Laboratori/Qt_invert_i_textdialog
-   Laboratori/Qt_image_manip
    Laboratori/Analisi_Eficiencia
    Laboratori/Vectors_i_Llistes
    Laboratori/Piles_i_Cues
 
 .. 
+   Laboratori/Qt_invert_i_textdialog
+   Laboratori/Qt_image_manip
    Laboratori/Introduccio_a_Eclipse
    Laboratori/Taules_Associatives
 
