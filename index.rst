@@ -37,10 +37,10 @@ Guions de pràctiques
    Laboratori/Qt_image_manip
    Laboratori/Analisi_Eficiencia
    Laboratori/Vectors_i_Llistes
+   Laboratori/Piles_i_Cues
 
 .. 
    Laboratori/Introduccio_a_Eclipse
-   Laboratori/Piles_i_Cues
    Laboratori/Taules_Associatives
 
 

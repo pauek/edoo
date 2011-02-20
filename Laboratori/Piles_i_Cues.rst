@@ -18,66 +18,82 @@ Objectius
 Piles
 =====
 
-En STL una pila es declara fent servir la paraula clau **stack**. Si, per exemple, volguèssim declarar un stack de cadenes de caràcters faríem el següent::
+La STL implementa la classe ``stack``, que serveix per emmagatzemar
+una pila d'elements. Si volguéssim declarar una pila de
+cadenes de caràcters, per exemple, faríem el següent [#f1]_ ::
 
   stack<string> pila;
 
-Cal recordar, però, que per a fer servir les piles de STL i els strings hem de fer les inclusions pertinents::
-
-  #include <iostream>
-  #include <stack>
-  
-  using namespace std;
-
 Les operacions principals de les piles són:
 
-- Afegir un element a la pila (push).
+- Afegir un element a la pila (``push``).
 
-- Treure un element de la pila (pop).
+- Treure un element de la pila (``pop``).
 
-- Consultar l'últim element afegit a la pila (top).
+- Consultar l'últim element afegit a la pila (``top``).
 
 .. exercici::
 
-   Feu un programa que llegeixi paraules de teclat fins que llegeixi la paraula punt (".") i que, després, escrigui les paraules en ordre invers. És a dir, per una seqüència d'entrada com: {"What", "is", "the", "matrix", "."}, donaria com a resultat: {"matrix", "the", "is", "What"}. Feu servir una pila de strings.
+   Fes un programa que llegeixi una sequència de missatges com els
+   següents en una pila::
 
+      12:36 MeteorWayne Zv: NO.
+      12:38 Funkopolis Made-up results will be available immediately
+      12:38 ugordan lol
+      12:39 mammoth We heard about pH and marsparagus almost immediately
+      12:39 djellison Any more questions?
+      12:40 mammoth QUESTION: has the MECA team talked about their next sample?
+      12:41 Funkopolis Like the back seat of a volkswagen?
+      12:41 Zvezdichko QUESTION: Do they plan to look for Cl- again?
+
+   Aquesta seqüència prové d'un *chat* i com es pot veure té una hora,
+   un usuari i un text (el text que hi ha després de l'usuari arriba
+   fins al final de línia, pots fer servir ``getline`` per obtenir-la).
+
+   Un cop llegida, el programa ha de mostrar els últims 10 missatges:
+   primer l'últim, després el penúltim, fins al desè.
 
 Cues
 ====
 
-Per una altra banda, les cues es declaren utilitzant la paraula clau **queue**. Si tenim una classe Cotxe::
+A part del ``stack``, la STL també implementa la classe ``queue``, que
+serveix per emmagatzemar una cua d'elements. Si tenim una classe
+``Cotxep`` com al següent::
 
-  class Cotxe
-  {
+  class Cotxe {
     string matricula, tipus;
 
   public:
-    void setMatricula(string &novaMatricula);
-    string getMatricula();
-    void setTipus(string &nouTipus);
-    string getTipus();
+    void   setMatricula(const string& matricula);
+    string getMatricula() const;
+    void   setTipus(const string& tipus);
+    string getTipus() const;
   };
 
-podem declarar una cua de objectes de la classe Cotxe::
+podem declarar una cua d'objectes de la classe ``Cotxe`` [#f2]_ ::
 
-  queue<Cotxe> cua;
-
-De la mateixa manera que amb les piles cal fer certes inclusions::
-
-  #include <queue>
-  
-  using namespace std;
+  queue<Cotxe> cua_cotxes;
 
 Cal recordar que les operacions principals de les cues són:
 
-- Afegir un element al final de la cua (push).
+- Afegir un element al final de la cua (``push``).
 
-- Treure un element del principi de la cua (pop).
+- Treure un element del principi de la cua (``pop``).
 
-- Consultar l'element que es troba al principi de la cua (front).
+- Consultar l'element que es troba al principi de la cua (``front``).
 
 .. exercici::
 
-   Feu un programa que simuli el pas de cotxes per un pas de peatge. El programa ha de permetre tres operacions: afegir un cotxe al punt de peatge, fer passar un cotxe pel punt de peatge i sortir del programa. Utilitzeu la classe Cotxe (caldrà que implementeu els mètodes) i una cua de STL per simular el peatge.
+   Fes un programa que simuli el pas de cotxes per un pas de
+   peatge. El programa ha de permetre tres operacions: afegir un cotxe
+   al punt de peatge, fer passar un cotxe pel punt de peatge i sortir
+   del programa. Utilitzeu la classe ``Cotxe`` (caldrà que implementeu els
+   mètodes) i una cua de STL per simular el peatge.
 
+
+.. [#f1] Recorda que per a fer servir la classe ``stack`` has de fer
+   ``#include <stack>`` i posar ``using namespace std`` si no hi és.
+
+.. [#f2] Un altre cop, cal fer ``#include <queue>`` i posar ``using
+   namespace std`` si no hi és.
 
