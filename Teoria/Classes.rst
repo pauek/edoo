@@ -874,7 +874,7 @@ Problemes
    
    Implementa el constructor per defecte i el de còpia.
    
-   .. problema::
+   .. solucio::
     
       .. Utilizar "literalinclude" con :lines: 10-20 para incluir
       .. porciones!

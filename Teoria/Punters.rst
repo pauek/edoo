@@ -1,9 +1,9 @@
 
 .. tema:: pt
 
-=======
-Punters
-=======
+==========================
+Punters i Memòria Dinàmica
+==========================
 
 .. rubric:: Objectius
 
@@ -21,6 +21,8 @@ Punters
    :depth: 2
    :local:
 
+Punters
+=======
 
 La memòria és una gran taula de *bytes*
 ---------------------------------------
@@ -324,6 +326,9 @@ podriem escriure::
  
 Aquesta notació és més clara (i més fàcil d'escriure) i és utilitzada
 majoritàriament.
+
+.. include:: Memoria_Dinamica.rst
+
 
 .. TODO ejercicio sobre acceder a métodos de clases a través de un puntero!!
 
