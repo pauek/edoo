@@ -71,7 +71,6 @@ epub:
 
 latex:
 	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) _build/latex
-	./fix_latex_output.sh
 	make -C _build/latex
 
 changes:
