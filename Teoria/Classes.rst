@@ -112,7 +112,7 @@ Si implementem la ``Data`` com un ``class``::
   class Data {
     int _dia, _mes, _any;
   public:
-    void inicialitza(int _dia, int _mes, int _any);
+    void inicialitza(int dia, int mes, int any);
     void dia() const;
     void mes() const;
     void any() const;
@@ -181,13 +181,13 @@ que hi ha abans és privat, o sigui no accessible. Per tant, la
 declaració de la classe es podria haver fet així::
 
   class Data {
-  private: // ho diem explícitament
-    int dia, mes, any;
   public:
-    void inicialitza(int _dia, int _mes, int _any);
+    void inicialitza(int dia, int mes, int any);
     void dia() const;
     void mes() const;
     void any() const;
+  private: // ho diem explícitament
+    int _dia, _mes, _any;
   };
 
 Les dues clàusules ``private:`` i ``public:`` canvien l'accés dels
