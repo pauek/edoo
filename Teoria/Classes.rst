@@ -685,7 +685,7 @@ Suposem que ``Processador`` és::
   class Processador {
     // ...
   public:
-    Parella(double velocitat);
+    Processador(double velocitat); // constructor normal
   };
 
 La classe ``Processador`` no té constructor per defecte, i per tant la
@@ -697,10 +697,10 @@ Si la classe ``Ordinador`` té com a atribut un objecte de la
 classe ``Processador``::
 
   class Ordinador {
-    Processador _cpu;
+    Processador _cpu1, _cpu2;
     
   public:
-    Ordinador(double velocitat);
+    Ordinador(double velocitat); // constructor normal
   };
 
 per força el constructor de ``Ordinador`` haurà de cridar al
@@ -709,16 +709,18 @@ aquesta crida s'ha d'utilitzar una sintaxi especial. La implementació
 del constructor de ``Ordinador`` serà::
 
   Ordinador::Ordinador(double velocitat)
-    : _cpu(velocitat)  // cridem el constructor del Processador
+    : _cpu1(velocitat), _cpu2(velocitat) // crida als constructors
   {
   }
 
-La sintaxi consisteix en posar "``:``" i fer una crida al constructor
-amb el nom de l'atribut i els paràmetres entre parèntesis. Si hi ha
-més d'un atribut en aquesta situació, les diferents crides es separen
-per comes. Per altra banda, donat que no hi ha més atributs en la
-classe ``Ordinador``, l'únic que es fa és cridar al constructor de
-``Processador``, i el cos de la funció queda buit.
+La sintaxi consisteix en posar "``:``" i fer una crida als
+constructors amb el nom de l'atribut i els paràmetres entre
+parèntesis. En aquest cas la crida al constructor no es pot fer amb el
+nom de la classe (``Processador``) perquè si n'hi ha dos, com en
+aquest cas, no es podria distingir quin és cadascún. Si hi ha més d'un
+atribut, les diferents crides se separen per comes. Per altra banda,
+donat que ``Ordinador`` només té els atributs ``_cpu1`` i  ``_cpu2``,
+el cos del constructor (entre ``{`` i ``}``) queda buit.
 
 .. exercici::
    
