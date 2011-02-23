@@ -989,7 +989,7 @@ Problemes
           pes = o.pes;
         }
    
-        void Organisme::menor_que(const Organisme& o) const {
+        bool Organisme::menor_que(const Organisme& o) const {
           return pes < o.pes;
         }
    
@@ -1015,15 +1015,15 @@ Problemes
          int main() {
            Organisme o, max;
    
-   	o.llegeix(cin);
-   	max.copia(o);
-   	while (!o.ultim()) {
-   	  if (max.menor_que(o)) {
-   	    max.copia(o);
-   	  }
-   	  o.llegeix(cin);
-   	}
-   	max.escriu(cout);
+           o.llegeix(cin);
+           max.copia(o);
+           while (!o.ultim()) {
+             if (max.menor_que(o)) {
+               max.copia(o);
+             }
+             o.llegeix(cin);
+           }
+           max.escriu(cout);
          }
    
       Molt més escueta però encara fa el càlcul d'abans. Fins aquí tenim
