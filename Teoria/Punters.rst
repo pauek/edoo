@@ -258,7 +258,7 @@ posat la instrucció "``a = 3``".
      *pf2 = *pf2 / 2.0;
      cout << x << ' ' << y << endl;
 
-   .. exercici::
+   .. solucio::
    
       La sortida del programa serà::
    
