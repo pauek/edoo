@@ -21,11 +21,11 @@ Objectius
 Inversió d'una imatge
 =====================
 
-A Atenea trobaràs el codi font del següent programa, que inverteix una
-imatge en blanc i negre:
+Primer :download:`descarrega el codi font<src/inverteix_imatge/inverteix0.cpp>` 
+del següent programa, que inverteix una imatge en blanc i negre:
 
-.. literalinclude:: ../src/TADs/inverteix_imatge.cc	  
-	:lines: 1-63
+.. literalinclude:: src/inverteix_imatge/inverteix0.cpp
+	:lines: 1-67
    
 Aquest programa llegeix una imatge en format PGM (una imatge en blanc
 i negre), inverteix el valor de cada píxel (és a dir, subsitueix negre
