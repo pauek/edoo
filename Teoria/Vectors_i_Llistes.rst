@@ -2,7 +2,7 @@
 .. tema:: vl
 
 ======================
-STL, Vectors i Llistes
+Vectors i Llistes
 ======================
 
 .. contents:: Contingut 

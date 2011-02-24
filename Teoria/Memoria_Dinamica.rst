@@ -1,6 +1,12 @@
 
-Gestió de la memòria
-====================
+.. tema:: md
+
+Memòria Dinàmica
+================
+
+.. contents:: Contingut 
+   :depth: 2
+   :local:
 
 La gestió dinàmica de la memòria permet sobrepassar certes limitacions
 ----------------------------------------------------------------------
@@ -111,7 +117,7 @@ podem reservar un ``Punt3D`` en memòria dinàmica així::
   No ponemos este ejemplo, demasiado difícil
 
   include:: Memoria_Dinamica_Exemple_1.rst
- 
+
 L'operador ``delete`` allibera la memòria que indica un punter
 --------------------------------------------------------------
 
@@ -121,12 +127,25 @@ es crida sobre un punter (suposem que es diu ``p``)::
 
   delete p;
 
-Per exemple, si fem servir la class ``Punt3D`` de més
+Per exemple, si fem servir la classe ``Punt3D`` de més
 amunt::
   
+  // Declarem un punter i reservem un Punt3D dinàmicament
   Punt3D *p = new Punt3D(1.0, 1.0, 0.0);
-  // treballa amb el punt
+
+  // treballem amb 'p'
+  // ...
+
+  // Finalment alliberem 'p'
   delete p;
+
+L'operador ``new`` permet reservar taules
+-----------------------------------------
+
+1. Les taules reservades tenen un tamany límit tant gran com la memòria
+de què es disposi.
+
+TODO!
 
 
 Quan es gestiona la memòria dinàmicament és fàcil cometre certs errors

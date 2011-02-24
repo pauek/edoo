@@ -2,7 +2,7 @@
 .. tema:: pt
 
 ==========================
-Punters i Memòria Dinàmica
+Punters
 ==========================
 
 .. rubric:: Objectius
@@ -12,6 +12,10 @@ Punters i Memòria Dinàmica
 - Declarar punters a un tipus qualsevol. 
 
 - Accedir al valor apuntat, incloent camps d'estructures.
+
+- Descriure la organització d'una taula en memòria.
+
+- Utilitzar els arguments d'un programa.
 
 ..
   - Iterar posicions de memòria consecutives fent servir punters.
@@ -327,7 +331,7 @@ podriem escriure::
 Aquesta notació és més clara (i més fàcil d'escriure) i és utilitzada
 majoritàriament.
 
-.. include:: Memoria_Dinamica.rst
+.. include:: Punters_a_Taules.rst
 
 
 .. TODO ejercicio sobre acceder a métodos de clases a través de un puntero!!

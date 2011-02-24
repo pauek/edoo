@@ -169,6 +169,28 @@ O, si ho posem tot junt::
       ``p`` (el 10).
 
 
+Un punter es pot fer servir com una taula
+-----------------------------------------
+
+Si el nom d'una taula és un punter al seu primer element, una pregunta
+interessant és si podem fer servir un punter com si fos una taula::
+
+  int taula[3] = { 5, 10, 15 };
+  int *p;
+  p = taula;
+  cout << p[0] << ' ' << p[1] << ' ' << p[2] << endl;
+
+Les expressions ``p[0]``, ``p[1]`` i ``p[2]`` són les que escriuriem
+si ``p`` fos una taula, però realment és un punter. Així doncs, el
+programa anterior mostrarà per pantalla::
+
+  5 10 15
+
+tal com esperem. Llavors, ``p`` és com un nom alternatiu per a la
+variable ``taula``. La diferència entre els dos és que l'adreça de
+``taula`` no es pot modificar mentre que la de ``p`` sí.
+
+
 Els *strings* de C són punters a caràcters
 ------------------------------------------
 
@@ -232,7 +254,8 @@ El tipus del punter no és "``char *``", però, ja que això ens permetria
 modificar els caracters individuals. El punter és, de fet, a una taula
 de caràcters constants (no modificables), per això el ``const``.
 
-.. rubric:: Els arguments d'un programa
+Els arguments d'un programa són strings de C
+--------------------------------------------
 
 Quan executem un programa, aquest pot rebre arguments (com si fós una
 "funció del sistema operatiu"). Per exemple, si tenim un programa
@@ -310,105 +333,9 @@ El següent programa ``hola`` fa servir el primer argument
  
       *[Aquesta solució està per fer...]*
 
-
-La forma més ràpida de recórrer una taula és amb un punter
-----------------------------------------------------------
-
-Quan tenim punters, per recórrer les caselles d'una taula, és
-suficient amb tenir un punter que comença a la primera casella de la
-taula, i que es va incrementant d'un en un (anirà saltant de casella
-en casella per la memòria). Per exemple, la següent funció calcula la
-longitud d'una paraula (fem la suposició que és un *string* de C)::
-
-  int longitud(char *paraula) {
-    int L = 0;
-    char *p = paraula;
-    while (*p != 0) {
-      L++;
-      p++;
-    }
-    return L; 
-  }
-
-Si el punter que ens passen no és realment una taula amb sentinella 0,
-el programa donarà un error d'execució gairebé segur.
-
-Donat que el punter que ens passen com a paràmetre el podem fer servir
-per recórrer la taula directament (no necessitem una variable més),
-podem fins i tot escriure::
-
-  int longitud(char *par) {
-    int L = 0;
-    while (*par != char(0)) {
-      L++;
-      par++;
-    }
-    return L;
-  }
-
-Des del programa principal, podriem cridar aquesta funció així::
-
-  int main() {
-    cout << longitud("Supercalifragilísticorl!") << endl;
-  }
-
-.. exercici::
-
-   Escriu una funció que rebi 2 punters a enters. El primer és una
-   taula acabada en -1 (l'orígen). El segon és l'adreça d'una taula
-   amb un tamany igual o major que la primera. La funció ha de copiar
-   els valors de la primera taula a la segona. Recorda posar el
-   sentinella a la segona taula al final de tot.
-
-   .. solucio::
-      ::
-   
-        void copia(int *orig, int *dest) {
-          while (*orig != -1) {
-            *dest = *orig;
-            orig++; dest++;
-          }
-          *dest = -1;
-        }
-
-.. exercici::
-
-   Tradueix la següent funció, que concatena dues cadenes de
-   caracters) per tal que faci servir punters en comptes de taules::
-
-      typedef char Cadena[MAX_CHARS];
-      
-      void concatena(Cadena c1, Cadena c2, Cadena res) {
-        int i = 0;
-        while (c1[i] != char(0)) {
-          res[i] = c1[i];
-          i++;
-        }
-        int k = i;
-        while (c2[i-k] != char(0)) {
-          res[i] = c2[i-k];
-          i++;
-        }
-        res[i] = char(0);
-      }
-
-   .. solucio::
-
-      La funció és més fàcil amb punters perquè no s'ha de calcular
-      l'índex a partir d'on ha d'anar la segona taula, el punter ``res``
-      ja està situat a lloc::
-  
-        void concatena(char *c1, char *c2, char *res) {
-          while (*c1 != char(0)) {
-            *res = *c1;
-            res++; c1++;
-          }
-          while (*c2 != char(0)) {
-            *res = *c2;
-            res++; c2++;
-          }
-          *res = char(0);
-        }
+.. 
+   Saltamos esto
+   include:: Punters_a_Taules_Recorreguts.rst
 
 .. [#nota4] En Windows, quan arrossegues un fitxer a sobre d'un
             programa executable, el nom del fitxer arrossegat es posa

@@ -18,11 +18,12 @@ Apunts
    Teoria/Classes
    Teoria/Operadors
    Teoria/Punters
+   Teoria/Memoria_Dinamica
    Teoria/Herencia
    Teoria/Polimorfisme
    Teoria/Eficiencia
-   Teoria/STL_Vectors_i_Llistes
-   Teoria/Piles_Cues_i_Maps
+   Teoria/Vectors_i_Llistes
+   Teoria/Maps
    Teoria/Algorismes
 
 ..   
