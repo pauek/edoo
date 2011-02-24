@@ -29,9 +29,9 @@ struct Pixel {
 void Pixel::llegeix(istream& i, int nmax) {
   int r, g, b;
   i >> r >> g >> b;
-  red = float(r) / float(nmax);
-  red = float(g) / float(nmax);
-  red = float(b) / float(nmax);
+  red   = float(r) / float(nmax);
+  green = float(g) / float(nmax);
+  blue  = float(b) / float(nmax);
 }
 
 void Pixel::inverteix() {
