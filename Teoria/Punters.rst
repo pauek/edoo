@@ -300,29 +300,29 @@ també afecta l'accés a tuples::
   int main() {
     Punt a;
     Punt *pa = &a;
-    *p.x = 0.0; // error, 'p' no té camps
-    *p.y = 1.0; // error, 'p' no té camps
+    *pa.x = 0.0; // error, 'pa' no té camps
+    *pa.y = 1.0; // error, 'pa' no té camps
   }
 
 Com que l'operador d'accés a tuples és el més fort de tots, s'aplica
 primer i per tant el codi dona un error de compilació. Per arreglar-ho
 podem fer servir parèntesis::
 
-    (*p).x = 0.0;
-    (*p).y = 1.0;
+    (*pa).x = 0.0;
+    (*pa).y = 1.0;
 
 Així el codi funcionaria perfectament.
 
 .. rubric:: L'operador ``->``
 
-El fet d'haver de posar "``(*p).``" per accedir als camps d'una tupla de
+El fet d'haver de posar "``(*pa).``" per accedir als camps d'una tupla de
 seguida és fa feixuc, i per això C++ té una sintaxi equivalent:
-"``p->``". La fletxa es pot interpretar com "accedeix al camp de la
-tupla a la que apunta ``p``".  En un programa com l'anterior, doncs,
+"``pa->``". La fletxa es pot interpretar com "accedeix al camp de la
+tupla a la que apunta ``pa``".  En un programa com l'anterior, doncs,
 podriem escriure::
 
-   p->x = 0.0;
-   p->y = 0.0;
+   pa->x = 0.0;
+   pa->y = 0.0;
  
 Aquesta notació és més clara (i més fàcil d'escriure) i és utilitzada
 majoritàriament.
