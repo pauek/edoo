@@ -5,10 +5,11 @@ Organització de taules en memòria
 A un punter se li pot sumar i restar un enter
 ---------------------------------------------
 
-Els punters, ja que són variables, també es poden modificar. Fins ara
-hem vist que els podem assignar l'adreça d'una variable. Però també
-se'ls pot sumar i restar un enter. Si un punter conté l'adreça d'un
-caràcter (suposem que val ``13925``)::
+Els punters, donat que són variables, també es poden modificar. Fins
+ara hem vist que els podem assignar l'adreça d'una variable. Però
+també se'ls pot sumar i restar un enter. Per exemple, si un punter
+``pc`` conté l'adreça d'un caràcter ``c`` (que suposem que val
+``13925``)::
 
   char c;
   char *pc = &c;
@@ -17,20 +18,21 @@ i li sumem 1::
 
   pc += 1;
 
-llavors teòricament tindrem l'adreça ``13926``, que seria l'adreça del
-caràcter situat just al costat de ``c`` a la memòria.
+llavors a la variable ``pc`` tindrem l'adreça ``13926``, que seria
+l'adreça del caràcter situat just al després de ``c`` a la memòria.
 
 Però com hem vist abans, no tots els tipus de dades tenen el mateix
-tamany. Llavors, si tenim un punter ``px``::
+tamany. Llavors, si tenim un punter ``px`` que apunta a una variable
+``x``::
 
   int x;
   int *px = &x;
 
 i volem fer-lo apuntar a l'adreça de memòria de l'enter del costat,
 hauríem de sumar 4 en comptes de 1 (ja que els enters ocupen 4 bytes i
-cada adreça és per a 1 byte). El propi C++, però, ja controla aquest
-fet, i quan sumem 1 a un punter a enters, realment a l'adreça **se li
-suma 4**.
+cada adreça individual és refereix a 1 byte). El propi C++, però, ja
+controla aquest fet, i quan sumem 1 a un punter a enters, realment a
+l'adreça **se li suma 4**. És per això que els punters tenen un tipus.
 
 .. exercici::
 
@@ -64,8 +66,9 @@ multiplicat pel tamany de la taula. Per exemple::
 
   bool conjunt[5] = { true, false, true, false, false };
 
-reserva 5 bytes consecutius en memòria, ja que un ``bool`` hem vist
-abans que ocupa 1 byte. La representació d'aquesta taula seria:
+reserva 5 bytes consecutius en memòria (el tipus ``bool`` ocupa 1
+byte), i els inicialitza amb 5 valors concrets. La representació d'aquesta
+taula seria:
 
 .. image:: img/memoria_taula.png
    :scale: 50
@@ -79,7 +82,8 @@ es fa servir la primera adreça de la taula i se li suma un enter que
 vol dir agafar l'adreça base, sumar 2 (tercera casella), i accedir a
 la posició resultant (ja sigui per modificar o per consultar). El fet
 que els índexs de les taules facin servir com a primer element el 0
-prové d'aquesta manera de emmagatzemar taules en memòria.
+prové d'aquesta manera de emmagatzemar taules en memòria, si sumem 0 a
+l'adreça base *anirem a l'element número 1*.
 
 .. exercici::
 
@@ -102,20 +106,22 @@ que hem vist, seria treure l'adreça de la primera casella::
   int *p1;
   p1 = &prim[0];
 
-Al cap i a la fi, ``prim[0]`` és una variable i per tant podem obtenir
-l'adreça amb l'operador ``&``. L'altra manera que tenim és fer servir
-el nom de la taula sense corxets::
+Al cap i a la fi, ``prim[0]`` és com una variable entera normal i
+corrent i per tant podem obtenir l'adreça amb l'operador
+``&``. 
+
+Però hi ha una altra manera: fer servir el nom de la taula sense
+corxets::
  
   int *p2 = prim; // igual que p2 = &prim[0]
 
-En C++, se segueix la convenció que el nom d'una taula és *un punter a
-la seva primera casella*. De fet, això implica (tenint en compte que
-sumar un enter a un punter incrementa la seva posició en funció del
-tamany del tipus al que apunta) que una instrucció com::
+En C++, se segueix la convenció que el nom d'una taula s'avalua com
+*un punter a la seva primera casella*. De fet, això implica que una
+instrucció com::
 
   prim[2] = 5;
 
-És equivalent a::
+és equivalent a::
 
   int *p3 = prim;
   p3 += 2;
@@ -172,8 +178,9 @@ O, si ho posem tot junt::
 Un punter es pot fer servir com una taula
 -----------------------------------------
 
-Si el nom d'una taula és un punter al seu primer element, una pregunta
-interessant és si podem fer servir un punter com si fos una taula::
+Si el nom d'una taula és un punter al seu primer element, ens pot
+sorgir el dubte de si un punter es pot utilitzar com si fos una
+taula. La resposta és afirmativa::
 
   int taula[3] = { 5, 10, 15 };
   int *p;
@@ -190,16 +197,56 @@ tal com esperem. Llavors, ``p`` és com un nom alternatiu per a la
 variable ``taula``. La diferència entre els dos és que l'adreça de
 ``taula`` no es pot modificar mentre que la de ``p`` sí.
 
+.. exercici::
+
+   Determina la sortida del següent programa::
+
+      char paraula[5] = { 'H', 'e', 'l', 'l', 'o' };
+      char *p = paraula;
+      p[1] = 'a';
+      for (int i = 0; i < 5; i++) cout << p[i];
+      cout << endl;
+
+   .. solucio::
+
+      La sortida serà::
+     
+        Hallo
+
+.. exercici::
+
+   Determina la sortida del següent programa::
+
+      char paraula[5] = { 'H', 'e', 'l', 'l', 'o' };
+      char *p = paraula + 1;
+      p[2] = 'o';
+      p[0] = 'a';
+      p += 3;
+      *p = ' ';
+      for (int i = 0; i < 5; i++) cout << p[i];
+      cout << endl;
+
+   .. solucio::
+
+      La sortida serà::
+
+         Halo 
+
+      En aquest exercici la part crucial és veure que el punter ``p``
+      apunta a la *segona* casella de ``paraula`` i llavors la
+      correspondència entre índexs i caselles es calcula amb la "base"
+      situada a la segona casella.
 
 Els *strings* de C són punters a caràcters
 ------------------------------------------
 
-El llenguatge C++ prové de C, i en C els punters a caràcter tenen un
-significat especial. En C, s'assumeix que si tenim un punter a
-caràcters, aquest punter apunta a una **taula de caràcters acabada en
-0**. La taula té un sentinella perquè així sabem el seu tamany
-implícitament. Si no hi hagués sentinella, no es pot transmetre el
-tamany de la taula només amb el punter (que és una simple adreça).
+El llenguatge C++ prové del llenguatge C, i en C els punters a
+caràcter tenen un significat especial. En C, s'assumeix que si tenim
+un punter a caràcters, aquest punter apunta a una **taula de caràcters
+acabada amb un caracter de codi 0**. Aquest caracter final és realment
+un sentinella, ja que mai es mostra per pantalla. Si no hi hagués
+sentinella, no es podria saber el tamany de la taula només amb el
+punter (que és una simple adreça).
 
 Quan escrivim en un programa una paraula entre cometes dobles (``"``),
 es crea una taula de caràcters amb un caràcter més del compte (per
@@ -211,7 +258,8 @@ posar el sentinella), i es retorna un punter a la primera casella::
 
 Les cadenes de caracters com aquestes són més bàsiques que el tipus
 ``string`` (que és una classe de C++). Però una cadena de caracters es
-pot mostrar per pantalla fàcilment::
+pot mostrar per pantalla tal com hem fet fins ara amb els objectes de
+tipus ``string``::
 
   int main() {
     char *paraula = "hola";
@@ -286,7 +334,7 @@ El següent programa ``hola`` fa servir el primer argument
 
 .. exercici::
 
-   Compila :download:`programa anterior <../src/05_Punters/hola.cpp>` i
+   Compila :download:`el programa anterior <../src/05_Punters/hola.cpp>` i
    executa'l de manera que mostri per pantalla el següent::
 
      Hola, Groucho, què tal estàs?
