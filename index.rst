@@ -22,9 +22,9 @@ Apunts
    Teoria/Herencia
    Teoria/Polimorfisme
    Teoria/Eficiencia
-   Teoria/Vectors_i_Llistes
-   Teoria/Maps
-   Teoria/Algorismes
+   Teoria/STL_Vectors_i_Llistes
+   Teoria/STL_Maps
+   Teoria/STL_Algorismes
 
 ..   
    Teoria/03_Punters_i_Memoria_Dinamica
