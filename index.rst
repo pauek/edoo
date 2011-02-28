@@ -37,7 +37,7 @@ Guions de pràctiques
    :glob:
 
    Laboratori/Tipus_Abstractes_de_Dades
-   Laboratori/TADs_i_Classes
+   Laboratori/Classes
    Laboratori/Analisi_Eficiencia
    Laboratori/Vectors_i_Llistes
    Laboratori/Piles_i_Cues
