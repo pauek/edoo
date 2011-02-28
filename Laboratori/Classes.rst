@@ -1,6 +1,6 @@
 
 ==============
-TADs i Classes
+Classes
 ==============
 
 .. tema:: lab.cl
@@ -8,11 +8,11 @@ TADs i Classes
 Objectius
 =========
 
-- Canvi de TAD a classe.
+- Passar de TAD a classe.
 
-- Ús del control d'accés.
+- Implementar constructors.
 
-- Implementació de constructors.
+- Fer servir mètodes de classes de la llibreria estàndar.
 
 
 De struct a class

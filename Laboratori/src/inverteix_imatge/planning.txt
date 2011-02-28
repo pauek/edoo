@@ -1,0 +1,52 @@
+
+- TADs:
+  - Comprobar que el programa funciona.
+  - Pasar el Pixel a struct.
+  - Pasar la Imagen a struct.
+
+- Clases:
+  - utilizar funciones de "string" y "ofstream":
+    - controlar que se ha abierto o no el fichero.
+    - poner el nombre del fichero automáticamente (añadir "_i" al final).
+  - Pasar Pixel a class (comprobar que no se puede acceder):
+    - Añadir un constructor (probar por separado) por defecto.
+    - Añadir más métodos?
+  - Pasar la Imagen a class (idem):
+    - Añadir un constructor (que permita indicar nomfin).
+    - Añadir más métodos (devolver un canal).
+  - Separar en 5 ficheros: main.cpp, imatge.h, imatge.cpp, pixel.h, pixel.cpp
+
+- Operadores (paréntesis):
+  - Clase Pixel: multiplicar por un valor, restar un valor. Sumar 2
+    pixels.
+  - Hacer operaciones de imagen que aprovechan eso: mezcla de 2
+    imágenes (la suma). La multiplicación por un valor (~alpha).
+    - Programa que hace 10 fotogramas de un fundido entre 2 imágenes.
+  - Operador de salida a un ostream y entrada por un
+    istream. Modificación de la versión actual.
+
+- Punteros:
+  - Utilización de métodos que requieran punteros (libpng??).
+  - Argumentos del programa (tabla de punteros).
+
+- Memoria Dinámica:
+  - Reservar memoria en memória dinámica para la imagen.
+  - Hacer un programa que manipula varias imágenes a la vez.
+
+- Herencia:
+  - Hacer 2 tipos de imágenes, en blanco y negro y en color.
+  - Clase base imagen que tiene la parte común (tamaños, etc.)
+  - Clases derivadas que tienen los métodos especiales:
+    - Arreglar los métodos para que devuelvan el tipo correcto
+      (por ejemplo al sacar un solo canal, es una imagen en 
+       blanco y negro)
+
+- Polimorfismo:
+  - Crear una clase "Manipulacion" que almacene lo que se puede
+    hacer con una imagen. Derivar varios tipos de transformaciones.
+  - Hacer un programa que lee una serie de transformaciones y 
+    se las aplica a un conjunto de imágenes.
+   
+   
+    
+  
