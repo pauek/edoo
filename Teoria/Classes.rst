@@ -612,11 +612,36 @@ mateixa línia, fent servir comes per separar, com per exemple::
 Altres detalls sobre constructors
 ---------------------------------
 
+Absència de constructors
+""""""""""""""""""""""""
+
+Si una classe *no té cap constructor* declarat, es crea un constructor
+per defecte que no fa res (no inicialitza els atributs). La següent
+classe::
+
+  class Frase {
+    string paraules[100];
+    int nparaules;
+  public:
+    void llegeix(istream& i);
+    void escriu(ostream& o) const;
+  };
+
+no té constructors i malgrat això, podem crear objectes de la classe
+``Frase``::
+
+  int main() {
+    Frase F;
+    cout << "Escriu una frase: ";
+    F.llegeix(cin);
+  }
+
 Absència de constructor per defecte
 """""""""""""""""""""""""""""""""""
 
-Si una classe no té constructor per defecte, llavors la única forma de
-crear objectes és passant els parametres del constructor que hi ha.
+Si una classe no té constructor per defecte, però en té un de normal,
+llavors la única forma de crear objectes és passant els parametres del
+constructor que hi ha.
 
 El següent programa dóna un error de compilació::
 
@@ -640,9 +665,9 @@ paràmetres requerits pel constructor (un enter i un caràcter).
 Si no hi ha constructor de còpia, se'n posa un
 """"""""""""""""""""""""""""""""""""""""""""""
 
-En absència del constructor de còpia, C++ en posa un, que el que fa és
-copiar, un per un, cada atribut de la classe. El següent programa és
-un cas::
+En tots els cassos, en absència del constructor de còpia, C++ en posa
+un, que el que fa és copiar, un per un, cada atribut de la classe. El
+següent programa és un cas::
 
   class Y {
     string _s;
