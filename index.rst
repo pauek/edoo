@@ -38,6 +38,7 @@ Guions de pràctiques
 
    Laboratori/Tipus_Abstractes_de_Dades
    Laboratori/Classes
+   Laboratori/Operadors_i_Sobrecarrega
    Laboratori/Analisi_Eficiencia
    Laboratori/Vectors_i_Llistes
    Laboratori/Piles_i_Cues
