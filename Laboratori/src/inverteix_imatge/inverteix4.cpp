@@ -4,23 +4,16 @@
 
 using namespace std;
 
-/************************************************
- *                                              *
- *          Fase 3: Passem a color              *
- *                                              *
- ************************************************/
-
-
-const int XMAX = 500, YMAX = 500;
+const int XMAX = 400, YMAX = 320;
 const int BLANC = 255;
 
 // Pixel en color (TAD) //////////////////////////
 
 // canvis: posar 3 camps, retocar tots els mètodes
 
-struct Pixel {
+class Pixel {
   float red, green, blue;
-
+public:
   void llegeix(istream& i, int nmax);
   void inverteix();
   void escriu(ostream &o) const;
@@ -50,10 +43,10 @@ void Pixel::escriu(ostream &o) const {
 
 // canvis: - "P2" ==> "P3" (lectura i escriptura)
 
-struct Imatge {
+class Imatge {
   int tamx, tamy;
   Pixel pixel[XMAX][YMAX];
-
+public:
   void llegeix(istream& i);
   void inverteix();
   void escriu(ostream& o) const;
@@ -148,7 +141,6 @@ int main() {
     exit(1);
   }
   I.escriu(fout);
-
 }
 
 // Local variables:
