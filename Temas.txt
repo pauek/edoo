@@ -1,0 +1,42 @@
+
+- TADs [core]
+  * Explicar el porqué es bueno ocultar el interior de una 
+    estructura.
+  * Trabajar ejemplos de TADs así.
+
+- Clases [core]
+  * Mecanismos de apoyo a los TADs que tiene C++:
+    - private / public, + sus consecuencias:
+      - Constructores.
+      
+- Operadores:
+  * Transformamos el lenguaje para hacerlo más legible:
+    - Detallitos sobre operadores.
+  [Necesario para list<T>::sort y map<K, V>::find => operator<
+   Para poder mostrar cosas por pantalla con operator<<]
+
+- Punteros:
+  * Ciertas variables se pueden referir a otras.
+  [Necesario para Memoria Dinámica y Polimorfismo]
+  
+- Memoria Dinámica [core]:
+  * Sobrepasar el tamaño máximo de la memoria que se puede usar en un
+    programa.
+
+- Herencia [core]
+  * De dos clases extraer la parte común y hacerla clase base.
+  
+- Polimorfismo [core]
+  * Listas heterogéneas.
+  * Controlar la complejidad.
+  
+- STL Vectores [core]
+  * Estructura secuencial como una tabla.
+  
+- STL Listas [core]
+  * Estructura secuencial como un cadena.
+
+- STL Maps [core]
+  * Estructura arbórea de búsqueda rápida.
+
+- STL Algoritmos
