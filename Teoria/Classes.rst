@@ -366,6 +366,68 @@ ha de poder, si no?).
            return sqrt(acum);				      
          }                                                       
 
+Mètodes consultors i modificadors
+---------------------------------
+
+Amb freqüència passa que necessitem mètodes per consultar o modificar
+els atributs d'una classe, pel fet que un cop els posem com
+``private`` no es podran accedir directament:
+
+- **Mètodes consultors** (*getters*): Són mètodes senzills que
+  serveixen per obtenir una dada d'un objecte (com ara el mètode
+  ``size`` de la classe ``string``, que permet obtenir el tamany d'un
+  ``string``).
+
+- **Mètodes modificadors** (*setters*): Són mètodes també senzills que
+  permeten canviar una propietat d'un objecte.
+
+La nomenclatura *getters* i *setters* vé del significat de *get*, que
+és "obtenir" i de *set*, que és "posar" o "canviar".
+
+Exemple amb la classe ``Vector2D``
+""""""""""""""""""""""""""""""""""
+
+Els mètodes consultors i modificadors es poden veure amb un exemple::
+
+  class Vector2D {
+    double _x, _y;
+  public:
+    Vector2D();
+    Vector2D(double x, double y);
+
+    // mètodes consultors 
+    double get_x() const;
+    double get_y() const;
+    
+    // mètodes modificadors
+    void set_x(double x);
+    void set_y(double y);
+  };
+
+Els mètodes ``get_x`` i ``get_y`` ens permeten obtenir la 'x' i la 'y'
+del vector, i els mètodes ``set_x`` i ``set_y`` ens permeten
+modificar-les. Les implementacions de tots 4 són::
+
+  double Vector2D::get_x() const {
+    return _x;
+  }
+
+  double Vector2D::get_y() const {
+    return _y;
+  }
+
+  void Vector2D::set_x(double x) {
+    _x = x;
+  }
+
+  void Vector2D::set_y(double y) {
+    _y = y;
+  }
+
+Els mètodes consultors porten, generalment, un ``const`` darrere
+perquè com que no modifiquen el vector, només consulten una de les
+coordenades. 
+
 
 Constructors
 ============
@@ -773,6 +835,9 @@ el cos del constructor (entre ``{`` i ``}``) queda buit.
            : _motor(marca_motor, cilindrada)
          {        
          }
+
+
+
    
 
 Problemes
