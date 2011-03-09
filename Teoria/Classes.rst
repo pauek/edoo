@@ -1156,37 +1156,37 @@ Problemes
          }
 
       Aquí finalitza la implementació d'aquesta versió de
-      l'exercici. Pots :download:`descarregar el codi d'aquest exercici<../src/Classes/conjunt_v1.cpp>`.
+      l'exercici. Pots :download:`descarregar el codi d'aquest exercici<../src/edoo/conjunt_v1.cpp>`.
 
       **Versió amb taula de Booleans**
 
       L'altra versió seria implementar la classe amb un vector que
       indica si un element pertany o no al conjunt amb un valor ``bool``.
 
-      .. literalinclude:: ../src/Classes/conjunt_v2.cpp   
+      .. literalinclude:: ../src/edoo/conjunt_v2.cpp   
    
-      Pots :download:`descarregar aquest codi<../src/Classes/conjunt_v2.cpp>`.
+      Pots :download:`descarregar aquest codi<../src/edoo/conjunt_v2.cpp>`.
 
 
 .. problema::
 
    Implementa la classe ``Frase`` de forma que el següent programa
-   (:download:`frase_main.cpp <../src/Classes/frase_main.cpp>`) funcioni
+   (:download:`frase_main.cpp <../src/edoo/frase_main.cpp>`) funcioni
    perfectament com dóna a entendre
 
-   .. literalinclude:: ../src/Classes/frase_main.cpp
+   .. literalinclude:: ../src/edoo/frase_main.cpp
 
    .. solucio::
 
       El problema de la frase té un fitxer de capçalera
-      (:download:`frase.h <../src/Classes/frase.h>`) com el següent
+      (:download:`frase.h <../src/edoo/frase.h>`) com el següent
 
-      .. literalinclude:: ../src/Classes/frase.h
+      .. literalinclude:: ../src/edoo/frase.h
 
       La implementació es faria a :download:`frase.cpp
-      <../src/Classes/frase.cpp>` i seria així
+      <../src/edoo/frase.cpp>` i seria així
 
-      .. literalinclude:: ../src/Classes/frase.cpp
+      .. literalinclude:: ../src/edoo/frase.cpp
 
 
 
