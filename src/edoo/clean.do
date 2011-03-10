@@ -1,1 +1,1 @@
-rm *.o data *~ -f
+rm *.o data racional *~ -f
