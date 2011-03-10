@@ -318,11 +318,11 @@ cridat primer ``operator*(v2, v3)``.
       ========================== =======================================================
       Expressió                  Traducció
       -------------------------- -------------------------------------------------------
-      ``-x``		               ``operator-(x)``
-      ``x - y``		            ``operator-(x, y)``
-      ``x / y / z``	            ``operator/(operator/(x, y), z)``
-      ``p || q && r``	         ``operator||(p, operator&&(q, r))``
-      ``!q``     	  	            ``operator!(q)``
+      ``-x``                     ``operator-(x)``
+      ``x - y``                  ``operator-(x, y)``
+      ``x / y / z``              ``operator/(operator/(x, y), z)``
+      ``p || q && r``            ``operator||(p, operator&&(q, r))``
+      ``!q``                     ``operator!(q)``
       ``cout << f << endl``      ``operator<<(operator<<(cout, f), endl)``
       ``x + 1 < y - 2``	         ``operator<(operator+(x, 1), operator-(y, 2))``
       ``cout << z + 3 << endl``  ``operator<<(operator<<(cout, operator+(z, 3)), endl)``
@@ -633,13 +633,13 @@ operació una mica més senzilla.
       ========================== ==========================================
       Expressió                  Traducció
       -------------------------- ------------------------------------------
-      ``1.5 + p``		            [Error: no hi ha cap operador disponible]
+      ``1.5 + p``                [Error: no hi ha cap operador disponible]
       ``p + 2.0``                ``operator+(p, 2.0)``
-      ``cin >> p``		         [Error: no hi ha cap operador disponible]
-      ``p / 3``  		            ``p.operator/(3)``
-      ``cout && p``	            ``operator&&(cout, p)``
-      ``p * 7``		            ``p.operator*(7)``
-      ``7.5 << p << pp``	      ``operator<<(operator<<(7.5, p), pp)``
+      ``cin >> p``               [Error: no hi ha cap operador disponible]
+      ``p / 3``                  ``p.operator/(3)``
+      ``cout && p``              ``operator&&(cout, p)``
+      ``p * 7``                  ``p.operator*(7)``
+      ``7.5 << p << pp``         ``operator<<(operator<<(7.5, p), pp)``
       ========================== ==========================================
    
 
@@ -700,15 +700,15 @@ Problemes
 
    .. solucio::
    
-      Primer fem el fitxer :download:`hora.h <../src/03_Operadors/hora.h>`
+      Primer fem el fitxer :download:`hora.h <../src/edoo/hora.h>`
       que contingui la declaració de la classe ``Hora``:
     
-      .. literalinclude:: ../src/03_Operadors/hora.h
+      .. literalinclude:: ../src/edoo/hora.h
    
-      Tot seguit creem el fitxer :download:`hora.cpp <../src/03_Operadors/hora.cpp>`
+      Tot seguit creem el fitxer :download:`hora.cpp <../src/edoo/hora.cpp>`
       que contingui la implementació de la classe ``Hora`` (incloent el fitxer ``hora.h``):
    
-      .. literalinclude:: ../src/03_Operadors/hora.cpp
+      .. literalinclude:: ../src/edoo/hora.cpp
    
 
 .. problema::
@@ -720,11 +720,11 @@ Problemes
 
    .. solucio::
    
-      El programa seria el següent (:download:`hora_main.cpp <../src/03_Operadors/hora_main.cpp>`)
+      El programa seria el següent (:download:`hora_main.cpp <../src/edoo/hora_main.cpp>`)
    
-      .. literalinclude:: ../src/03_Operadors/hora_main.cpp
+      .. literalinclude:: ../src/edoo/hora_main.cpp
    
-      Confeccionar un :download:`fitxer de prova <../src/03_Operadors/intervals.txt>` amb 
+      Confeccionar un :download:`fitxer de prova <../src/edoo/dades/intervals.txt>` amb 
       uns intervals temporals pot anar bé per provar el programa.
 
 
