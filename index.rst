@@ -14,7 +14,7 @@ Apunts
 .. toctree::
    :maxdepth: 1
 
-   Teoria/TADs
+   Teoria/Tipus_Abstractes_de_Dades
    Teoria/Classes
    Teoria/Operadors
    Teoria/Punters

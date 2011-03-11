@@ -1069,7 +1069,7 @@ Problemes
    
 .. rubric:: Bibliografia
 
-Bruce Eckel, `Thinking in C++ <http://www.mindview.net/Books/TICPP/ThinkingInCPP2e.html>`_, Volume
-1, 2nd Edition. Prentice Hall, 2000. **Capítol 1**. Aquest llibre és de
-lliure distribució i d'aquest capítol existeix una 
-`traducció al castellà <http://arco.esi.uclm.es/~david.villa/pensar_en_C++/products/vol1/C1.html>`_.
+- `Capítol 4. Abstracción de datos <http://arco.esi.uclm.es/~david.villa/pensar_en_C++/vol1/C04.html>`_, de "Pensar en C++", de Bruce
+  Eckel (traducció de David Villa *et al.*).
+
+- `Tipo de Dato Abstracto <http://es.wikipedia.org/wiki/Tipo_de_dato_abstracto>`_ a Wikipedia.
