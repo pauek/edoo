@@ -85,3 +85,42 @@ El codi de la funció sencera és:
    :start-after: 1+
    :end-before: 1-
 
+
+Problemes
+---------
+
+.. problema::
+
+   Disposem del mapa del Metro de Barcelona i volem un programa que
+   llegeixi el mapa del metro i calculi quin és el número mínim
+   de parades que hi ha entre una estació i una altra. 
+
+   El mapa està en un fitxer ``metro.txt`` i està en el següent
+   format: una seqüència de parelles d'estacions que són veïnes (en
+   cap ordre particular), separades per ``';'`` tal com::
+ 
+      Hospital Clínic;Diagonal
+      Diagonal;Verdaguer
+      Fontana;Lesseps
+      Lesseps;Vallcarca
+      ...
+
+   El programa primer ha de llegir el mapa de metro:
+
+   1. Associar cada estació amb un número (si s'ha llegit per primer
+      cop, se li assigna un nou número). Si és una estacio ja vista,
+      s'ha de fer servir el número assignat prèviament.
+
+   2. Tenir un vector de llistes a on cada casella del vector
+      representa una estació i els element de la llista són les
+      estacions veïnes a la xarxa de metro.
+
+   Tot seguit, el programa ha de demanar el nom de dues estacions i
+   calcular el número mínim d'estacions que hi ha entre una i l'altra.
+   Per fer-ho, feu servir l'algorisme d'exemple sobre grafs.
+
+   .. solucio::
+
+      .. literalinclude:: ../src/08_Piles_Cues_i_Maps/metro.cpp
+
+   

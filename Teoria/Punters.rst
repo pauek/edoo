@@ -368,7 +368,7 @@ majoritàriament.
 
 .. rubric:: Bibliografia
 
-.. Añadir el libro nuesto!!
+.. Añadir el libro nuestro!!
 
 Bruce Eckel, `Thinking in C++ <http://www.mindview.net/Books/TICPP/ThinkingInCPP2e.html>`_, Volume
 1, 2nd Edition. Prentice Hall, 2000. **Seccions 4.4, 4.5, 4.6 i 4.7**. Aquest llibre és de

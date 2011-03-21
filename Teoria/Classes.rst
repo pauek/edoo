@@ -835,13 +835,89 @@ el cos del constructor (entre ``{`` i ``}``) queda buit.
            : _motor(marca_motor, cilindrada)
          {        
          }
-
-
-
    
 
 Problemes
 =========
+
+.. problema::
+   
+   Implementa la classe ``Vector2D``, que permet emmagatzemar vectors
+   de dues components reals. Posa-li els següents mètodes:
+
+   - Constructor per defecte (inicialitza el vector a 0, 0).
+   - Constructor normal (rep :math:`x` i :math:`y`).
+   - Constructor de còpia.
+   - Mètodes consultors ``getX`` i ``getY`` per obtenir les components
+     del vector.
+   - Mètodes modificadors ``setX`` i ``setY`` per canviar les
+     components del vector.
+   - Un mètode ``suma`` que permeti sumar un ``Vector2D`` amb un
+     altre.
+   - Un mètode ``escalar`` que permeti fer el producte escalar d'un
+     vector amb un altre.
+   - Un mètode ``llegeix`` que rep un paràmetre de tipus ``istream&``
+     per llegir d'un canal d'entrada (ja sigui ``cin`` o un fitxer).
+     La declaració és la següent::
+ 
+        void llegeix(istream& i);
+
+   - Un mètode ``escriu`` que rep un paràmetre de tipus ``ostream&``
+     per mostrar el vector per un canal de sortida (ja sigui ``cout``
+     o un fitxer). La declaració és la següent::
+
+        void escriu(ostream& o);
+
+   Un cop implementada la classe, el següent programa et pot ajudar a
+   comprovar que la classe funciona correctament:
+
+   .. literalinclude:: ../src/edoo/vector2d_1_main.cpp
+
+   .. solucio:: 
+
+      Està pendent :S
+
+.. problema::
+
+   Implementa la classe ``DNI``, que emmagatzema el DNI d'una
+   persona. La representació interna serà un enter pel número i un
+   caràcter per la lletra. Posa-li els següents mètodes:
+   
+   - Constructor normal (rep un enter i una lletra).
+   - Constructor de còpia.
+   - Mètodes per llegir i esciure::
+
+        void llegeix(istream& i);
+	void escriu(ostream& o);
+
+   - Un mètode per determinar si dos ``DNI``\s són iguals::
+
+        bool igual_que(const DNI& altre);
+
+   No posis constructor per defecte, ja que no hi ha cap DNI de
+   referència amb el que inicialitzar un objecte de tipus DNI si no
+   s'especifica un número i una lletra.
+
+   El següent programa t'ha de permetre provar la classe:
+
+   .. literalinclude:: ../src/edoo/dni_main.cpp
+
+   .. solucio::
+
+      Està pendent :S
+
+.. problema::
+
+   Implementa una classe ``CombinacioLoto`` que permeti emmagatzemar
+   combinacions de 6 números enters entre 1 y 50 més un setè (el
+   complementari). Fes tots els mètodes típics: constructors,
+   consultors i modificadors. Implementa també mètodes llegir i
+   escriure les ``CombinacioLoto``\s i finalment un mètode per
+   determinar si dues combinacions són iguals.
+
+   .. solucio::
+
+      Està pendent :S
 
 .. problema::
 

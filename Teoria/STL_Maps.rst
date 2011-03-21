@@ -390,114 +390,6 @@ fa el mateix que l'exemple anterior::
    dies_mes.erase("novembre");
 
 
-.. exercici::
-
-   Fes un programa que llegeixi una seqüència d'enters d'un fitxer
-   ``"enters.txt"`` i mostri per pantalla un histograma. L'histograma
-   ha de comptar quantes vegades ha aparegut cada enter a la
-   seqüència.
-
-   .. solucio::
-
-      Per fer aquest problema, haurem de fer servir un ``map`` que ens
-      emmagatzemi l'histograma. Les claus seran els enters que han sortit
-      a la seqüència, i els valors associats a cada clau els comptadors
-      que ens diuen quantes vegades ha sortit cada element.
-      ::
-    
-         #include <fstream>                                        
-         #include <iostream>				    
-         #include <map>					    
-         using namespace std;				    
-      						    
-         int main() {					    
-           map<int,int> H;				    
-           ifstream fin("enters.txt");			    
-           int n;					    
-      						    
-           // Llegeix les dades				    
-           fin >> n;					    
-           while (!fin.eof()) {				    
-             H[n]++;					    
-             fin >> n;					    
-           }						    
-      						    
-           // Mostra l'histograma			    
-           map<int,int>::iterator i;			    
-           for (i = H.begin(); i != H.end(); i++)	    
-             cout << i->first << ' ' << i->second << endl;   
-         }
-
-      La instrucció més important del programa és ``H[n]++`` que té, de
-      fet, una doble funció. Quan un enter surt per primera vegada, el
-      fet d'accedir a ``H[n]`` crea un ``pair`` buit amb l'enter i un
-      comptador a 0, i tot seguit s'incrementa. Quan l'enter ja existia,
-      ``H[n]`` retorna el comptador en sí i s'incrementa normalment. La
-      mateixa instrucció ens serveix per crear nous elements i per
-      incrementar els que ja teníem.
-   
-
-.. exercici::
-
-   Fes un programa que llegeixi un fitxer ``"fruites.txt"`` amb una
-   llista de fruites i quantitats com la següent::
-
-      peres 10 pomes 5 plàtans 15 kiwis 13 pomes 2 peres 4 plàtans 3
-      maduixes 5 kiwis 1 maduixes 7 peres 2 ...
-
-   i mostri per pantalla la suma de quantitats de cada fruita i també
-   el total.
-
-   .. solucio::
-
-      Aquest exercici es resol de forma molt semblant a l'anterior. Ara
-      les fruites seran la clau i el valor que acompanya cada clau és un
-      comptador de les unitats de fruita.
-      ::
-
-        #include <fstream>
-        #include <iostream>
-        #include <map>
-        using namespace std;
-   
-        int main() {
-          map<string,int> F; // per comptar fruites
-          ifstream fin("fruites.txt");
-          string fruita;
-          int quantitat;
-     
-          // Llegim les dades
-          fin >> fruita >> quantitat;
-          while (!fin.eof()) {
-            F[fruita] += quantitat;
-            fin >> fruita >> quantitat;
-          }
-     
-          // Mostrem els resultats
-          int total = 0;
-          map<string,int>::iterator i;
-          for (i = F.begin(); i != F.end(); i++) {
-            total += i->second;
-            cout << i->first << ' ' << i->second << endl;
-          }
-          cout << "Total: " << total << endl;
-        }
-   
-      En aquest programa es compleix un cop més que la instrucció
-      ``F[fruita] += quantitat`` fa dos funcions: inicialitzar les noves
-      fruites a la quantitat que s'observa per primera vegada i sumar una
-      quantitat si ja hi són. El codi és, de fet, equivalent a::
-   
-         map<string,int>::iterator i = F.find(fruita);
-         if (i != F.end())
-           i->second += quantitat;
-         else 
-           F.insert(make_pair(fruita, quantitat));
-   
-      En aquesta versió la inserció dels elements que no existeixen es fa
-      explícitament.
-      
-
 
 Resum de mètodes de ``map``
 ---------------------------
@@ -575,6 +467,113 @@ Problemes
 
 .. problema::
 
+   Fes un programa que llegeixi una seqüència d'enters d'un fitxer
+   ``"enters.txt"`` i mostri per pantalla un histograma. L'histograma
+   ha de comptar quantes vegades ha aparegut cada enter a la
+   seqüència.
+
+   .. solucio::
+
+      Per fer aquest problema, haurem de fer servir un ``map`` que ens
+      emmagatzemi l'histograma. Les claus seran els enters que han sortit
+      a la seqüència, i els valors associats a cada clau els comptadors
+      que ens diuen quantes vegades ha sortit cada element.
+      ::
+    
+         #include <fstream>                                        
+         #include <iostream>				    
+         #include <map>					    
+         using namespace std;				    
+      						    
+         int main() {					    
+           map<int,int> H;				    
+           ifstream fin("enters.txt");			    
+           int n;					    
+      						    
+           // Llegeix les dades				    
+           fin >> n;					    
+           while (!fin.eof()) {				    
+             H[n]++;					    
+             fin >> n;					    
+           }						    
+      						    
+           // Mostra l'histograma			    
+           map<int,int>::iterator i;			    
+           for (i = H.begin(); i != H.end(); i++)	    
+             cout << i->first << ' ' << i->second << endl;   
+         }
+
+      La instrucció més important del programa és ``H[n]++`` que té, de
+      fet, una doble funció. Quan un enter surt per primera vegada, el
+      fet d'accedir a ``H[n]`` crea un ``pair`` buit amb l'enter i un
+      comptador a 0, i tot seguit s'incrementa. Quan l'enter ja existia,
+      ``H[n]`` retorna el comptador en sí i s'incrementa normalment. La
+      mateixa instrucció ens serveix per crear nous elements i per
+      incrementar els que ja teníem.
+
+.. problema::
+
+   Fes un programa que llegeixi un fitxer ``"fruites.txt"`` amb una
+   llista de fruites i quantitats com la següent::
+
+      peres 10 pomes 5 plàtans 15 kiwis 13 pomes 2 peres 4 plàtans 3
+      maduixes 5 kiwis 1 maduixes 7 peres 2 ...
+
+   i mostri per pantalla la suma de quantitats de cada fruita i també
+   el total.
+
+   .. solucio::
+
+      Aquest exercici es resol de forma molt semblant a l'anterior. Ara
+      les fruites seran la clau i el valor que acompanya cada clau és un
+      comptador de les unitats de fruita.
+      ::
+
+        #include <fstream>
+        #include <iostream>
+        #include <map>
+        using namespace std;
+   
+        int main() {
+          map<string,int> F; // per comptar fruites
+          ifstream fin("fruites.txt");
+          string fruita;
+          int quantitat;
+     
+          // Llegim les dades
+          fin >> fruita >> quantitat;
+          while (!fin.eof()) {
+            F[fruita] += quantitat;
+            fin >> fruita >> quantitat;
+          }
+     
+          // Mostrem els resultats
+          int total = 0;
+          map<string,int>::iterator i;
+          for (i = F.begin(); i != F.end(); i++) {
+            total += i->second;
+            cout << i->first << ' ' << i->second << endl;
+          }
+          cout << "Total: " << total << endl;
+        }
+   
+      En aquest programa es compleix un cop més que la instrucció
+      ``F[fruita] += quantitat`` fa dos funcions: inicialitzar les noves
+      fruites a la quantitat que s'observa per primera vegada i sumar una
+      quantitat si ja hi són. El codi és, de fet, equivalent a::
+   
+         map<string,int>::iterator i = F.find(fruita);
+         if (i != F.end())
+           i->second += quantitat;
+         else 
+           F.insert(make_pair(fruita, quantitat));
+   
+      En aquesta versió la inserció dels elements que no existeixen es fa
+      explícitament.
+      
+
+.. problema::
+
    Dissenya un programa per calcular la taula de les 25 paraules més
    freqüents d'un text. La freqüència de cada paraula és el nombre de
    vegades que apareix en el text. El programa ha de llegir un fitxer
@@ -644,41 +643,6 @@ Problemes
       .. literalinclude:: ../src/08_Piles_Cues_i_Maps/telephone.cpp
 
 
-.. problema::
-
-   Disposem del mapa del Metro de Barcelona i volem un programa que
-   llegeixi el mapa del metro i calculi quin és el número mínim
-   de parades que hi ha entre una estació i una altra. 
-
-   El mapa està en un fitxer ``metro.txt`` i està en el següent
-   format: una seqüència de parelles d'estacions que són veïnes (en
-   cap ordre particular), separades per ``';'`` tal com::
- 
-      Hospital Clínic;Diagonal
-      Diagonal;Verdaguer
-      Fontana;Lesseps
-      Lesseps;Vallcarca
-      ...
-
-   El programa primer ha de llegir el mapa de metro:
-
-   1. Associar cada estació amb un número (si s'ha llegit per primer
-      cop, se li assigna un nou número). Si és una estacio ja vista,
-      s'ha de fer servir el número assignat prèviament.
-
-   2. Tenir un vector de llistes a on cada casella del vector
-      representa una estació i els element de la llista són les
-      estacions veïnes a la xarxa de metro.
-
-   Tot seguit, el programa ha de demanar el nom de dues estacions i
-   calcular el número mínim d'estacions que hi ha entre una i l'altra.
-   Per fer-ho, feu servir l'algorisme d'exemple sobre grafs.
-
-   .. solucio::
-
-      .. literalinclude:: ../src/08_Piles_Cues_i_Maps/metro.cpp
-
-   
 
 .. problema::
 

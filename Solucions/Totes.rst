@@ -29,26 +29,20 @@ Punters
 .. llista_solucions:: pt
 
 
-Herència
---------
+Vectors
+-------
 
-.. llista_solucions:: he
-
-
-Polimorfisme
-------------
-
-.. llista_solucions:: poli
+.. llista_solucions:: vc
 
 
-Vectors i Llistes
------------------
+Llistes
+-------
 
-.. llista_solucions:: vl
+.. llista_solucions:: lst
 
 
-Piles, Cues i Taules Associatives
----------------------------------
+Taules Associatives
+-------------------
 
 .. llista_solucions:: map
 

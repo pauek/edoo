@@ -5,6 +5,10 @@
 Algorismes de la STL
 ====================
 
+.. contents:: Contingut 
+   :depth: 2
+   :local:
+
 La STL proporciona un conjunt d'algorismes genèrics que treballen amb
 iteradors, i que per tant es poden fer servir en la majoria de
 contenidors. De tots els algorismes existents, estudiarem només una
@@ -20,6 +24,8 @@ include::
 
   #include <algorithm>
 
+Algorismes STL
+==============
 
 Objectes Funció
 ---------------
@@ -569,7 +575,7 @@ i llavors cridem l'acció ``sort`` així::
    
 
 Problemes
----------
+=========
 
 .. problema::
 
