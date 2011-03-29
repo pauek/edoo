@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-#include "racional.h"
+#include "Racional.h"
 
 string VF(bool b) {
   if (b) return "true";
