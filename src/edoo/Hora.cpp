@@ -1,5 +1,5 @@
 
-#include "hora.h"
+#include "Hora.h"
 
 Hora::Hora() {
   _hores = 0; _minuts = 0; _segons = 0;

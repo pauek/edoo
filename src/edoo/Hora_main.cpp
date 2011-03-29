@@ -1,5 +1,5 @@
 
-#include "hora.h"
+#include "Hora.h"
 
 int main() {
   const int DIA_SENCER = 86400;
