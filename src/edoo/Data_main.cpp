@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-#include "data.h"
+#include "Data.h"
 
 // Canvia una d'aquestes funcions al nom 'main' i recompila...
 

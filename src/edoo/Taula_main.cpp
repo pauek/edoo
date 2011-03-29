@@ -3,7 +3,7 @@
 #include <fstream>
 using namespace std;
 
-#include "taula.h"
+#include "Taula.h"
 
 int main() {
   Taula T(1000000);
@@ -33,7 +33,3 @@ int main() {
 }
 
 #include "taula.cpp"
-
-// Local variables:
-// compile-command: "gcc -g3 -o t taula_main.cpp -lstdc++"
-// End:
