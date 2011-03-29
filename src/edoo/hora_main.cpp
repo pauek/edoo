@@ -1,27 +1,18 @@
-#include <iostream>
-#include <fstream>
-#include "Hora.h"
-using namespace std;
+
+#include "hora.h"
 
 int main() {
-  string fitxer;
-  cout << "Fitxer? ";
-  cin >> fitxer;
+  const int DIA_SENCER = 86400;
 
-  ifstream is(fitxer.c_str());
-  if (!is.is_open()) {
-    cout << "No s'ha pogut obrir el fitxer '" << fitxer << "'" << endl;
-    exit(1);
-  }
+  // Test 1
+  Hora h1(23, 59, 59);
+  cout << h1 << endl;
+  int n;
+  cin >> n;
+  cout << h1.avansa(n) << endl;
+  cout << h1 << endl;
   
-  int nIntervals;
-  Hora hInici, hFinal, hTotal;
-  is >> nIntervals;
-  for (int i = 0; i < nIntervals; i++) {
-    is >> hInici >> hFinal;
-    hTotal = hTotal + (hFinal - hInici);
-  }
-  hTotal = hTotal / nIntervals;
-  cout << "Temps mig d'interval " << hTotal << endl;
+  Hora h2(DIA_SENCER / 2);
+  cout << h2 << endl;
 }
 

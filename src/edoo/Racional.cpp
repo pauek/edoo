@@ -10,9 +10,9 @@ using namespace std;
 // http://ca.wikipedia.org/wiki/Algorisme_d'Euclides
 int maxim_comu_divisor(int a, int b) {
   while (b != 0) {
-	 int t = b;
-	 b = a % b;
-	 a = t;
+    int t = b;
+    b = a % b;
+    a = t;
   }
   return a;
 }

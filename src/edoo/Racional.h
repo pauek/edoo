@@ -43,3 +43,4 @@ public:
 
 istream& operator>>(istream& i, Racional& r);
 ostream& operator<<(ostream& o, const Racional& r);
+
