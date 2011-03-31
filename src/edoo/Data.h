@@ -1,4 +1,10 @@
 
+#ifndef DATA_H
+#define DATA_H
+
+#include <iostream>
+using namespace std;
+
 class Data {
   int _dia, _mes, _any;
 
@@ -32,3 +38,4 @@ public:
 istream& operator>>(istream& i, Data& d);
 ostream& operator<<(ostream& o, const Data& d);
 
+#endif
