@@ -14,24 +14,17 @@ Apunts
 .. toctree::
    :maxdepth: 1
 
-   .. Part I
    Teoria/Tipus_Abstractes_de_Dades
    Teoria/Classes
    Teoria/Operadors
    Teoria/Punters
    Teoria/Memoria_Dinamica
-   .. Teoria/Herencia
-   .. Teoria/Polimorfisme
 
-   .. Part II
-   .. Teoria/Eficiencia
    Teoria/STL_Vectors
    Teoria/STL_Llistes
    Teoria/STL_Maps
    Teoria/STL_Algorismes
 
-..   
-   Teoria/03_Punters_i_Memoria_Dinamica
 
 Guions de pràctiques
 ====================
@@ -46,7 +39,6 @@ Guions de pràctiques
 
    Laboratori/Analisi_Eficiencia
    Laboratori/Vectors_i_Llistes
-   .. Laboratori/Piles_i_Cues
 
 .. 
    Laboratori/Qt_invert_i_textdialog
