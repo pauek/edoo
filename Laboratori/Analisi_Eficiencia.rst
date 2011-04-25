@@ -67,9 +67,9 @@ mètode de selecció:
 
 .. exercici::
 
-   Dona diferents valors a la constant N (mira la taula al final de la
-   pràctica) i pren nota dels temps d’execució per cada
-   valor de N.
+   Dona diferents valors a la constant N (en concret fes servir 10000,
+   20000, 50000, 80000, 100000 i 150000) i pren nota dels temps
+   d’execució per cada valor de N.
 
 .. exercici::
 
