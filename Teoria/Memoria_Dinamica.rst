@@ -200,7 +200,7 @@ l'ordinador [2]_.
    Per determinar el tamany màxim d'una taula reservada *sense*
    memòria dinàmica, compila el següent programa:
      
-   .. literalinclude:: ../src/edoo/taula_limit.cpp
+   .. literalinclude:: ../src/edoo/Taula_limit.cpp
       :lines: 2-7
 
    Compila el programa posant diferents valors de ``N`` (1000, 10000,
@@ -237,7 +237,7 @@ Exemple: taula de tamany variable
 En aquesta secció farem una classe ``Taula`` que permetrà emmagatzemar
 un número variable de reals. Començarem per declarar la classe:
 
-.. literalinclude:: ../src/edoo/taula.h
+.. literalinclude:: ../src/edoo/Taula.h
    :start-after: 0+
    :end-before: 0-
    :linenos:
@@ -262,7 +262,7 @@ simplement. L'adreça de memòria 0 mai es pot consultar en un programa
 i per tant serveix per dir que el punter no apunta enlloc. També
 posarem el ``_tamany`` a 0:
 
-.. literalinclude:: ../src/edoo/taula.cpp
+.. literalinclude:: ../src/edoo/Taula.cpp
    :start-after: 1+
    :end-before: 1-
 
@@ -271,7 +271,7 @@ reals i posar-hi algun valor (un 0, per exemple). També hem de guardar
 el tamany que se'ns ha passat en la crida al constructor i
 inicialitzar la taula sencera a 0.0:
 
-.. literalinclude:: ../src/edoo/taula.cpp
+.. literalinclude:: ../src/edoo/Taula.cpp
    :start-after: 2+
    :end-before: 2-
 
@@ -279,14 +279,14 @@ En el constructor que rep un tamany i un valor (línia 7), hem de fer
 el mateix que en el constructor anterior i en comptes de posar un 0.0
 a tot arreu, posar el valor que ens passen:
 
-.. literalinclude:: ../src/edoo/taula.cpp
+.. literalinclude:: ../src/edoo/Taula.cpp
    :start-after: 3+
    :end-before: 3-
 
 L'últim constructor, el de còpia, ha de reservar tant d'espai com té
 la taula que ens copiem i copiar cada casella:
 
-.. literalinclude:: ../src/edoo/taula.cpp
+.. literalinclude:: ../src/edoo/Taula.cpp
    :start-after: 4+
    :end-before: 4-
 
@@ -294,14 +294,14 @@ la taula que ens copiem i copiar cada casella:
 Ara ja podem implementar els mètodes ``get``, ``set`` i ``tamany``,
 que són més senzills. Comencem pel més fàcil:
 
-.. literalinclude:: ../src/edoo/taula.cpp
+.. literalinclude:: ../src/edoo/Taula.cpp
    :start-after: 5+
    :end-before: 5-
 
 Els mètodes ``get`` i ``set`` permeten obtenir el valor d'una casella
 (``get``) i posar-hi un valor (``set``). Així doncs:
 
-.. literalinclude:: ../src/edoo/taula.cpp
+.. literalinclude:: ../src/edoo/Taula.cpp
    :start-after: 6+
    :end-before: 6-
 
@@ -310,7 +310,7 @@ provar-la. El següent programa llegeix una seqüència de reals d'un
 fitxer ``valors.txt`` i mostra per pantalla la diferencia de cada
 element amb la mitjana:
 
-.. literalinclude:: ../src/edoo/taula_main.cpp
+.. literalinclude:: ../src/edoo/Taula_main.cpp
    :lines: 2-32   
 
 ..

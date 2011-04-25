@@ -103,3 +103,5 @@ una finestra com la següent:
    .. solucio::
 
       Aquest exercici no té solució.
+
+.. |-->| unicode:: U+2192

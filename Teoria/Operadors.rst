@@ -700,15 +700,15 @@ Problemes
 
    .. solucio::
    
-      Primer fem el fitxer :download:`hora.h <../src/edoo/hora.h>`
+      Primer fem el fitxer :download:`Hora.h <../src/edoo/Hora.h>`
       que contingui la declaració de la classe ``Hora``:
     
-      .. literalinclude:: ../src/edoo/hora.h
+      .. literalinclude:: ../src/edoo/Hora.h
    
-      Tot seguit creem el fitxer :download:`hora.cpp <../src/edoo/hora.cpp>`
-      que contingui la implementació de la classe ``Hora`` (incloent el fitxer ``hora.h``):
+      Tot seguit creem el fitxer :download:`Hora.cpp <../src/edoo/Hora.cpp>`
+      que contingui la implementació de la classe ``Hora`` (incloent el fitxer ``Hora.h``):
    
-      .. literalinclude:: ../src/edoo/hora.cpp
+      .. literalinclude:: ../src/edoo/Hora.cpp
    
 
 .. problema::
@@ -720,9 +720,9 @@ Problemes
 
    .. solucio::
    
-      El programa seria el següent (:download:`hora_main.cpp <../src/edoo/hora_main.cpp>`)
+      El programa seria el següent (:download:`Hora_main.cpp <../src/edoo/Hora_main.cpp>`)
    
-      .. literalinclude:: ../src/edoo/hora_main.cpp
+      .. literalinclude:: ../src/edoo/Hora_main.cpp
    
       Confeccionar un :download:`fitxer de prova <../src/edoo/dades/intervals.txt>` amb 
       uns intervals temporals pot anar bé per provar el programa.

@@ -868,11 +868,6 @@ Problemes
 
         void escriu(ostream& o);
 
-   Un cop implementada la classe, el següent programa et pot ajudar a
-   comprovar que la classe funciona correctament:
-
-   .. literalinclude:: ../src/edoo/vector2d_1_main.cpp
-
    .. solucio:: 
 
       Està pendent :S
@@ -897,10 +892,6 @@ Problemes
    No posis constructor per defecte, ja que no hi ha cap DNI de
    referència amb el que inicialitzar un objecte de tipus DNI si no
    s'especifica un número i una lletra.
-
-   El següent programa t'ha de permetre provar la classe:
-
-   .. literalinclude:: ../src/edoo/dni_main.cpp
 
    .. solucio::
 
